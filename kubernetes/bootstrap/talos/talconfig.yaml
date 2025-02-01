@@ -15,6 +15,7 @@ clusterSvcNets:
 
 additionalApiServerCertSans: &sans
   - "192.168.1.101"
+  - "kube.local.martinbjeldbak.com"
   - "127.0.0.1"
 additionalMachineCertSans: *sans
 
@@ -23,7 +24,7 @@ cniConfig:
   name: none
 
 nodes:
-  - hostname: "node01"
+  - hostname: "node-01"
     ipAddress: "192.168.1.100"
     installDisk: "/dev/sda"
     machineSpec:
