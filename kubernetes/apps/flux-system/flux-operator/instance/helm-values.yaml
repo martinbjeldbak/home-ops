@@ -2,6 +2,9 @@
 instance:
   cluster:
     networkPolicy: false
+  distribution:
+    # renovate: datasource=github-releases depName=fluxcd/flux2
+    version: 2.4.0
   components:
     - source-controller
     - kustomize-controller
@@ -9,7 +12,7 @@ instance:
     - notification-controller
   sync:
     kind: GitRepository
-    url: "https://github.com/martinbjeldbak/home-ops.git"
-    ref: "refs/heads/main"
+    url: https://github.com/martinbjeldbak/home-ops.git
+    ref: refs/heads/main
     path: kubernetes/flux/cluster
     pullSecret: github-deploy-key
