@@ -47,6 +47,13 @@ releases:
     needs:
       - kube-system/coredns
 
+  - name: external-secrets
+    namespace: external-secrets
+    chart: oci://ghcr.io/external-secrets/charts/external-secrets
+    version: 0.13.0
+    values: ["../apps/external-secrets/external-secrets/app/helm-values.yaml"]
+    needs: ["cert-manager/cert-manager"]
+
   - name: flux-operator
     namespace: flux-system
     chart: oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator
