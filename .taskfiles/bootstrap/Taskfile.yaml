@@ -28,21 +28,28 @@ tasks:
 
   apps:
     desc: Bootstrap apps into the Talos cluster
+    prompt: Bootstrap apps into the Talos cluster?
     cmds:
-      - until kubectl wait --for=condition=Ready=False nodes --all --timeout=600s; do sleep 10; done
-      - kubectl create namespace flux-system --dry-run=client -o yaml | kubectl apply --server-side --filename -
-      - '{{if eq .GITHUB_DEPLOY_KEY_EXISTS "true"}}sops exec-file {{.GITHUB_DEPLOY_KEY_FILE}} "kubectl apply --server-side --filename {}"{{end}}'
-      - '{{if eq .SOPS_SECRET_EXISTS "false"}}cat {{.SOPS_AGE_KEY_FILE}} | kubectl --namespace flux-system create secret generic sops-age --from-file=age.agekey=/dev/stdin{{end}}'
-      - sops exec-file {{.KUBERNETES_DIR}}/flux/meta/settings/cluster-secrets.sops.yaml "kubectl apply --server-side --filename {}"
+      - until kubectl wait --for=condition=Ready=True nodes --all --timeout=600s; do sleep 10; done
+      - op run --env-file ./kubernetes/bootstrap/.secrets.env --no-masking -- minijinja-cli ./kubernetes/bootstrap/templates/resources.yaml.j2 | kubectl apply --server-side --filename -
+      # - '{{if eq .GITHUB_DEPLOY_KEY_EXISTS "true"}}sops exec-file {{.GITHUB_DEPLOY_KEY_FILE}} "kubectl apply --server-side --filename {}"{{end}}'
+      # - sops exec-file {{.KUBERNETES_DIR}}/flux/meta/settings/cluster-secrets.sops.yaml "kubectl apply --server-side --filename {}"
       - kubectl apply --server-side --filename {{.KUBERNETES_DIR}}/flux/meta/settings/cluster-settings.yaml
       - helmfile --file {{.KUBERNETES_DIR}}/bootstrap/helmfile.yaml apply --skip-diff-on-install --suppress-diff
+    env:
+      VAULT: Kubernetes
     vars:
       GITHUB_DEPLOY_KEY_EXISTS:
         sh: test -f {{.GITHUB_DEPLOY_KEY_FILE}} && echo true || echo false
       SOPS_SECRET_EXISTS:
         sh: kubectl --namespace flux-system get secret sops-age &>/dev/null && echo true || echo false
     preconditions:
-      - test -f {{.KUBECONFIG}}
-      - test -f {{.KUBERNETES_DIR}}/bootstrap/helmfile.yaml
-      - test -f {{.SOPS_AGE_KEY_FILE}}
-      - which helmfile kubectl sops
+      - op user get --me
+      - talosctl config info
+      - test -f {{.TALOSCONFIG}}
+      - test -f {{.BOOTSTRAP_DIR}}/helmfile.yaml
+      - test -f {{.BOOTSTRAP_DIR}}/templates/resources.yaml.j2
+      - which curl jq helmfile kubectl op talosctl
+      # - test -f {{.KUBECONFIG}}
+      # - test -f {{.KUBERNETES_DIR}}/bootstrap/helmfile.yaml
+      # - test -f {{.SOPS_AGE_KEY_FILE}}
