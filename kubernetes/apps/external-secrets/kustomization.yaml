@@ -7,6 +7,6 @@ resources:
   - ./external-secrets/ks.yaml
   - ./onepassword/ks.yaml
 components:
-  - ../../flux/components/alerts
+  # - ../../flux/components/alerts # todo: reenable
   - ../../flux/components/namespace
   - ../../flux/components/sops
