@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: default
 resources:
   - ./echo-server/ks.yaml
-  - ./autobrr/ks.yaml
+  #- ./autobrr/ks.yaml
 components:
   - ../../flux/components/namespace
   - ../../flux/components/sops
