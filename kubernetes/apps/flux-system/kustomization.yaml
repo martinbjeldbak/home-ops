@@ -7,5 +7,5 @@ resources:
   - ./flux-operator/ks.yaml
 components:
   - ../../flux/components/namespace
-  #- ../../flux/components/sops # maybe add?
+  - ../../flux/components/sops # maybe add?
   # TODO: add - ../../flux/components/alerts
