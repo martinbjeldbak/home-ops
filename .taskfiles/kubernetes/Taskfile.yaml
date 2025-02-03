@@ -14,7 +14,7 @@ tasks:
       - kubectl node-shell --version
       - which kubectl
 
-      # sync-secrets: # TODO: Run me
+  # sync-secrets: # TODO: Run me
   #   desc: Sync all ExternalSecrets
   #   cmds:
   #     - for: { var: SECRETS, split: "\n" }
@@ -24,7 +24,7 @@ tasks:
   #       sh: kubectl get externalsecret --all-namespaces --no-headers --output=jsonpath='{range .items[*]}{.metadata.namespace},{.metadata.name}{"\n"}{end}'
   #   preconditions:
   #     - which kubectl
-      #
+
 
   cleanse-pods:
     desc: Cleanse pods with a Failed/Pending/Succeeded phase
