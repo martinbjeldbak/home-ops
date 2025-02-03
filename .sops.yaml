@@ -1,14 +1,15 @@
 ---
 creation_rules:
-  - # IMPORTANT: This rule MUST be above the others
-    path_regex: talos/.*\.sops\.ya?ml
-    mac_only_encrypted: true
+  # Talhelper files
+  - path_regex: .*\/(talsecret)(\.sops)?\.yaml
+    encrypted_regex: "^(id|secret|bootstraptoken|secretboxencryptionsecret|token|ca|crt|key)$"
     key_groups:
       - age:
           - "age1s2nhgfwzfejn69nyctjglkwdd5h0wyg8t8ln4m2fmhdnprn28v0q0mmp2h"
-  - path_regex: kubernetes/.*\.sops\.ya?ml
+
+  # Generic Kubernetes Secrets
+  - path_regex: .*\.secret(\.sops)?\.yaml
     encrypted_regex: "^(data|stringData)$"
-    mac_only_encrypted: true
     key_groups:
       - age:
           - "age1s2nhgfwzfejn69nyctjglkwdd5h0wyg8t8ln4m2fmhdnprn28v0q0mmp2h"
