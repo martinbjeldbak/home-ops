@@ -4,9 +4,8 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app echo-server
-  namespace: flux-system
+  namespace: &namespace default
 spec:
-  targetNamespace: default
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -14,7 +13,9 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
+    namespace: flux-system
     name: flux-system
   wait: false
+  targetNamespace: *namespace
   interval: 30m
   timeout: 5m
