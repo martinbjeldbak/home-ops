@@ -9,4 +9,4 @@ resources:
 components:
   # - ../../flux/components/alerts # todo: reenable
   - ../../flux/components/namespace
-  #- ../../flux/components/sops
+  - ../../flux/components/sops
