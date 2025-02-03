@@ -1,3 +1,4 @@
+# source: https://spegel.dev/docs/getting-started/#talos
 machine:
   files:
     - op: create
