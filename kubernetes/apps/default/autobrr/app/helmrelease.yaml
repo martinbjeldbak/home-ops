@@ -86,13 +86,12 @@ spec:
                 service:
                   identifier: app
                   port: http
-    # persistence:
-    #   # # TODO: figure out how to enable
-    #   # config:
-    #   #   existingClaim: autobrr
-    #   config-log:
-    #     type: emptyDir
-    #     globalMounts:
-    #       - path: /config/log
-    #   tmp:
-    #     type: emptyDir
+    persistence:
+      config:
+        existingClaim: autobrr
+      config-log:
+        type: emptyDir
+        globalMounts:
+          - path: /config/log
+      tmp:
+        type: emptyDir
