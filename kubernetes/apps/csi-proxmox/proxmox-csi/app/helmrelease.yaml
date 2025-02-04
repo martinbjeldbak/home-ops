@@ -27,7 +27,7 @@ spec:
         - url: http://192.168.1.50:8006/api2/json # TODO: fix when reverse proxied
           insecure: true # TODO: same
           token_id: "kubernetes-csi@pve!csi"
-          region: cluster-1
+          region: node-01
     createNamespace: true
     node:
       nodeSelector:
@@ -35,19 +35,21 @@ spec:
       tolerations:
         - operator: Exists
 
+    # Deploy Node CSI driver only on proxmox nodes
     nodeSelector:
       node-role.kubernetes.io/control-plane: ""
     tolerations:
       - key: node-role.kubernetes.io/control-plane
         effect: NoSchedule
 
+    # TODO: look into https://github.com/sergelogvinov/proxmox-csi-plugin/blob/main/charts/proxmox-csi-plugin/values.yaml#L73 performance tweaks
     storageClass:
       - name: proxmox-data-xfs
-        storage: data
+        storage: proxmox-csi
         reclaimPolicy: Delete
         fstype: xfs
       - name: proxmox-data
-        storage: data
+        storage: proxmox-csi
         reclaimPolicy: Delete
   valuesFrom:
     - targetPath: config.clusters[0].token_secret
