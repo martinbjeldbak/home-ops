@@ -6,5 +6,6 @@ metadata:
   name: proxmox-csi
   namespace: flux-system
 spec:
+  type: oci
   interval: 1h
   url: oci://ghcr.io/sergelogvinov/charts/proxmox-csi-plugin
