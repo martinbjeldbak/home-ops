@@ -4,17 +4,20 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app proxmox-csi
-  namespace: flux-system
+  namespace: &namespace csi-proxmox
 spec:
-  targetNamespace: csi-proxmox
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  dependsOn:
+    - name: onepassword-store
+      namespace: external-secrets
+  interval: 30m
   path: ./kubernetes/apps/csi-proxmox/proxmox-csi/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   wait: false
-  interval: 30m
   timeout: 5m
