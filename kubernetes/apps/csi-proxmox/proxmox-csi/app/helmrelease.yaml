@@ -27,7 +27,7 @@ spec:
         - url: http://192.168.1.50:8006/api2/json # TODO: fix when reverse proxied
           insecure: true # TODO: same
           token_id: "kubernetes-csi@pve!csi"
-          region: node-01
+          region: cluster-1
     createNamespace: true
     node:
       nodeSelector:
