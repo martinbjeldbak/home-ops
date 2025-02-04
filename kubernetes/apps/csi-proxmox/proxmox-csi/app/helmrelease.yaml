@@ -14,7 +14,6 @@ spec:
         kind: HelmRepository
         name: proxmox-csi
         namespace: flux-system
-
   install:
     remediation:
       retries: 3
