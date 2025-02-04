@@ -50,7 +50,7 @@ spec:
         storage: data
         reclaimPolicy: Delete
   valuesFrom:
-    - kind: Secret
+    - targetPath: config.clusters[0].token_secret
+      kind: Secret
       name: proxmox-csi
-      valuesKey: PROXMOX_CSI_TOKEN_SECRET
-      targetPath: config.clusters[0].token_secret
+      valuesKey: proxmox-csi-token-secret
