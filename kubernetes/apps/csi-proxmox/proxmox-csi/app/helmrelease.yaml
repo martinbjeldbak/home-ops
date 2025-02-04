@@ -1,0 +1,56 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: proxmox-csi
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: proxmox-csi-plugin
+      version: 0.3.4
+      sourceRef:
+        kind: HelmRepository
+        name: proxmox-csi
+        namespace: flux-system
+
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    config:
+      clusters:
+        - url: http://192.168.1.50:8006/api2/json # TODO: fix when reverse proxied
+          insecure: true # TODO: same
+          token_id: "kubernetes-csi@pve!csi"
+          region: cluster-1
+    createNamespace: true
+    node:
+      nodeSelector:
+        node.cloudprovider.kubernetes.io/platform: nocloud
+      tolerations:
+        - operator: Exists
+
+    nodeSelector:
+      node-role.kubernetes.io/control-plane: ""
+    tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        effect: NoSchedule
+
+    storageClass:
+      - name: proxmox-data-xfs
+        storage: data
+        reclaimPolicy: Delete
+        fstype: xfs
+      - name: proxmox-data
+        storage: data
+        reclaimPolicy: Delete
+  valuesFrom:
+    - kind: Secret
+      name: proxmox-csi-token-secret
+      targetPath: config.clusters[0].token_secret

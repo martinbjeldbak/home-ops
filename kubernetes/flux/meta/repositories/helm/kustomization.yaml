@@ -15,5 +15,6 @@ resources:
   - ./metrics-server.yaml
   - ./openebs.yaml
   - ./prometheus-community.yaml
+  - ./proxmox-csi.yaml
   - ./spegel.yaml
   - ./stakater.yaml
