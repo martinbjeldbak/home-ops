@@ -19,6 +19,6 @@ resource "proxmox_virtual_environment_user" "kubernetes_csi" {
 resource "proxmox_virtual_environment_user_token" "kubernetes_csi" {
   comment         = "Managed by OpenTofu"
   expiration_date = "2033-01-01T22:00:00Z"
-  token_name      = "tk1"
+  token_name      = "csi"
   user_id         = proxmox_virtual_environment_user.kubernetes_csi.user_id
 }
