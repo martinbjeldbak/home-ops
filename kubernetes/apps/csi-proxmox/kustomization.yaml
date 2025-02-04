@@ -6,5 +6,5 @@ namespace: csi-proxmox
 resources:
   - ./proxmox-csi/ks.yaml
 components:
-  # - ../../flux/components/namespace
+  - ../../flux/components/namespace
   - ../../flux/components/sops

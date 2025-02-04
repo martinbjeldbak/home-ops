@@ -44,11 +44,11 @@ spec:
 
     # TODO: look into https://github.com/sergelogvinov/proxmox-csi-plugin/blob/main/charts/proxmox-csi-plugin/values.yaml#L73 performance tweaks
     storageClass:
-      - name: proxmox-data-xfs
+      - name: proxmox-data-xfs-v2
         storage: proxmox-csi
         reclaimPolicy: Delete
         fstype: xfs
-      - name: proxmox-data
+      - name: proxmox-data-v2
         storage: proxmox-csi
         reclaimPolicy: Delete
   valuesFrom:
