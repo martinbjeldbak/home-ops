@@ -7,6 +7,7 @@ resources:
   - ./cilium.yaml
   - ./controlplaneio.yaml
   - ./coredns.yaml
+  - ./csi-proxmox.yaml
   - ./external-dns.yaml
   - ./external-secrets.yaml
   - ./ingress-nginx.yaml
@@ -15,6 +16,5 @@ resources:
   - ./metrics-server.yaml
   - ./openebs.yaml
   - ./prometheus-community.yaml
-  - ./proxmox-csi-plugin.yaml
   - ./spegel.yaml
   - ./stakater.yaml
