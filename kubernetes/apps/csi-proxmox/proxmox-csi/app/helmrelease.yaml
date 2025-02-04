@@ -22,12 +22,12 @@ spec:
     remediation:
       retries: 3
   values:
-    # config:
-    #   clusters:
-    #     - url: http://192.168.1.50:8006/api2/json # TODO: improve when reverse proxied
-    #       insecure: true # TODO: same
-    #       token_id: "kubernetes-csi@pve!csi"
-    #       region: cluster-1 # should match proxmox cluster
+    config:
+      clusters:
+        - url: http://192.168.1.50:8006/api2/json # TODO: improve when reverse proxied
+          insecure: true # TODO: same
+          token_id: "kubernetes-csi@pve!csi"
+          region: cluster-1 # should match proxmox cluster
     createNamespace: true
     node:
       nodeSelector:
