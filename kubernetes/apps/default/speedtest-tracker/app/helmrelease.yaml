@@ -33,6 +33,8 @@ spec:
               repository: ghcr.io/alexjustesen/speedtest-tracker
               tag: v0.19.0
             env:
+              PUID: 1000
+              PGID: 1000
               APP_KEY: ${SPEEDTEST_TRACKER_APP_KEY}
               APP_URL: https://speedtest.kube.local.martinbjeldbak.com
               APP_TIMEZONE: Australia/Melbourne
@@ -65,9 +67,9 @@ spec:
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 9999
-        runAsGroup: 9999
-        fsGroup: 9999
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
         seccompProfile: { type: RuntimeDefault }
     service:
