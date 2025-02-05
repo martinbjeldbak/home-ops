@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: autobrr
+  name: speedtest-tracker
 spec:
   interval: 30m
   chart:
@@ -24,34 +24,33 @@ spec:
       retries: 3
   values:
     controllers:
-      autobrr:
+      speedtest-tracker:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
-              repository: ghcr.io/autobrr/autobrr
-              tag: v1.58.0@sha256:9b11c36605da242933b93dfc0c572bd17fa05af9aba2ae70deafe4977ba8048b
+              repository: lscr.io/linuxserver/speedtest-tracker
+              tag: v1.2.2
             env:
-              AUTOBRR__HOST: 0.0.0.0
-              AUTOBRR__PORT: &port 80
-              AUTOBRR__LOG_LEVEL: INFO
+              APP_KEY: ${SPEEDTEST_TRACKER_APP_KEY}
+              APP_URL: https://speedtest.kube.local.martinbjeldbak.com
+              APP_TIMEZONE: Australia/Melbourne
+              DISPLAY_TIMEZONE: Australia/Melbourne
+              SPEEDTEST_SCHEDULE: "0 * * * *" # every hour
+              SPEEDTEST_SERVERS: "25134,14670,12491,13275,60412,18714"
+              DB_CONNECTION: sqlite
+              MAIL_MAILER: smtp
+              MAIL_HOST: ${SMTP_SERVER}
+              MAIL_PORT: 465
+              MAIL_USERNAME: ${SMTP_USER_NAME}
+              MAIL_PASSWORD: ${HUGINN_SMTP_PASSWORD}
+              MAIL_ENCRYPTION: 'ssl'
+              MAIL_FROM_ADDRESS: "speedtest-tracker@martinbjeldbak.com"
+              MAIL_FROM_NAME: "Speedtest Tracker"
             envFrom:
               - secretRef:
-                  name: autobrr-secret
-            probes:
-              liveness: &probes
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /api/healthz/liveness
-                    port: *port
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
-              readiness: *probes
+                  name: speedtest-tracker-secret
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -71,7 +70,7 @@ spec:
         seccompProfile: { type: RuntimeDefault }
     service:
       app:
-        controller: autobrr
+        controller: speedtest-tracker
         ports:
           http:
             port: *port
@@ -87,7 +86,7 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: autobrr
+        existingClaim: speedtest-tracker
       config-log:
         type: emptyDir
         globalMounts:
