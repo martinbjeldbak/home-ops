@@ -186,6 +186,10 @@
       "addLabels": ["renovate/github-release"]
     },
     {
+      "matchDatasources": ["terraform-provider"],
+      "registryUrls": ["https://registry.opentofu.org"]
+    },
+    {
       "matchManagers": ["github-actions"],
       "addLabels": ["renovate/github-action"]
     }
