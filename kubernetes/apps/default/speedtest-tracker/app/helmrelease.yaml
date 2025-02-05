@@ -67,7 +67,7 @@ spec:
         runAsNonRoot: true
         runAsUser: 9999
         runAsGroup: 9999
-        fsGroup: 1000
+        fsGroup: 9999
         fsGroupChangePolicy: OnRootMismatch
         seccompProfile: { type: RuntimeDefault }
     service:
