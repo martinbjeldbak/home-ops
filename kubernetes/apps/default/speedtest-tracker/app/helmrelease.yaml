@@ -53,7 +53,7 @@ spec:
                   name: speedtest-tracker-secret
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
+              readOnlyRootFilesystem: false
               capabilities: { drop: ["ALL"] }
             resources:
               requests:
@@ -62,7 +62,7 @@ spec:
                 memory: 256Mi
     defaultPodOptions:
       securityContext:
-        runAsNonRoot: false # need to run as root
+        runAsNonRoot: true
         runAsUser: 1000
         runAsGroup: 1000
         fsGroup: 1000
