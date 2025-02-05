@@ -54,7 +54,11 @@ spec:
             securityContext:
               allowPrivilegeEscalation: true
               readOnlyRootFilesystem: false
-              capabilities: { drop: ["ALL"] }
+              capabilities:
+                drop: ["ALL"]
+                add:
+                  - SETGID
+                  - SETUID
             resources:
               requests:
                 cpu: 10m
