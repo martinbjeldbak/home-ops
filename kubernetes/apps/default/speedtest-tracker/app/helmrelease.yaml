@@ -30,7 +30,7 @@ spec:
         containers:
           app:
             image:
-              repository: lscr.io/linuxserver/speedtest-tracker
+              repository: ghcr.io/alexjustesen/speedtest-tracker
               tag: v0.19.0
             env:
               APP_KEY: ${SPEEDTEST_TRACKER_APP_KEY}
