@@ -55,11 +55,8 @@ spec:
               allowPrivilegeEscalation: true
               readOnlyRootFilesystem: false
               capabilities:
-                drop: ["ALL"]
-                add:
-                  - SETGID
-                  - SETUID
-                  - CHOWN
+                # drop: ["ALL"]
+                add: ["SETGID", "SETUID", "CHOWN"]
             resources:
               requests:
                 cpu: 10m
