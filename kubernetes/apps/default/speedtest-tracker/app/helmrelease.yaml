@@ -59,6 +59,7 @@ spec:
                 add:
                   - SETGID
                   - SETUID
+                  - CHOWN
             resources:
               requests:
                 cpu: 10m
