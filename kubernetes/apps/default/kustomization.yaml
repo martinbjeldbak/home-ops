@@ -6,7 +6,8 @@ namespace: default
 resources:
   - ./autobrr/ks.yaml
   - ./echo-server/ks.yaml
-  - ./speedtest-tracker/ks.yaml
+  - ./emqx/ks.yaml
+  #- ./speedtest-tracker/ks.yaml
 components:
   - ../../flux/components/namespace
   - ../../flux/components/sops
