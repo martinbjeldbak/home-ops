@@ -48,6 +48,6 @@ spec:
   listenersServiceTemplate:
     metadata:
       annotations:
-        lbipam.cilium.io/ips: 192.168.10.105
+        lbipam.cilium.io/ips: 192.168.10.106
     spec:
       type: LoadBalancer
