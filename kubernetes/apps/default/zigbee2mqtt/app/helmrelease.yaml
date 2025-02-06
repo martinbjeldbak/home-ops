@@ -27,7 +27,7 @@ spec:
       namespace: csi-proxmox
   values:
     controllers:
-      zigbee:
+      zigbee2mqtt:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
