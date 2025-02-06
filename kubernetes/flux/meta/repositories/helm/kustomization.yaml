@@ -8,7 +8,7 @@ resources:
   - ./controlplaneio.yaml
   - ./coredns.yaml
   - ./csi-proxmox.yaml
-  # - ./emqx.yaml # TODO: figure out why ip not resolving
+  - ./emqx.yaml
   - ./external-dns.yaml
   - ./external-secrets.yaml
   - ./ingress-nginx.yaml
