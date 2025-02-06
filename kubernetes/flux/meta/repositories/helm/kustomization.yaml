@@ -8,6 +8,7 @@ resources:
   - ./controlplaneio.yaml
   - ./coredns.yaml
   - ./csi-proxmox.yaml
+  - ./emqx.yaml
   - ./external-dns.yaml
   - ./external-secrets.yaml
   - ./ingress-nginx.yaml
