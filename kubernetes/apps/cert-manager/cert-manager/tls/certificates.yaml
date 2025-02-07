@@ -13,4 +13,5 @@ spec:
   dnsNames:
     - "martinbjeldbak.com"
     - "*.kube.local.martinbjeldbak.com"
+    - "*.local.martinbjeldbak.com"
     - "*.martinbjeldbak.com"

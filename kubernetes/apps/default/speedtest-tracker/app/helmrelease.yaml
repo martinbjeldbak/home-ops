@@ -25,6 +25,14 @@ spec:
   values:
     controllers:
       speedtest-tracker:
+        # initContainers:
+        #   chown:
+        #     - name: init-chown
+        #       image: busybox
+        #       command: ['chown', '1000:3000', '/data']
+        #       volumeMounts:
+        #         - mountPath: /data
+        #           name: data-volume
         annotations:
           reloader.stakater.com/auto: "true"
         containers:

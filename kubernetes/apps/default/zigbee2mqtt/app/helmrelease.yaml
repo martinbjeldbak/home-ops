@@ -45,7 +45,7 @@ spec:
               ZIGBEE2MQTT_CONFIG_AVAILABILITY_PASSIVE_TIMEOUT: 2000
               ZIGBEE2MQTT_CONFIG_DEVICE_OPTIONS_RETAIN: "true"
               ZIGBEE2MQTT_CONFIG_FRONTEND_PORT: &port 80
-              ZIGBEE2MQTT_CONFIG_FRONTEND_URL: https://zigbee2mqtt.kube.local.martinbjeldbak.com
+              ZIGBEE2MQTT_CONFIG_FRONTEND_URL: https://zigbee2mqtt.local.martinbjeldbak.com
               ZIGBEE2MQTT_CONFIG_HOMEASSISTANT_ENABLED: true
               ZIGBEE2MQTT_CONFIG_HOMEASSISTANT_DISCOVERY_TOPIC: homeassistant
               ZIGBEE2MQTT_CONFIG_HOMEASSISTANT_STATUS_TOPIC: homeassistant/status
@@ -100,7 +100,7 @@ spec:
       app:
         className: internal
         hosts:
-          - host: "{{ .Release.Name }}.kube.local.martinbjeldbak.com"
+          - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
             paths:
               - path: /
                 service:

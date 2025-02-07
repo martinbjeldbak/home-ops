@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: internal
   rules:
-    - host: emqx.kube.local.martinbjeldbak.com
+    - host: emqx.local.martinbjeldbak.com
       http:
         paths:
           - path: /
