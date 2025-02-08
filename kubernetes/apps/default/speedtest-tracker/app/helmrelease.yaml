@@ -114,7 +114,7 @@ spec:
         globalMounts:
           - path: /run/test
       config:
-        existingClaim: speedtest-tracker-v2
+        existingClaim: speedtest-tracker
       # config-saved:
       #   existingClaim: speedtest-tracker
       #   globalMounts:
