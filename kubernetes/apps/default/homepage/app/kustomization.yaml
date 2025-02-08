@@ -12,6 +12,7 @@ configMapGenerator:
       - services.yaml=./resources/services.yaml
       - settings.yaml=./resources/settings.yaml
       - widgets.yaml=./resources/widgets.yaml
+      - docker.yaml=./resources/docker.yaml
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
