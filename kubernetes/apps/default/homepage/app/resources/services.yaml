@@ -385,3 +385,13 @@
             type: uptimerobot
             url: https://api.uptimerobot.com
             key: {{HOMEPAGE_VAR_UPTIME_ROBOT_HOME_INTERNET_API_KEY}}
+    - Proxmox:
+        icon: "proxmox.svg"
+        description: hypervisor
+        href: "https://pve-home.local.martinbjeldbak.com:8006"
+        widget:
+            type: proxmox
+            url: https://pve-home.local.martinbjeldbak.com
+            username: {{HOMEPAGE_VAR_PROXMOX_TOKEN_ID}}
+            password: {{HOMEPAGE_VAR_PROXMOX_TOKEN_PASSWORD}}
+            node: beelink-eq14-1
