@@ -41,6 +41,9 @@ spec:
               repository: lscr.io/linuxserver/speedtest-tracker
               tag: latest
             env:
+              # https://github.com/just-containers/s6-overlay/issues/600#issuecomment-2508071669
+              S6_READ_ONLY_ROOT: 1
+              S6_VERBOSITY: 2
               PUID: 1000
               PGID: 1000
               APP_KEY: ${SPEEDTEST_TRACKER_APP_KEY}
@@ -105,15 +108,8 @@ spec:
                   identifier: app
                   port: http
     persistence:
-      run:
-        type: emptyDir
-      config:
-        type: emptyDir
-        globalMounts:
-          - path: /app/configs
       config-saved:
         existingClaim: speedtest-tracker
-        enabled: true
       config-log:
         type: emptyDir
         globalMounts:
