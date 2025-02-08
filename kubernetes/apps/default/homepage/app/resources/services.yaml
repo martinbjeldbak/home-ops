@@ -315,8 +315,8 @@
         icon: zigbee2mqtt.svg
         description: z2m integration
         href: https://zigbee2mqtt.local.martinbjeldbak.com
-        server: localdocker
-        container: zigbee2mqtt
+        namespace: default
+        app: zigbee2mqtt
     - SLZB-06M:
         icon: "https://slzb-06m.local.martinbjeldbak.com/icons.svg?upd=1#SMLogo"
         description: zigbee hub

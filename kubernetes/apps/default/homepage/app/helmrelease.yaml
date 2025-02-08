@@ -111,6 +111,9 @@ spec:
           - path: /app/config/widgets.yaml
             subPath: widgets.yaml
             readOnly: true
+          - path: /app/config/docker.yaml
+            subPath: docker.yaml
+            readOnly: true
       config-logs:
         type: emptyDir
         enabled: true
