@@ -86,7 +86,7 @@ spec:
         name: homepage-configmap
         defaultMode: 0775
         globalMounts:
-          - path: /config/services.yaml
+          - path: /app/config/services.yaml
             subPath: services.yaml
             readOnly: true
       config-logs:
