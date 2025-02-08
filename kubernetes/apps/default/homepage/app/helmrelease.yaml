@@ -125,3 +125,8 @@ spec:
         enabled: true
         globalMounts:
           - path: /app/config/logs
+      nextjs-cache:
+        type: emptyDir
+        enabled: true
+        globalMounts:
+          - path: /app/.next/
