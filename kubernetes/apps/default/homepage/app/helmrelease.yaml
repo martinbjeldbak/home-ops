@@ -81,14 +81,14 @@ spec:
                   identifier: app
                   port: http
     persistence:
-      config:
-        type: configMap
-        name: homepage-configmap
-        defaultMode: 0775
-        globalMounts:
-          - path: /app/config/services.yaml
-            subPath: services.yaml
-            readOnly: true
+      # config:
+      #   type: configMap
+      #   name: homepage-configmap
+      #   defaultMode: 0775
+      #   globalMounts:
+      #     - path: /app/config/services.yaml
+      #       subPath: services.yaml
+      #       readOnly: true
       config-logs:
         type: emptyDir
         enabled: true
