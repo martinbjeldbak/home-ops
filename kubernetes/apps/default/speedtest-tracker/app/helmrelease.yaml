@@ -42,8 +42,10 @@ spec:
               tag: latest
             env:
               # https://github.com/just-containers/s6-overlay/issues/600#issuecomment-2508071669
-              S6_READ_ONLY_ROOT: 1 # NOTE: disable me when done testing
+              #
               S6_VERBOSITY: 2
+              PUID: 1000
+              PGID: 1000
               APP_KEY: ${SPEEDTEST_TRACKER_APP_KEY}
               APP_URL: https://speedtest.kube.local.martinbjeldbak.com
               APP_TIMEZONE: Australia/Melbourne
@@ -84,7 +86,7 @@ spec:
                 memory: 256Mi
     defaultPodOptions:
       securityContext:
-        runAsNonRoot: true
+        # runAsNonRoot: true
         runAsUser: 1000
         runAsGroup: 1000
         fsGroup: 1000
