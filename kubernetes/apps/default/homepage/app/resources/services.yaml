@@ -151,7 +151,7 @@
 #                   service_group: Media
 #                   service_name: Radarr
 
-- Applications:
+# - Applications:
     # - Authentik:
     #     icon: authentik.svg
     #     href: "https://auth.local.martinbjeldbak.com"
