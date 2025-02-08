@@ -116,7 +116,7 @@ spec:
       config-saved:
         existingClaim: speedtest-tracker
         globalMounts:
-          - /config
+          - path: /config
       config-log:
         type: emptyDir
         globalMounts:
