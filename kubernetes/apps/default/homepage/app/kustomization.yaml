@@ -8,3 +8,7 @@ configMapGenerator:
   - name: homepage-configmap
     files:
       - services.yaml=./resources/services.yaml
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
