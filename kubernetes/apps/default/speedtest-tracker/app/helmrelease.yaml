@@ -113,10 +113,12 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /run/test
-      config-saved:
-        existingClaim: speedtest-tracker
-        globalMounts:
-          - path: /config
+      config:
+        type: emptyDir
+      # config-saved:
+      #   existingClaim: speedtest-tracker
+      #   globalMounts:
+      #     - path: /config
       config-log:
         type: emptyDir
         globalMounts:
