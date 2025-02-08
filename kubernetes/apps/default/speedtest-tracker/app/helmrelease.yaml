@@ -108,6 +108,12 @@ spec:
                   identifier: app
                   port: http
     persistence:
+      run:
+        type: emptyDir
+      run-test: # NOTE: hopefully not needed?
+        type: emptyDir
+        globalMounts:
+          - path: /run/test
       config-saved:
         existingClaim: speedtest-tracker
       config-log:
