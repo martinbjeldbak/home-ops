@@ -117,6 +117,9 @@ spec:
           - path: /app/config/custom.css
             subPath: custom.css
             readOnly: true
+          - path: /app/config/custom.js
+            subPath: custom.js
+            readOnly: true
       config-logs:
         type: emptyDir
         enabled: true
