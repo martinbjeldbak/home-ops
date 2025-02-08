@@ -265,22 +265,22 @@
         href: "https://dns.local.martinbjeldbak.com"
         description: main dns
         ping: dns.local.martinbjeldbak.com
-        widget:
-          type: adguard
-          url: "https://dns.local.martinbjeldbak.com"
-          username: {{HOMEPAGE_VAR_ADGUARD_HOME_ORIGIN_USERNAME}}
-          password: {{HOMEPAGE_VAR_ADGUARD_HOME_ORIGIN_PASSWORD}}
+        # widget: # NOTE: widget is broken as authentik proxing request atm
+        #   type: adguard
+        #   url: "https://dns.local.martinbjeldbak.com"
+        #   username: {{HOMEPAGE_VAR_ADGUARD_HOME_ORIGIN_USERNAME}}
+        #   password: {{HOMEPAGE_VAR_ADGUARD_HOME_ORIGIN_PASSWORD}}
     - AdGuard Home Replica:
         icon: adguard-home.svg
         href: "https://dns2.local.martinbjeldbak.com"
         description: secondary dns
         # server: localdocker # TODO: add remotedocker api here?
         # container: adguardhome
-        widget:
-          type: adguard
-          url: https://dns2.local.martinbjeldbak.com
-          username: {{HOMEPAGE_VAR_ADGUARD_HOME_REPLICA_USERNAME}}
-          password: {{HOMEPAGE_VAR_ADGUARD_HOME_REPLICA_PASSWORD}}
+        # widget: # NOTE: widget is broken as authentik proxing request atm
+          # type: adguard
+          # url: https://dns2.local.martinbjeldbak.com
+          # username: {{HOMEPAGE_VAR_ADGUARD_HOME_REPLICA_USERNAME}}
+          # password: {{HOMEPAGE_VAR_ADGUARD_HOME_REPLICA_PASSWORD}}
 
 - Home Automation:
     # - Home Assistant:
@@ -386,7 +386,7 @@
           url: https://api.uptimerobot.com
           key: {{HOMEPAGE_VAR_UPTIME_ROBOT_HOME_INTERNET_API_KEY}}
     - Proxmox:
-        icon: "proxmox.svg"
+        icon: proxmox.svg
         description: hypervisor
         href: "https://pve-home.local.martinbjeldbak.com:8006"
         widget:

@@ -34,6 +34,7 @@ spec:
               tag: v0.10.9
             env:
               TZ: Australia/Melbourne
+              LOG_LEVEL: debug
             envFrom:
               - secretRef:
                   name: homepage-secret
@@ -125,8 +126,3 @@ spec:
         enabled: true
         globalMounts:
           - path: /app/config/logs
-      # nextjs-cache:
-      #   type: emptyDir
-      #   enabled: true
-      #   globalMounts:
-      #     - path: /app/.next/
