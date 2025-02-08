@@ -8,6 +8,7 @@ configMapGenerator:
   - name: homepage-configmap
     files:
       - services.yaml=./resources/services.yaml
+      - settings.yaml=./resources/settings.yaml
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
