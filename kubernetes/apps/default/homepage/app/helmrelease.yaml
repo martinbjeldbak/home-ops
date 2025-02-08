@@ -34,7 +34,7 @@ spec:
               tag: v0.10.9
             env:
               TZ: Australia/Melbourne
-              LOG_LEVEL: debug
+              # LOG_LEVEL: debug
             envFrom:
               - secretRef:
                   name: homepage-secret
