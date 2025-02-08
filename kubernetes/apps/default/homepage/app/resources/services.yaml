@@ -394,4 +394,4 @@
           url: https://pve-home.local.martinbjeldbak.com:8006
           username: {{HOMEPAGE_VAR_PROXMOX_TOKEN_ID}}
           password: {{HOMEPAGE_VAR_PROXMOX_TOKEN_PASSWORD}}
-          node: beelink-eq14-1
+          # node: beelink-eq14-1
