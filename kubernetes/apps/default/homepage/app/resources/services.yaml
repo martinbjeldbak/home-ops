@@ -329,10 +329,10 @@
         href: https://opnsense.local.martinbjeldbak.com/
         ping: 192.168.1.1
         widget:
-            type: opnsense
-            url: https://192.168.1.1
-            username: {{HOMEPAGE_VAR_OPNSENSE_HOMEPAGE_USERNAME}}
-            password: {{HOMEPAGE_VAR_OPNSENSE_HOMEPAGE_PASSWORD}}
+          type: opnsense
+          url: https://192.168.1.1
+          username: {{HOMEPAGE_VAR_OPNSENSE_HOMEPAGE_USERNAME}}
+          password: {{HOMEPAGE_VAR_OPNSENSE_HOMEPAGE_PASSWORD}}
     - Crowdsec:
         icon: crowdsec.svg
         description: ids/ips
@@ -348,10 +348,10 @@
         href: "https://unifi.local.martinbjeldbak.com"
         ping: unifi.local.martinbjeldbak.com
         widget:
-            type: unifi
-            url: https://unifi.local.martinbjeldbak.com
-            username: {{HOMEPAGE_VAR_UNIFI_USERNAME}}
-            password: {{HOMEPAGE_VAR_UNIFI_PASSWORD}}
+          type: unifi
+          url: https://unifi.local.martinbjeldbak.com
+          username: {{HOMEPAGE_VAR_UNIFI_USERNAME}}
+          password: {{HOMEPAGE_VAR_UNIFI_PASSWORD}}
     # - Caddy:
     #     icon: caddy.png
     #     description: web server
@@ -385,13 +385,13 @@
           type: uptimerobot
           url: https://api.uptimerobot.com
           key: {{HOMEPAGE_VAR_UPTIME_ROBOT_HOME_INTERNET_API_KEY}}
-    # - Proxmox:
-    #     icon: "proxmox.svg"
-    #     description: hypervisor
-    #     href: "https://pve-home.local.martinbjeldbak.com:8006"
-    #     widget:
-    #         type: proxmox
-    #         url: https://pve-home.local.martinbjeldbak.com
-    #         username: {{HOMEPAGE_VAR_PROXMOX_TOKEN_ID}}
-    #         password: {{HOMEPAGE_VAR_PROXMOX_TOKEN_PASSWORD}}
-    #         node: beelink-eq14-1
+    - Proxmox:
+        icon: "proxmox.svg"
+        description: hypervisor
+        href: "https://pve-home.local.martinbjeldbak.com:8006"
+        widget:
+          type: proxmox
+          url: https://pve-home.local.martinbjeldbak.com
+          username: {{HOMEPAGE_VAR_PROXMOX_TOKEN_ID}}
+          password: {{HOMEPAGE_VAR_PROXMOX_TOKEN_PASSWORD}}
+          node: beelink-eq14-1
