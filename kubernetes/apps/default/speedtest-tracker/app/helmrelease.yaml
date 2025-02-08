@@ -61,12 +61,20 @@ spec:
             envFrom:
               - secretRef:
                   name: speedtest-tracker-secret
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 10
             securityContext:
-              allowPrivilegeEscalation: true
-              readOnlyRootFilesystem: false
-              # capabilities:
-              #   drop: ["ALL"]
-              #   add: ["SETGID", "SETUID", "CHOWN"]
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 10m
@@ -98,7 +106,12 @@ spec:
                   port: http
     persistence:
       config:
+        type: emptyDir
+        globalMounts:
+          - path: /app/configs
+      config-saved:
         existingClaim: speedtest-tracker
+        enabled: true
       config-log:
         type: emptyDir
         globalMounts:

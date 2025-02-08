@@ -8,8 +8,8 @@ resources:
   - ./echo-server/ks.yaml
   - ./emqx/ks.yaml
   - ./homepage/ks.yaml
+  - ./speedtest-tracker/ks.yaml
   - ./zigbee2mqtt/ks.yaml
-  #- ./speedtest-tracker/ks.yaml
 components:
   - ../../flux/components/namespace
   - ../../flux/components/sops
