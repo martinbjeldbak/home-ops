@@ -274,11 +274,11 @@
         icon: adguard-home.svg
         href: "https://dns2.local.martinbjeldbak.com"
         description: secondary dns
-        server: localdocker
-        container: adguardhome
+        # server: localdocker # TODO: add remotedocker api here?
+        # container: adguardhome
         widget:
             type: adguard
-            url: http://dns2.local.martinbjeldbak.com
+            url: https://dns2.local.martinbjeldbak.com
             username: {{HOMEPAGE_VAR_ADGUARD_HOME_REPLICA_USERNAME}}
             password: {{HOMEPAGE_VAR_ADGUARD_HOME_REPLICA_PASSWORD}}
 
@@ -337,11 +337,11 @@
         icon: crowdsec.svg
         description: ids/ips
         ping: 192.168.1.1
-        widget:
-            type: crowdsec
-            url: http://192.168.1.1:8089
-            username: {{HOMEPAGE_VAR_CROWDSEC_USERNAME}}
-            password: {{HOMEPAGE_VAR_CROWDSEC_PASSWORD}}
+        # widget: # TODO: warning ing logs something about response being too large?
+        #     type: crowdsec
+        #     url: https://192.168.1.1:8089
+        #     username: {{HOMEPAGE_VAR_CROWDSEC_USERNAME}}
+        #     password: {{HOMEPAGE_VAR_CROWDSEC_PASSWORD}}
     - Unifi:
         icon: unifi.svg
         description: network infra
