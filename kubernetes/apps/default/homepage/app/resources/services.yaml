@@ -1,56 +1,55 @@
 ---
 - Media:
-    - Plex:
-        icon: plex.svg
-        href: "https://plex.local.martinbjeldbak.com"
-        description: media server
-        server: localdocker
-        container: plex
-        widget:
-          type: plex
-          url: http://plex:32400
-          key: {{HOMEPAGE_VAR_PLEX_TOKEN}}
-    - Tautulli:
-        icon: tautulli.svg
-        href: "https://tautulli.local.martinbjeldbak.com"
-        description: plex monitoring and history database
-        server: localdocker
-        container: tautulli
-        widget:
-          type: tautulli
-          url: http://tautulli:8181
-          key: {{HOMEPAGE_VAR_TAUTULLI_API_KEY}}
-    - Sonarr:
-        icon: sonarr.svg
-        description: tv
-        href: "https://tv.local.martinbjeldbak.com"
-        server: localdocker
-        container: sonarr
-        widget:
-          type: sonarr
-          url: http://sonarr:8989
-          key: {{HOMEPAGE_VAR_SONARR_API_KEY}}
-    - Bazarr:
-        icon: bazarr.svg
-        description: subtitles
-        href: "https://subtitles.local.martinbjeldbak.com"
-        server: localdocker
-        container: bazarr
-        widget:
-          type: bazarr
-          url: http://bazarr:6767
-          key: {{HOMEPAGE_VAR_BAZARR_API_KEY}}
-
-    - Readarr:
-        icon: readarr.svg
-        description: books
-        href: "https://readarr.local.martinbjeldbak.com"
-        server: localdocker
-        container: readarr
-        widget:
-          type: readarr
-          url: http://readarr:8787
-          key: {{HOMEPAGE_VAR_READARR_API_KEY}}
+    # - Plex:
+    #     icon: plex.svg
+    #     href: "https://plex.local.martinbjeldbak.com"
+    #     description: media server
+    #     server: localdocker
+    #     container: plex
+    #     widget:
+    #       type: plex
+    #       url: http://plex:32400
+    #       key: {{HOMEPAGE_VAR_PLEX_TOKEN}}
+    # - Tautulli:
+    #     icon: tautulli.svg
+    #     href: "https://tautulli.local.martinbjeldbak.com"
+    #     description: plex monitoring and history database
+    #     server: localdocker
+    #     container: tautulli
+    #     widget:
+    #       type: tautulli
+    #       url: http://tautulli:8181
+    #       key: {{HOMEPAGE_VAR_TAUTULLI_API_KEY}}
+    # - Sonarr:
+    #     icon: sonarr.svg
+    #     description: tv
+    #     href: "https://tv.local.martinbjeldbak.com"
+    #     server: localdocker
+    #     container: sonarr
+    #     widget:
+    #       type: sonarr
+    #       url: http://sonarr:8989
+    #       key: {{HOMEPAGE_VAR_SONARR_API_KEY}}
+    # - Bazarr:
+    #     icon: bazarr.svg
+    #     description: subtitles
+    #     href: "https://subtitles.local.martinbjeldbak.com"
+    #     server: localdocker
+    #     container: bazarr
+    #     widget:
+    #       type: bazarr
+    #       url: http://bazarr:6767
+    #       key: {{HOMEPAGE_VAR_BAZARR_API_KEY}}
+    # - Readarr:
+    #     icon: readarr.svg
+    #     description: books
+    #     href: "https://readarr.local.martinbjeldbak.com"
+    #     server: localdocker
+    #     container: readarr
+    #     widget:
+    #       type: readarr
+    #       url: http://readarr:8787
+    #       key: {{HOMEPAGE_VAR_READARR_API_KEY}}
     - Synology:
         icon: synology.svg
         description: diskstation
