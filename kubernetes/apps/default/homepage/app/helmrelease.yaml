@@ -96,11 +96,20 @@ spec:
         name: homepage-configmap
         defaultMode: 0775
         globalMounts:
+          - path: /app/config/bookmarks.yaml
+            subPath: bookmarks.yaml
+            readOnly: true
+          - path: /app/config/kubernetes.yaml
+            subPath: kubernetes.yaml
+            readOnly: true
           - path: /app/config/services.yaml
             subPath: services.yaml
             readOnly: true
           - path: /app/config/settings.yaml
             subPath: settings.yaml
+            readOnly: true
+          - path: /app/config/widgets.yaml
+            subPath: widgets.yaml
             readOnly: true
       config-logs:
         type: emptyDir

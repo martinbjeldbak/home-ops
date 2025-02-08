@@ -1,0 +1,28 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/bookmarks
+
+
+- Developer:
+    - Github:
+        - abbr: GH
+          href: https://github.com/
+    - Hacker News:
+        - abbr: HN
+          href: https://hckrnews.com
+
+- Social:
+    - Me:
+        - abbr: ME
+          href: https://martinbjeldbak.com
+    - Twitter:
+        - abbr: TW
+          href: https://twitter.com/home
+    - Reddit:
+        - abbr: RE
+          href: https://reddit.com/
+
+- Entertainment:
+    - YouTube:
+        - abbr: YT
+          href: https://youtube.com/

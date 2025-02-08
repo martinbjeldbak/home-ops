@@ -110,7 +110,7 @@
         server: localdocker
         container: romm
         widget:
-            type: romm 
+            type: romm
             url: http://romm:8080
             username: {{HOMEPAGE_VAR_ROMM_USERNAME}}
             password: {{HOMEPAGE_VAR_ROMM_PASSWORD}}
@@ -132,7 +132,8 @@
         description: torrent watcher
         href: "https://autobrr.local.martinbjeldbak.com"
         server: localdocker
-        container: autobrr
+        namespace: default
+        app: autobrr
         widget:
             type: autobrr
             url: http://autobrr:7474
