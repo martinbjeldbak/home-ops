@@ -56,11 +56,11 @@
         ping: 192.168.10.10
         href: "https://nas.local.martinbjeldbak.com"
         widget:
-            type: diskstation
-            url: http://192.168.10.10:5000
-            username: {{HOMEPAGE_VAR_SYNOLOGY_STATS_USERNAME}}
-            password: {{HOMEPAGE_VAR_SYNOLOGY_STATS_PASSWORD}}
-            volume: volume_3
+          type: diskstation
+          url: http://192.168.10.10:5000
+          username: {{HOMEPAGE_VAR_SYNOLOGY_STATS_USERNAME}}
+          password: {{HOMEPAGE_VAR_SYNOLOGY_STATS_PASSWORD}}
+          volume: volume_3
     # - Overseerr:
     #     icon: overseerr.svg
     #     description: plex media requests
@@ -266,10 +266,10 @@
         description: main dns
         ping: dns.local.martinbjeldbak.com
         widget:
-            type: adguard
-            url: "https://dns.local.martinbjeldbak.com"
-            username: {{HOMEPAGE_VAR_ADGUARD_HOME_ORIGIN_USERNAME}}
-            password: {{HOMEPAGE_VAR_ADGUARD_HOME_ORIGIN_PASSWORD}}
+          type: adguard
+          url: "https://dns.local.martinbjeldbak.com"
+          username: {{HOMEPAGE_VAR_ADGUARD_HOME_ORIGIN_USERNAME}}
+          password: {{HOMEPAGE_VAR_ADGUARD_HOME_ORIGIN_PASSWORD}}
     - AdGuard Home Replica:
         icon: adguard-home.svg
         href: "https://dns2.local.martinbjeldbak.com"
@@ -277,10 +277,10 @@
         # server: localdocker # TODO: add remotedocker api here?
         # container: adguardhome
         widget:
-            type: adguard
-            url: https://dns2.local.martinbjeldbak.com
-            username: {{HOMEPAGE_VAR_ADGUARD_HOME_REPLICA_USERNAME}}
-            password: {{HOMEPAGE_VAR_ADGUARD_HOME_REPLICA_PASSWORD}}
+          type: adguard
+          url: https://dns2.local.martinbjeldbak.com
+          username: {{HOMEPAGE_VAR_ADGUARD_HOME_REPLICA_USERNAME}}
+          password: {{HOMEPAGE_VAR_ADGUARD_HOME_REPLICA_PASSWORD}}
 
 - Home Automation:
     # - Home Assistant:
@@ -391,7 +391,7 @@
         href: "https://pve-home.local.martinbjeldbak.com:8006"
         widget:
           type: proxmox
-          url: https://pve-home.local.martinbjeldbak.com
+          url: https://pve-home.local.martinbjeldbak.com:8006
           username: {{HOMEPAGE_VAR_PROXMOX_TOKEN_ID}}
           password: {{HOMEPAGE_VAR_PROXMOX_TOKEN_PASSWORD}}
           node: beelink-eq14-1
