@@ -9,7 +9,7 @@
     ":semanticCommits",
     ":separatePatchReleases"
   ],
-  "dependencyDashboard": false,
+  "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "suppressNotifications": ["prEditedNotification", "prIgnoreNotification"],
   "ignorePaths": ["**/*.sops.*"],
