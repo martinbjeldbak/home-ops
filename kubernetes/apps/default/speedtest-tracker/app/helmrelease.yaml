@@ -75,7 +75,7 @@ spec:
                   failureThreshold: 30
                   periodSeconds: 10
             securityContext:
-              privileged: true
+              privileged: true # I really don't want to be doing this...https://learn.snyk.io/lesson/container-runs-in-privileged-mode/
               # allowPrivilegeEscalation: false
               # readOnlyRootFilesystem: true
               # capabilities: { drop: ["ALL"] }

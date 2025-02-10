@@ -5,7 +5,9 @@ kind: Kustomization
 resources:
   - ./prometheus-operator-crds/ks.yaml
 components:
+  - ../../flux/components/alerts
   - ../../flux/components/namespace
+  - ../../flux/components/sops
 patches:
   - # Add the name to the namespace
     patch: |
