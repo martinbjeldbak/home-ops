@@ -9,7 +9,15 @@ spec:
     name: discord
   eventSeverity: info
   eventSources:
+    - kind: FluxInstance
+      name: "*"
     - kind: GitRepository
-      name: '*'
+      name: "*"
+    - kind: HelmRelease
+      name: "*"
+    - kind: HelmRepository
+      name: "*"
     - kind: Kustomization
-      name: '*'
+      name: "*"
+    - kind: OCIRepository
+      name: "*"
