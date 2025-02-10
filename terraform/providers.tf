@@ -11,9 +11,10 @@ terraform {
 provider "proxmox" {
   endpoint  = var.proxmox_api_endpoint
   api_token = var.proxmox_api_token
-  insecure  = true # TODO: false when we have reverse proxy in front
+  insecure  = false
   ssh {
     agent    = true
     username = "root" # TODO: create opentofu user to use insted https://registry.terraform.io/providers/bpg/proxmox/latest/docs#ssh-connection
+    password = var.proxmox_ssh_password
   }
 }

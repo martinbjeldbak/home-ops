@@ -61,3 +61,4 @@ resource "proxmox_virtual_environment_user_token" "homepage" {
   privileges_separation = false # token has same permission as user
   user_id         = proxmox_virtual_environment_user.homepage.user_id
 }
+
