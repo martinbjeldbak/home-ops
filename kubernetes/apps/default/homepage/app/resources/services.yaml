@@ -126,17 +126,17 @@
     #         username: {{HOMEPAGE_VAR_CALIBRE_WEB_USERNAME}}
     #         password: {{HOMEPAGE_VAR_CALIBRE_WEB_PASSWORD}}
     #
-    # - Autobrr:
-    #     icon: autobrr.svg
-    #     description: torrent watcher
-    #     href: "https://autobrr.local.martinbjeldbak.com"
-    #     server: localdocker
-    #     namespace: default
-    #     app: autobrr
-    #     widget:
-    #         type: autobrr
-    #         url: http://autobrr:7474
-    #         key: {{HOMEPAGE_VAR_AUTOBRR_KEY}}
+    - Autobrr:
+        icon: autobrr.svg
+        description: torrent watcher
+        href: "https://autobrr.local.martinbjeldbak.com"
+        server: localdocker
+        namespace: default
+        app: autobrr
+        widget:
+            type: autobrr
+            url: http://autobrr:7474
+            key: {{HOMEPAGE_VAR_AUTOBRR_KEY}}
 
 # - Releases:
 #     - Calendar:
