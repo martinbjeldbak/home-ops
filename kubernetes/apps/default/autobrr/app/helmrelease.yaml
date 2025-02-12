@@ -36,6 +36,9 @@ spec:
               AUTOBRR__HOST: 0.0.0.0
               AUTOBRR__PORT: &port 80
               AUTOBRR__LOG_LEVEL: INFO
+              AUTOBRR__OIDC_ENABLED: true
+              AUTOBRR__OIDC_ISSUER: https://auth.local.martinbjeldbak.com/application/o/autobrr/
+              AUTOBRR__OIDC_REDIRECT_URL: https://autobrr.local.martinbjeldbak.com/api/auth/oidc/callback
             envFrom:
               - secretRef:
                   name: autobrr-secret
