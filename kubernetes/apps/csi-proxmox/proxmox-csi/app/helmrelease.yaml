@@ -25,9 +25,8 @@ spec:
     config:
       clusters:
         - url: https://pve-home.local.martinbjeldbak.com:8006/api2/json
-          insecure: true # TODO: same
           token_id: "kubernetes-csi@pve!csi"
-          region: cluster-1 # should match proxmox cluster
+          region: cluster-1 # match proxmox cluster
     createNamespace: true
     node:
       nodeSelector:
@@ -47,9 +46,10 @@ spec:
     storageClass:
       - name: proxmox
         storage: csi-proxmox
+        cache: writethrough
         fstype: xfs
         reclaimPolicy: Delete
-        ssd: true
+        ssd: "true"
   valuesFrom:
     - targetPath: config.clusters[0].token_secret
       kind: Secret
