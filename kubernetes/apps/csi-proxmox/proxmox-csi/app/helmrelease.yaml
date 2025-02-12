@@ -45,11 +45,11 @@ spec:
     # TODO: look into https://github.com/sergelogvinov/proxmox-csi-plugin/blob/main/charts/proxmox-csi-plugin/values.yaml#L73 performance tweaks
     storageClass:
       - name: proxmox-data-xfs
-        storage: proxmox-csi
+        storage: csi-proxmox
         reclaimPolicy: Delete
         fstype: xfs
       - name: proxmox-data
-        storage: proxmox-csi
+        storage: csi-proxmox
         reclaimPolicy: Delete
   valuesFrom:
     - targetPath: config.clusters[0].token_secret
