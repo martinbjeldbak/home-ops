@@ -64,7 +64,7 @@ spec:
             port: 8123
     ingress:
       app:
-        className: external
+        className: internal
         hosts:
           - host: homeassistant.kube.local.martinbjeldbak.com # remove .kube
             paths:
