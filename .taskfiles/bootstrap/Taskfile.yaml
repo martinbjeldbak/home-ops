@@ -30,9 +30,9 @@ tasks:
     desc: Bootstrap apps into the Talos cluster
     prompt: Bootstrap apps into the Talos cluster?
     cmds:
-      - until kubectl wait --for=condition=Ready=True nodes --all --timeout=600s; do sleep 10; done # TODO: revert to ready=false
+      - until kubectl wait --for=condition=Ready=False nodes --all --timeout=600s; do sleep 10; done
       - op run --env-file ./kubernetes/bootstrap/.secrets.env --no-masking -- minijinja-cli ./kubernetes/bootstrap/templates/resources.yaml.j2 | kubectl apply --server-side --filename -
-      # - '{{if eq .GITHUB_DEPLOY_KEY_EXISTS "true"}}sops exec-file {{.GITHUB_DEPLOY_KEY_FILE}} "kubectl apply --server-side --filename {}"{{end}}'
+      - '{{if eq .GITHUB_DEPLOY_KEY_EXISTS "true"}}sops exec-file {{.GITHUB_DEPLOY_KEY_FILE}} "kubectl apply --server-side --filename {}"{{end}}'
       # - sops exec-file {{.KUBERNETES_DIR}}/flux/meta/settings/cluster-secrets.sops.yaml "kubectl apply --server-side --filename {}"
       - kubectl apply --server-side --filename {{.KUBERNETES_DIR}}/flux/meta/settings/cluster-settings.yaml
       - helmfile --file {{.KUBERNETES_DIR}}/bootstrap/helmfile.yaml apply --skip-diff-on-install --suppress-diff
