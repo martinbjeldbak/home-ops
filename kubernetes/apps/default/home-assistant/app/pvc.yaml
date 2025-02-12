@@ -8,7 +8,7 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: proxmox-data
+  storageClassName: proxmox
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -19,4 +19,4 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: proxmox-data
+  storageClassName: proxmox
