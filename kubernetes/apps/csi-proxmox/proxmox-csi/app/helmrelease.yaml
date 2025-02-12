@@ -45,13 +45,9 @@ spec:
     # TODO: look into https://github.com/sergelogvinov/proxmox-csi-plugin/blob/main/charts/proxmox-csi-plugin/values.yaml#L73 performance tweaks
     # https://github.com/sergelogvinov/proxmox-csi-plugin/blob/2cae7bc8402b168a69a1d375309f837fdc7b70fb/docs/options.md
     storageClass:
-      - name: proxmox-data-xfs-v3
+      - name: proxmox
         storage: csi-proxmox
-        reclaimPolicy: Delete
         fstype: xfs
-        ssd: true
-      - name: proxmox-data-v3
-        storage: csi-proxmox
         reclaimPolicy: Delete
         ssd: true
   valuesFrom:
