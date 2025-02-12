@@ -49,16 +49,20 @@ spec:
         storage: csi-proxmox
         reclaimPolicy: Delete
         fstype: xfs
+        ssd: true
       - name: proxmox-data
         storage: csi-proxmox
         reclaimPolicy: Delete
+        ssd: true
       - name: proxmox-data-xfs-v2
         storage: csi-proxmox
         reclaimPolicy: Delete
         fstype: xfs
+        ssd: true
       - name: proxmox-data-v2
         storage: csi-proxmox
         reclaimPolicy: Delete
+        ssd: true
   valuesFrom:
     - targetPath: config.clusters[0].token_secret
       kind: Secret
