@@ -33,7 +33,7 @@ resource "proxmox_virtual_environment_vm" "talos_node_01" {
 
   # Uncommented 2025-02-09 now that it's installed
   cdrom {
-    file_id      = nil # proxmox_virtual_environment_download_file.talos_secureboot.id
+    # file_id      = proxmox_virtual_environment_download_file.talos_secureboot.id
     interface = "ide0"
   }
 
