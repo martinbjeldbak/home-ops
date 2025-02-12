@@ -8,4 +8,4 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: proxmox-data
+  storageClassName: proxmox-data-v2
