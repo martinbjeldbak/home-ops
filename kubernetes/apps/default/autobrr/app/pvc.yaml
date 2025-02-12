@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: autobrr-v2
+  name: autobrr-v3
 spec:
   accessModes: ["ReadWriteOnce"]
   resources:
     requests:
       storage: 5Gi
-  storageClassName: proxmox-data-v2
+  storageClassName: proxmox-data-v3
