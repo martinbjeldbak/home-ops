@@ -82,7 +82,6 @@ spec:
         existingClaim: home-assistant
         globalMounts:
           - path: /config
-      # NOTE: Had to comment these out on backup restore from docker
       config-cache:
         existingClaim: home-assistant-cache
         globalMounts:
