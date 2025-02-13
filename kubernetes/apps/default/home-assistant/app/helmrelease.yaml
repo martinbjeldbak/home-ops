@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: homeassistant
+  name: home-assistant
 spec:
   interval: 30m
   chart:
@@ -27,7 +27,7 @@ spec:
       namespace: csi-proxmox
   values:
     controllers:
-      homeassistant:
+      home-assistant:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -42,7 +42,7 @@ spec:
               HOME_ASSISTANT__HACS_INSTALL: true
             envFrom:
               - secretRef:
-                  name: homeassistant-secret
+                  name: home-assistant-secret
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -62,7 +62,7 @@ spec:
         seccompProfile: { type: RuntimeDefault }
     service:
       app:
-        controller: homeassistant
+        controller: home-assistant
         ports:
           http:
             port: 8123
@@ -70,7 +70,7 @@ spec:
       app:
         className: internal
         hosts:
-          - host: "homeassistant.kube.local.martinbjeldbak.com"
+          - host: "home-assistant.kube.local.martinbjeldbak.com"
             paths:
               - path: /
                 service:
