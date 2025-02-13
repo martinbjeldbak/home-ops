@@ -39,6 +39,7 @@ spec:
               TZ: Australia/Melbourne
               HASS_HTTP_TRUSTED_PROXY_1: 192.168.0.0/16
               HASS_HTTP_TRUSTED_PROXY_2: 10.69.0.0/16
+              HOME_ASSISTANT__HACS_INSTALL: true
             envFrom:
               - secretRef:
                   name: home-assistant-secret
@@ -57,7 +58,7 @@ spec:
         runAsUser: 1000
         runAsGroup: 1000
         fsGroup: 1000
-        fsGroupChangePolicy: Always
+        fsGroupChangePolicy: OnRootMismatch
         seccompProfile: { type: RuntimeDefault }
     service:
       app:
