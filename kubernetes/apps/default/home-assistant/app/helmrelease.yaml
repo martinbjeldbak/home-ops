@@ -80,18 +80,19 @@ spec:
         existingClaim: home-assistant
         globalMounts:
           - path: /config
-      # config-cache:
-      #   existingClaim: home-assistant-cache
-      #   globalMounts:
-      #     - path: /config/.venv
-      # config-logs:
-      #   type: emptyDir
-      #   globalMounts:
-      #     - path: /config/logs
-      # config-tts:
-      #   type: emptyDir
-      #   globalMounts:
-      #     - path: /config/tts
+      # NOTE: Had to comment these out on backup restore from docker
+      config-cache:
+        existingClaim: home-assistant-cache
+        globalMounts:
+          - path: /config/.venv
+      config-logs:
+        type: emptyDir
+        globalMounts:
+          - path: /config/logs
+      config-tts:
+        type: emptyDir
+        globalMounts:
+          - path: /config/tts
       tmp:
         type: emptyDir
         globalMounts:
