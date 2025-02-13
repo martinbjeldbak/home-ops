@@ -47,7 +47,7 @@ spec:
         storage: csi-proxmox
         cache: writethrough
         fstype: xfs
-        reclaimPolicy: Retain
+        reclaimPolicy: Delete
         ssd: "true"
   valuesFrom:
     - targetPath: config.clusters[0].token_secret
