@@ -284,13 +284,13 @@
 - Home Automation:
     - Home Assistant:
         icon: home-assistant.svg
-        href: "https://homeassistant.local.martinbjeldbak.com"
-        description: homeassistant
+        href: "https://home-assistant.local.martinbjeldbak.com"
+        description: home-assistant
         namespace: default
-        container: homeassistant
+        container: home-assistant
         widget:
-            type: homeassistant
-            url: http://homeassistant:8123
+            type: home-assistant
+            url: http://home-assistant:8123
             key: {{HOMEPAGE_VAR_HOMEASSISTANT_ACCESS_TOKEN}}
     # - Scrypted:
     #     icon: https://www.scrypted.app/images/web_hi_res_512.png

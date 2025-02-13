@@ -81,12 +81,6 @@ spec:
                 service:
                   identifier: app
                   port: http
-          - host: "{{ .Release.Name }}.kube.local.martinbjeldbak.com"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
     persistence:
       config:
         type: emptyDir
