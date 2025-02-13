@@ -289,7 +289,7 @@
         namespace: default
         container: home-assistant
         widget:
-            type: home-assistant
+            type: homeassistant
             url: http://home-assistant:8123
             key: {{HOMEPAGE_VAR_HOMEASSISTANT_ACCESS_TOKEN}}
     # - Scrypted:
