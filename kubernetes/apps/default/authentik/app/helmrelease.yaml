@@ -1,0 +1,60 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: authentik
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: authentik
+      version: 2024.12.3
+      sourceRef:
+        kind: HelmRepository
+        name: authentik
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    authentik:
+      postgresql:
+        host: authentik-postgres
+        user: file:///postgres-creds/username
+        password: file:///postgres-creds/password
+    redis:
+      enabled: true
+    server:
+      ingress:
+        enabled: ture
+        ingressClassName: internal
+        hosts:
+          - authentik.kube.local.martinbjeldbak.com
+      volumes:
+        - name: postgres-creds
+          secret:
+            secretName: authentik-postgres-credentials-secret
+      volumeMounts:
+        - name: postgres-creds
+          mountPath: /postgres-creds
+          readOnly: true
+    worker:
+      volumes:
+        - name: postgres-creds
+          secret:
+            secretName: authentik-postgres-credentials-secret
+      volumeMounts:
+        - name: postgres-creds
+          mountPath: /postgres-creds
+          readOnly: true
+  valuesFrom:
+    - targetPath: authentik.secret_key
+      kind: Secret
+      name: authentik
+      valuesKey: authentik-secret-key-secret
