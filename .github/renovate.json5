@@ -6,7 +6,7 @@
     ":automergeBranch",
     ":dependencyDashboard",
     ":disableRateLimiting",
-    ":semanticCommits"
+    ":semanticCommits",
     ":timezone(Australia/Melbourne)"
   ],
   "dependencyDashboard": true,
