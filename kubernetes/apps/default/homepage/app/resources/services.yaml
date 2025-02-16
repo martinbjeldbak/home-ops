@@ -161,7 +161,7 @@
             type: homebox
             url: http://homebox:7745
             username: {{HOMEPAGE_VAR_HOMEBOX_USERNAME}}
-            password: {{HOMEPAGE_VAR_HOMEBOX_USERNAME}}
+            password: {{HOMEPAGE_VAR_HOMEBOX_PASSWORD}}
 
     # - Authentik:
     #     icon: authentik.svg
