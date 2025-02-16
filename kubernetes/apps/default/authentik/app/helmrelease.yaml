@@ -57,4 +57,4 @@ spec:
     - targetPath: authentik.secret_key
       kind: Secret
       name: authentik
-      valuesKey: authentik-secret-key-secret
+      valuesKey: authentik-secret-key
