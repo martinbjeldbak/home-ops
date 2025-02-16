@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: home-assistant
+  name: homebox
 spec:
   interval: 30m
   chart:
@@ -22,26 +22,35 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: proxmox-csi
-      namespace: csi-proxmox
   values:
     controllers:
-      home-assistant:
+      homebox:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
-              repository: ghcr.io/onedr0p/home-assistant
-              tag: 2025.2.4@sha256:3a65d7aa966fdca8b49a34b485f3b1ec22b3c7939cbdba5cb3e9ec9f6b2564e0
+              repository: ghcr.io/sysadminsmedia/homebox
+              tag: v0.17.2-rootless
             env:
-              TZ: Australia/Melbourne
-              HASS_HTTP_TRUSTED_PROXY_1: 192.168.0.0/16
-              HASS_HTTP_TRUSTED_PROXY_2: 10.69.0.0/16
+              HBOX_LOG_LEVEL: info
+              HBOX_LOG_FORMAT: text
+              HBOX_WEB_MAX_FILE_UPLOAD: 10
+              HBOX_MAILER_PORT: 465
+              HBOX_MAILER_FROM: homebox@martinbjeldbak.com
             envFrom:
               - secretRef:
-                  name: home-assistant-secret
+                  name: homebox-secret
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 10
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -50,10 +59,8 @@ spec:
               requests:
                 cpu: 10m
               limits:
-                memory: 2Gi
+                memory: 256Mi
     defaultPodOptions:
-      hostNetwork: true # in order to get mDNS to work for Apple Homekit
-      dnsPolicy: ClusterFirstWithHostNet
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
@@ -63,10 +70,10 @@ spec:
         seccompProfile: { type: RuntimeDefault }
     service:
       app:
-        controller: home-assistant
+        controller: homebox
         ports:
           http:
-            port: 8123
+            port: 7745
     ingress:
       app:
         className: internal
@@ -78,23 +85,5 @@ spec:
                   identifier: app
                   port: http
     persistence:
-      config:
-        existingClaim: home-assistant
-        globalMounts:
-          - path: /config
-      config-cache:
-        existingClaim: home-assistant-cache
-        globalMounts:
-          - path: /config/.venv
-      config-logs:
-        type: emptyDir
-        globalMounts:
-          - path: /config/logs
-      config-tts:
-        type: emptyDir
-        globalMounts:
-          - path: /config/tts
-      tmp:
-        type: emptyDir
-        globalMounts:
-          - path: /tmp
+      data:
+        existingClaim: homebox
