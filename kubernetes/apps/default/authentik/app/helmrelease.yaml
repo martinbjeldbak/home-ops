@@ -26,7 +26,7 @@ spec:
     authentik:
       log_level: debug # TODO: disable when done debugging
       postgresql:
-        host: authentik-database
+        host: authentik-database-rw
         user: file:///postgres-creds/username
         password: file:///postgres-creds/password
     redis:
