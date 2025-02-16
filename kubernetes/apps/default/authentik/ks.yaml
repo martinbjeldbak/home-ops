@@ -10,6 +10,8 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
+    - name: proxmox-csi
+      namespace: csi-proxmox
     - name: authentik-database
       namespace: default
     - name: onepassword-store
@@ -39,6 +41,8 @@ spec:
   dependsOn:
     - name: emqx
       namespace: default
+    - name: proxmox-csi
+      namespace: csi-proxmox
   interval: 30m
   path: ./kubernetes/apps/default/authentik/database
   prune: true
