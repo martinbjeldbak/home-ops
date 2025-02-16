@@ -12,6 +12,8 @@ spec:
   dependsOn:
     - name: onepassword-store
       namespace: external-secrets
+    - name: proxmox-csi
+      namespace: csi-proxmox
   interval: 30m
   path: ./kubernetes/apps/default/homebox/app
   prune: true
