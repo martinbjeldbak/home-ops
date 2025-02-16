@@ -39,7 +39,7 @@ spec:
         enabled: ture
         ingressClassName: internal
         hosts:
-          - authentik.kube.local.martinbjeldbak.com
+          - auth.kube.local.martinbjeldbak.com
       volumes:
         - name: postgres-creds
           secret:
