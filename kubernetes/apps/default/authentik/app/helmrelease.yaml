@@ -24,6 +24,7 @@ spec:
       retries: 3
   values:
     authentik:
+      log_level: debug
       postgresql:
         host: authentik-database-1
         user: file:///postgres-creds/username
