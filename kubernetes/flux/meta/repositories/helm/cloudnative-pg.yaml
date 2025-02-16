@@ -6,6 +6,5 @@ metadata:
   name: cnpg
   namespace: flux-system
 spec:
-  type: oci
   interval: 5m
-  url: https://cloudnative-pg.github.io/charts
+  url: https://cloudnative-pg.io/charts/
