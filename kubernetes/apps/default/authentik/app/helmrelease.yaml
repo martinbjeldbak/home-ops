@@ -31,6 +31,9 @@ spec:
         password: file:///postgres-creds/password
     redis:
       enabled: true
+      master:
+        persistence:
+          existingClaim: authentik-redis
     server:
       ingress:
         enabled: ture
