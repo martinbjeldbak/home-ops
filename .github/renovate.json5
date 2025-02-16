@@ -6,8 +6,8 @@
     ":automergeBranch",
     ":dependencyDashboard",
     ":disableRateLimiting",
-    ":semanticCommits",
-    ":separatePatchReleases"
+    ":semanticCommits"
+    ":timezone(Australia/Melbourne)"
   ],
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
