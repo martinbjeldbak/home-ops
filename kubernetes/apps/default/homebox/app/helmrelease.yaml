@@ -87,3 +87,5 @@ spec:
     persistence:
       data:
         existingClaim: homebox
+      tmp:
+        type: emptyDir
