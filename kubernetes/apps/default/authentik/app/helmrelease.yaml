@@ -56,7 +56,7 @@ spec:
   valuesFrom:
     - targetPath: authentik.secret_key
       kind: Secret
-      name: authentik
+      name: authentik-secret-key
       valuesKey: authentik-secret-key-secret
   dependsOn:
     - name: cert-manager
