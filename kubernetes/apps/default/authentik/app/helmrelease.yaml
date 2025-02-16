@@ -25,7 +25,7 @@ spec:
   values:
     authentik:
       postgresql:
-        host: authentik-postgres
+        host: authentik-database-1
         user: file:///postgres-creds/username
         password: file:///postgres-creds/password
     redis:
