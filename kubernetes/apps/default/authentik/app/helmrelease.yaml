@@ -24,11 +24,14 @@ spec:
       retries: 3
   values:
     authentik:
-      # log_level: debug # TODO: disable when done debugging
       postgresql:
         host: authentik-database-rw
         user: file:///postgres-creds/username
         password: file:///postgres-creds/password
+      email:
+        from: authentik@martinbjeldbak.com
+        port: 465
+        use_ssl: true
     redis:
       enabled: true
       master:
@@ -60,8 +63,20 @@ spec:
   valuesFrom:
     - targetPath: authentik.secret_key
       kind: Secret
-      name: authentik-secret-key-secret
-      valuesKey: secret
+      name: authentik-secret
+      valuesKey: secret_key
+    - targetPath: authentik.email.host
+      kind: Secret
+      name: authentik-secret
+      valuesKey: smtp_host
+    - targetPath: authentik.email.password
+      kind: Secret
+      name: authentik-secret
+      valuesKey: smtp_password
+    - targetPath: authentik.email.username
+      kind: Secret
+      name: authentik-secret
+      valuesKey: smtp_username
   dependsOn:
     - name: cert-manager
       namespace: cert-manager
