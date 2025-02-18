@@ -53,7 +53,6 @@ spec:
       volumeMounts:
         - name: media
           mountPath: /media
-          readOnly: true
         - name: postgres-creds
           mountPath: /postgres-creds
           readOnly: true
