@@ -47,7 +47,13 @@ spec:
         - name: postgres-creds
           secret:
             secretName: authentik-postgres-credentials-secret
+        - name: media
+          persistentVolumeClaim:
+            claimName: authentik-media
       volumeMounts:
+        - name: media
+          mountPath: /media
+          readOnly: true
         - name: postgres-creds
           mountPath: /postgres-creds
           readOnly: true
