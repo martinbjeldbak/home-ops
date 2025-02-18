@@ -163,16 +163,16 @@
             username: {{HOMEPAGE_VAR_HOMEBOX_USERNAME}}
             password: {{HOMEPAGE_VAR_HOMEBOX_PASSWORD}}
 
-    # - Authentik:
-    #     icon: authentik.svg
-    #     href: "https://auth.local.martinbjeldbak.com"
-    #     description: authentication erver
-    #     server: localdocker
-    #     container: authentik-server
-    #     widget:
-    #         type: authentik
-    #         url: http://authentik-server:9000
-    #         key: {{HOMEPAGE_VAR_AUTHENTIK_API_KEY}}
+    - Authentik:
+        icon: authentik.svg
+        href: "https://auth.local.martinbjeldbak.com"
+        description: authentication erver
+        namespace: default
+        app: authentik-server
+        widget:
+            type: authentik
+            url: http://authentik-server:9000
+            key: {{HOMEPAGE_VAR_AUTHENTIK_API_KEY}}
     # - Paperless-ngx:
     #     icon: paperless-ngx.svg
     #     href: "https://paperless.local.martinbjeldbak.com"
