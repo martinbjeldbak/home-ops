@@ -31,7 +31,7 @@ spec:
       email:
         from: Authentik <authentik@martinbjeldbak.com>
         port: 465
-        use_ssl: true
+        use_tls: true
     redis:
       enabled: true
       master:
