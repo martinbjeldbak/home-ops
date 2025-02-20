@@ -171,7 +171,7 @@
         app: authentik-server
         widget:
             type: authentik
-            url: http://authentik-server:9000
+            url: http://authentik-server
             key: {{HOMEPAGE_VAR_AUTHENTIK_API_KEY}}
     # - Paperless-ngx:
     #     icon: paperless-ngx.svg
