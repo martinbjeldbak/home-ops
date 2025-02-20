@@ -29,7 +29,7 @@ spec:
         user: file:///postgres-creds/username
         password: file:///postgres-creds/password
       email:
-        from: authentik@martinbjeldbak.com
+        from: Authentik <authentik@martinbjeldbak.com>
         port: 465
         use_ssl: true
     redis:
@@ -39,7 +39,7 @@ spec:
           existingClaim: authentik-redis
     server:
       ingress:
-        enabled: ture
+        enabled: true
         ingressClassName: internal
         hosts:
           - auth.local.martinbjeldbak.com
