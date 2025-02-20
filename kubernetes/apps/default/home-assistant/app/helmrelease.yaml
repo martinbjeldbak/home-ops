@@ -85,6 +85,11 @@ spec:
         hosts:
           - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
             paths:
+              - path: /outpost.goauthentik.io
+                pathType: Prefix
+                service:
+                  name: ak-outpost-example-outpost
+                  port: 9000
               - path: /
                 service:
                   identifier: app
