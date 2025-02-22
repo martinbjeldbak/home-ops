@@ -20,3 +20,14 @@ spec:
     requests:
       storage: 100Gi
   storageClassName: proxmox
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-media
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: nfs-slow
