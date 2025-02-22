@@ -25,3 +25,19 @@ spec:
   values:
     controller:
       replicas: 1
+    storageClass:
+      create: true
+      name: nfs-slow
+      parameters:
+        server: nas.local.martinbjeldbak.com
+        share: /volume1/data/Kubernetes
+      mountOptions:
+        - nfsvers=3
+        - nconnect=16
+        - hard
+        - noatime
+      reclaimPolicy: Delete
+      volumeBindingMode: Immediate
+      mountPermissions: 0777
+
+
