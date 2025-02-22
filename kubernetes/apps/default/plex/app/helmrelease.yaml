@@ -65,7 +65,7 @@ spec:
               requests:
                 cpu: 100m
               limits:
-                gpu.intel.com/i915: 1
+              #   gpu.intel.com/i915: 1 #  https://forum.proxmox.com/threads/intel-n150-gpu-passthrough.160477/
                 memory: 16Gi
     defaultPodOptions:
       securityContext:
@@ -75,8 +75,8 @@ spec:
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
         supplementalGroups: [44]
-      nodeSelector:
-        intel.feature.node.kubernetes.io/gpu: "true"
+      # nodeSelector:
+      #   intel.feature.node.kubernetes.io/gpu: "true"
     service:
       app:
         controller: plex
