@@ -122,7 +122,6 @@ spec:
       media:
         type: nfs
         server: nas.local.martinbjeldbak.com
-        mountPermissions: 0777
         path: /volume1/data/media
         globalMounts:
           - path: /media
