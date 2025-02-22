@@ -30,4 +30,4 @@ spec:
   resources:
     requests:
       storage: 50Gi
-  storageClassName: nfs-slow
+  storageClassName: test

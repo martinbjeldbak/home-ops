@@ -27,12 +27,12 @@ spec:
       replicas: 1
     storageClass:
       create: true
-      name: nfs-slow
+      name: test
       parameters:
         server: nas.local.martinbjeldbak.com
         share: /volume1/data/Kubernetes
       mountOptions:
-        - nfsvers=3
+        - nfsvers=4.1
         - nconnect=16
         - hard
         - noatime
