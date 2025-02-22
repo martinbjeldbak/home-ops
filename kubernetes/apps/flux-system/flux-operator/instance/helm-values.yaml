@@ -3,7 +3,6 @@ instance:
   distribution:
     # renovate: datasource=github-releases depName=controlplaneio-fluxcd/distribution
     version: 2.5.0
-    artifact: "" # https://github.com/controlplaneio-fluxcd/flux-operator/issues/164#issuecomment-2652950564
   cluster:
     networkPolicy: false
   components:
