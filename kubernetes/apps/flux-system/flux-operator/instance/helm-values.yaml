@@ -1,9 +1,8 @@
 ---
 instance:
   distribution:
-    # renovate: datasource=github-releases depName=fluxcd/flux2
-    version: 2.4.0
-    artifact: "" # https://github.com/controlplaneio-fluxcd/flux-operator/issues/164#issuecomment-2652950564
+    # renovate: datasource=github-releases depName=controlplaneio-fluxcd/distribution
+    version: 2.5.0
   cluster:
     networkPolicy: false
   components:
@@ -16,6 +15,7 @@ instance:
     url: https://github.com/martinbjeldbak/home-ops
     ref: refs/heads/main
     path: kubernetes/flux/cluster
+    interval: 1h
   commonMetadata:
     labels:
       app.kubernetes.io/name: flux
