@@ -119,12 +119,18 @@ spec:
           - path: /config/Library/Application Support/Plex Media Server/Logs
       transcode:
         type: emptyDir
-      media-v2:
-        type: nfs
-        server: nas.local.martinbjeldbak.com
-        path: /volume1/data/media
+      media:
+        storageClass: nfs-slow
+        size: 50Gi
+        accessMode: ReadWriteOnce
         globalMounts:
           - path: /media
             readOnly: true
+        # type: nfs
+        # server: nas.local.martinbjeldbak.com
+        # path: /volume1/data/media
+        # globalMounts:
+        #   - path: /media
+        #     readOnly: true
       tmp:
         type: emptyDir
