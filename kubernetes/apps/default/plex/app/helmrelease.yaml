@@ -120,12 +120,11 @@ spec:
       transcode:
         type: emptyDir
       media:
-        # existingClaim: plex-media
         type: nfs
         server: nas.local.martinbjeldbak.com
         path: /volume1/data/media
         globalMounts:
           - path: /media
-            readOnly: true
+            # readOnly: true
       tmp:
         type: emptyDir
