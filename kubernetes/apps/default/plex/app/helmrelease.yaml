@@ -37,7 +37,7 @@ spec:
               tag: 1.41.4.9463-630c9f557@sha256:1d7589538a85a48ed3c14703b33ae8bacda7ca7db5307c68e8bc1b8ae6e888de
             env:
               TZ: Australia/Melbourne
-              PLEX_ADVERTISE_URL: https://plex.kube.local.martinbjeldbak.com,https://plex.local.martinbjeldbak.com,http://192.168.10.128:32400 # TODO: check this url
+              PLEX_ADVERTISE_URL: https://plex.local.martinbjeldbak.com,https://plex.local.martinbjeldbak.com,http://192.168.10.128:32400 # TODO: check this url
               PLEX_NO_AUTH_NETWORKS: 192.168.10.0/24
             probes:
               liveness: &probes
@@ -98,7 +98,7 @@ spec:
         #     }
         className: internal
         hosts:
-          - host: "{{ .Release.Name }}.kube.local.martinbjeldbak.com"
+          - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
             paths:
               - path: /
                 service:
