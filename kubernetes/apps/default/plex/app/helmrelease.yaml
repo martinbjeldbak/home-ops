@@ -119,7 +119,7 @@ spec:
           - path: /config/Library/Application Support/Plex Media Server/Logs
       transcode:
         type: emptyDir
-      media:
+      media-v2:
         type: nfs
         server: nas.local.martinbjeldbak.com
         path: /volume1/data/media
