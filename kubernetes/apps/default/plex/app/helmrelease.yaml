@@ -74,7 +74,7 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
-        supplementalGroups: [44]
+        supplementalGroups: [100] # user group on synology
       # nodeSelector:
       #   intel.feature.node.kubernetes.io/gpu: "true"
     service:
