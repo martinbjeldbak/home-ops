@@ -1,15 +1,15 @@
 ---
 - Media:
-    # - Plex:
-    #     icon: plex.svg
-    #     href: "https://plex.local.martinbjeldbak.com"
-    #     description: media server
-    #     server: localdocker
-    #     container: plex
-    #     widget:
-    #       type: plex
-    #       url: http://plex:32400
-    #       key: {{HOMEPAGE_VAR_PLEX_TOKEN}}
+    - Plex:
+        icon: plex.svg
+        href: "https://plex.local.martinbjeldbak.com"
+        description: media server
+        namespace: default
+        app: plex
+        widget:
+          type: plex
+          url: http://plex:32400
+          key: {{HOMEPAGE_VAR_PLEX_TOKEN}}
     # - Tautulli:
     #     icon: tautulli.svg
     #     href: "https://tautulli.local.martinbjeldbak.com"

@@ -74,9 +74,9 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
-        supplementalGroups: [100] # user group on synology
+        supplementalGroups: [44, 100] # 44: video, 100: user group on synology
       # nodeSelector:
-      #   intel.feature.node.kubernetes.io/gpu: "true"
+      #   intel.feature.node.kubernetes.io/gpu: "true" # https://github.com/martinbjeldbak/home-ops/issues/64
     service:
       app:
         controller: plex
