@@ -221,14 +221,14 @@
     #     widget:
     #         type: scrutiny
     #         url: http://scrutiny-web:8080
-    # - Speedtest Tracker:
-    #     icon: speedtest-tracker.png
-    #     href: "https://speedtest.local.martinbjeldbak.com"
-    #     server: localdocker
-    #     container: speedtest-tracker
-    #     widget:
-    #         type: speedtest
-    #         url: http://speedtest-tracker
+    - Speedtest Tracker:
+        icon: speedtest-tracker.png
+        href: "https://speedtest-tracker.local.martinbjeldbak.com"
+        namespace: default
+        app: plex
+        widget:
+            type: speedtest
+            url: http://speedtest-tracker
     # - Immich:
     #     icon: immich.svg
     #     href: "https://immich.local.martinbjeldbak.com"
