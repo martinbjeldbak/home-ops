@@ -34,16 +34,12 @@ spec:
               tag: 1.2.3@sha256:a2d6d09908791cabddddce363c36b1c7b239a74ec9ee81485ef280b0fc0df9c5
             env:
               APP_DEBUG: true # TODO: disable when running
-              APP_KEY: ${SPEEDTEST_TRACKER_APP_KEY}
               APP_URL: https://speedtest.kube.local.martinbjeldbak.com
               DISPLAY_TIMEZONE: Australia/Melbourne
               SPEEDTEST_SCHEDULE: "0 */6 * * *" # every 6 hours
               SPEEDTEST_SERVERS: "25134,14670,12491,13275,60412,18714"
               MAIL_MAILER: smtp
-              MAIL_HOST: ${SMTP_SERVER}
               MAIL_PORT: 465
-              MAIL_USERNAME: ${SMTP_USER_NAME}
-              MAIL_PASSWORD: ${HUGINN_SMTP_PASSWORD}
               MAIL_ENCRYPTION: 'ssl'
               MAIL_FROM_ADDRESS: "speedtest-tracker@martinbjeldbak.com"
               MAIL_FROM_NAME: "Speedtest Tracker"
