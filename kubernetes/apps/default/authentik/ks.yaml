@@ -39,8 +39,6 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: emqx
-      namespace: default
     - name: proxmox-csi
       namespace: csi-proxmox
   interval: 30m

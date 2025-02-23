@@ -38,7 +38,6 @@ spec:
               DISPLAY_TIMEZONE: Australia/Melbourne
               SPEEDTEST_SCHEDULE: "0 */6 * * *" # every 6 hours
               SPEEDTEST_SERVERS: "25134,14670,12491,13275,60412,18714"
-              DB_CONNECTION: sqlite
               MAIL_MAILER: smtp
               MAIL_HOST: ${SMTP_SERVER}
               MAIL_PORT: 465
@@ -47,6 +46,10 @@ spec:
               MAIL_ENCRYPTION: 'ssl'
               MAIL_FROM_ADDRESS: "speedtest-tracker@martinbjeldbak.com"
               MAIL_FROM_NAME: "Speedtest Tracker"
+              DB_CONNECTION: pgsql
+              DB_HOST: speedtest-tracker-database-rw
+              DB_PORT: 5432
+              DB_DATABASE: speedtest-tracker
             envFrom:
               - secretRef:
                   name: speedtest-tracker-secret
@@ -69,22 +72,3 @@ spec:
                 service:
                   identifier: app
                   port: http
-    # persistence:
-    #   run:
-    #     type: emptyDir
-    #   run-test: # NOTE: hopefully not needed?
-    #     type: emptyDir
-    #     globalMounts:
-    #       - path: /run/test
-    #   config:
-    #     existingClaim: speedtest-tracker
-    #   # config-saved:
-    #   #   existingClaim: speedtest-tracker
-    #   #   globalMounts:
-    #   #     - path: /config
-    #   config-log:
-    #     type: emptyDir
-    #     globalMounts:
-    #       - path: /config/log
-    #   tmp:
-    #     type: emptyDir
