@@ -25,32 +25,18 @@ spec:
   values:
     controllers:
       speedtest-tracker:
-        # initContainers:
-        #   chown:
-        #     - name: init-chown
-        #       image: busybox
-        #       command: ['chown', '1000:3000', '/data']
-        #       volumeMounts:
-        #         - mountPath: /data
-        #           name: data-volume
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
               repository: lscr.io/linuxserver/speedtest-tracker
-              tag: latest
+              tag: 1.2.3@sha256:a2d6d09908791cabddddce363c36b1c7b239a74ec9ee81485ef280b0fc0df9c5
             env:
-              # https://github.com/just-containers/s6-overlay/issues/600#issuecomment-2508071669
-              #
-              S6_VERBOSITY: 2
-              PUID: 1000
-              PGID: 1000
               APP_KEY: ${SPEEDTEST_TRACKER_APP_KEY}
               APP_URL: https://speedtest.kube.local.martinbjeldbak.com
-              APP_TIMEZONE: Australia/Melbourne
               DISPLAY_TIMEZONE: Australia/Melbourne
-              SPEEDTEST_SCHEDULE: "0 * * * *" # every hour
+              SPEEDTEST_SCHEDULE: "0 */6 * * *" # every 6 hours
               SPEEDTEST_SERVERS: "25134,14670,12491,13275,60412,18714"
               DB_CONNECTION: sqlite
               MAIL_MAILER: smtp
@@ -64,34 +50,9 @@ spec:
             envFrom:
               - secretRef:
                   name: speedtest-tracker-secret
-            probes:
-              liveness:
-                enabled: true
-              readiness:
-                enabled: true
-              startup:
-                enabled: true
-                spec:
-                  failureThreshold: 30
-                  periodSeconds: 10
-            securityContext:
-              privileged: true # I really don't want to be doing this...https://learn.snyk.io/lesson/container-runs-in-privileged-mode/
-              # allowPrivilegeEscalation: false
-              # readOnlyRootFilesystem: true
-              # capabilities: { drop: ["ALL"] }
             resources:
-              requests:
-                cpu: 10m
               limits:
                 memory: 256Mi
-    defaultPodOptions:
-      securityContext:
-        # runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
-        seccompProfile: { type: RuntimeDefault }
     service:
       app:
         controller: speedtest-tracker
@@ -108,22 +69,22 @@ spec:
                 service:
                   identifier: app
                   port: http
-    persistence:
-      run:
-        type: emptyDir
-      run-test: # NOTE: hopefully not needed?
-        type: emptyDir
-        globalMounts:
-          - path: /run/test
-      config:
-        existingClaim: speedtest-tracker
-      # config-saved:
-      #   existingClaim: speedtest-tracker
-      #   globalMounts:
-      #     - path: /config
-      config-log:
-        type: emptyDir
-        globalMounts:
-          - path: /config/log
-      tmp:
-        type: emptyDir
+    # persistence:
+    #   run:
+    #     type: emptyDir
+    #   run-test: # NOTE: hopefully not needed?
+    #     type: emptyDir
+    #     globalMounts:
+    #       - path: /run/test
+    #   config:
+    #     existingClaim: speedtest-tracker
+    #   # config-saved:
+    #   #   existingClaim: speedtest-tracker
+    #   #   globalMounts:
+    #   #     - path: /config
+    #   config-log:
+    #     type: emptyDir
+    #     globalMounts:
+    #       - path: /config/log
+    #   tmp:
+    #     type: emptyDir
