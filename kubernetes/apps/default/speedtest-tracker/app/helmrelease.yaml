@@ -33,6 +33,7 @@ spec:
               repository: lscr.io/linuxserver/speedtest-tracker
               tag: 1.2.3@sha256:a2d6d09908791cabddddce363c36b1c7b239a74ec9ee81485ef280b0fc0df9c5
             env:
+              APP_DEBUG: true # TODO: disable when running
               APP_KEY: ${SPEEDTEST_TRACKER_APP_KEY}
               APP_URL: https://speedtest.kube.local.martinbjeldbak.com
               DISPLAY_TIMEZONE: Australia/Melbourne
