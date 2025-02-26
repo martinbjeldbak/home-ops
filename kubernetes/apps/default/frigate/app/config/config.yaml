@@ -1,0 +1,8 @@
+---
+mqtt:
+  host: mqtt
+  user: "{FRIGATE_MQTT_USER}"
+  password: "{FRIGATE_MQTT_PASSWORD}"
+
+auth: # https://docs.frigate.video/configuration/authentication/#proxy-configuration
+  enabled: false
