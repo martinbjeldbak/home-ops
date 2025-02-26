@@ -7,6 +7,7 @@ mqtt:
 
 auth: # https://docs.frigate.video/configuration/authentication/#proxy-configuration
   enabled: false
+  # TODO: add auth_secret: value
 
 proxy:
   header_map:
@@ -46,18 +47,18 @@ snapshots:
   retain:
     default: 10
 
-go2rtc:
-  streams:
-    eufy_indoor_2k:
-      - rtsp://{FRIGATE_EUFY_INDOOR_RTSP_USER}:{FRIGATE_EUFY_INDOOR_RTSP_PASSWORD}@192.168.50.10/live0
-      - "ffmpeg:eufy_indoor_2k#audio=opus" # <- copy of the stream which transcodes audio to the missing codec
-    eufy_indoor_pan_tilt:
-      - rtsp://{FRIGATE_EUFY_PAN_TILT_RTSP_USER}:{FRIGATE_EUFY_PAN_TILT_RTSP_PASSWORD}@192.168.50.11/live0
-      - "ffmpeg:eufy_indoor_pan_tilt#audio=opus" # <- copy of the stream which transcodes audio to the missing codec
-  webrtc:
-    candidates:
-      - 192.168.10.10:8555
-      - stun:8555
+# go2rtc:
+#   streams:
+#     # eufy_indoor_2k:
+#     #   - rtsp://{FRIGATE_EUFY_INDOOR_RTSP_USER}:{FRIGATE_EUFY_INDOOR_RTSP_PASSWORD}@192.168.50.10/live0
+#     #   - "ffmpeg:eufy_indoor_2k#audio=opus" # <- copy of the stream which transcodes audio to the missing codec
+#     eufy_indoor_pan_tilt:
+#       - rtsp://{FRIGATE_EUFY_PAN_TILT_RTSP_USER}:{FRIGATE_EUFY_PAN_TILT_RTSP_PASSWORD}@192.168.50.11/live0
+#       - "ffmpeg:eufy_indoor_pan_tilt#audio=opus" # <- copy of the stream which transcodes audio to the missing codec
+#   webrtc:
+#     candidates:
+#       - 192.168.10.10:8555
+#       - stun:8555
 
 cameras:
   eufy_indoor_2k:
