@@ -73,7 +73,7 @@ cameras:
       width: 1920
       height: 1080
   eufy_indoor_pan_tilt:
-    enabled: false
+    enabled: true
     ffmpeg:
       inputs:
         - path: rtsp://127.0.0.1:8554/eufy_indoor_pan_tilt
