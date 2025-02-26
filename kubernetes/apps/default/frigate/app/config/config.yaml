@@ -10,13 +10,6 @@ auth: # https://docs.frigate.video/configuration/authentication/#proxy-configura
 ffmpeg:
   hwaccel_args: preset-vaapi
 
-detectors:
-  ov:
-    type: openvino
-    device: AUTO
-    model:
-      path: /openvino-model/ssdlite_mobilenet_v2.xml
-
 birdseye:
   enabled: True
   mode: continuous
