@@ -19,12 +19,12 @@ birdseye:
   enabled: True
   mode: continuous
 
-model:
-  width: 300
-  height: 300
-  input_tensor: nhwc
-  input_pixel_format: bgr
-  labelmap_path: /openvino-model/coco_91cl_bkgr.txt
+# model:
+#   width: 300
+#   height: 300
+#   input_tensor: nhwc
+#   input_pixel_format: bgr
+#   labelmap_path: /openvino-model/coco_91cl_bkgr.txt
 
 objects:
   track:
