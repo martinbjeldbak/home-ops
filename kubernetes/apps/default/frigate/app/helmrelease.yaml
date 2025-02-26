@@ -23,9 +23,9 @@ spec:
       strategy: rollback
       retries: 3
   values:
-    defaultPodOptions:
-      nodeSelector:
-        google.feature.node.kubernetes.io/coral: "true"
+    # defaultPodOptions: # TODO: enable me
+    #   nodeSelector:
+    #     google.feature.node.kubernetes.io/coral: "true"
     controllers:
       frigate:
         annotations:
