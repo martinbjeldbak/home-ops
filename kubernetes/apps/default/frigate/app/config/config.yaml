@@ -1,6 +1,7 @@
+# yaml-language-server: $schema=https://frigate.local.martinbjeldbak.com/api/config/schema.json
 ---
 mqtt:
-  host: mqtt
+  host: emqx-listeners
   user: "{FRIGATE_MQTT_USER}"
   password: "{FRIGATE_MQTT_PASSWORD}"
 
@@ -56,6 +57,7 @@ go2rtc:
 
 cameras:
   eufy_indoor_2k:
+    enabled: false
     ffmpeg:
       inputs:
         - path: rtsp://127.0.0.1:8554/eufy_indoor_2k
@@ -67,6 +69,7 @@ cameras:
       width: 1920
       height: 1080
   eufy_indoor_pan_tilt:
+    enabled: false
     ffmpeg:
       inputs:
         - path: rtsp://127.0.0.1:8554/eufy_indoor_pan_tilt
