@@ -37,18 +37,11 @@ timestamp_style:
   position: "tl"
   effect: shadow
 
-ui:
-  live_mode: webrtc
-
 record:
   enabled: true
   retain:
     days: 7
     mode: motion
-  events:
-    retain:
-      default: 14
-      mode: active_objects
 
 snapshots:
   enabled: true
