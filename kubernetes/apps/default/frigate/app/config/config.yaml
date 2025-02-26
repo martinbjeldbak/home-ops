@@ -8,6 +8,10 @@ mqtt:
 auth: # https://docs.frigate.video/configuration/authentication/#proxy-configuration
   enabled: false
 
+proxy:
+  header_map:
+    user: X-authentik-username
+
 ffmpeg:
   hwaccel_args: preset-vaapi
 
