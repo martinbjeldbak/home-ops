@@ -12,8 +12,8 @@ proxy:
   header_map:
     user: X-authentik-username
 
-ffmpeg:
-  hwaccel_args: preset-vaapi
+# ffmpeg:
+#   hwaccel_args: preset-vaapi
 
 birdseye:
   enabled: True
