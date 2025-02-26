@@ -64,6 +64,9 @@ spec:
     service:
       app:
         controller: frigate
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 192.168.1.127
         ports:
           http:
             port: *port
@@ -71,11 +74,8 @@ spec:
       app:
         className: internal
         annotations:
-          # This should be the in-cluster DNS name for the authentik outpost service
-          # as when the external URL is specified here, nginx will overwrite some crucial headers
           nginx.ingress.kubernetes.io/auth-url: |-
               http://ak-outpost-authentik-embedded-outpost.default.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
-          # If you're using domain-level auth, use the authentication URL instead of the application URL
           nginx.ingress.kubernetes.io/auth-signin: |-
               https://frigate.local.martinbjeldbak.com/outpost.goauthentik.io/start?rd=$scheme://$http_host$escaped_request_uri
           nginx.ingress.kubernetes.io/auth-response-headers: |-
