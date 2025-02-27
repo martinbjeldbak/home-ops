@@ -48,7 +48,7 @@ snapshots:
     default: 10
 
 go2rtc:
-#   streams:
+  streams:
 #     # eufy_indoor_2k:
 #     #   - rtsp://{FRIGATE_EUFY_INDOOR_RTSP_USER}:{FRIGATE_EUFY_INDOOR_RTSP_PASSWORD}@192.168.50.10/live0
 #     #   - "ffmpeg:eufy_indoor_2k#audio=opus" # <- copy of the stream which transcodes audio to the missing codec
@@ -85,6 +85,3 @@ cameras:
     detect:
       width: 1920
       height: 1080
-
-telemetry:
-  version_check: false # watchtower will watch versions
