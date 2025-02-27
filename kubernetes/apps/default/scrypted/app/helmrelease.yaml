@@ -63,6 +63,9 @@ spec:
     service:
       app:
         controller: scrypted
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 192.168.1.126
         ports:
           http:
             port: 11080
