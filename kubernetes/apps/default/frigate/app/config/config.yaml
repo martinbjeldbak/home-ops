@@ -54,7 +54,7 @@ go2rtc:
 #     #   - "ffmpeg:eufy_indoor_2k#audio=opus" # <- copy of the stream which transcodes audio to the missing codec
     eufy_indoor_pan_tilt:
       - rtsp://{FRIGATE_EUFY_PAN_TILT_RTSP_USER}:{FRIGATE_EUFY_PAN_TILT_RTSP_PASSWORD}@192.168.50.11/live0
-      - "ffmpeg:eufy_indoor_pan_tilt#audio=opus" # <- copy of the stream which transcodes audio to the missing codec
+      # - "ffmpeg:eufy_indoor_pan_tilt#audio=opus" # <- copy of the stream which transcodes audio to the missing codec
 #   webrtc:
 #     candidates:
 #       - 192.168.10.10:8555
