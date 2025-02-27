@@ -9,7 +9,11 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  # dependsOn:
+  dependsOn:
+    - name: multus-networks
+      namespace: network
+    - name: proxmox-csi
+      namespace: csi-proxmox
   #   - name: onepassword-store
   #     namespace: external-secrets
   interval: 30m
