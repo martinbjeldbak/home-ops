@@ -69,7 +69,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app multus
+  name: &app multus-networks
   namespace: &namespace network
 spec:
   targetNamespace: *namespace
