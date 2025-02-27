@@ -44,6 +44,15 @@ nodes:
         mtu: 1500
         vip:
           ip: "192.168.1.101"
+      - deviceSelector: # IPCAM bridge interface for multus
+          hardwareAddr: "bc:24:11:d6:1a:68"
+        dhcp: false
+        addresses:
+          - "192.168.50.100/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.50.1"
+        mtu: 1500
 
 # Global patches
 patches:
