@@ -27,10 +27,10 @@ spec:
           annotations:
             k8s.v1.cni.cncf.io/networks: |
               [{
-                "name":"multus-ipcam",
+                "name":"multus-user",
                 "namespace": "network",
-                "ips": ["192.168.50.153/24"],
-                "mac": "76:fa:11:c0:c9:84"
+                "ips": ["192.168.20.205/24"],
+                "mac": "bc:24:11:51:22:6c"
               }]
           securityContext:
             runAsUser: 2000
