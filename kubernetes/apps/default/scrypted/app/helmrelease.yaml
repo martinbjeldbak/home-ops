@@ -30,7 +30,7 @@ spec:
                 "name":"multus-user",
                 "namespace": "network",
                 "ips": ["192.168.20.205/24"],
-                "mac": "bc:24:11:51:22:6c"
+                "mac": "76:fa:11:c0:c9:84"
               }]
           securityContext:
             runAsUser: 2000
