@@ -406,3 +406,12 @@
           username: {{HOMEPAGE_VAR_PROXMOX_TOKEN_ID}}
           password: {{HOMEPAGE_VAR_PROXMOX_TOKEN_PASSWORD}}
           # node: beelink-eq14-1
+    - Proxmox Backup Server:
+        icon: proxmox.svg
+        description: backup server
+        href: "https://pbs.local.martinbjeldbak.com:8007"
+        widget:
+          type: proxmoxbackupserver
+          url: https://pbs.local.martinbjeldbak.com:8007
+          username: {{HOMEPAGE_VAR_PROXMOX_BACKUP_SERVER_TOKEN_ID}}
+          password: {{HOMEPAGE_VAR_PROXMOX_BACKUP_SERVER_TOKEN_PASSWORD}}
