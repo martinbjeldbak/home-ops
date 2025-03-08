@@ -60,6 +60,7 @@ spec:
       app:
         controller: unifi
         type: LoadBalancer
+        externalTrafficPolicy: Local
         annotations:
           lbipam.cilium.io/ips: 192.168.1.125
         # See https://github.com/jacobalberty/unifi-docker
