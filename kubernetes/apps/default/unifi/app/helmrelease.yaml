@@ -37,6 +37,7 @@ spec:
               tag:  v9.0.114@sha256:d5c9f87e643854bec4d0c15f6cbeec75510a449a7ec46f1e223eded858add480
             env:
               TZ: Australia/Melbourne
+              RUNAS_UID0: "false"
               UNIFI_UID: "999"
               UNIFI_GID: "999"
               UNIFI_STDOUT: "true"
