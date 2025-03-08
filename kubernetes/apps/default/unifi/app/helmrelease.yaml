@@ -45,16 +45,6 @@ spec:
               requests:
                 cpu: 50m
                 memory: 1390M
-            probes:
-              liveness:
-                enabled: true
-                port: 8080
-              readiness:
-                enabled: true
-                port: 8080
-              startup:
-                enabled: true
-                port: 8080
     service:
       app:
         controller: unifi
