@@ -305,7 +305,7 @@
             url: http://home-assistant:8123
             key: {{HOMEPAGE_VAR_HOMEASSISTANT_ACCESS_TOKEN}}
     - Scrypted:
-        icon: scrypted.svg
+        icon: scrypted.webp
         href: "https://scrypted.local.martinbjeldbak.com"
         description: cameras
         namespace: default
