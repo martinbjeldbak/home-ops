@@ -40,10 +40,6 @@ spec:
               UNIFI_UID: "999"
               UNIFI_GID: "999"
               UNIFI_STDOUT: "true"
-            # securityContext:
-            #   allowPrivilegeEscalation: false
-            #   readOnlyRootFilesystem: true
-            #   capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 50m
@@ -60,12 +56,6 @@ spec:
               startup:
                 enabled: true
                 port: 8080
-    # defaultPodOptions:
-    #   securityContext:
-    #     runAsNonRoot: true
-    #     runAsUser: 999
-    #     runAsGroup: 999
-    #     seccompProfile: { type: RuntimeDefault }
     service:
       app:
         controller: unifi
@@ -86,6 +76,8 @@ spec:
     ingress:
       app:
         className: internal
+        annotations:
+          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
         hosts:
           - host: "{{ .Release.Name }}.kube.local.martinbjeldbak.com" # TODO: change wehn migrated
             paths:
