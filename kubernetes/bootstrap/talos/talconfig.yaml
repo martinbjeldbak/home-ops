@@ -44,7 +44,7 @@ nodes:
         mtu: 1500
         vip:
           ip: "192.168.1.101"
-      - deviceSelector: # User bridge interface for multus
+      - deviceSelector: # USER bridge interface for multus
           hardwareAddr: "bc:24:11:51:22:6c"
         dhcp: false
         addresses:
