@@ -67,6 +67,9 @@ spec:
           http:
             port: 8443 # web interface + API
             protocol: HTTPS
+          controller:
+            port: 8080
+            protocol: TCP
           stun:
             port: 3478
             protocol: UDP
