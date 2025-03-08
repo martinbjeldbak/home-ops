@@ -46,11 +46,11 @@ spec:
             image:
               repository: ghcr.io/bjw-s-labs/scrypted
               tag: 0.137.0@sha256:8efdd2846735f831c925b49052f00372f8d6de913f72359628bd8e095e11a6f6
-            probes:
-              liveness:
-                enabled: true
-              readiness:
-                enabled: true
+            # probes:
+              # liveness:
+              #   enabled: true
+              # readiness:
+              #   enabled: true
             resources:
               requests:
                 cpu: 136m
