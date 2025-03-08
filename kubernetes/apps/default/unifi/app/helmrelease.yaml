@@ -45,11 +45,21 @@ spec:
               requests:
                 cpu: 50m
                 memory: 1390M
+            probes:
+              liveness:
+                enabled: true
+                port: 8080
+              readiness:
+                enabled: true
+                port: 8080
+              startup:
+                enabled: true
+                port: 8080
     service:
       app:
         controller: unifi
         type: LoadBalancer
-        externalTrafficPolicy: Local
+        # externalTrafficPolicy: Local
         annotations:
           lbipam.cilium.io/ips: 192.168.1.125
         # See https://github.com/jacobalberty/unifi-docker
