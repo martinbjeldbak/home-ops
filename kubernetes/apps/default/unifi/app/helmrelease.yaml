@@ -71,12 +71,23 @@ spec:
           controller:
             port: 8080
             protocol: TCP
+          portal-http:
+            port: 8880
+            protocol: HTTP
+          portal-https:
+            enabled: false
+            port: 8843
+            protocol: HTTPS
           stun:
             port: 3478
             protocol: UDP
           speedtest:
             port: 6789
             protocol: TCP
+          syslog:
+            enabled: true
+            port: 5514
+            protocol: UDP
           discovery:
             port: 10001
             protocol: UDP
