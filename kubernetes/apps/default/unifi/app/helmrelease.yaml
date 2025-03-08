@@ -79,7 +79,7 @@ spec:
         annotations:
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
         hosts:
-          - host: "{{ .Release.Name }}.kube.local.martinbjeldbak.com" # TODO: change wehn migrated
+          - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
             paths:
               - path: /
                 service:
