@@ -299,17 +299,17 @@
         href: "https://home-assistant.local.martinbjeldbak.com"
         description: home-assistant
         namespace: default
-        container: home-assistant
+        app: home-assistant
         widget:
             type: homeassistant
             url: http://home-assistant:8123
             key: {{HOMEPAGE_VAR_HOMEASSISTANT_ACCESS_TOKEN}}
-    # - Scrypted:
-    #     icon: https://www.scrypted.app/images/web_hi_res_512.png
-    #     href: "https://scrypted.local.martinbjeldbak.com"
-    #     description: cameras
-    #     server: localdocker
-    #     container: scrypted
+    - Scrypted:
+        icon: scrypted.svg
+        href: "https://scrypted.local.martinbjeldbak.com"
+        description: cameras
+        namespace: default
+        app: scrypted
     # - ESPHome:
     #     icon: esphome.svg
     #     href: "https://esphome.local.martinbjeldbak.com"
