@@ -61,13 +61,13 @@ spec:
             url: http://loki-headless.observability.svc.cluster.local:3100
             jsonData:
               maxLines: 250
-          # - name: Alertmanager
-          #   type: alertmanager
-          #   uid: alertmanager
-          #   access: proxy
-          #   url: http://alertmanager-operated.observability.svc.cluster.local:9093
-          #   jsonData:
-          #     implementation: prometheus
+          - name: Alertmanager
+            type: alertmanager
+            uid: alertmanager
+            access: proxy
+            url: http://alertmanager-operated.observability.svc.cluster.local:9093
+            jsonData:
+              implementation: prometheus
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
