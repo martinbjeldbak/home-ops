@@ -273,6 +273,12 @@
         href: https://alertmanager.local.martinbjeldbak.com
         app: alertmanager
         namespace: observability
+    - Blackbox Exporter:
+        icon: docker.svg
+        description: monitor probes
+        href: https://blackbox-exporter.local.martinbjeldbak.com
+        app: blackbox-exporter
+        namespace: observability
     # - syncthing:
     #     icon: syncthing.svg
     #     description: File syncing
