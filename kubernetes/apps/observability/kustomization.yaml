@@ -11,11 +11,11 @@ resources:
   # - ./alloy/ks.yaml # TODO: install
   # - ./blackbox-exporter/ks.yaml
   # - ./gatus/ks.yaml
-  - ./grafana/ks.yaml
+  # - ./grafana/ks.yaml # TODO: use
   # - ./kromgo/ks.yaml
   # - ./kube-prometheus-stack/ks.yaml
   - ./loki/ks.yaml
-  # - ./promtail/ks.yaml
+  # - ./promtail/ks.yaml # NOTE: replaced by alloy
   # - ./silence-operator/ks.yaml
   # - ./smartctl-exporter/ks.yaml
   # - ./snmp-exporter/ks.yaml
