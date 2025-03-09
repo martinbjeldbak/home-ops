@@ -1,0 +1,19 @@
+logging {
+	level    = "warn"
+	format   = "json"
+	write_to = [loki.write.default.receiver]
+}
+
+discovery.kubernetes "pod" {
+	role = "pod"
+}
+
+discovery.kubernetes "service" {
+	role = "service"
+}
+
+loki.write "default" {
+  endpoint {
+    url = "http://loki-headless.observability.svc.cluster.local:3100/loki/api/v1/push"
+  }
+}

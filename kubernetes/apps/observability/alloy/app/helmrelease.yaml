@@ -25,14 +25,11 @@ spec:
     fullnameOverride: alloy
     serviceMonitor:
       enabled: true
-    configMap:
-      content: |-
-        loki.write "default" {
-          endpoint {
-            url = "http://loki-headless.observability.svc.cluster.local:3100/loki/api/v1/push"
-          }
-          external_labels = {}
-        }
-      # ingress: # TODO: look at exposing the UI https://artifacthub.io/packages/helm/grafana/alloy
-    #   enabled: true
-    #   hosts: ["alloy.local.martinbjeldbak.com"]
+    alloy:
+      configMap:
+        create: false
+        name: alloy-configmap
+        key: config.alloy
+        # ingress: # TODO: look at exposing the UI https://artifacthub.io/packages/helm/grafana/alloy
+      #   enabled: true
+      #   hosts: ["alloy.local.martinbjeldbak.com"]
