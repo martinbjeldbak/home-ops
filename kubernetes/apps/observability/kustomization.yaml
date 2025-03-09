@@ -8,10 +8,10 @@ components:
   - ../../flux/components/namespace
   - ../../flux/components/sops
 resources:
-  # - ./alloy/ks.yaml # TODO: install
+  - ./alloy/ks.yaml
   # - ./blackbox-exporter/ks.yaml
   # - ./gatus/ks.yaml
-  # - ./grafana/ks.yaml # TODO: use
+  - ./grafana/ks.yaml
   # - ./kromgo/ks.yaml
   # - ./kube-prometheus-stack/ks.yaml
   - ./loki/ks.yaml

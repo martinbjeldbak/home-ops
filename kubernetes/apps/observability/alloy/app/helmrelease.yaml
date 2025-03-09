@@ -24,3 +24,6 @@ spec:
   values:
     serviceMonitor:
       enabled: true
+      # ingress: # TODO: look at exposing the UI https://artifacthub.io/packages/helm/grafana/alloy
+    #   enabled: true
+    #   hosts: ["alloy.local.martinbjeldbak.com"]
