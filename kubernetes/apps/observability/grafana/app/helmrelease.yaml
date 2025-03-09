@@ -191,6 +191,11 @@ spec:
           revision: 1
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
+        authentik:
+          # renovate: depName="authentik"
+          gnetId: 14837
+          revision: 2
+          datasource: Prometheus
     sidecar:
       dashboards:
         enabled: true
