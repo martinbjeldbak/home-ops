@@ -63,7 +63,7 @@ spec:
             port: 11080
             primary: true
           rebroadcast1:
-            port: 45568 # Living Room / Eufy Pan Tilt
+            port: 33819 # C210 #1
 
     ingress:
       app:
