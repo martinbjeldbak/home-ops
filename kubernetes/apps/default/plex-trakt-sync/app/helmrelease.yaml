@@ -32,12 +32,12 @@ spec:
             image:
               repository: ghcr.io/taxel/plextraktsync
               tag: 0.34.5
-            # args:
-            #   - watch
+            args:
+              - watch
             # NOTE: run this for reauth then attach
-            command:
-              - sleep
-              - infinity
+            # command:
+            #   - sleep
+            #   - infinity
             env:
               PLEX_BASEURL: http://plex.default.svc.cluster.local:32400
               PLEX_LOCALURL: http://plex.default.svc.cluster.local:32400
