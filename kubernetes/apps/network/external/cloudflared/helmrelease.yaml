@@ -37,7 +37,7 @@ spec:
               TUNNEL_CRED_FILE: /etc/cloudflared/creds/credentials.json
               TUNNEL_METRICS: 0.0.0.0:8080
               TUNNEL_ORIGIN_ENABLE_HTTP2: true
-              TUNNEL_TRANSPORT_PROTOCOL: quic
+              TUNNEL_TRANSPORT_PROTOCOL: auto # try quic, then fallback to http2
               TUNNEL_POST_QUANTUM: true
             args:
               - tunnel
