@@ -13,6 +13,8 @@ spec:
   path: ./kubernetes/apps/default/plex-trakt-sync/app
   prune: true
   dependsOn:
+    - name: plex
+      namespace: default
     - name: onepassword
       namespace: external-secrets
     - name: proxmox-csi
