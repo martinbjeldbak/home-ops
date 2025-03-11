@@ -6,7 +6,6 @@ namespace: default
 resources:
   - ./authentik/ks.yaml
   - ./autobrr/ks.yaml
-  - ./echo-server/ks.yaml
   - ./emqx/ks.yaml
   - ./home-assistant/ks.yaml
   - ./homebox/ks.yaml
