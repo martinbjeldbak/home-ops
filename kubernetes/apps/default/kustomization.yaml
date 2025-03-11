@@ -8,9 +8,10 @@ resources:
   - ./autobrr/ks.yaml
   - ./echo-server/ks.yaml
   - ./emqx/ks.yaml
+  - ./home-assistant/ks.yaml
   - ./homebox/ks.yaml
   - ./homepage/ks.yaml
-  - ./home-assistant/ks.yaml
+  - ./kometa/ks.yaml
   - ./plex/ks.yaml
   - ./plex-trakt-sync/ks.yaml
   - ./scrypted/ks.yaml

@@ -1,0 +1,11 @@
+---
+collections:
+  Populære danske film:
+    summary: Fra IMDb
+    sync_mode: sync
+    radarr_add_missing: true
+    imdb_search: # see: https://metamanager.wiki/en/latest/files/builders/imdb/#imdb-search
+      type: movie
+      sort_by: popularity.desc
+      limit: 20
+      language.primary: da
