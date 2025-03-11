@@ -70,10 +70,16 @@ spec:
     persistence:
       config:
         existingClaim: kometa
-      config-yaml:
+      config-files:
         type: configMap
         name: kometa-configmap
         globalMounts:
           - path: /config/config.yml
             subPath: config.yml
+            readOnly: true
+          - path: /config/martins.yml
+            subPath: martins.yml
+            readOnly: true
+          - path: /config/danish.yml
+            subPath: danish.yml
             readOnly: true

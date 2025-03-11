@@ -10,5 +10,7 @@ configMapGenerator:
   - name: kometa-configmap
     files:
       - config.yml=./resources/config.yml
+      - martins.yml=./resources/martins.yml
+      - danish.yml=./resources/danish.yml
 generatorOptions:
   disableNameSuffixHash: true
