@@ -1,17 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Kometa-Team/Kometa/master/json-schema/config-schema.json
 ---
 
-plex:
-  url: http://plex.default.svc.cluster.local:32400
-  token: <<PLEX_TOKEN>>
-  timeout: 60
-  clean_bundles: false
-  empty_trash: false
-  optimize: false
-  db_cache: 8192
-  verify_ssl: false
-
-
 # A good source: https://github.com/mrbuckwheet/Kometa-Config/blob/main/config.yml
 # sudo docker-compose run --entrypoint /bin/bash --rm plex-meta-manager
 # python plex_meta_manager.py --run --no-missing --cache-libraries
@@ -24,8 +13,8 @@ libraries:
       use_separator: false
     collection_files:
     - default: basic
-    - file: config/martins   # important this comes first to load my collections with same name as later
-    - file: config/danish
+    # - file: config/martins   # important this comes first to load my collections with same name as later
+    # - file: config/danish
     - default: studio
     - default: oscars
       template_variables:
@@ -139,7 +128,7 @@ libraries:
       use_separator: false
     collection_files:
     - default: basic
-    - file: config/martins   # important this comes first to load my collections with same name as later
+    # - file: config/martins   # important this comes first to load my collections with same name as later
     - default: actor
     - default: genre
     - default: country
@@ -250,6 +239,16 @@ settings:
   default_collection_order:
   save_report: false
   overlay_artwork_filetype: jpg
+
+plex:
+  url: http://plex.default.svc.cluster.local:32400
+  token: <<PLEX_TOKEN>>
+  timeout: 60
+  clean_bundles: false
+  empty_trash: false
+  optimize: false
+  db_cache: 8192
+  verify_ssl: false
 
 tmdb:
   apikey: <<TMDB_API_KEY>>
