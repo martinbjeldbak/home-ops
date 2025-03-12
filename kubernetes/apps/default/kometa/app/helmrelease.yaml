@@ -45,6 +45,7 @@ spec:
             env:
               TZ: *timezone
               KOMETA_RUN: true
+              KOMETA_READ_ONLY_CONFIG: true
             envFrom:
               - secretRef:
                   name: kometa-secret
