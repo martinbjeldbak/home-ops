@@ -70,6 +70,10 @@ spec:
     persistence:
       config:
         existingClaim: kometa
+      config-assets:
+        type: emptyDir
+        globalMounts:
+          - path: /config/assets
       config-files:
         type: configMap
         name: kometa-configmap
