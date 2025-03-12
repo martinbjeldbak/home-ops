@@ -241,7 +241,7 @@ settings:
   default_collection_order:
   save_report: false
   overlay_artwork_filetype: jpg
-  overlay_artwork_quality:
+
 plex:
   url: http://plex.default.svc.cluster.local:32400
   token: <<PLEX_TOKEN>>
@@ -251,6 +251,7 @@ plex:
   optimize: false
   db_cache: 8192
   verify_ssl: false
+
 tmdb:
   apikey: <<TMDB_API_KEY>>
   language: en
@@ -277,6 +278,7 @@ radarr:
   upgrade_existing: false
   ignore_cache: false
   monitor_existing: false
+
 sonarr:
   url: http://sonarr.default.svc.cluster.local:8989
   token: <<SONARR_API_KEY>>
@@ -296,6 +298,7 @@ sonarr:
   upgrade_existing: false
   ignore_cache: false
   monitor_existing: false
+
 trakt:
   client_id: <<TRAKT_CLIENT_ID>>
   client_secret: <<TRAKT_CLIENT_SECRET>>
@@ -307,9 +310,11 @@ trakt:
     refresh_token: <<TRAKT_REFRESH_TOKEN>>
     scope: public
     created_at: <<TRAKT_CREATED_AT>>
+
 mdblist:
   apikey: <<MDBLIST_API_KEY>>
   cache_expiration: 60
+
 omdb:
   apikey: <<OMDB_API_KEY>>
   cache_expiration: 60
