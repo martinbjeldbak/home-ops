@@ -1,4 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Kometa-Team/Kometa/master/json-schema/config-schema.json
+---
 
 # A good source: https://github.com/mrbuckwheet/Kometa-Config/blob/main/config.yml
 # sudo docker-compose run --entrypoint /bin/bash --rm plex-meta-manager
@@ -232,10 +233,10 @@ settings:
   show_unconfigured: true
   playlist_exclude_users:
   run_order:
-  - operations
-  - metadata
-  - collections
-  - overlays
+    - operations
+    - metadata
+    - collections
+    - overlays
 
   default_collection_order:
   save_report: false
@@ -249,7 +250,7 @@ plex:
   empty_trash: false
   optimize: false
   db_cache: 8192
-  verify_ssl:
+  verify_ssl: false
 tmdb:
   apikey: <<TMDB_API_KEY>>
   language: en
