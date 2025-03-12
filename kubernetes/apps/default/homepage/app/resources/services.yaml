@@ -10,46 +10,46 @@
           type: plex
           url: http://plex:32400
           key: {{HOMEPAGE_VAR_PLEX_TOKEN}}
-    # - Tautulli:
-    #     icon: tautulli.svg
-    #     href: "https://tautulli.local.martinbjeldbak.com"
-    #     description: plex monitoring and history database
-    #     server: localdocker
-    #     container: tautulli
-    #     widget:
-    #       type: tautulli
-    #       url: http://tautulli:8181
-    #       key: {{HOMEPAGE_VAR_TAUTULLI_API_KEY}}
-    # - Sonarr:
-    #     icon: sonarr.svg
-    #     description: tv
-    #     href: "https://tv.local.martinbjeldbak.com"
-    #     server: localdocker
-    #     container: sonarr
-    #     widget:
-    #       type: sonarr
-    #       url: http://sonarr:8989
-    #       key: {{HOMEPAGE_VAR_SONARR_API_KEY}}
-    # - Bazarr:
-    #     icon: bazarr.svg
-    #     description: subtitles
-    #     href: "https://subtitles.local.martinbjeldbak.com"
-    #     server: localdocker
-    #     container: bazarr
-    #     widget:
-    #       type: bazarr
-    #       url: http://bazarr:6767
-    #       key: {{HOMEPAGE_VAR_BAZARR_API_KEY}}
-    # - Readarr:
-    #     icon: readarr.svg
-    #     description: books
-    #     href: "https://readarr.local.martinbjeldbak.com"
-    #     server: localdocker
-    #     container: readarr
-    #     widget:
-    #       type: readarr
-    #       url: http://readarr:8787
-    #       key: {{HOMEPAGE_VAR_READARR_API_KEY}}
+    - Tautulli:
+        icon: tautulli.svg
+        href: "https://tautulli.local.martinbjeldbak.com"
+        description: plex monitoring and history database
+        server: localdocker
+        container: tautulli
+        widget:
+          type: tautulli
+          url: http://tautulli:8181
+          key: {{HOMEPAGE_VAR_TAUTULLI_API_KEY}}
+    - Sonarr:
+        icon: sonarr.svg
+        description: tv
+        href: "https://tv.local.martinbjeldbak.com"
+        server: localdocker
+        container: sonarr
+        widget:
+          type: sonarr
+          url: http://sonarr:8989
+          key: {{HOMEPAGE_VAR_SONARR_API_KEY}}
+    - Bazarr:
+        icon: bazarr.svg
+        description: subtitles
+        href: "https://subtitles.local.martinbjeldbak.com"
+        server: localdocker
+        container: bazarr
+        widget:
+          type: bazarr
+          url: http://bazarr:6767
+          key: {{HOMEPAGE_VAR_BAZARR_API_KEY}}
+    - Readarr:
+        icon: readarr.svg
+        description: books
+        href: "https://readarr.local.martinbjeldbak.com"
+        server: localdocker
+        container: readarr
+        widget:
+          type: readarr
+          url: http://readarr:8787
+          key: {{HOMEPAGE_VAR_READARR_API_KEY}}
     - Synology:
         icon: synology.svg
         description: diskstation
@@ -61,71 +61,71 @@
           username: {{HOMEPAGE_VAR_SYNOLOGY_STATS_USERNAME}}
           password: {{HOMEPAGE_VAR_SYNOLOGY_STATS_PASSWORD}}
           volume: volume_3
-    # - Overseerr:
-    #     icon: overseerr.svg
-    #     description: plex media requests
-    #     href: "https://request.local.martinbjeldbak.com"
-    #     server: localdocker
-    #     container: overseerr
-    #     widget:
-    #         type: overseerr
-    #         url: http://overseerr:5055
-    #         key: {{HOMEPAGE_VAR_OVERSEERR_API_KEY}}
-    # - Prowlarr:
-    #     icon: prowlarr.svg
-    #     description: indexer
-    #     href: "https://prowlarr.local.martinbjeldbak.com"
-    #     server: localdocker
-    #     container: prowlarr
-    #     widget:
-    #         type: prowlarr
-    #         url: http://gluetun:9696
-    #         key: {{HOMEPAGE_VAR_PROWLARR_API_KEY}}
-    # - Radarr:
-    #     icon: radarr.svg
-    #     description: movies
-    #     href: "https://movies.local.martinbjeldbak.com"
-    #     server: localdocker
-    #     container: radarr
-    #     widget:
-    #         type: radarr
-    #         url: http://radarr:7878
-    #         key: {{HOMEPAGE_VAR_RADARR_API_KEY}}
-    # - Transmission:
-    #     icon: transmission.svg
-    #     description: torrents
-    #     href: "https://torrents.local.martinbjeldbak.com"
-    #     server: localdocker
-    #     container: transmission
-    #     widget:
-    #         type: transmission
-    #         url: http://gluetun:9091
-    #         username: {{HOMEPAGE_VAR_TRANSMISSION_USERNAME}}
-    #         password: {{HOMEPAGE_VAR_TRANSMISSION_PASSWORD}}
-    # - Romm:
-    #     icon: romm.svg
-    #     description: roms
-    #     href: "https://roms.local.martinbjeldbak.com"
-    #     server: localdocker
-    #     container: romm
-    #     widget:
-    #         type: romm
-    #         url: http://romm:8080
-    #         username: {{HOMEPAGE_VAR_ROMM_USERNAME}}
-    #         password: {{HOMEPAGE_VAR_ROMM_PASSWORD}}
-    #
-    # - Calibre-web:
-    #     icon: calibreweb.svg
-    #     description: ebooks
-    #     href: "https://calibre-web.local.martinbjeldbak.com"
-    #     server: localdocker
-    #     container: calibre-web
-    #     widget:
-    #         type: calibreweb
-    #         url: http://calibre-web:8083
-    #         username: {{HOMEPAGE_VAR_CALIBRE_WEB_USERNAME}}
-    #         password: {{HOMEPAGE_VAR_CALIBRE_WEB_PASSWORD}}
-    #
+    - Overseerr:
+        icon: overseerr.svg
+        description: plex media requests
+        href: "https://request.local.martinbjeldbak.com"
+        server: localdocker
+        container: overseerr
+        widget:
+            type: overseerr
+            url: http://overseerr:5055
+            key: {{HOMEPAGE_VAR_OVERSEERR_API_KEY}}
+    - Prowlarr:
+        icon: prowlarr.svg
+        description: indexer
+        href: "https://prowlarr.local.martinbjeldbak.com"
+        server: localdocker
+        container: prowlarr
+        widget:
+            type: prowlarr
+            url: http://gluetun:9696
+            key: {{HOMEPAGE_VAR_PROWLARR_API_KEY}}
+    - Radarr:
+        icon: radarr.svg
+        description: movies
+        href: "https://movies.local.martinbjeldbak.com"
+        server: localdocker
+        container: radarr
+        widget:
+            type: radarr
+            url: http://radarr:7878
+            key: {{HOMEPAGE_VAR_RADARR_API_KEY}}
+    - Transmission:
+        icon: transmission.svg
+        description: torrents
+        href: "https://torrents.local.martinbjeldbak.com"
+        server: localdocker
+        container: transmission
+        widget:
+            type: transmission
+            url: http://gluetun:9091
+            username: {{HOMEPAGE_VAR_TRANSMISSION_USERNAME}}
+            password: {{HOMEPAGE_VAR_TRANSMISSION_PASSWORD}}
+    - Romm:
+        icon: romm.svg
+        description: roms
+        href: "https://roms.local.martinbjeldbak.com"
+        server: localdocker
+        container: romm
+        widget:
+            type: romm
+            url: http://romm:8080
+            username: {{HOMEPAGE_VAR_ROMM_USERNAME}}
+            password: {{HOMEPAGE_VAR_ROMM_PASSWORD}}
+
+    - Calibre-web:
+        icon: calibreweb.svg
+        description: ebooks
+        href: "https://calibre-web.local.martinbjeldbak.com"
+        server: localdocker
+        container: calibre-web
+        widget:
+            type: calibreweb
+            url: http://calibre-web:8083
+            username: {{HOMEPAGE_VAR_CALIBRE_WEB_USERNAME}}
+            password: {{HOMEPAGE_VAR_CALIBRE_WEB_PASSWORD}}
+
     - Autobrr:
         icon: autobrr.svg
         description: torrent watcher
