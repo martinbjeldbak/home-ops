@@ -311,3 +311,4 @@ mdblist:
   cache_expiration: 60
 omdb:
   apikey: <<OMDB_API_KEY>>
+  cache_expiration: 60
