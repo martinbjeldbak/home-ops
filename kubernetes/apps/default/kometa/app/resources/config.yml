@@ -237,6 +237,7 @@ settings:
     - metadata
     - collections
     - overlays
+  overlay_artwork_quality: 75
 
   default_collection_order:
   save_report: false
