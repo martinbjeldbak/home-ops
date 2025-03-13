@@ -26,10 +26,10 @@
         href: "https://tv.local.martinbjeldbak.com"
         server: localdocker
         container: sonarr
-        widget:
-          type: sonarr
-          url: http://sonarr:8989
-          key: {{HOMEPAGE_VAR_SONARR_API_KEY}}
+        # widget:
+        #   type: sonarr
+        #   url: http://sonarr:8989
+        #   key: {{HOMEPAGE_VAR_SONARR_API_KEY}}
     - Bazarr:
         icon: bazarr.svg
         description: subtitles
