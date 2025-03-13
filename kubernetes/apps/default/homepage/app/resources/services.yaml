@@ -115,7 +115,7 @@
             password: {{HOMEPAGE_VAR_ROMM_PASSWORD}}
 
     - Calibre-web:
-        icon: calibreweb.svg
+        icon: calibre-web.svg
         description: ebooks
         href: "https://calibre-web.local.martinbjeldbak.com"
         server: localdocker
