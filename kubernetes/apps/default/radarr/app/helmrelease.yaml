@@ -80,17 +80,16 @@ spec:
         ports:
           http:
             port: *port
-    route:
+    ingress:
       app:
-        hostnames: ["movies.kube.local.martinbjeldbak.com"] # TODO: simplify
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - name: *app
-                port: *port
+        className: internal
+        hosts:
+          - host: "movies.kube.local.martinbjeldbak.com"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
     persistence:
       config:
         existingClaim: radarr
