@@ -22,31 +22,31 @@ spec:
   storageClassName: proxmox
 
 
-# ---
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: pvc-plex-test
-# spec:
-#   accessModes:
-#     - ReadWriteOnce
-#   capacity:
-#     storage: 50Gi
-#   csi:
-#     driver: csi.proxmox.sinextra.dev
-#     fsType: xfs
-#     volumeHandle: vm-9999-pvc-5af6fc11-a91a-4ff7-b26a-ade676c9b8f1
-#   storageClassName: proxmox
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: storage-test-0
-# spec:
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 50Gi
-#   storageClassName: proxmox
-#   volumeName: pvc-plex-test
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvc-plex-test
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 50Gi
+  csi:
+    driver: csi.proxmox.sinextra.dev
+    fsType: xfs
+    volumeHandle: vm-9999-pvc-5af6fc11-a91a-4ff7-b26a-ade676c9b8f1
+  storageClassName: proxmox
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: storage-test-0
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: proxmox
+  volumeName: pvc-plex-test
