@@ -65,7 +65,7 @@ spec:
               requests:
                 cpu: 100m
               limits:
-                gpu.intel.com/i915: 1 #  https://forum.proxmox.com/threads/intel-n150-gpu-passthrough.160477/
+                gpu.intel.com/i915: 3
                 memory: 16Gi
     defaultPodOptions:
       securityContext:
