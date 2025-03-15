@@ -61,12 +61,3 @@ resource "proxmox_virtual_environment_user_token" "homepage" {
   privileges_separation = false # token has same permission as user
   user_id         = proxmox_virtual_environment_user.homepage.user_id
 }
-
-
-resource "proxmox_virtual_environment_download_file" "proxmox_ubuntu" {
-  content_type = "iso"
-    datastore_id =  "backups"
-  file_name = "ubuntu-24.04.1-desktop-amd64.iso"
-  node_name ="beelink-eq14-1"
-  url = "https://mirror.internet.asn.au/pub/ubuntu/releases/24.04.1/ubuntu-24.04.1-desktop-amd64.iso"
-}

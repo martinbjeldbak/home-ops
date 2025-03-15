@@ -13,15 +13,16 @@ resource "proxmox_virtual_environment_vm" "proxmox_backup_server" {
   description = "managed by OpenTofu"
   node_name = "beelink-eq14-1"
   tags = ["opentofu", "pbs"]
+  reboot_after_update     = true
 
   cpu {
     cores = 4
-    type = "x86-64-v2-AES"
+    type = "host"
   }
 
   memory {
-    dedicated = 10240 # 10GiB
-    floating  = 10240
+    dedicated = 4096
+    floating  = 0
   }
 
   # Uncommented 2025-02-09 now that it's installed
@@ -40,6 +41,8 @@ resource "proxmox_virtual_environment_vm" "proxmox_backup_server" {
     iothread     = true
     size         = 20
     file_format = "raw"
+    cache = "writethrough"
+    ssd = true
   }
 
   scsi_hardware = "virtio-scsi-single"

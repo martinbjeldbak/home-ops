@@ -1,34 +1,26 @@
-resource "proxmox_virtual_environment_download_file" "talos_secureboot" {
-  content_type = "iso"
-    datastore_id =  "backups"
-  file_name = "metal-amd64-secureboot.iso"
-  node_name ="beelink-eq14-1"
-  url = "https://factory.talos.dev/image/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba/v1.9.5/metal-amd64-secureboot.iso"
-}
 
-resource "proxmox_virtual_environment_vm" "talos_node_01" {
-  vm_id = "101"
-  name      = "node-01"
+resource "proxmox_virtual_environment_vm" "talos_node_02" {
+  vm_id = "201"
+  name      = "node-02"
   description = "managed by OpenTofu"
-  node_name = "beelink-eq14-1"
+  node_name = "beelink-eqi12-1"
   tags = ["opentofu", "talos"]
 
   cpu {
-    cores = 4
+    cores = 10
     type = "host"
   }
 
   memory {
-    dedicated = 28672
+    dedicated =  24576
     floating  = 0
   }
 
   # Uncommented 2025-02-09 now that it's installed
-  #cdrom {
-  #  enabled = false
-  #  # file_id      = proxmox_virtual_environment_download_file.talos_secureboot.id
-  #  interface = "ide0"
-  #}
+  cdrom {
+    file_id      = proxmox_virtual_environment_download_file.talos_secureboot.id
+    interface = "ide0"
+  }
 
   # boot_order = ["scsi0"]
 
@@ -47,7 +39,7 @@ resource "proxmox_virtual_environment_vm" "talos_node_01" {
     mtu = 1200
     bridge = "vmbr0"
     disconnected = false
-    mac_address  = "BC:24:11:9B:F9:42"
+    mac_address  = "BC:24:11:9B:A8:42"
     vlan_id = 0
   }
 
