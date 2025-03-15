@@ -27,7 +27,7 @@ spec:
           annotations:
             k8s.v1.cni.cncf.io/networks: |
               [{
-                "name":"multus-user",
+                "name":"multus-user-node-02",
                 "namespace": "network",
                 "ips": ["192.168.20.205/24"],
                 "mac": "76:fa:11:c0:c9:82"
