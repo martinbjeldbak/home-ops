@@ -13,13 +13,13 @@ spec:
       secret:
         name: authentik-cluster-credentials-secret
   storage:
-    size: 1Gi
+    size: 5Gi
     pvcTemplate:
       storageClassName: proxmox
       accessModes: ["ReadWriteOnce"]
       resources:
         requests:
-          storage: 1Gi
+          storage: 5Gi
   superuserSecret:
     name: authentik-pg-superuser-secret
   enableSuperuserAccess: true
