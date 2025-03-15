@@ -26,7 +26,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pvc-plex-test-v5
+  name: pvc-plex-test-v6
 spec:
   accessModes:
     - ReadWriteOnce
@@ -35,13 +35,25 @@ spec:
   csi:
     driver: csi.proxmox.sinextra.dev
     fsType: xfs
-    volumeHandle: cluster-1/beelink-eqi12-1/csi-proxmox/vm-9999-pvc-5af6fc11-a91a-4ff7-b26a-ade676c9b8f1
+    volumeHandle: cluster-1/beelink-eqi12-1/local-lvm/vm-9999-pvc-5af6fc11-a91a-4ff7-b26a-ade676c9b8f1
   storageClassName: proxmox
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: topology.kubernetes.io/region
+          operator: In
+          values:
+            - cluster-1
+        - key: topology.kubernetes.io/zone
+          operator: In
+          values:
+            - beelinkq-eqi12-1
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: storage-test-v5
+  name: storage-test-v6
 spec:
   accessModes:
     - ReadWriteOnce
@@ -49,4 +61,5 @@ spec:
     requests:
       storage: 50Gi
   storageClassName: proxmox
-  volumeName: pvc-plex-test-v5
+  volumeName: pvc-plex-test-v6
+
