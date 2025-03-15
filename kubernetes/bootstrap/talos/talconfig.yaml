@@ -53,6 +53,35 @@ nodes:
           - network: "0.0.0.0/0"
             gateway: "192.168.20.1"
         mtu: 1500
+  - hostname: "node-02"
+    ipAddress: "192.168.1.120"
+    installDisk: "/dev/sda"
+    machineSpec:
+      secureboot: true
+      useUKI: true
+    talosImageURL: factory.talos.dev/installer-secureboot/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
+    controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "bc:24:11:9b:a8:42"
+        dhcp: false
+        addresses:
+          - "192.168.1.120/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.1.1"
+        mtu: 1500
+        vip:
+          ip: "192.168.1.121"
+      - deviceSelector: # USER bridge interface for multus
+          hardwareAddr: "bc:24:11:51:22:6c" # NOTE: this is same as other node. maybe not good idea?
+        dhcp: false
+        addresses:
+          - "192.168.20.200/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.20.1"
+        mtu: 1500
 
 # Global patches
 patches:
