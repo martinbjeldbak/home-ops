@@ -26,27 +26,27 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pvc-plex-test-v4
+  name: pvc-plex-test-v5
 spec:
   accessModes:
     - ReadWriteOnce
   capacity:
-    storage: 100Gi
+    storage: 50Gi
   csi:
     driver: csi.proxmox.sinextra.dev
     fsType: xfs
-    volumeHandle: vm-9999-pvc-5af6fc11-a91a-4ff7-b26a-ade676c9b8f1
+    volumeHandle: cluster-1/beelink-eqi12-1/csi-proxmox/vm-9999-pvc-5af6fc11-a91a-4ff7-b26a-ade676c9b8f1
   storageClassName: proxmox
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: storage-test-v4
+  name: storage-test-v5
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 100Gi
+      storage: 50Gi
   storageClassName: proxmox
-  volumeName: pvc-plex-test-v4
+  volumeName: pvc-plex-test-v5
