@@ -26,12 +26,12 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pvc-plex-test-v3
+  name: pvc-plex-test-v4
 spec:
   accessModes:
     - ReadWriteOnce
   capacity:
-    storage: 50Gi
+    storage: 100Gi
   csi:
     driver: csi.proxmox.sinextra.dev
     fsType: xfs
@@ -41,12 +41,12 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: storage-test-v3
+  name: storage-test-v4
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 50Gi
+      storage: 100Gi
   storageClassName: proxmox
-  volumeName: pvc-plex-test-v3
+  volumeName: pvc-plex-test-v4
