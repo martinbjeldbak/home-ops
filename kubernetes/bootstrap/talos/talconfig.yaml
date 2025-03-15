@@ -32,6 +32,10 @@ nodes:
       useUKI: true
     talosImageURL: factory.talos.dev/installer-secureboot/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
     controlPlane: true
+    # for proxmox-csi https://github.com/sergelogvinov/proxmox-csi-plugin?tab=readme-ov-file#kubernetes-topology-labels
+    nodeLabels:
+      topology.kubernetes.io/region: cluster-1
+      topology.kubernetes.io/zone: beelink-eq14-1
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "bc:24:11:9b:f9:42"
@@ -59,8 +63,12 @@ nodes:
     machineSpec:
       secureboot: true
       useUKI: true
-    talosImageURL: factory.talos.dev/installer-secureboot/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
+    talosImageURL: factory.talos.dev/installer-secureboot/249d9135de54962744e917cfe654117000cba369f9152fbab9d055a00aa3664f
     controlPlane: true
+    nodeLabels:
+      # for proxmox-csi https://github.com/sergelogvinov/proxmox-csi-plugin?tab=readme-ov-file#kubernetes-topology-labels
+      topology.kubernetes.io/region: cluster-1
+      topology.kubernetes.io/zone: beelink-eqi12-1
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "bc:24:11:9b:a8:42"
