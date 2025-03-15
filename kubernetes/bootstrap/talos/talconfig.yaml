@@ -31,6 +31,11 @@ nodes:
       secureboot: true
       useUKI: true
     talosImageURL: factory.talos.dev/installer-secureboot/62d0931f10c2d9734427318cc15c4fd6a0317866434e53f1bcbecab204bfc688
+    # officialExtensions:
+      # siderolabs/i915
+      # siderolabs/intel-ucode
+      # siderolabs/iscsi-tools
+      # siderolabs/qemu-guest-agent
     controlPlane: true
     # for proxmox-csi https://github.com/sergelogvinov/proxmox-csi-plugin?tab=readme-ov-file#kubernetes-topology-labels
     nodeLabels:
