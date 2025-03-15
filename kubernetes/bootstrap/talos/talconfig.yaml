@@ -30,7 +30,7 @@ nodes:
     machineSpec:
       secureboot: true
       useUKI: true
-    talosImageURL: factory.talos.dev/installer-secureboot/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
+    talosImageURL: factory.talos.dev/installer-secureboot/62d0931f10c2d9734427318cc15c4fd6a0317866434e53f1bcbecab204bfc688
     controlPlane: true
     # for proxmox-csi https://github.com/sergelogvinov/proxmox-csi-plugin?tab=readme-ov-file#kubernetes-topology-labels
     nodeLabels:
