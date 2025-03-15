@@ -26,7 +26,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pvc-plex-test
+  name: pvc-plex-test-v2
 spec:
   accessModes:
     - ReadWriteOnce
@@ -41,7 +41,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: storage-test-0
+  name: storage-test-v2
 spec:
   accessModes:
     - ReadWriteOnce
@@ -49,4 +49,4 @@ spec:
     requests:
       storage: 50Gi
   storageClassName: proxmox
-  volumeName: pvc-plex-test
+  volumeName: pvc-plex-test-v2
