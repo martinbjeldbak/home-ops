@@ -53,7 +53,7 @@ spec:
               limits:
                 gpu.intel.com/i915: 3
                 # squat.ai/coral: 1
-                memory: 8192Mi
+                # memory: 8192Mi
 
     service:
       app:
