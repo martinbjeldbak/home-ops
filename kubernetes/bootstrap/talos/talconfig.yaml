@@ -7,6 +7,7 @@ kubernetesVersion: v1.32.3
 
 clusterName: kubernetes
 endpoint: https://192.168.1.101:6443
+# endpoint: https://kube.local.martinbjeldbak.com:6443 # TODO: add
 
 clusterPodNets:
   - "10.69.0.0/16"
@@ -84,6 +85,8 @@ nodes:
           - network: "0.0.0.0/0"
             gateway: "192.168.1.1"
         mtu: 1500
+        vip:
+          ip: "192.168.1.201"
       - deviceSelector: # USER bridge interface for multus
           hardwareAddr: "bc:24:11:51:22:6c" # NOTE: this is same as other node. maybe not good idea?
         dhcp: false
