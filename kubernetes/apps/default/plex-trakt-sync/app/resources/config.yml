@@ -4,6 +4,7 @@ cache:
 
 excluded-libraries:
   - Hjemmevideoer
+  - Musik
 
 config:
   dotenv_override: true
