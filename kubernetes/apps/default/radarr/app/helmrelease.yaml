@@ -97,6 +97,13 @@ spec:
         hosts:
           - host: "movies.local.martinbjeldbak.com"
             paths:
+              - path: /outpost.goauthentik.io
+                pathType: Prefix
+                backend:
+                  service:
+                    name: ak-outpost-authentik-embedded-outpost
+                    port:
+                      number: 9000
               - path: /
                 service:
                   identifier: app
