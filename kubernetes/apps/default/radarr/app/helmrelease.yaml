@@ -30,7 +30,7 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/onedr0p/radarr-develop
+              repository: ghcr.io/onedr0p/radarr
               tag: 5.20.0.9752@sha256:b19e4d4dca881fe36718d1f4139b3376bf8ddfc4eb31b96857f4378a86bc16c1
             env:
               TZ: Australia/Melbourne
