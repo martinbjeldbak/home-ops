@@ -40,8 +40,6 @@ spec:
         # capabilities:
         #   drop:
         #     - ALL
-        # seccompProfile:
-        #   type: RuntimeDefault
         # runAsNonRoot: true
   terminationGracePeriodSeconds: 1
   # securityContext:
