@@ -47,7 +47,7 @@ spec:
               readOnlyRootFilesystem: true
               capabilities:
                 drop: ["ALL"]
-                add: ["CAP_NET_RAW"]
+                add: ["NET_ADMIN"] # for ping presence detection
             resources:
               requests:
                 cpu: 10m
