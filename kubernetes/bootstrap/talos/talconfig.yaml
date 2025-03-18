@@ -51,7 +51,7 @@ nodes:
         routes:
           - network: "0.0.0.0/0"
             gateway: "192.168.1.1"
-        mtu: 1500
+        mtu: 1420
         vip:
           ip: "192.168.1.101"
       - deviceSelector: # USER bridge interface for multus
@@ -62,7 +62,7 @@ nodes:
         routes:
           - network: "0.0.0.0/0"
             gateway: "192.168.20.1"
-        mtu: 1500
+        mtu: 1420
   - hostname: "node-02"
     ipAddress: "192.168.1.120"
     installDisk: "/dev/sda"
@@ -84,7 +84,7 @@ nodes:
         routes:
           - network: "0.0.0.0/0"
             gateway: "192.168.1.1"
-        mtu: 1500
+        mtu: 1420
         vip:
           ip: "192.168.1.201"
       - deviceSelector: # USER bridge interface for multus
@@ -95,7 +95,7 @@ nodes:
         routes:
           - network: "0.0.0.0/0"
             gateway: "192.168.20.1"
-        mtu: 1500
+        mtu: 1420
 
 # Global patches
 patches:
