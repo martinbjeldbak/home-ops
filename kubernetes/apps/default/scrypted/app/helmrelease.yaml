@@ -62,8 +62,6 @@ spec:
           http:
             port: 11080
             primary: true
-          https:
-            port: 10443
           rebroadcast1:
             port: 33819 # C210 #1
 
