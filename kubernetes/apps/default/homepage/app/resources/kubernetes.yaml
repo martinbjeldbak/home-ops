@@ -1,2 +1,3 @@
 ---
-# mode: default # TODO: try enabling one day, requires some more labels?
+mode: default # TODO: try enabling one day, requires some more labels?
+ingress: true

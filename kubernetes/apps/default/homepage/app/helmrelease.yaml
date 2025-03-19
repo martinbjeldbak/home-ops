@@ -34,6 +34,7 @@ spec:
               tag: v0.10.9
             env:
               TZ: Australia/Melbourne
+              HOMEPAGE_ALLOWED_HOSTS: homepage.local.martinbjeldbak.com
               # LOG_LEVEL: debug
             envFrom:
               - secretRef:
