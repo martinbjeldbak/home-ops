@@ -85,11 +85,11 @@
         icon: radarr.svg
         description: movies
         href: "https://movies.local.martinbjeldbak.com"
-        server: localdocker
-        container: radarr
+        namespace: default
+        app: radarr
         widget:
             type: radarr
-            url: http://radarr:7878
+            url: http://radarr:80
             key: {{HOMEPAGE_VAR_RADARR_API_KEY}}
     - Transmission:
         icon: transmission.svg
