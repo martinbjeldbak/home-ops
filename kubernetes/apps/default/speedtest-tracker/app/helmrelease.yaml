@@ -39,7 +39,7 @@ spec:
               SPEEDTEST_SERVERS: "25134,14670,12491,13275,60412,18714"
               MAIL_MAILER: smtp
               MAIL_PORT: 465
-              MAIL_ENCRYPTION: ssl
+              MAIL_SCHEME: ssl
               MAIL_FROM_ADDRESS: "Speedtest Tracker <speedtest-tracker@martinbjeldbak.com>"
               MAIL_FROM_NAME: Speedtest Tracker
               DB_CONNECTION: pgsql
