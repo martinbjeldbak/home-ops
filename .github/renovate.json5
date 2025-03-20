@@ -192,6 +192,11 @@
     {
       "matchManagers": ["github-actions"],
       "addLabels": ["renovate/github-action"]
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["/ghcr.io\\/cloudnative-pg\\/postgresql/"],
+      "separateMajorMinor": true
     }
   ],
   "customManagers": [
