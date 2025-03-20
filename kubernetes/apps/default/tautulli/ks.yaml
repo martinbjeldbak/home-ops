@@ -3,19 +3,17 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app scrypted
+  name: &app tautulli
   namespace: &namespace default
 spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: multus-networks
-      namespace: network
     - name: proxmox-csi
       namespace: csi-proxmox
   interval: 30m
-  path: ./kubernetes/apps/default/scrypted/app
+  path: ./kubernetes/apps/default/tautulli/app
   prune: true
   sourceRef:
     kind: GitRepository
