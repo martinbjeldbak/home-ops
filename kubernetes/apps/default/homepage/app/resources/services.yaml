@@ -14,11 +14,11 @@
         icon: tautulli.svg
         href: "https://tautulli.local.martinbjeldbak.com"
         description: plex monitoring and history database
-        server: localdocker
-        container: tautulli
+        namespace: default
+        app: tautulli
         widget:
           type: tautulli
-          url: http://tautulli:8181
+          url: http://tautulli
           key: {{HOMEPAGE_VAR_TAUTULLI_API_KEY}}
     - Sonarr:
         icon: sonarr.svg
