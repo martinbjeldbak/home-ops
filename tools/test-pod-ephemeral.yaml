@@ -33,8 +33,8 @@ spec:
       volumeMounts:
         - name: task-pv-storage
           mountPath: /mnt/vol
-        # - name: nas
-        #   mountPath: /mnt/nas
+        - name: nas
+          mountPath: /mnt/nas
 
       securityContext:
         privileged: true
@@ -51,8 +51,8 @@ spec:
   volumes:
     - name: task-pv-storage
       persistentVolumeClaim: # NOTE: SET CONTAINER NAME HERE
-        claimName: zigbee2mqtt
-    # - name: nas
-    #   nfs:
-    #     server: 192.168.10.10
-    #     path: /volume4/docker
+        claimName: tautulli
+    - name: nas
+      nfs:
+        server: 192.168.10.10
+        path: /volume4/docker
