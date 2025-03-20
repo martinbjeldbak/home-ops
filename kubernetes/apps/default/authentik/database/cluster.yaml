@@ -6,6 +6,7 @@ metadata:
   name: authentik-database
 spec:
   instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.2-202502100805-standard-bookworm@sha256:09452e8b4db8e58907114a20f0b1e7a3bf3697210fb77215e6eb7c314732fbdb
   bootstrap:  # following https://cloudnative-pg.io/documentation/1.25/bootstrap/
     initdb:
       database: authentik
@@ -23,4 +24,3 @@ spec:
   superuserSecret:
     name: authentik-pg-superuser-secret
   enableSuperuserAccess: true
-  # TODO: enable backup, see https://github.com/cloudnative-pg/cloudnative-pg/issues/3684 for example
