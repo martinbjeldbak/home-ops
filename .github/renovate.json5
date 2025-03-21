@@ -212,8 +212,12 @@
     {
       "customType": "regex",
       "description": ["Process CloudnativePG Postgresql version"],
-      "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"],
-      "matchStrings": ["imageName: (?<depName>\\S+):(?<currentValue>.*\\-.*)"],
+      "fileMatch": [
+        "(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"
+      ],
+      "matchStrings": [
+        "imageName: (?<depName>\\S+):(?<currentValue>.*\\-.*)"
+      ],
       "datasourceTemplate": "docker",
       "versioningTemplate": "redhat"
     }
