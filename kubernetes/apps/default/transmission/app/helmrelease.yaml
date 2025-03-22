@@ -54,8 +54,8 @@ spec:
             env:
               # TRANSMISSION__DEBUG: true # log settings.json
               TRANSMISSION__RPC_PORT: *port
-              TRANSMISSION__DOWNLOAD_DIR: /data/downloads/completed
-              TRANSMISSION__INCOMPLETE_DIR: /data/downloads/incomplete
+              TRANSMISSION__DOWNLOAD_DIR: /data/downloads/torrents/completed
+              TRANSMISSION__INCOMPLETE_DIR: /data/downloads/torrents/incomplete
               TRANSMISSION__ALT_SPEED_DOWN: 5000
               TRANSMISSION__ALT_SPEED_ENABLED: true
               TRANSMISSION__ALT_SPEED_TIME_BEGIN: 480
