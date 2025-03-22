@@ -38,6 +38,7 @@ spec:
               VPN_TYPE: wireguard
               UPDATER_PERIOD: 48h
               FIREWALL_INPUT_PORTS: "9696"
+              FIREWALL_OUTBOUND_SUBNETS: 10.96.0.0/16 # Allow access to k8s subnets
             envFrom:
               - secretRef:
                   name: prowlarr-secret
