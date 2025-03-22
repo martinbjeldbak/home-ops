@@ -99,24 +99,24 @@ spec:
                 service:
                   identifier: app
                   port: http
-    # persistence:
-    #   config:
-    #     existingClaim: transmission
-    #     advancedMounts:
-    #       transmission:
-    #         app:
-    #           - path: /config
-    #   downloads:
-    #     type: nfs
-    #     server: nas.local.martinbjeldbak.com
-    #     path: /volume1/data/downloads/torrents
-    #     advancedMounts:
-    #       transmission:
-    #         app:
-    #           - path: /downloads
-    #   gluetun-data:
-    #     type: emptyDir
-    #     advancedMounts:
-    #       transmission:
-    #         gluetun:
-    #           - path: /tmp/gluetun
+    persistence:
+      config:
+        existingClaim: transmission
+        advancedMounts:
+          transmission:
+            app:
+              - path: /config
+      downloads:
+        type: nfs
+        server: nas.local.martinbjeldbak.com
+        path: /volume1/data/downloads/torrents
+        advancedMounts:
+          transmission:
+            app:
+              - path: /downloads
+      gluetun-data:
+        type: emptyDir
+        advancedMounts:
+          transmission:
+            gluetun:
+              - path: /tmp/gluetun
