@@ -37,7 +37,7 @@ spec:
               VPN_SERVICE_PROVIDER: airvpn
               VPN_TYPE: wireguard
               UPDATER_PERIOD: 48h
-              FIREWALL_INPUT_PORTS: 23423
+              FIREWALL_INPUT_PORTS: 9091,23423
             envFrom:
               - secretRef:
                   name: transmission-secret
