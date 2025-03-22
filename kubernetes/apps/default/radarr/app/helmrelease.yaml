@@ -119,8 +119,8 @@ spec:
       media:
         type: nfs
         server: nas.local.martinbjeldbak.com
-        path: /volume1/data/media
+        path: /volume1/data
         globalMounts:
-          - path: /media
+          - path: /data
       tmp:
         type: emptyDir
