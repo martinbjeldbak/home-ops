@@ -17,6 +17,7 @@ resources:
   - ./scrypted/ks.yaml
   - ./speedtest-tracker/ks.yaml
   - ./tautulli/ks.yaml
+  - ./transmission/ks.yaml
   - ./unifi/ks.yaml
   - ./zigbee2mqtt/ks.yaml
 components:
