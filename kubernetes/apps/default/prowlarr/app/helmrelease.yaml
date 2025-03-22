@@ -37,7 +37,7 @@ spec:
               VPN_SERVICE_PROVIDER: airvpn
               VPN_TYPE: wireguard
               UPDATER_PERIOD: 48h
-              FIREWALL_INPUT_PORTS: 9696
+              FIREWALL_INPUT_PORTS: "9696"
             envFrom:
               - secretRef:
                   name: prowlarr-secret
@@ -98,7 +98,7 @@ spec:
           nginx.ingress.kubernetes.io/auth-snippet: |
               proxy_set_header X-Forwarded-Host $http_host;
         hosts:
-          - host: "prowlarr.kube.local.martinbjeldbak.com" # TODO: promote
+          - host: "prowlarr.kube.martinbjeldbak.com" # TODO: promote
             paths:
               - path: /
                 service:
