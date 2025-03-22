@@ -52,7 +52,7 @@ spec:
               repository: ghcr.io/home-operations/transmission
               tag: 4.0.6@sha256:af414de4118be1467f3adfde83d45b2708663640696c3d93f77706ed3b24ee5e
             env:
-              TRANSMISSION__DEBUG: true # log settings.json
+              # TRANSMISSION__DEBUG: true # log settings.json
               TRANSMISSION__RPC_PORT: *port
               TRANSMISSION__DOWNLOAD_DIR: /data/downloads/completed
               TRANSMISSION__INCOMPLETE_DIR: /data/downloads/incomplete
@@ -67,7 +67,7 @@ spec:
               TRANSMISSION__BLOCKLIST_URL: https://github.com/Naunter/BT_BlockLists/raw/master/bt_blocklists.gz
               TRANSMISSION__CACHE_SIZE_MB: 200
               TRANSMISSION__ENCRYPTION: 2
-              TRANSMISSION__PEER_PORT: 23423 # TODO: check airvpn!
+              TRANSMISSION__PEER_PORT: 23423
               TRANSMISSION__RPC_AUTHENTICATION_REQUIRED: true
               TRANSMISSION__WATCH_DIR: /data/downloads/watch
               TRANSMISSION__WATCH_DIR_ENABLED: true
