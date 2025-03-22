@@ -69,8 +69,8 @@ spec:
               TRANSMISSION__ENCRYPTION: 2
               TRANSMISSION__PEER_PORT: 23423 # TODO: check airvpn!
               TRANSMISSION__RPC_AUTHENTICATION_REQUIRED: true
-              # TRANSMISSION__WATCH_DIR: /watch
-              # TRANSMISSION__WATCH_DIR_ENABLED: true
+              TRANSMISSION__WATCH_DIR: /data/downloads/watch
+              TRANSMISSION__WATCH_DIR_ENABLED: true
             envFrom:
               - secretRef:
                   name: transmission-secret
