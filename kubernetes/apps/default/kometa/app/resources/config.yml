@@ -265,7 +265,7 @@ radarr:
   token: <<RADARR_API_KEY>>
   add_missing: true
   add_existing: true
-  root_folder_path: /media/movies
+  root_folder_path: /data/media/movies
   monitor: false
   availability: cinemas
   quality_profile: Main
