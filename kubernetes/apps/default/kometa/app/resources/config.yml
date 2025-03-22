@@ -257,11 +257,11 @@ tmdb:
   region: AU
 
 tautulli:
-  url: http://tautulli.default.svc.cluster.local:8181
+  url: http://tautulli
   apikey: <<TAUTULLI_API_KEY>>
 
 radarr:
-  url: http://radarr.default.svc.cluster.local:7878
+  url: http://radarr
   token: <<RADARR_API_KEY>>
   add_missing: true
   add_existing: true
@@ -278,7 +278,7 @@ radarr:
   monitor_existing: false
 
 sonarr:
-  url: http://sonarr.default.svc.cluster.local:8989
+  url: http://sonarr
   token: <<SONARR_API_KEY>>
   add_missing: true
   add_existing: true
