@@ -106,6 +106,19 @@ spec:
     ingress:
       app:
         className: internal
+        # TODO: add authentik
+        # annotations:
+        #   # This should be the in-cluster DNS name for the authentik outpost service
+        #   # as when the external URL is specified here, nginx will overwrite some crucial headers
+        #   nginx.ingress.kubernetes.io/auth-url: |-
+        #       http://ak-outpost-authentik-embedded-outpost.default.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+        #   # If you're using domain-level auth, use the authentication URL instead of the application URL
+        #   nginx.ingress.kubernetes.io/auth-signin: |-
+        #       https://movies.local.martinbjeldbak.com/outpost.goauthentik.io/start?rd=$scheme://$http_host$escaped_request_uri
+        #   nginx.ingress.kubernetes.io/auth-response-headers: |-
+        #       Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-entitlements,X-authentik-email,X-authentik-name,X-authentik-uid
+        #   nginx.ingress.kubernetes.io/auth-snippet: |
+        #       proxy_set_header X-Forwarded-Host $http_host;
         hosts:
           - host: "torrents.kube.local.martinbjeldbak.com" # TODO: promote
             paths:
@@ -133,7 +146,7 @@ spec:
         advancedMounts:
           transmission:
             app:
-              - path: /data/downloads
+              - path: /data/downloads/torrents
       gluetun-data:
         type: emptyDir
         advancedMounts:
