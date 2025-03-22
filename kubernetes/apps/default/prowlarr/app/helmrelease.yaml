@@ -37,6 +37,7 @@ spec:
               VPN_SERVICE_PROVIDER: airvpn
               VPN_TYPE: wireguard
               UPDATER_PERIOD: 48h
+              FIREWALL_INPUT_PORTS: 9696
             envFrom:
               - secretRef:
                   name: prowlarr-secret
