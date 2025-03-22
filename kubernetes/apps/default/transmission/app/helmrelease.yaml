@@ -1,0 +1,130 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app transmission
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: app-template
+      version: 3.7.3
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    controllers:
+      transmission:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          # Configure gluetun sidecar
+          gluetun:
+            # dependsOn: app
+            image:
+              repository: ghcr.io/qdm12/gluetun
+              tag: v3.40.0@sha256:2b42bfa046757145a5155acece417b65b4443c8033fb88661a8e9dcf7fda5a00
+            ports:
+              - containerPort: 9091
+            securityContext:
+              capabilities:
+                add: ["NET_ADMIN"]
+            env:
+              TZ: Australia/Melbourne
+              VPN_SERVICE_PROVIDER: airvpn
+              VPN_TYPE: wireguard
+              UPDATER_PERIOD: 48h
+              FIREWALL_INPUT_PORTS: "9091"
+            envFrom:
+              - secretRef:
+                  name: transmission-secret
+          app:
+            image:
+              repository: ghcr.io/home-operations/transmission
+              tag: 4.0.6@sha256:af414de4118be1467f3adfde83d45b2708663640696c3d93f77706ed3b24ee5e
+            env:
+              TRANSMISSION__RPC_PORT: &port 9091
+              TRANSMISSION__DOWNLOAD_DIR: /downloads/completed
+              TRANSMISSION__INCOMPLETE_DIR: /downloads/incomplete
+              # TRANSMISSION__WATCH_DIR: /watch
+              # TRANSMISSION__WATCH_DIR_ENABLED: true
+            envFrom:
+              - secretRef:
+                  name: transmission-secret
+            # probes:
+            #   liveness: &probes
+            #     enabled: true
+            #     custom: true
+            #     spec:
+            #       httpGet:
+            #         path: /status
+            #         port: *port
+            #       initialDelaySeconds: 0
+            #       periodSeconds: 10
+            #       timeoutSeconds: 1
+            #       failureThreshold: 3
+            #   readiness: *probes
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 1Gi
+
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: transmission
+        ports:
+          http:
+            port: 9091
+    ingress:
+      app:
+        className: internal
+        hosts:
+          - host: "{{ .Release.Name }}.kube.local.martinbjeldbak.com" # TODO: revert
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+    persistence:
+      config:
+        existingClaim: transmission
+        advancedMounts:
+          transmission:
+            app:
+              - path: /config
+      downloads:
+        type: nfs
+        server: nas.local.martinbjeldbak.com
+        path: /volume1/data/downloads/torrents
+        advancedMounts:
+          transmission:
+            app:
+              - path: /downloads
+      gluetun-data:
+        type: emptyDir
+        advancedMounts:
+          transmission:
+            gluetun:
+              - path: /tmp/gluetun
