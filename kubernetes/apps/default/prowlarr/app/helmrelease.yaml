@@ -98,7 +98,7 @@ spec:
           nginx.ingress.kubernetes.io/auth-snippet: |
               proxy_set_header X-Forwarded-Host $http_host;
         hosts:
-          - host: "prowlarr.kube.martinbjeldbak.com" # TODO: promote
+          - host: "prowlarr.local.martinbjeldbak.com"
             paths:
               - path: /
                 service:
