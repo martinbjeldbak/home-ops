@@ -37,8 +37,8 @@ spec:
               VPN_SERVICE_PROVIDER: airvpn
               VPN_TYPE: wireguard
               UPDATER_PERIOD: 48h
-              FIREWALL_INPUT_PORTS: 9091,23423
-              FIREWALL_VPN_INPUT_PORTS: 23423
+              FIREWALL_INPUT_PORTS: 9091,51413
+              FIREWALL_VPN_INPUT_PORTS: 51413
             envFrom:
               - secretRef:
                   name: transmission-secret
@@ -68,7 +68,7 @@ spec:
               TRANSMISSION__BLOCKLIST_URL: https://github.com/Naunter/BT_BlockLists/raw/master/bt_blocklists.gz
               TRANSMISSION__CACHE_SIZE_MB: 200
               TRANSMISSION__ENCRYPTION: 2
-              TRANSMISSION__PEER_PORT: 23423
+              TRANSMISSION__PEER_PORT: 51413
               TRANSMISSION__RPC_AUTHENTICATION_REQUIRED: true
               TRANSMISSION__WATCH_DIR: /data/downloads/watch
               TRANSMISSION__WATCH_DIR_ENABLED: true
