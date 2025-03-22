@@ -25,35 +25,42 @@ spec:
   values:
     controllers:
       transmission:
+        type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
-        containers:
-          # Configure gluetun sidecar
+
+        pod:
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+
+        initContainers:
           gluetun:
             # dependsOn: app
             image:
               repository: ghcr.io/qdm12/gluetun
               tag: v3.40.0@sha256:2b42bfa046757145a5155acece417b65b4443c8033fb88661a8e9dcf7fda5a00
-            ports:
-              - containerPort: 9091
-            securityContext:
-              capabilities:
-                add: ["NET_ADMIN"]
             env:
               TZ: Australia/Melbourne
               VPN_SERVICE_PROVIDER: airvpn
               VPN_TYPE: wireguard
               UPDATER_PERIOD: 48h
-              FIREWALL_INPUT_PORTS: "9091"
+              FIREWALL_INPUT_PORTS: &port 9091
             envFrom:
               - secretRef:
                   name: transmission-secret
+            securityContext:
+              capabilities:
+                add: ["NET_ADMIN"]
+              allowPrivilegeEscalation: false
+
+        containers:
           app:
             image:
               repository: ghcr.io/home-operations/transmission
               tag: 4.0.6@sha256:af414de4118be1467f3adfde83d45b2708663640696c3d93f77706ed3b24ee5e
             env:
-              TRANSMISSION__RPC_PORT: &port 9091
+              TRANSMISSION__RPC_PORT: *port
               TRANSMISSION__DOWNLOAD_DIR: /downloads/completed
               TRANSMISSION__INCOMPLETE_DIR: /downloads/incomplete
               # TRANSMISSION__WATCH_DIR: /watch
@@ -61,20 +68,32 @@ spec:
             envFrom:
               - secretRef:
                   name: transmission-secret
-            # probes:
-            #   liveness: &probes
-            #     enabled: true
-            #     custom: true
-            #     spec:
-            #       httpGet:
-            #         path: /status
-            #         port: *port
-            #       initialDelaySeconds: 0
-            #       periodSeconds: 10
-            #       timeoutSeconds: 1
-            #       failureThreshold: 3
-            #   readiness: *probes
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 5
+              # liveness: &probes
+              #   enabled: true
+              #   custom: true
+              #   spec:
+              #     httpGet:
+              #       path: /status
+              #       port: *port
+              #     initialDelaySeconds: 0
+              #     periodSeconds: 10
+              #     timeoutSeconds: 1
+              #     failureThreshold: 3
+              # readiness: *probes
             securityContext:
+              runAsUser: 1000
+              runAsGroup: 1000
+              runAsNonRoot: true
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
@@ -83,25 +102,24 @@ spec:
                 cpu: 10m
               limits:
                 memory: 1Gi
-
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
+    # defaultPodOptions:
+    #   securityContext:
+    #     runAsNonRoot: true
+    #     runAsUser: 1000
+    #     runAsGroup: 1000
+    #     fsGroup: 1000
+    #     fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: transmission
         ports:
           http:
-            port: 9091
+            port: *port
     ingress:
       app:
         className: internal
         hosts:
-          - host: "{{ .Release.Name }}.kube.local.martinbjeldbak.com" # TODO: revert
+          - host: "torrents.kube.local.martinbjeldbak.com" # TODO: promote
             paths:
               - path: /
                 service:
