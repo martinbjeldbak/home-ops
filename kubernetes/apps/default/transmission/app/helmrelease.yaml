@@ -17,8 +17,6 @@ spec:
   values:
     controllers:
       transmission:
-        type: statefulset
-
         annotations:
           reloader.stakater.com/auto: "true"
 
