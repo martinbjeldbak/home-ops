@@ -54,8 +54,21 @@ spec:
             env:
               TRANSMISSION__DEBUG: true # log settings.json
               TRANSMISSION__RPC_PORT: *port
-              TRANSMISSION__DOWNLOAD_DIR: /downloads/completed
-              TRANSMISSION__INCOMPLETE_DIR: /downloads/incomplete
+              TRANSMISSION__DOWNLOAD_DIR: /data/downloads/completed
+              TRANSMISSION__INCOMPLETE_DIR: /data/downloads/incomplete
+              TRANSMISSION__ALT_SPEED_DOWN: 5000
+              TRANSMISSION__ALT_SPEED_ENABLED: true
+              TRANSMISSION__ALT_SPEED_TIME_BEGIN: 480
+              TRANSMISSION__ALT_SPEED_TIME_DAY: 127
+              TRANSMISSION__ALT_SPEED_TIME_ENABLED: true
+              TRANSMISSION__ALT_SPEED_TIME_END: 1350
+              TRANSMISSION__ALT_SPEED_UP: 5000
+              TRANSMISSION__BLOCKLIST_ENABLED: true
+              TRANSMISSION__BLOCKLIST_URL: https://github.com/Naunter/BT_BlockLists/raw/master/bt_blocklists.gz
+              TRANSMISSION__CACHE_SIZE_MB: 200
+              TRANSMISSION__ENCRYPTION: 2
+              TRANSMISSION__PEER_PORT: 23423 # TODO: check airvpn!
+              TRANSMISSION__RPC_AUTHENTICATION_REQUIRED: true
               # TRANSMISSION__WATCH_DIR: /watch
               # TRANSMISSION__WATCH_DIR_ENABLED: true
             envFrom:
@@ -120,7 +133,7 @@ spec:
         advancedMounts:
           transmission:
             app:
-              - path: /downloads
+              - path: /data/downloads/torrents
       gluetun-data:
         type: emptyDir
         advancedMounts:
