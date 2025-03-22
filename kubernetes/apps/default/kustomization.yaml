@@ -16,6 +16,7 @@ resources:
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
   - ./scrypted/ks.yaml
+  - ./sonarr/ks.yaml
   - ./speedtest-tracker/ks.yaml
   - ./tautulli/ks.yaml
   - ./transmission/ks.yaml
