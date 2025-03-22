@@ -74,16 +74,16 @@ spec:
             envFrom:
               - secretRef:
                   name: transmission-secret
-            # probes:
-            #   liveness:
-            #     enabled: true
-            #   readiness:
-            #     enabled: true
-            #   startup:
-            #     enabled: true
-            #     spec:
-            #       failureThreshold: 30
-            #       periodSeconds: 5
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 5
             securityContext:
               runAsUser: 1000
               runAsGroup: 1000
@@ -133,7 +133,7 @@ spec:
         advancedMounts:
           transmission:
             app:
-              - path: /data/downloads/torrents
+              - path: /data/downloads
       gluetun-data:
         type: emptyDir
         advancedMounts:
