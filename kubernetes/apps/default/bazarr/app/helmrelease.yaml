@@ -86,7 +86,7 @@ spec:
         controller: bazarr
         ports:
           http:
-            port: *port
+            port: 6767
     ingress:
       app:
         className: internal
