@@ -87,7 +87,7 @@ spec:
         annotations:
           nginx.ingress.kubernetes.io/rewrite-target: /$1
         hosts:
-          - host: esphome.kube.local.martinbjeldbak.com
+          - host: esphome.local.martinbjeldbak.com
             paths:
               - path: /(.*)
                 service:
