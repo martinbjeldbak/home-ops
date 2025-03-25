@@ -57,7 +57,7 @@ spec:
       app:
         className: internal
         hosts:
-          - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
+          - host: "epic.local.martinbjeldbak.com"
             paths:
               - path: /
                 service:
