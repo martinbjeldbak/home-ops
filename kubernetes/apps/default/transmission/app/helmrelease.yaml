@@ -51,7 +51,7 @@ spec:
           app:
             image:
               repository: ghcr.io/home-operations/transmission
-              tag: 4.0.6@sha256:af414de4118be1467f3adfde83d45b2708663640696c3d93f77706ed3b24ee5e
+              tag: 4.0.6@sha256:883326c02a90c3af1347301f03fdb95089c864114bd3e003190bb62c2ddd4a1f
             env:
               TRANSMISSION__DEBUG: true # log settings.json
               TRANSMISSION__RPC_PORT: &port 9091
