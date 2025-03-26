@@ -14,6 +14,7 @@ resources:
   - ./homebox/ks.yaml
   - ./homepage/ks.yaml
   - ./kometa/ks.yaml
+  - ./overseerr/ks.yaml
   - ./plex/ks.yaml
   - ./plex-trakt-sync/ks.yaml
   - ./prowlarr/ks.yaml
