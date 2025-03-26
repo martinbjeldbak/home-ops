@@ -26,6 +26,7 @@ spec:
             runAsNonRoot: true
             fsGroup: 2000
             fsGroupChangePolicy: OnRootMismatch
+        containers:
           app:
             image:
               repository: ghcr.io/sct/overseerr

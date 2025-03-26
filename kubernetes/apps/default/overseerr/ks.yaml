@@ -10,6 +10,9 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   interval: 30m
+  dependsOn:
+    - name: proxmox-csi
+      namespace: csi-proxmox
   path: ./kubernetes/apps/default/overseerr/app
   prune: true
   sourceRef:
