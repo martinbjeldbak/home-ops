@@ -16,6 +16,7 @@ resources:
   - ./kometa/ks.yaml
   - ./overseerr/ks.yaml
   - ./plex/ks.yaml
+  - ./plex-auto-languages/ks.yaml
   - ./plex-trakt-sync/ks.yaml
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
