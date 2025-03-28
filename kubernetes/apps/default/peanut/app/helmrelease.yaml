@@ -1,0 +1,80 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app peanut
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.7.3
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    controllers:
+      peanut:
+        containers:
+          app:
+            image:
+              repository: brandawg93/peanut
+              tag: 5.6.0@sha256:19f64afa84e79c9ca3ae2b7d244fad22fba693024661129d21a1b30c186690fd
+            env:
+              TZ: Australia/Melbourne
+              WEB_PORT: &port 8080
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 256Mi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 100
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: peanut
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        className: internal
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: peanut
+          gethomepage.dev/name: Peanut
+          gethomepage.dev/group: Observability
+          gethomepage.dev/description: UPS Monitor
+          gethomepage.dev/widget.type: peanut
+          gethomepage.dev/widget.url: http://peanut:8080
+          gethomepage.dev/widget.key: Eeaton-5e-1100i
+        hosts:
+          - host: peanut.local.martinbjeldbak.com
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+    persistence:
+      config:
+        existingClaim: peanut
+      tmp:
+        type: emptyDir
