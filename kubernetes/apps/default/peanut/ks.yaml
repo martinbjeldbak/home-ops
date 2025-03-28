@@ -10,13 +10,6 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  dependsOn:
-    - name: plex
-      namespace: default
-    - name: proxmox-csi
-      namespace: csi-proxmox
-    - name: onepassword
-      namespace: external-secrets
   interval: 30m
   path: ./kubernetes/apps/default/peanut/app
   prune: true
