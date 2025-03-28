@@ -1,0 +1,9 @@
+---
+NUT_SERVERS:
+  - HOST: nas.local.martinbjeldbak.com
+    PORT: 3493
+INFLUX_HOST: ''
+INFLUX_TOKEN: ''
+INFLUX_ORG: ''
+INFLUX_BUCKET: ''
+INFLUX_INTERVAL: 10

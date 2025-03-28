@@ -74,7 +74,11 @@ spec:
                   identifier: app
                   port: http
     persistence:
-      config:
-        existingClaim: peanut
+      config-file:
+        type: configMap
+        name: *app
+        globalMounts:
+          - path: /config/settings.yml
+            subPath: settings.yml
       tmp:
         type: emptyDir
