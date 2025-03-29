@@ -39,7 +39,7 @@ spec:
               PAPERLESS_OCR_LANGUAGE: dan+eng
               PAPERLESS_ENABLE_UPDATE_CHECK: "true"
               PAPERLESS_REDIS: redis://paperless-redis:6379
-              PAPERLESS_DBHOST: paperless-database-v2-rw
+              PAPERLESS_DBHOST: paperless-database-v3-rw
               PAPERLESS_DBNAME: paperless
               PAPERLESS_DBUSER: paperless
               PAPERLESS_CONSUMPTION_DIR: /library/consume
