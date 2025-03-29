@@ -3,21 +3,23 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app authentik
+  name: &app paperless
   namespace: &namespace default
 spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
+    - name: paperless-database
+      namespace: default
+    - name: paperless-redis
+      namespace: default
     - name: proxmox-csi
       namespace: csi-proxmox
-    - name: authentik-database
-      namespace: default
     - name: onepassword-store
       namespace: external-secrets
   interval: 30m
-  path: ./kubernetes/apps/default/authentik/app
+  path: ./kubernetes/apps/default/paperless/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -26,13 +28,12 @@ spec:
   targetNamespace: *namespace
   timeout: 5m
   wait: false
-
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app authentik-database
+  name: &app paperless-database
   namespace: &namespace default
 spec:
   commonMetadata:
@@ -41,8 +42,12 @@ spec:
   dependsOn:
     - name: cloudnative-pg
       namespace: cnpg-system
+    - name: proxmox-csi
+      namespace: csi-proxmox
+    - name: onepassword-store
+      namespace: external-secrets
   interval: 30m
-  path: ./kubernetes/apps/default/authentik/database
+  path: ./kubernetes/apps/default/paperless/database
   prune: true
   sourceRef:
     kind: GitRepository
@@ -50,4 +55,30 @@ spec:
     namespace: flux-system
   targetNamespace: *namespace
   timeout: 5m
-  wait: true
+  wait: false
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app paperless-redis
+  namespace: &namespace default
+spec:
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  dependsOn:
+    - name: dragonfly-operator
+      namespace: dragonfly-operator-system
+    - name: onepassword-store
+      namespace: external-secrets
+  interval: 30m
+  path: ./kubernetes/apps/default/paperless/redis
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: *namespace
+  timeout: 5m
+  wait: false

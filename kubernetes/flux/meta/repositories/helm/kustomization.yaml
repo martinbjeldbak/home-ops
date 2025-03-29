@@ -11,6 +11,7 @@ resources:
   - ./coredns.yaml
   - ./csi-driver-nfs.yaml
   - ./csi-proxmox.yaml
+  - ./dragonfly.yaml
   - ./emqx.yaml
   - ./external-dns.yaml
   - ./external-secrets.yaml
