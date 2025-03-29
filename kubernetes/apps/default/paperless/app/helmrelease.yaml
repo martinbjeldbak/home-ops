@@ -145,11 +145,11 @@ spec:
     persistence:
       library:
         existingClaim: paperless
-      consumption:
-        type: nfs
-        server: nas.local.martinbjeldbak.com
-        path: /volume4/paperless-inbox
-        advancedMounts:
-          paperless:
-            app:
-              - path: /library/consume
+      # consumption:
+      #   type: nfs
+      #   server: nas.local.martinbjeldbak.com
+      #   path: /volume4/paperless-inbox
+      #   advancedMounts:
+      #     paperless:
+      #       app:
+      #         - path: /library/consume
