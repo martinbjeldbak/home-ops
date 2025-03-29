@@ -30,7 +30,7 @@ spec:
   externalClusters:
     - name: docker-paperless
       connectionParameters:
-        host: nas.local.martinbjeldbak.com:5433
+        host: 192.168.10.10:5433
         user: paperless
         dbname: paperless
       password:
