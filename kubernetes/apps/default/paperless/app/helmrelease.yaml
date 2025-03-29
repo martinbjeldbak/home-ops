@@ -48,7 +48,7 @@ spec:
               # PAPERLESS_ENABLE_HTTP_REMOTE_USER: "true"
               PAPERLESS_EXPORT_DIR: /library/export
               PAPERLESS_MEDIA_ROOT: /library/media
-              PAPERLESS_FILENAME_FORMAT: "{{ created_year }}/{{ correspondent }}/{{ created }} {{ title }}"
+              PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{created} {title}"
               PAPERLESS_TIKA_ENABLED: 1
               PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
               PAPERLESS_TIKA_ENDPOINT: http://tika:9998
