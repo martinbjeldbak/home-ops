@@ -47,7 +47,6 @@ spec:
               PAPERLESS_CONSUMER_POLLING: 60
               PAPERLESS_DATA_DIR: /library/data
               PAPERLESS_PORT: &port 8000
-              # PAPERLESS_ENABLE_HTTP_REMOTE_USER: "true"
               PAPERLESS_MEDIA_ROOT: /library/media
               PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{created} {title}"
               PAPERLESS_TIKA_ENABLED: 1
