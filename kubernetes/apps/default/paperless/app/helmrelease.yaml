@@ -58,8 +58,7 @@ spec:
               PAPERLESS_EMAIL_PORT: 465
               PAPERLESS_EMAIL_FROM: paperless@martinbjeldbak.com
               PAPERLESS_EMAIL_USE_SSL: true
-              # PAPERLESS_DISABLE_REGULAR_LOGIN: true # TODO: enable this when authentik working
-              # PAPERLESS_REDIRECT_LOGIN_TO_SSO: true # TODO : do I want to enable this too?
+              PAPERLESS_DISABLE_REGULAR_LOGIN: true
             envFrom:
               - secretRef:
                   name: paperless-secret
