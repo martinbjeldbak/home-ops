@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: dragonfly-operator
-      version: v1.1.10@sha256:34e1d6c34dceb24e7ddf0e53087e670e9e88703f336d60fb367b359df2d0589d
+      version: v1.1.10
       sourceRef:
         kind: HelmRepository
         name: dragonfly

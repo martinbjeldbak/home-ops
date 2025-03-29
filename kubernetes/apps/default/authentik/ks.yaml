@@ -39,8 +39,8 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: proxmox-csi
-      namespace: csi-proxmox
+    - name: cloudnative-pg
+      namespace: cnpg-system
   interval: 30m
   path: ./kubernetes/apps/default/authentik/database
   prune: true
