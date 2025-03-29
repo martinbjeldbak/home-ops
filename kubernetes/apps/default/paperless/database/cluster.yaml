@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: paperless-database
+spec:
+  instances: 1
+  # renovate: datasource=docker depName=ghcr.io/cloudnative-pg/postgresql
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.4-7@sha256:84bc07f2c73f4f5473774e6502c5b1ca2d11ae87e4ca5445c646c0d80d2792ec
+  bootstrap:  # following https://cloudnative-pg.io/documentation/1.25/bootstrap/
+    initdb:
+      import:
+        type: microservice
+        databases:
+          - paperless
+        source:
+          externalCluster: docker-paperless
+  storage:
+    size: 5Gi
+    pvcTemplate:
+      storageClassName: proxmox
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 5Gi
+  superuserSecret:
+    name: paperless-pg-superuser-secret
+  enableSuperuserAccess: true
+  externalClusters:
+    - name: docker-paperless
+      connectionParameters:
+        host: nas.local.martinbjeldbak.com:5433
+        user: paperless
+        dbname: paperless
+      password:
+        key: paperless-cluster-credentials-secret
+        name: password

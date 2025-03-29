@@ -15,6 +15,7 @@ resources:
   - ./homepage/ks.yaml
   - ./kometa/ks.yaml
   - ./overseerr/ks.yaml
+  - ./paperless/ks.yaml
   - ./peanut/ks.yaml
   - ./plex/ks.yaml
   - ./plex-auto-languages/ks.yaml
