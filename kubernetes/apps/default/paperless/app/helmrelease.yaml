@@ -60,23 +60,6 @@ spec:
               PAPERLESS_EMAIL_USE_SSL: true
               # PAPERLESS_DISABLE_REGULAR_LOGIN: true # TODO: enable this when authentik working
               # PAPERLESS_REDIRECT_LOGIN_TO_SSO: true # TODO : do I want to enable this too?
-              PAPERLESS_SOCIALACCOUNT_PROVIDERS: >
-                  {
-                    "openid_connect": {
-                      "APPS": [
-                        {
-                          "provider_id": "authentik",
-                          "name": "Authentik",
-                          "client_id": "${PAPERLESS_AUTHENTIK_CLIENT_ID}",
-                          "secret": "${PAPERLESS_AUTHENTIK_CLIENT_SECRET}",
-                          "settings": {
-                            "server_url": "https://auth.local.martinbjeldbak.com/application/o/paperless/.well-known/openid-configuration"
-                          }
-                        }
-                      ],
-                      "OAUTH_PKCE_ENABLED": "True"
-                    }
-                  }
             envFrom:
               - secretRef:
                   name: paperless-secret
