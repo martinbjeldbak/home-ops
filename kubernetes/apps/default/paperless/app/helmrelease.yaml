@@ -41,7 +41,7 @@ spec:
               PAPERLESS_REDIS: redis://paperless-redis:6379
               PAPERLESS_DBHOST: paperless-database-v4-rw
               PAPERLESS_DBNAME: paperless
-              PAPERLESS_DBUSER: paperless
+              PAPERLESS_DBUSER: postgres
               PAPERLESS_CONSUMPTION_DIR: /library/consume
               PAPERLESS_DATA_DIR: /library/data
               PAPERLESS_PORT: &port 8000
