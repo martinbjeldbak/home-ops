@@ -50,8 +50,8 @@ spec:
             resources:
               requests:
                 cpu: 10m
-              limits:
-                memory: 2Gi
+              # limits:
+              #   memory: 2Gi
     defaultPodOptions:
       hostNetwork: true # in order to get mDNS to work for Apple Homekit
       dnsPolicy: ClusterFirstWithHostNet

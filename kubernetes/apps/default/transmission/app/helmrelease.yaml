@@ -95,8 +95,8 @@ spec:
             resources:
               requests:
                 cpu: 10m
-              limits:
-                memory: 1Gi
+              # limits:
+              #   memory: 1Gi
     service:
       app:
         controller: transmission

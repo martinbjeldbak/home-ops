@@ -57,8 +57,8 @@ spec:
             resources:
               requests:
                 cpu: 10m
-              limits:
-                memory: 1Gi
+              # limits:
+              #   memory: 1Gi
           subcleaner:
             image:
               repository: registry.k8s.io/git-sync/git-sync
