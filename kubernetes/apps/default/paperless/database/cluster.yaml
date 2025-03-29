@@ -10,17 +10,12 @@ spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:17.4-7@sha256:84bc07f2c73f4f5473774e6502c5b1ca2d11ae87e4ca5445c646c0d80d2792ec
   bootstrap:  # following https://cloudnative-pg.io/documentation/1.25/bootstrap/
     initdb:
-      database: paperless
-      owner: paperless
-      secret:
-        name: paperless-cluster-credentials-secret
-  #   initdb:
-  #     import:
-  #       type: microservice
-  #       databases:
-  #         - paperless
-  #       source:
-  #         externalCluster: docker-paperless
+      import:
+        type: microservice
+        databases:
+          - paperless
+        source:
+          externalCluster: docker-paperless
   storage:
     size: 5Gi
     pvcTemplate:
@@ -32,13 +27,13 @@ spec:
   superuserSecret:
     name: paperless-pg-superuser-secret
   enableSuperuserAccess: true
-  # externalClusters:
-  #   - name: docker-paperless
-  #     connectionParameters:
-  #       host: nas.local.martinbjeldbak.com
-  #       port: "5433"
-  #       user: paperless
-  #       dbname: paperless
-  #     password:
-  #       name: paperless-cluster-credentials-secret
-  #       key: password
+  externalClusters:
+    - name: docker-paperless
+      connectionParameters:
+        host: nas.local.martinbjeldbak.com
+        port: "5433"
+        user: paperless
+        dbname: paperless
+      password:
+        name: paperless-cluster-credentials-secret
+        key: password
