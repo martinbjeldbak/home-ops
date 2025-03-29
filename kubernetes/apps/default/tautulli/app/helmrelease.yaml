@@ -84,7 +84,7 @@ spec:
       config:
         existingClaim: tautulli
       config-cache:
-        existingClaim: tautulli-cache
+        existingClaim: tautulli-cache-v2
         globalMounts:
           - path: /config/cache
       config-logs:
