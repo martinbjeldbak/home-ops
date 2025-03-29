@@ -22,6 +22,9 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    manager:
+      image:
+        repository: ghcr.io/dragonflydb/operator
     serviceMonitor:
       enabled: true
     grafanaDashboard:
