@@ -58,6 +58,8 @@ spec:
               PAPERLESS_EMAIL_PORT: 465
               PAPERLESS_EMAIL_FROM: paperless@martinbjeldbak.com
               PAPERLESS_EMAIL_USE_SSL: true
+              # PAPERLESS_DISABLE_REGULAR_LOGIN: true # TODO: enable this when authentik working
+              # PAPERLESS_REDIRECT_LOGIN_TO_SSO: true # TODO : do I want to enable this too?
               PAPERLESS_SOCIALACCOUNT_PROVIDERS: >
                   {
                     "openid_connect": {
@@ -116,11 +118,11 @@ spec:
               repository: docker.io/gotenberg/gotenberg
               tag: 8.19.0@sha256:c928ee7ed5215733248657001ded3070798a2971911ebbea82189759c273901a
             env:
-              DISABLE_GOOGLE_CHROME: true
-              LIBREOFFICE_AUTO_START: true
-              LIBREOFFICE_START_TIMEOUT: 301s
-              API_TIMEOUT: 900s
-              LOG_LEVEL: debug
+              DISABLE_GOOGLE_CHROME: "1"
+              # LIBREOFFICE_AUTO_START: true
+              # LIBREOFFICE_START_TIMEOUT: 301s
+              # API_TIMEOUT: 900s
+              # LOG_LEVEL: debug
             securityContext:
               runAsUser: 65534
               runAsGroup: 65534
@@ -140,6 +142,8 @@ spec:
     ingress:
       app:
         className: internal
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: "50m"
         hosts:
           - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
             paths:
