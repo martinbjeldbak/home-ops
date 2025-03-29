@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: paperless-database-v3
+  name: paperless-database-v4
 spec:
   instances: 1
   # renovate: datasource=docker depName=ghcr.io/cloudnative-pg/postgresql
@@ -11,11 +11,9 @@ spec:
   bootstrap:  # following https://cloudnative-pg.io/documentation/1.25/bootstrap/
     initdb:
       import:
-        type: monolith
+        type: microservice
         databases:
           - paperless
-        roles:
-          - postgres
         source:
           externalCluster: docker-paperless
   storage:
