@@ -34,5 +34,5 @@ spec:
         user: paperless
         dbname: paperless
       password:
-        key: paperless-cluster-credentials-secret
-        name: password
+        name: paperless-cluster-credentials-secret
+        key: password
