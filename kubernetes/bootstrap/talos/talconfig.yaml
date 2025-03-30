@@ -45,23 +45,23 @@ nodes:
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "bc:24:11:9b:f9:42"
-        dhcp: false
-        addresses:
-          - "192.168.1.100/24"
-        routes:
-          - network: "0.0.0.0/0"
-            gateway: "192.168.1.1"
+        dhcp: true
+        # addresses:
+        #   - "192.168.1.100/24"
+        # routes:
+        #   - network: "0.0.0.0/0"
+        #     gateway: "192.168.1.1"
         mtu: 1420
         vip:
           ip: "192.168.1.101"
       - deviceSelector: # USER bridge interface for multus
           hardwareAddr: "bc:24:11:51:22:6c"
-        dhcp: false
-        addresses:
-          - "192.168.20.200/24"
-        routes:
-          - network: "0.0.0.0/0"
-            gateway: "192.168.20.1"
+        dhcp: true
+        # addresses:
+        #   - "192.168.20.200/24"
+        # routes:
+        #   - network: "0.0.0.0/0"
+        #     gateway: "192.168.20.1"
         mtu: 1420
   - hostname: "node-02"
     ipAddress: "192.168.1.120"
@@ -86,7 +86,7 @@ nodes:
             gateway: "192.168.1.1"
         mtu: 1420
         vip:
-          ip: "192.168.1.201"
+          ip: "192.168.1.101"
       - deviceSelector: # USER bridge interface for multus
           hardwareAddr: "bc:24:11:51:22:6c" # NOTE: this is same as other node. maybe not good idea?
         dhcp: false
