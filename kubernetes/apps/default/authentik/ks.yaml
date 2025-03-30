@@ -12,6 +12,8 @@ spec:
   dependsOn:
     - name: proxmox-csi
       namespace: csi-proxmox
+    - name: authentik-database
+      namespace: default
     - name: onepassword-store
       namespace: external-secrets
   interval: 30m
