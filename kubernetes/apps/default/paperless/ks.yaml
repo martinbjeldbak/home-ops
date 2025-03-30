@@ -10,6 +10,8 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
+    - name: paperless-database
+      namespace: default
     - name: paperless-redis
       namespace: default
     - name: proxmox-csi
@@ -38,8 +40,8 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    # - name: cloudnative-pg
-    #   namespace: cnpg-system
+    - name: cloudnative-pg
+      namespace: cnpg-system
     - name: proxmox-csi
       namespace: csi-proxmox
     - name: onepassword-store
