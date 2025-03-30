@@ -10,8 +10,6 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: paperless-database
-      namespace: default
     - name: paperless-redis
       namespace: default
     - name: proxmox-csi
