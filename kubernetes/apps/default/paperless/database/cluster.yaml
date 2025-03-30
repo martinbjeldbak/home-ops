@@ -14,12 +14,6 @@ spec:
       owner: paperless
       secret:
         name: paperless-cluster-credentials-secret
-      import:
-        type: microservice
-        databases:
-          - paperless
-        source:
-          externalCluster: docker-paperless
   storage:
     size: 5Gi
     pvcTemplate:
@@ -31,13 +25,3 @@ spec:
   superuserSecret:
     name: paperless-pg-superuser-secret
   enableSuperuserAccess: true
-  externalClusters:
-    - name: docker-paperless
-      connectionParameters:
-        host: nas.local.martinbjeldbak.com
-        port: "5433"
-        user: paperless
-        dbname: paperless
-      password:
-        name: paperless-cluster-credentials-secret
-        key: password
