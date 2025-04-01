@@ -24,8 +24,8 @@ spec:
   values:
     config:
       clusters:
-        # - url: https://pve-home.local.martinbjeldbak.com:8006/api2/json # TODO: revert this when dns issue on talos
-        - url: https://192.168.1.50:8006/api2/json
+        - url: https://pve-home.local.martinbjeldbak.com:8006/api2/json # TODO: revert this when dns issue on talos
+        # - url: https://192.168.1.50:8006/api2/json
           insecure: false
           token_id: "kubernetes-csi@pve!csi"
           region: cluster-1 # match proxmox cluster
