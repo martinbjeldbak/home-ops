@@ -29,7 +29,7 @@ spec:
               [{
                 "name":"multus-user-node-02",
                 "namespace": "network",
-                "ips": ["192.168.20.205/24"],
+                "ips": ["192.168.20.212/24"],
                 "mac": "76:fa:11:c0:c9:82"
               }]
           securityContext:
