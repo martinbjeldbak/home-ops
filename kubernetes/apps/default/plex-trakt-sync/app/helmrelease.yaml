@@ -61,7 +61,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: plex-trakt-sync
+        existingClaim: plex-trakt-sync-cache
         advancedMounts:
           plex-trakt-sync:
             app:
