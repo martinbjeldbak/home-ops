@@ -106,11 +106,11 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: plex
+        existingClaim: plex-v2
         globalMounts:
           - path: /config/Library/Application Support/Plex Media Server
       config-cache:
-        existingClaim: plex-cache
+        existingClaim: plex-cache-v2
         globalMounts:
           - path: /config/Library/Application Support/Plex Media Server/Cache
       config-logs:
