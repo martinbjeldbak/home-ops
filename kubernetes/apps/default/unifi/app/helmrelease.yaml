@@ -103,4 +103,4 @@ spec:
                   port: http
     persistence:
       unifi:
-        existingClaim: unifi
+        existingClaim: unifi-v2
