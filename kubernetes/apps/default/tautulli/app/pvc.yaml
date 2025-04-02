@@ -1,14 +1,46 @@
 ---
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: tautulli-v2
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 5Gi
+  csi:
+    driver: csi.proxmox.sinextra.dev
+    fsType: xfs
+    volumeAttributes:
+      cache: writethrough
+      ssd: "true"
+      storage: csi-proxmox
+    volumeHandle: cluster-1/beelink-eq14-1/local-lvm/vm-9999-pvc-ae992599-0431-485c-9f78-3348866e8dad
+  storageClassName: proxmox
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/region
+              operator: In
+              values:
+                - cluster-1
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values:
+                - beelink-eqi12-1
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: tautulli
+  name: tautulli-v2
 spec:
   accessModes: ["ReadWriteOnce"]
   resources:
     requests:
       storage: 5Gi
   storageClassName: proxmox
+  volumeName: tautulli-v2
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
