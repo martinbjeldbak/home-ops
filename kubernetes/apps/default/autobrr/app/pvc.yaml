@@ -21,7 +21,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: autobrr
+  name: autobrr-v2
 spec:
   accessModes: ["ReadWriteOnce"]
   resources:
