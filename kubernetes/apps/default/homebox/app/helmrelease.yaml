@@ -85,6 +85,6 @@ spec:
                   port: http
     persistence:
       data:
-        existingClaim: homebox
+        existingClaim: homebox-v2
       tmp:
         type: emptyDir
