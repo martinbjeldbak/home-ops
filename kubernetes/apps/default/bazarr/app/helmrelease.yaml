@@ -111,7 +111,7 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: bazarr
+        existingClaim: bazarr-v2
       config-cache:
         type: emptyDir
         globalMounts:
