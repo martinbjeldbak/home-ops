@@ -95,7 +95,7 @@ spec:
         globalMounts:
           - path: /config
       config-cache:
-        existingClaim: home-assistant-cache
+        existingClaim: home-assistant-cache-v2
         globalMounts:
           - path: /config/.venv
       config-logs:
