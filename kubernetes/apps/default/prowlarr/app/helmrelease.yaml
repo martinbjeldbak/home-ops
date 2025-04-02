@@ -108,7 +108,7 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: prowlarr
+        existingClaim: prowlarr-v2
         advancedMounts:
           prowlarr:
             app:
