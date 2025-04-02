@@ -45,7 +45,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: tautulli-cache-v2
+  name: tautulli-cache-v3
 spec:
   accessModes: ["ReadWriteOnce"]
   resources:
