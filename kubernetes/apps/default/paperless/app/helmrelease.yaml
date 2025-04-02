@@ -134,7 +134,7 @@ spec:
                   port: http
     persistence:
       library:
-        existingClaim: paperless
+        existingClaim: paperless-v2
       consumption:
         type: nfs
         server: nas.local.martinbjeldbak.com
