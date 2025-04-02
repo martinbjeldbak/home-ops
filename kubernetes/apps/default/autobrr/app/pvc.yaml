@@ -40,4 +40,4 @@ spec:
     requests:
       storage: 5Gi
   storageClassName: proxmox
-  volumeName: autobrr-v3
+  volumeName: autobrr-v4
