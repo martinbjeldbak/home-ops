@@ -44,7 +44,7 @@ resource "proxmox_virtual_environment_vm" "talos_node_01" {
   scsi_hardware = "virtio-scsi-single"
 
   network_device {
-    mtu = 1200
+    mtu = 1420
     bridge = "vmbr0"
     disconnected = false
     mac_address  = "BC:24:11:9B:F9:42"
@@ -58,7 +58,7 @@ resource "proxmox_virtual_environment_vm" "talos_node_01" {
     firewall     = false
     mac_address  = "BC:24:11:51:22:6C"
     model        = "virtio"
-    mtu          = 1200
+    mtu          = 1420
     queues       = 0
     rate_limit   = 0
     vlan_id = 20
@@ -87,5 +87,9 @@ resource "proxmox_virtual_environment_vm" "talos_node_01" {
 
   operating_system {
     type = "l26"  # Linux Kernel 2.6 - 6.X.
+  }
+
+  vga {
+    type = "none" # already set up talos
   }
 }

@@ -1,9 +1,12 @@
+locals {
+  node_name = "beelink-eqi12-1"
+}
 
 resource "proxmox_virtual_environment_vm" "talos_node_02" {
   vm_id = "201"
   name      = "node-02"
   description = "managed by OpenTofu"
-  node_name = "beelink-eqi12-1"
+  node_name = local.node_name
   tags = ["opentofu", "talos"]
 
   cpu {
@@ -12,7 +15,7 @@ resource "proxmox_virtual_environment_vm" "talos_node_02" {
   }
 
   memory {
-    dedicated =  24576
+    dedicated = 24576
     floating  = 0
   }
 
@@ -36,7 +39,7 @@ resource "proxmox_virtual_environment_vm" "talos_node_02" {
   scsi_hardware = "virtio-scsi-single"
 
   network_device {
-    mtu = 1200
+    mtu = 1420
     bridge = "vmbr0"
     disconnected = false
     mac_address  = "BC:24:11:9B:A8:42"
@@ -48,9 +51,9 @@ resource "proxmox_virtual_environment_vm" "talos_node_02" {
     disconnected = false
     enabled      = true
     firewall     = false
-    mac_address  = "BC:24:11:51:22:6C"
+    mac_address  = "BC:24:11:51:22:7C"
     model        = "virtio"
-    mtu          = 1200
+    mtu          = 1420
     queues       = 0
     rate_limit   = 0
     vlan_id = 20
@@ -79,5 +82,9 @@ resource "proxmox_virtual_environment_vm" "talos_node_02" {
 
   operating_system {
     type = "l26"  # Linux Kernel 2.6 - 6.X.
+  }
+
+  vga {
+    type = "none" # already set up talos
   }
 }
