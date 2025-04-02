@@ -107,4 +107,4 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: zigbee2mqtt
+        existingClaim: zigbee2mqtt-v2
