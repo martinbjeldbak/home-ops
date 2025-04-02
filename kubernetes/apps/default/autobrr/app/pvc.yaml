@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: autobrr-v3
+  name: autobrr-v4
 spec:
   accessModes:
     - ReadWriteOnce
@@ -15,7 +15,7 @@ spec:
       cache: writethrough
       ssd: "true"
       storage: csi-proxmox
-    volumeHandle: cluster-1/beelink-eq14-1/local-lvm/vm-9999-pvc-92ead9cb-89a1-4aa1-b640-7476e221a34c
+    volumeHandle: cluster-1/beelink-eq14-1/local-lvm/vm-9999-pvc-47e4d4a4-cb5b-4476-9b5c-d2ef9bbc4c44
   storageClassName: proxmox
   nodeAffinity:
     required:
@@ -33,7 +33,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: autobrr-v3
+  name: autobrr-v4
 spec:
   accessModes: ["ReadWriteOnce"]
   resources:
