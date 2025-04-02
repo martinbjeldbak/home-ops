@@ -70,30 +70,30 @@ spec:
             securityContext:
               supplementalGroups: [1000]
               fsGroup: 1000
-            probes:
-              liveness: &probes
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /
-                    port: *port
-                  initialDelaySeconds: 0
-                  periodSeconds: 30
-                  timeoutSeconds: 2
-                  failureThreshold: 3
-              readiness: *probes
-              startup:
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /
-                    port: *port
-                  initialDelaySeconds: 0
-                  timeoutSeconds: 1
-                  failureThreshold: 10
-                  periodSeconds: 12
+            # probes:
+            #   liveness: &probes
+            #     enabled: true
+            #     custom: true
+            #     spec:
+            #       httpGet:
+            #         path: /
+            #         port: *port
+            #       initialDelaySeconds: 0
+            #       periodSeconds: 30
+            #       timeoutSeconds: 2
+            #       failureThreshold: 3
+            #   readiness: *probes
+            #   startup:
+            #     enabled: true
+            #     custom: true
+            #     spec:
+            #       httpGet:
+            #         path: /
+            #         port: *port
+            #       initialDelaySeconds: 0
+            #       timeoutSeconds: 1
+            #       failureThreshold: 10
+            #       periodSeconds: 12
           gotenberg:
             image:
               repository: docker.io/gotenberg/gotenberg
