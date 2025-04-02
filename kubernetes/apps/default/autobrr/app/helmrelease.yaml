@@ -90,7 +90,7 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: autobrr-v4
+        existingClaim: autobrr-v5
       config-log:
         type: emptyDir
         globalMounts:
