@@ -82,7 +82,7 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: tautulli-v2
+        existingClaim: tautulli-v3
       config-cache:
         existingClaim: tautulli-cache-v3
         globalMounts:
