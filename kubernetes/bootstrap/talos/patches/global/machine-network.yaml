@@ -2,7 +2,7 @@ machine:
   network:
     disableSearchDomain: true
     nameservers:
-      - 192.168.1.1 # TODO: revert to these dns servers when network stabalises
+      - 192.168.1.1
       - 192.168.10.15
       # - 1.1.1.1
       # - 1.0.0.1

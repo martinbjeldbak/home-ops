@@ -6,7 +6,7 @@ talosVersion: v1.9.5
 kubernetesVersion: v1.32.3
 
 clusterName: kubernetes
-endpoint: https://192.168.1.101:6443
+endpoint: https://192.168.1.100:6443
 # endpoint: https://kube.local.martinbjeldbak.com:6443 # TODO: add
 
 clusterPodNets:
@@ -15,7 +15,7 @@ clusterSvcNets:
   - "10.96.0.0/16"
 
 additionalApiServerCertSans: &sans
-  - "192.168.1.101"
+  - "192.168.1.100"
   - "kube.local.martinbjeldbak.com"
   - "127.0.0.1"
 additionalMachineCertSans: *sans
@@ -26,7 +26,7 @@ cniConfig:
 
 nodes:
   - hostname: "node-01"
-    ipAddress: "192.168.1.100"
+    ipAddress: "192.168.1.101"
     installDisk: /dev/sda
     machineSpec:
       secureboot: true
@@ -37,7 +37,7 @@ nodes:
       # siderolabs/intel-ucode
       # siderolabs/iscsi-tools
       # siderolabs/qemu-guest-agent
-    controlPlane: true
+    controlPlane: false
     # for proxmox-csi https://github.com/sergelogvinov/proxmox-csi-plugin?tab=readme-ov-file#kubernetes-topology-labels
     nodeLabels:
       topology.kubernetes.io/region: cluster-1
@@ -47,14 +47,12 @@ nodes:
           hardwareAddr: "bc:24:11:9b:f9:42"
         dhcp: true
         mtu: 1420
-        vip:
-          ip: "192.168.1.101"
       - deviceSelector: # USER bridge interface for multus
           hardwareAddr: "bc:24:11:51:22:6c"
         dhcp: true
         mtu: 1420
   - hostname: "node-02"
-    ipAddress: "192.168.1.120"
+    ipAddress: "192.168.1.102"
     installDisk: /dev/sda
     machineSpec:
       secureboot: true
@@ -65,15 +63,16 @@ nodes:
       # for proxmox-csi https://github.com/sergelogvinov/proxmox-csi-plugin?tab=readme-ov-file#kubernetes-topology-labels
       topology.kubernetes.io/region: cluster-1
       topology.kubernetes.io/zone: beelink-eqi12-1
+
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "bc:24:11:9b:a8:42"
         dhcp: true
         mtu: 1420
         vip:
-          ip: "192.168.1.101"
+          ip: 192.168.1.100
       - deviceSelector: # USER bridge interface for multus
-          hardwareAddr: "bc:24:11:51:22:7c" # NOTE: this is same as other node. maybe not good idea?
+          hardwareAddr: "bc:24:11:51:22:7c"
         dhcp: true
         mtu: 1420
 
