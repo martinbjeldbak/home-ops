@@ -91,7 +91,7 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: home-assistant
+        existingClaim: home-assistant-v2
         globalMounts:
           - path: /config
       config-cache:
