@@ -17,6 +17,18 @@ spec:
       storage: csi-proxmox
     volumeHandle: cluster-1/beelink-eq14-1/local-lvm/vm-9999-pvc-3ea10025-c4f5-49aa-986d-00337a3890e4
   storageClassName: proxmox
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/region
+              operator: In
+              values:
+                - cluster-1
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values:
+                - beelink-eq14-1
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
