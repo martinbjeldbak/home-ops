@@ -53,7 +53,7 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: overseerr
+        existingClaim: overseerr-v2
         globalMounts:
           - path: /app/config
       logs:
