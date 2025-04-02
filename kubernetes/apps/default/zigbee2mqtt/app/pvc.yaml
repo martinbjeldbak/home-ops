@@ -15,7 +15,7 @@ spec:
       cache: writethrough
       ssd: "true"
       storage: csi-proxmox
-    volumeHandle: cluster-1/beelink-eq14-1/local-lvm/vm-9999-pvc-120b585f-e4c3-4c30-9bca-74ead84f0880
+    volumeHandle: cluster-1/beelink-eqi12-1/csi-proxmox/vm-9999-pvc-120b585f-e4c3-4c30-9bca-74ead84f0880
   storageClassName: proxmox
   nodeAffinity:
     required:
