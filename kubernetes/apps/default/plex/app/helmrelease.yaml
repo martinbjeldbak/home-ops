@@ -121,8 +121,7 @@ spec:
         type: emptyDir
       media:
         type: nfs
-        # server: nas.local.martinbjeldbak.com # TODO: revert once we can use internal dns
-        server: 192.168.10.10
+        server: nas.local.martinbjeldbak.com
         path: /volume1/data/media
         globalMounts:
           - path: /media
