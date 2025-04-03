@@ -36,7 +36,7 @@ spec:
       enabled: true
       master:
         persistence:
-          existingClaim: authentik-redis
+          existingClaim: authentik-redis-v2
     server:
       ingress:
         enabled: true
@@ -49,7 +49,7 @@ spec:
             secretName: authentik-postgres-credentials-secret
         - name: media
           persistentVolumeClaim:
-            claimName: authentik-media
+            claimName: authentik-media-v2
       securityContext:
         runAsUser: 1000
         runAsGroup: 1000
