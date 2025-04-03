@@ -1,11 +1,43 @@
 ---
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: transmission-v2
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 512Mi
+  csi:
+    driver: csi.proxmox.sinextra.dev
+    fsType: xfs
+    volumeAttributes:
+      cache: writethrough
+      ssd: "true"
+      storage: csi-proxmox
+    volumeHandle: cluster-1/beelink-eqi12-1/csi-proxmox/vm-9999-pvc-e3299778-3900-471c-9e5d-d6fec4d695d1
+  storageClassName: proxmox
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/region
+              operator: In
+              values:
+                - cluster-1
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values:
+                - beelink-eqi12-1
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: transmission
+  name: transmission-v2
 spec:
   accessModes: ["ReadWriteOnce"]
   resources:
     requests:
       storage: 512Mi
   storageClassName: proxmox
+  volumeName: transmission-v2

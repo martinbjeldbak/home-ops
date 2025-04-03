@@ -125,7 +125,7 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: transmission
+        existingClaim: transmission-v2
         advancedMounts:
           transmission:
             app:
