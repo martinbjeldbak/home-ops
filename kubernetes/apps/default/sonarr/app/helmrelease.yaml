@@ -103,7 +103,7 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: sonarr
+        existingClaim: sonarr-v2
       config-cache:
         existingClaim: sonarr-cache
         globalMounts:
