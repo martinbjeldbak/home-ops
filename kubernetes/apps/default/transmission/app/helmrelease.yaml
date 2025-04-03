@@ -53,17 +53,18 @@ spec:
               repository: ghcr.io/home-operations/transmission
               tag: 4.0.6@sha256:883326c02a90c3af1347301f03fdb95089c864114bd3e003190bb62c2ddd4a1f
             env:
+              TZ: Australia/Melbourne
               TRANSMISSION__DEBUG: true # log settings.json
               TRANSMISSION__RPC_PORT: &port 9091
               TRANSMISSION__DOWNLOAD_DIR: /data/downloads/torrents/completed
               TRANSMISSION__INCOMPLETE_DIR: /data/downloads/torrents/incomplete
-              TRANSMISSION__ALT_SPEED_DOWN: 5000
+              TRANSMISSION__ALT_SPEED_DOWN: 50000
+              TRANSMISSION__ALT_SPEED_UP: 50000
               TRANSMISSION__ALT_SPEED_ENABLED: true
               TRANSMISSION__ALT_SPEED_TIME_BEGIN: 480
               TRANSMISSION__ALT_SPEED_TIME_DAY: 127
               TRANSMISSION__ALT_SPEED_TIME_ENABLED: true
               TRANSMISSION__ALT_SPEED_TIME_END: 1350
-              TRANSMISSION__ALT_SPEED_UP: 5000
               TRANSMISSION__BLOCKLIST_ENABLED: true
               TRANSMISSION__BLOCKLIST_URL: https://github.com/Naunter/BT_BlockLists/raw/master/bt_blocklists.gz
               TRANSMISSION__CACHE_SIZE_MB: 200
