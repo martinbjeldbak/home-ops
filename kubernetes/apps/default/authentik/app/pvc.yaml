@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: authentik-redis
+  name: authentik-redis-v3
 spec:
   accessModes: ["ReadWriteOnce"]
   resources:

@@ -36,7 +36,7 @@ spec:
       enabled: true
       master:
         persistence:
-          existingClaim: authentik-redis
+          existingClaim: authentik-redis-v3
     server:
       ingress:
         enabled: true
