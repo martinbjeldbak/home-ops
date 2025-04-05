@@ -7,7 +7,7 @@ metadata:
 spec:
   sourcePVC: ${APP}
   trigger:
-    schedule: "0 7 * * *"
+    schedule: "0 7 * * *"  # at 7am
   restic:
     copyMethod: Direct # proxmox-csi does not support snapshotting https://github.com/sergelogvinov/proxmox-csi-plugin/issues/259
     pruneIntervalDays: 7

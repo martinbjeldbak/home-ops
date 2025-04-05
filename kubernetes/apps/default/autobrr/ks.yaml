@@ -9,11 +9,18 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/volsync
   dependsOn:
     - name: onepassword-store
       namespace: external-secrets
+    - name: proxmox-csi
+      namespace: csi-proxmox
   interval: 30m
   path: ./kubernetes/apps/default/autobrr/app
+  postBuild:
+    substitute:
+      APP: autobrr-v5
   prune: true
   sourceRef:
     kind: GitRepository

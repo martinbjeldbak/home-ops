@@ -9,8 +9,16 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/volsync
+  dependsOn:
+    - name: proxmox-csi
+      namespace: csi-proxmox
   interval: 30m
   path: ./kubernetes/apps/default/unifi/app
+  postBuild:
+    substitute:
+      APP: unifi-v2
   prune: true
   sourceRef:
     kind: GitRepository
