@@ -9,11 +9,16 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/volsync
   dependsOn:
     - name: proxmox-csi
       namespace: csi-proxmox
   interval: 30m
   path: ./kubernetes/apps/default/tautulli/app
+  postBuild:
+    substitute:
+      APP: tautulli-v3
   prune: true
   sourceRef:
     kind: GitRepository

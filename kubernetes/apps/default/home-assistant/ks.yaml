@@ -9,6 +9,8 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/volsync
   dependsOn:
     - name: emqx-cluster
       namespace: default
@@ -18,6 +20,9 @@ spec:
       namespace: csi-proxmox
   interval: 30m
   path: ./kubernetes/apps/default/home-assistant/app
+  postBuild:
+    substitute:
+      APP: home-assistant-v2
   prune: true
   sourceRef:
     kind: GitRepository

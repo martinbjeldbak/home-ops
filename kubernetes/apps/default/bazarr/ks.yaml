@@ -9,6 +9,8 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/volsync
   dependsOn:
     - name: onepassword
       namespace: external-secrets
@@ -16,6 +18,9 @@ spec:
       namespace: csi-proxmox
   interval: 1h
   path: ./kubernetes/apps/default/bazarr/app
+  postBuild:
+    substitute:
+      APP: bazarr-v2
   prune: true
   retryInterval: 2m
   sourceRef:
