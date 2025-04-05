@@ -9,6 +9,8 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/volsync
   dependsOn:
     - name: proxmox-csi
       namespace: csi-proxmox
@@ -16,6 +18,9 @@ spec:
       namespace: external-secrets
   interval: 30m
   path: ./kubernetes/apps/default/esphome/app
+  postBuild:
+    substitute:
+      APP: *app
   prune: true
   sourceRef:
     kind: GitRepository

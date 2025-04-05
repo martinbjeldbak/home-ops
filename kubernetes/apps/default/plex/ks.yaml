@@ -9,11 +9,17 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/volsync
   dependsOn:
     - name: proxmox-csi
       namespace: csi-proxmox
   interval: 30m
   path: ./kubernetes/apps/default/plex/app
+  postBuild:
+    substitute:
+      APP: plex-v2
+      VOLSYNC_CACHE_CAPACITY: 25Gi
   prune: true
   sourceRef:
     kind: GitRepository

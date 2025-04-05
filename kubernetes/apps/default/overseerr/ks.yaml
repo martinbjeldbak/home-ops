@@ -9,11 +9,16 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/volsync
   interval: 30m
   dependsOn:
     - name: proxmox-csi
       namespace: csi-proxmox
   path: ./kubernetes/apps/default/overseerr/app
+  postBuild:
+    substitute:
+      APP: overseerr-v2
   prune: true
   sourceRef:
     kind: GitRepository
