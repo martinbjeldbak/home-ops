@@ -1,0 +1,11 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: paperless-backup
+spec:
+  schedule: "0 0 0 * * *" # midnight
+  immediate: true # test backup. TODO: remove me when done
+  backupOwnerReference: self
+  cluster:
+    name: paperless-database
