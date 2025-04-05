@@ -13,9 +13,10 @@ spec:
     pruneIntervalDays: 7
     repository: "${APP}-volsync-b2-secret"
     cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:=2Gi}"
+    cacheStorageClassName: proxmox
     cacheAccessModes: ["ReadWriteOnce"]
     storageClassName: proxmox
-    # accessModes: ["ReadWriteOnce"]
+    accessModes: ["ReadWriteOnce"]
     moverSecurityContext:
       runAsUser: 1000
       runAsGroup: 1000
