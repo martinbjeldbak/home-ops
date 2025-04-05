@@ -14,7 +14,7 @@ spec:
     repository: "${APP}-volsync-b2-secret"
     cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:=2Gi}"
     cacheAccessModes: ["ReadWriteOnce"]
-    # storageClassName: proxmox
+    storageClassName: proxmox
     # accessModes: ["ReadWriteOnce"]
     moverSecurityContext:
       runAsUser: 1000
