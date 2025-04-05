@@ -8,4 +8,4 @@ spec:
   immediate: true # test backup
   backupOwnerReference: self
   cluster:
-    name: authentik-database
+    name: authentik-database-v4
