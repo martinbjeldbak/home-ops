@@ -1,18 +1,16 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
 ---
+clusterName: kubernetes
+
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
 talosVersion: v1.9.5
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
 kubernetesVersion: v1.32.3
 
-clusterName: kubernetes
-endpoint: https://192.168.1.100:6443
-# endpoint: https://kube.local.martinbjeldbak.com:6443 # TODO: add
+endpoint: https://kubernetes.local.martinbjeldbak.com:6443
 
-clusterPodNets:
-  - "10.69.0.0/16"
-clusterSvcNets:
-  - "10.96.0.0/16"
+clusterPodNets: ["10.69.0.0/16"]
+clusterSvcNets: ["10.96.0.0/16"]
 
 additionalApiServerCertSans: &sans
   - "192.168.1.100"
