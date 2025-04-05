@@ -25,7 +25,7 @@ spec:
   values:
     authentik:
       postgresql:
-        host: authentik-database-v3-rw
+        host: authentik-database-v4-rw
         user: file:///postgres-creds/username
         password: file:///postgres-creds/password
       email:
@@ -36,7 +36,7 @@ spec:
       enabled: true
       master:
         persistence:
-          existingClaim: authentik-redis-v3
+          existingClaim: authentik-redis-v4
     server:
       ingress:
         enabled: true
