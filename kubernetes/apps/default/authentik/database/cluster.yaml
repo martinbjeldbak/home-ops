@@ -14,12 +14,6 @@ spec:
       owner: authentik
       secret:
         name: authentik-cluster-credentials-secret
-      import:
-        type: microservice
-        databases:
-          - authentik
-        source:
-          externalCluster: nas-authentik
   storage:
     size: 5Gi
     pvcTemplate:
@@ -31,13 +25,3 @@ spec:
   superuserSecret:
     name: authentik-pg-superuser-secret
   enableSuperuserAccess: true
-  externalClusters:
-    - name: nas-authentik
-      connectionParameters:
-        host: nas.local.martinbjeldbak.com
-        port: "5433"
-        user: authentik
-        dbname: authentik
-      password:
-        name: authentik-cluster-credentials-secret
-        key: password
