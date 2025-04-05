@@ -5,7 +5,6 @@ metadata:
   name: authentik-backup
 spec:
   schedule: "0 0 0 * * *"  # midnight
-  immediate: true # test backup
   backupOwnerReference: self
   cluster:
     name: authentik-database-v4
