@@ -1,5 +1,0 @@
----
-serviceMonitor:
-  create: true
-# logLevel: debug # TODO: remove
-priorityClassName: system-cluster-critical

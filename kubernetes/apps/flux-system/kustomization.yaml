@@ -3,9 +3,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: flux-system
-resources:
-  - ./flux-operator/ks.yaml
 components:
   - ../../flux/components/alerts
   - ../../flux/components/namespace
-  - ../../flux/components/sops # maybe add?
+  - ../../flux/components/sops
+resources:
+  - ./flux-instance/ks.yaml
+  - ./flux-operator/ks.yaml
