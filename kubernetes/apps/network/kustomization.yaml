@@ -6,6 +6,7 @@ namespace: network
 resources:
   - ./external/ks.yaml
   - ./internal/ks.yaml
+  - ./internal-external-dns/ks.yaml
 components:
   - ../../flux/components/alerts
   - ../../flux/components/namespace
