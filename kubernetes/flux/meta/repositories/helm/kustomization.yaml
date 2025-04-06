@@ -19,7 +19,6 @@ resources:
   - ./ingress-nginx.yaml
   - ./intel.yaml
   - ./jetstack.yaml
-  - ./k8s-gateway.yaml
   - ./metrics-server.yaml
   - ./node-feature-discovery.yaml
   - ./prometheus-community.yaml
