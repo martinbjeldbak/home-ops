@@ -81,7 +81,7 @@ spec:
             value: "false"
     triggerLoopOnEvent: true
     policy: sync
-    sources: ["crd", "ingress"]
+    sources: ["crd", "ingress", "service"]
     txtOwnerId: main
     txtPrefix: k8s.main.
     domainFilters: ["martinbjeldbak.com"]
