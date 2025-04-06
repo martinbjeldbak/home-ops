@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: OCIRepository
 metadata:
-  name: unifi-dns
+  name: adguard-dns
 spec:
   interval: 5m
   layerSelector:
@@ -27,7 +27,7 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: unifi-dns
+    name: adguard-dns
   install:
     disableSchemaValidation: true # Ref: https://github.com/kubernetes-sigs/external-dns/issues/5206
     remediation:
@@ -44,7 +44,7 @@ spec:
       webhook-provider-url: http://localhost:8888
     sidecars:
       - name: adguard-webhook
-        image: ghcr.io/muhlba91/external-dns-provider-adguard:v8.0.1
+        image: ghcr.io/muhlba91/external-dns-provider-adguard:v8.0.1@sha256:267761a55dde38b7cba7b3bff59d0437402538a29659b03144dc9c132c887444
         ports:
           - containerPort: 8888
             name: http
@@ -85,7 +85,7 @@ spec:
     txtOwnerId: main
     txtPrefix: k8s.main.
     domainFilters: ["martinbjeldbak.com"]
-    serviceMonitor:
-      enabled: true
+    # serviceMonitor:
+    #   enabled: true
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret
