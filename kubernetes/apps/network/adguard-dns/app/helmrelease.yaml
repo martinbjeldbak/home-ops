@@ -70,12 +70,12 @@ spec:
           - name: ADGUARD_USER
             valueFrom:
               secretKeyRef:
-                name: adguard-dns-secret
+                name: &secret adguard-dns-secret
                 key: user
           - name: ADGUARD_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: adguard-dns-secret
+                name: *secret
                 key: password
           - name: DRY_RUN
             value: "false"
