@@ -20,14 +20,9 @@ metadata:
   name: csi-driver-nfs
 spec:
   interval: 30m
-  chart:
-    spec:
-      chart: csi-driver-nfs
-      version: 4.11.0
-      sourceRef:
-        kind: HelmRepository
-        name: csi-driver-nfs
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: csi-driver-nfs
   install:
     remediation:
       retries: 3
