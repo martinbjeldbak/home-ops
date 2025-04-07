@@ -51,7 +51,7 @@ spec:
                 cpu: 136m
                 memory: 1024Mi
               limits:
-                gpu.intel.com/i915: 3
+                # gpu.intel.com/i915: 3 # not sure why this isn't working
                 # squat.ai/coral: 1
                 memory: 8192Mi
 
