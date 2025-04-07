@@ -4,18 +4,19 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: observability
 components:
+  - ../../components/common
   - ../../flux/components/alerts
   - ../../flux/components/namespace
   - ../../flux/components/sops
 resources:
   - ./alloy/ks.yaml
   - ./blackbox-exporter/ks.yaml
-  # - ./gatus/ks.yaml
+  # - ./gatus/ks.yaml # TODO: look into
   - ./grafana/ks.yaml
-  # - ./kromgo/ks.yaml
+  # - ./kromgo/ks.yaml # TODO: look into
   - ./kube-prometheus-stack/ks.yaml
   - ./loki/ks.yaml
-  # - ./silence-operator/ks.yaml
+  # - ./silence-operator/ks.yaml  TODO: look into
   - ./smartctl-exporter/ks.yaml
-  # - ./snmp-exporter/ks.yaml
+  # - ./snmp-exporter/ks.yaml  TODO: look into
   - ./unpoller/ks.yaml

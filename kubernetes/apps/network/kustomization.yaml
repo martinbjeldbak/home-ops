@@ -10,6 +10,7 @@ resources:
   - ./internal/ks.yaml
   - ./multus/ks.yaml
 components:
+  - ../../components/common
   - ../../flux/components/alerts
   - ../../flux/components/namespace
   - ../../flux/components/sops
