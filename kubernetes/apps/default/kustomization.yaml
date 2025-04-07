@@ -3,6 +3,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: default
+components:
+  - ../../components/common
+  - ../../flux/components/alerts
+  - ../../flux/components/namespace
+  - ../../flux/components/sops
 resources:
   - ./authentik/ks.yaml
   - ./autobrr/ks.yaml
@@ -30,7 +35,3 @@ resources:
   - ./transmission/ks.yaml
   - ./unifi/ks.yaml
   - ./zigbee2mqtt/ks.yaml
-components:
-  - ../../flux/components/alerts
-  - ../../flux/components/namespace
-  - ../../flux/components/sops

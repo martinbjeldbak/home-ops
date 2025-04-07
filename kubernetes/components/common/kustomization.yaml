@@ -1,0 +1,9 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+resources:
+  - ./namespace.yaml
+  # - ./alerts # TODO: migrate
+  - ./repos
+  # - ./sops # TODO: migrate, see https://github.com/onedr0p/home-ops/blob/e6c522c9f9c1fe4618fc777b2cbd846ec2640a8d/kubernetes/components/common/kustomization.yaml
