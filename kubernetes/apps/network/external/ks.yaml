@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: external-external-dns
+    - name: adguard-dns
   path: ./kubernetes/apps/network/external/cloudflared
   prune: true
   sourceRef:
