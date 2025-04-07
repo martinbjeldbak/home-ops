@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: network
 resources:
   - ./adguard-dns/ks.yaml
+  - ./cloudflare-dns/ks.yaml
   - ./external/ks.yaml
   - ./internal/ks.yaml
   - ./multus/ks.yaml
