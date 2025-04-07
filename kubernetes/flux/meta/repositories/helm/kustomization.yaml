@@ -10,7 +10,6 @@ resources:
   - ./dragonfly.yaml
   - ./grafana.yaml
   - ./ingress-nginx.yaml
-  - ./jetstack.yaml
   - ./metrics-server.yaml
   - ./node-feature-discovery.yaml
   - ./stakater.yaml
