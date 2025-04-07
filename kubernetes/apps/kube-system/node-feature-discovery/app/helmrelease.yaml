@@ -22,7 +22,7 @@ spec:
   interval: 30m
   chartRef:
     kind: OCIRepository
-    name: volsync
+    name: node-feature-discovery
   install:
     crds: CreateReplace
     remediation:
