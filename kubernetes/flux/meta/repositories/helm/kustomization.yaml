@@ -13,7 +13,6 @@ resources:
   - ./csi-proxmox.yaml
   - ./dragonfly.yaml
   - ./emqx.yaml
-  - ./external-dns.yaml
   - ./external-secrets.yaml
   - ./grafana.yaml
   - ./ingress-nginx.yaml
