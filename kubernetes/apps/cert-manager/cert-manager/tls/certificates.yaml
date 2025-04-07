@@ -12,6 +12,5 @@ spec:
   commonName: "martinbjeldbak.com"
   dnsNames:
     - "martinbjeldbak.com"
-    - "*.kube.local.martinbjeldbak.com"
     - "*.local.martinbjeldbak.com"
     - "*.martinbjeldbak.com"
