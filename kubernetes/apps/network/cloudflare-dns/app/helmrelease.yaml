@@ -58,7 +58,8 @@ spec:
       - --ingress-class=external
     triggerLoopOnEvent: true
     policy: sync
-    sources: ["crd", "gateway-httproute", "ingress"]
+    # sources: ["crd", "gateway-httproute"] # TODO: gatewayapi migration
+    sources: ["crd", "ingress"]
     txtOwnerId: default
     txtPrefix: k8s.
     domainFilters: ["martinbjeldbak.com"]
