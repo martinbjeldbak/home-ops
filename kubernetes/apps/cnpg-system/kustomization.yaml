@@ -5,7 +5,6 @@ kind: Kustomization
 namespace: cnpg-system
 resources:
   - ./cloudnative-pg/ks.yaml
-  - ./cloudnative-pg-dashboards/ks.yaml
 components:
   - ../../flux/components/alerts
   - ../../flux/components/namespace
