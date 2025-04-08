@@ -32,8 +32,8 @@ spec:
       endpointURL: "https://s3.eu-central-003.backblazeb2.com"
       s3Credentials:
         accessKeyId:
-          name: paperless-backblaze-secret
+          name: speedtest-tracker-backblaze-secret
           key: ACCESS_KEY_ID
         secretAccessKey:
-          name: paperless-backblaze-secret
+          name: speedtest-tracker-backblaze-secret
           key: ACCESS_SECRET_KEY
