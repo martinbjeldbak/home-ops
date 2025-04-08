@@ -57,18 +57,18 @@ spec:
                 key: password
           - name: DRY_RUN
             value: "false"
-        # livenessProbe:
-        #   httpGet:
-        #     path: /healthz
-        #     port: 8080
-        #   initialDelaySeconds: 10
-        #   timeoutSeconds: 5
-        # readinessProbe:
-        #   httpGet:
-        #     path: /healthz
-        #     port: 8080
-        #   initialDelaySeconds: 10
-        #   timeoutSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 10
+          timeoutSeconds: 60
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 10
+          timeoutSeconds: 60
     triggerLoopOnEvent: true
     policy: sync
     sources: ["crd", "ingress", "service"]
