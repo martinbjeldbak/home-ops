@@ -28,6 +28,5 @@ spec:
     keepHistory: false
   values:
     grafanaDashboard:
-      namespace: database
       annotations:
         grafana_folder: Storage
