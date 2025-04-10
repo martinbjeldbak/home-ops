@@ -19,20 +19,18 @@ spec:
             image:
               repository: icloudpd/icloudpd
               tag: 1.27.2@sha256:b33b5852757868de8fcea4e6a8e95113bd64ee3dc27d2b2ccb6363145dfbc431
-
-            command: ["sleep", "6000"]
-            # command:
-            #   - /app/icloudpd_ex
-            #   - --directory /data
-            #   - --username ${ICLOUD_USERNAME}
-            #   - --password ${ICLOUD_PASSWORD}
-            #   - --smtp-username ${SMTP_USERNAME}
-            #   - --smtp-password ${SMTP_PASSWORD}
-            #   - --smtp-host ${SMTP_HOST}
-            #   - --smtp-port 465
-            #   - --password-provider webui
-            #   - --mfa-provider webui
-            #   - --watch-with-interval 3600
+            command:
+              - /app/icloudpd_ex
+              - --directory /data
+              - --username ${ICLOUD_USERNAME}
+              - --password ${ICLOUD_PASSWORD}
+              - --smtp-username ${SMTP_USERNAME}
+              - --smtp-password ${SMTP_PASSWORD}
+              - --smtp-host ${SMTP_HOST}
+              - --smtp-port 465
+              - --password-provider webui
+              - --mfa-provider webui
+              - --watch-with-interval 3600
             env:
               TZ: Australia/Melbourne
             envFrom:
