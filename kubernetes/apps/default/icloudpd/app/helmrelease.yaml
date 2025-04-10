@@ -73,4 +73,6 @@ spec:
       data:
         type: nfs
         server: nas.local.martinbjeldbak.com
-        path: /volume1/Photos/N
+        path: /volume1/Photos/N/icloudpd
+        globalMounts:
+          - path: /data
