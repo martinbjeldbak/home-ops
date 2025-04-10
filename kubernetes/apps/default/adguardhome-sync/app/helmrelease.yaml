@@ -21,7 +21,8 @@ spec:
               tag: v0.7.2@sha256:6a70246f0e66b85ef04897667c46c43cfab584f2398e197551f7042480ca96ee
             env:
               LOG_LEVEL: "info"
-              ORIGIN_URL: "https://dns.local.martinbjeldbak.com"
+              ORIGIN_URL: "http://192.168.1.1:3000"
+              # ORIGIN_URL: "https://dns.local.martinbjeldbak.com"
               REPLICA_URL: "https://dns2.local.martinbjeldbak.com"
               CRON: "0 */2 * * *" # every 2nd hour
               RUN_ON_START: true
