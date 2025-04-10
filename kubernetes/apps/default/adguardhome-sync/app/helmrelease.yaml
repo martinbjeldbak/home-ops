@@ -38,7 +38,7 @@ spec:
                 cpu: 10m
     defaultPodOptions:
       securityContext:
-        runAsNonRoot: false
+        runAsNonRoot: true
         runAsUser: 1001
         runAsGroup: 1001
         fsGroup: 1001
