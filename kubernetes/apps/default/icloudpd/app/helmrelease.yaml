@@ -1,0 +1,76 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: icloudpd
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  values:
+    controllers:
+      icloudpd:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: icloudpd/icloudpd
+              tag: 1.27.2@sha256:b33b5852757868de8fcea4e6a8e95113bd64ee3dc27d2b2ccb6363145dfbc431
+            command: >
+               icloudpd
+               --directory /data
+               --username ${ICLOUD_USERNAME}
+               --password ${ICLOUD_PASSWORD}
+               --smtp-username ${SMTP_USERNAME}
+               --smtp-password ${SMTP_PASSWORD}
+               --smtp-host ${SMTP_HOST}
+               --smtp-port 465
+               --password-provider webui
+               --mfa-provider webui
+               --watch-with-interval 3600
+            env:
+              TZ: Australia/Melbourne
+            envFrom:
+              - secretRef:
+                  name: icloudpd-secret
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: false
+            resources:
+              requests:
+                cpu: 10m
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: icloudpd
+        ports:
+          http:
+            port: 8080
+    ingress:
+      app:
+        className: internal
+        hosts:
+          - host: "icloudpd.local.martinbjeldbak.com"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+    persistence:
+      config-cache:
+        existingClaim: icloudpd-cache
+        globalMounts:
+          - path: /root/.pyicloud
+      data:
+        type: nfs
+        server: nas.local.martinbjeldbak.com
+        path: /volume1/Photos/N
