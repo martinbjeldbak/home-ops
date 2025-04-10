@@ -30,7 +30,7 @@ spec:
             env:
               TZ: Australia/Melbourne
               PLEX_URL: http://plex.default.svc.cluster.local:32400
-              DEBUG: true # NOTE: remove when confirming
+              # DEBUG: true
             envFrom:
               - secretRef:
                   name: plex-auto-languages-secret
