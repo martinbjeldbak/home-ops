@@ -1,3 +1,47 @@
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: storage-test-46
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 5Gi # TODO: CHECK ME
+#   storageClassName: proxmox
+#   volumeName: pvc-test-46
+# ---
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: pvc-test-46
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   capacity:
+#     storage: 5Gi # TODO: CHECK ME
+#   csi:
+#     driver: csi.proxmox.sinextra.dev
+#     fsType: xfs
+#     volumeAttributes:
+#       cache: writethrough
+#       ssd: "true"
+#       storage: csi-proxmox
+#     volumeHandle: cluster-1/beelink-eqi12-1/csi-proxmox/vm-9999-pvc-00488668-e0c5-4d32-80cd-80cf6efb63de
+#   storageClassName: proxmox
+#   nodeAffinity:
+#     required:
+#       nodeSelectorTerms:
+#         - matchExpressions:
+#             - key: topology.kubernetes.io/region
+#               operator: In
+#               values:
+#                 - cluster-1
+#             - key: topology.kubernetes.io/zone
+#               operator: In
+#               values:
+#                 - beelink-eqi12-1
 ---
 apiVersion: v1
 kind: Pod
@@ -9,7 +53,7 @@ spec:
     - effect: NoSchedule
       key: node-role.kubernetes.io/control-plane
   # nodeSelector:
-  #   kubernetes.io/hostname: node-02
+  #   kubernetes.io/hostname: node-01 # TODO: change
   # initContainers:
   # - name: take-data-dir-ownership
   #   image: alpine:3
@@ -51,7 +95,7 @@ spec:
   volumes:
     - name: task-pv-storage
       persistentVolumeClaim: # NOTE: SET CONTAINER NAME HERE
-        claimName: tautulli
+        claimName: calibre-web-automated
     - name: nas
       nfs:
         server: 192.168.10.10
