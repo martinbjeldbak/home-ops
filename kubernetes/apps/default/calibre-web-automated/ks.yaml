@@ -12,15 +12,13 @@ spec:
   components:
     - ../../../../components/volsync
   dependsOn:
-    - name: onepassword-store
-      namespace: external-secrets
     - name: proxmox-csi
       namespace: csi-proxmox
   interval: 30m
   path: ./kubernetes/apps/default/calibre-web-automated/app
-  postBuild:
-    substitute:
-      APP: calibre-web-automated
+  # postBuild:
+  #   substitute:
+  #     APP: calibre-web-automated
   prune: true
   sourceRef:
     kind: GitRepository
