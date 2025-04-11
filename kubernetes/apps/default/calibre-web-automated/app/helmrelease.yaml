@@ -73,7 +73,7 @@ spec:
       calibre-library:
         type: nfs
         server: nas.local.martinbjeldbak.com
-        path: /volume4/data/media/books
+        path: /volume1/data/media/books
         advancedMounts:
           calibre-web-automated:
             app:
