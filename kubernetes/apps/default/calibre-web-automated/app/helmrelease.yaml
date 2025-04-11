@@ -1,0 +1,88 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app calibre-web-automated
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    controllers:
+      calibre-web-automated:
+        containers:
+          app:
+            image:
+              repository: crocodilestick/calibre-web-automated
+              tag: V3.0.4@sha256:e602e73b6fd50c3ba389b38acb701205976a05b650898f615f93bd7e3537a827
+            env:
+              TZ: Australia/Melbourne
+              PUID: 1000
+              PGID: 1000
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: calibre-web-automated
+        ports:
+          http:
+            port: 8083
+    ingress:
+      app:
+        className: internal
+        # annotations:
+        #   gethomepage.dev/enabled: "true"
+        #   gethomepage.dev/icon: calibre-web-automated
+        #   gethomepage.dev/name: calibre-web-automated
+        #   gethomepage.dev/group: Observability
+        #   gethomepage.dev/description: UPS Monitor
+        #   gethomepage.dev/widget.type: calibre-web-automated
+        #   gethomepage.dev/widget.url: http://calibre-web-automated:8080
+        #   gethomepage.dev/widget.key: Eeaton-5e-1100i
+        hosts:
+          - host: calibre-web-automated.local.martinbjeldbak.com
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+    persistence:
+      config:
+        existingClaim: calibre-web-automated
+      calibre-library:
+        type: nfs
+        server: nas.local.martinbjeldbak.com
+        path: /volume4/data/media/books
+        advancedMounts:
+          paperless:
+            app:
+              - path: /calibre-library
+      ingest:
+        type: nfs
+        server: nas.local.martinbjeldbak.com
+        path: /volume4/calibre-web-automated-inbox
+        advancedMounts:
+          paperless:
+            app:
+              - path: /cwa-book-ingest

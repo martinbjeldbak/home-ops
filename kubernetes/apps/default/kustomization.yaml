@@ -13,6 +13,7 @@ resources:
   - ./authentik/ks.yaml
   - ./autobrr/ks.yaml
   - ./bazarr/ks.yaml
+  - ./calibre-web-automated/ks.yaml
   - ./emqx/ks.yaml
   - ./epicgames-freegames/ks.yaml
   - ./esphome/ks.yaml
