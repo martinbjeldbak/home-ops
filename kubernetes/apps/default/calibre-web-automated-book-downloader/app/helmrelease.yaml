@@ -1,0 +1,89 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app calibre-web-automated-book-downloader
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    controllers:
+      calibre-web-automated-book-downloader:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/calibrain/calibre-web-automated-book-downloader
+              tag: 20250404@sha256:c9141176d41a20f8c348a2577315bc8f9ab73daeb5b485cdc6b414285948a543
+            env:
+              FLASK_PORT: &port 8084
+              UID: 1000
+              GID: 100
+              BOOK_LANGUAGE: en
+            # probes:
+            #   liveness:
+            #     enabled: true
+            #   readiness:
+            #     enabled: true
+            #   startup:
+            #     enabled: true
+            #     spec:
+            #       failureThreshold: 30
+            #       periodSeconds: 5
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 5m
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 100
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: calibre-web-automated-book-downloader
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        className: internal
+        # annotations:
+        #   gethomepage.dev/enabled: "true"
+        #   gethomepage.dev/icon: calibre-web-automated-book-downloader
+        #   gethomepage.dev/name: calibre-web-automated-book-downloader
+        #   gethomepage.dev/group: Observability
+        #   gethomepage.dev/description: UPS Monitor
+        #   gethomepage.dev/widget.type: calibre-web-automated-book-downloader
+        #   gethomepage.dev/widget.url: http://calibre-web-automated-book-downloader:8080
+        #   gethomepage.dev/widget.key: Eeaton-5e-1100i
+        hosts:
+          - host: calibre-book-downloader.local.martinbjeldbak.com
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+    persistence:
+      ingest:
+        type: nfs
+        server: nas.local.martinbjeldbak.com
+        path: /volume4/calibre-web-automated-book-downloader-inbox
+        advancedMounts:
+          calibre-web-automated-book-downloader:
+            app:
+              - path: /cwa-book-ingest

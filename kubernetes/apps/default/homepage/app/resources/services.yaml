@@ -96,29 +96,29 @@
             url: http://transmission:9091
             username: {{HOMEPAGE_VAR_TRANSMISSION_USERNAME}}
             password: {{HOMEPAGE_VAR_TRANSMISSION_PASSWORD}}
-    - Romm: # NOTE: TODO
-        icon: romm.svg
-        description: roms
-        href: "https://roms.local.martinbjeldbak.com"
-        server: localdocker
-        container: romm
-        widget:
-            type: romm
-            url: http://romm:8080
-            username: {{HOMEPAGE_VAR_ROMM_USERNAME}}
-            password: {{HOMEPAGE_VAR_ROMM_PASSWORD}}
+    # - Romm: # NOTE: TODO
+    #     icon: romm.svg
+    #     description: roms
+    #     href: "https://roms.local.martinbjeldbak.com"
+    #     server: localdocker
+    #     container: romm
+    #     widget:
+    #         type: romm
+    #         url: http://romm:8080
+    #         username: {{HOMEPAGE_VAR_ROMM_USERNAME}}
+    #         password: {{HOMEPAGE_VAR_ROMM_PASSWORD}}
 
-    - Calibre-web: # NOTE: todo
-        icon: calibreweb.svg
-        description: ebooks
-        href: "https://calibre-web.local.martinbjeldbak.com"
-        server: localdocker
-        container: calibre-web
-        widget:
-            type: calibreweb
-            url: http://calibre-web:8083
-            username: {{HOMEPAGE_VAR_CALIBRE_WEB_USERNAME}}
-            password: {{HOMEPAGE_VAR_CALIBRE_WEB_PASSWORD}}
+    # - Calibre-web: # NOTE: todo
+    #     icon: calibreweb.svg
+    #     description: ebooks
+    #     href: "https://calibre-web.local.martinbjeldbak.com"
+    #     server: localdocker
+    #     container: calibre-web
+    #     widget:
+    #         type: calibreweb
+    #         url: http://calibre-web:8083
+    #         username: {{HOMEPAGE_VAR_CALIBRE_WEB_USERNAME}}
+    #         password: {{HOMEPAGE_VAR_CALIBRE_WEB_PASSWORD}}
 
     - Autobrr:
         icon: autobrr.svg
