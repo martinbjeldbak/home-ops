@@ -75,7 +75,7 @@ spec:
         server: nas.local.martinbjeldbak.com
         path: /volume4/data/media/books
         advancedMounts:
-          paperless:
+          calibre-web-automated:
             app:
               - path: /calibre-library
       ingest:
@@ -83,6 +83,6 @@ spec:
         server: nas.local.martinbjeldbak.com
         path: /volume4/calibre-web-automated-inbox
         advancedMounts:
-          paperless:
+          calibre-web-automated:
             app:
               - path: /cwa-book-ingest
