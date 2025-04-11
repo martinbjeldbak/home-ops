@@ -28,6 +28,16 @@ spec:
               TZ: Australia/Melbourne
               PUID: 1000
               PGID: 1000
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 5
             securityContext:
               allowPrivilegeEscalation: false
             #   readOnlyRootFilesystem: true
