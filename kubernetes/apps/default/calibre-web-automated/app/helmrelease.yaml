@@ -30,18 +30,18 @@ spec:
               PGID: 1000
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+            #   readOnlyRootFilesystem: true
+            #   capabilities: { drop: ["ALL"] } # ss6 image needs to start as root
             resources:
               requests:
-                cpu: 10m
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
+                cpu: 5m
+    # defaultPodOptions: # it's a s6 image..
+    #   securityContext:
+    #     runAsNonRoot: true
+    #     runAsUser: 1000
+    #     runAsGroup: 1000
+    #     fsGroup: 1000
+    #     fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: calibre-web-automated
@@ -61,7 +61,7 @@ spec:
         #   gethomepage.dev/widget.url: http://calibre-web-automated:8080
         #   gethomepage.dev/widget.key: Eeaton-5e-1100i
         hosts:
-          - host: calibre-web-automated.local.martinbjeldbak.com
+          - host: calibre.local.martinbjeldbak.com
             paths:
               - path: /
                 service:
