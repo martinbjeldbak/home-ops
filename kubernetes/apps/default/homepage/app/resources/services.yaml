@@ -94,8 +94,6 @@
     #     icon: romm.svg
     #     description: roms
     #     href: "https://roms.local.martinbjeldbak.com"
-    #     server: localdocker
-    #     container: romm
     #     widget:
     #         type: romm
     #         url: http://romm:8080
@@ -106,8 +104,6 @@
     #     icon: calibreweb.svg
     #     description: ebooks
     #     href: "https://calibre-web.local.martinbjeldbak.com"
-    #     server: localdocker
-    #     container: calibre-web
     #     widget:
     #         type: calibreweb
     #         url: http://calibre-web:8083
@@ -165,8 +161,6 @@
         icon: paperless-ngx.svg
         href: "https://paperless.local.martinbjeldbak.com"
         description: document storage
-        server: localdocker
-        container: paperless
         widget:
           type: paperlessngx
           url: http://paperless:8000
@@ -175,8 +169,6 @@
     #     icon: lubelogger.png
     #     href: "https://lubelogger.local.martinbjeldbak.com"
     #     description: car maintenence
-    #     server: localdocker
-    #     container: lubelogger
     #     widget:
     #         type: lubelogger
     #         url: http://lubelogger:8080
@@ -184,8 +176,6 @@
     # - Watchtower:
     #     icon: watchtower.svg
     #     description: docker updates
-    #     server: localdocker
-    #     container: watchtower
     #     widget:
     #         type: watchtower
     #         url: http://watchtower:8080
@@ -202,8 +192,6 @@
     #     icon: scrutiny.svg
     #     href: "https://scrutiny.local.martinbjeldbak.com"
     #     description: s.m.a.r.t. tools
-    #     server: localdocker
-    #     container: scrutiny-web
     #     widget:
     #         type: scrutiny
     #         url: http://scrutiny-web:8080
@@ -218,8 +206,6 @@
     # - Immich:
     #     icon: immich.svg
     #     href: "https://immich.local.martinbjeldbak.com"
-    #     server: localdocker
-    #     container: immich-server
     #     widget:
     #         type: immich
     #         url: http://immich-server:2283
@@ -229,14 +215,10 @@
     #     icon: docker.svg
     #     description: icloud photos downloader for backup to NAS
     #     href: https://icloudpd-n.local.martinbjeldbak.com
-    #     server: localdocker
-    #     container: icloudpd-n
     # - dawarich:
     #     icon: dawarich.svg
     #     description: Location tracking
     #     href: https://dawarich.local.martinbjeldbak.com
-    #     server: localdocker
-    #     container: dawarich
     - Grafana:
         icon: grafana.png
         href: "https://grafana.local.martinbjeldbak.com"
@@ -271,14 +253,10 @@
     #     icon: syncthing.svg
     #     description: File syncing
     #     href: https://syncthing.local.martinbjeldbak.com
-    #     server: localdocker
-    #     container: syncthing
     # - thelounge:
     #     icon: thelounge.svg
     #     description: IRC
     #     href: https://thelounge.local.martinbjeldbak.com
-    #     server: localdocker
-    #     container: thelounge
 
 - AdGuard:
     - AdGuard Home:
@@ -295,8 +273,6 @@
         icon: adguard-home.svg
         href: "https://dns2.local.martinbjeldbak.com"
         description: secondary dns
-        # server: localdocker # TODO: add remotedocker api here?
-        # container: adguardhome
         # widget: # NOTE: widget is broken as authentik proxing request atm
           # type: adguard
           # url: https://dns2.local.martinbjeldbak.com
@@ -324,8 +300,6 @@
         icon: esphome.svg
         href: "https://esphome.local.martinbjeldbak.com"
         description: esp32 configuration
-        server: localdocker
-        container: esphome
         widget:
             type: esphome
             url: http://esphome:6052
@@ -403,8 +377,9 @@
         icon: proxmox.svg
         description: backup server
         href: "https://pbs.local.martinbjeldbak.com:8007"
-        widget:
-          type: proxmoxbackupserver
-          url: https://pbs.local.martinbjeldbak.com:8007
-          username: {{HOMEPAGE_VAR_PROXMOX_BACKUP_SERVER_TOKEN_ID}}
-          password: {{HOMEPAGE_VAR_PROXMOX_BACKUP_SERVER_TOKEN_PASSWORD}}
+        # TODO: this is giving invalid url
+        # widget:
+        #   type: proxmoxbackupserver
+        #   url: https://pbs.local.martinbjeldbak.com:8007
+        #   username: {{HOMEPAGE_VAR_PROXMOX_BACKUP_SERVER_TOKEN_ID}}
+        #   password: {{HOMEPAGE_VAR_PROXMOX_BACKUP_SERVER_TOKEN_PASSWORD}}
