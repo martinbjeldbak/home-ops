@@ -65,7 +65,7 @@ spec:
             port: 8080
             protocol: TCP
           portal-http:
-            port: 8880
+            port: 8880 # http portal
             protocol: HTTP
           portal-https:
             enabled: false

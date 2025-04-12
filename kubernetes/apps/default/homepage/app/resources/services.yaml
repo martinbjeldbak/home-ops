@@ -331,7 +331,7 @@
         href: "https://unifi.local.martinbjeldbak.com"
         widget:
           type: unifi
-          url: unifi:8443
+          url: unifi:8880
           username: {{HOMEPAGE_VAR_UNIFI_USERNAME}}
           password: {{HOMEPAGE_VAR_UNIFI_PASSWORD}}
     - Tailscale Alderaan:
