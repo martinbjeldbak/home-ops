@@ -93,7 +93,7 @@
           password: {{HOMEPAGE_VAR_ROMM_PASSWORD}}
 
     - Calibre-web:
-        icon: calibreweb.svg
+        icon: calibre-web.svg
         description: ebooks
         href: "https://calibre.local.martinbjeldbak.com"
         widget:
@@ -103,7 +103,7 @@
           password: {{HOMEPAGE_VAR_CALIBRE_WEB_PASSWORD}}
 
     - Calibre-web-downloads:
-        icon: calibreweb.svg
+        icon: calibre-web.svg
         description: ebook downloader
         href: "https://calibre-book-downloader.local.martinbjeldbak.com"
 
@@ -331,7 +331,7 @@
         href: "https://unifi.local.martinbjeldbak.com"
         widget:
           type: unifi
-          url: unifi:8880
+          url: http://unifi:8880
           username: {{HOMEPAGE_VAR_UNIFI_USERNAME}}
           password: {{HOMEPAGE_VAR_UNIFI_PASSWORD}}
     - Tailscale Alderaan:
