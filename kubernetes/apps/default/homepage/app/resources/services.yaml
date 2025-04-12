@@ -24,8 +24,6 @@
         icon: sonarr.svg
         description: tv
         href: "https://tv.local.martinbjeldbak.com"
-        server: localdocker
-        container: sonarr
         widget:
           type: sonarr
           url: http://sonarr:80
@@ -61,8 +59,6 @@
         icon: overseerr.svg
         description: plex media requests
         href: "https://request.local.martinbjeldbak.com"
-        server: localdocker
-        container: overseerr
         widget:
             type: overseerr
             url: http://overseerr:80
@@ -89,8 +85,6 @@
         icon: transmission.svg
         description: torrents
         href: "https://torrents.local.martinbjeldbak.com"
-        server: localdocker
-        container: transmission
         widget:
             type: transmission
             url: http://transmission:9091

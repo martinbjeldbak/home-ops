@@ -62,15 +62,15 @@ spec:
     ingress:
       app:
         className: internal
-        # annotations:
-        #   gethomepage.dev/enabled: "true"
-        #   gethomepage.dev/icon: calibre-web-automated-book-downloader
-        #   gethomepage.dev/name: calibre-web-automated-book-downloader
-        #   gethomepage.dev/group: Observability
-        #   gethomepage.dev/description: UPS Monitor
-        #   gethomepage.dev/widget.type: calibre-web-automated-book-downloader
-        #   gethomepage.dev/widget.url: http://calibre-web-automated-book-downloader:8080
-        #   gethomepage.dev/widget.key: Eeaton-5e-1100i
+        annotations:
+          # gethomepage.dev/enabled: "true"
+          # gethomepage.dev/description: calibre
+          # gethomepage.dev/group: Media
+          # gethomepage.dev/icon: calibre-web.png
+          # gethomepage.dev/name: Calibre-WEb-Au
+          # gethomepage.dev/widget.type: "romm"
+          # gethomepage.dev/widget.url: "https://romm.local.martinbjeldbak.com"
+          # gethomepage.dev/pod-selector: "app.kubernetes.io/name=romm"
         hosts:
           - host: calibre-book-downloader.local.martinbjeldbak.com
             paths:
