@@ -33,7 +33,11 @@ spec:
               DB_NAME: romm
               ROMM_DB_DRIVER: postgresql
               # DISABLE_USERPASS_LOGIN: true  # TODO: enable
-              ROMM_PORT: "8080"
+              ROMM_PORT: &port "8080"
+              ENABLE_SCHEDULED_RESCAN: true
+              SCHEDULED_RESCAN_CRON: "0 3 * * *"  # at 3am
+              ENABLE_SCHEDULED_UPDATE_SWITCH_TITLEDB: true
+              SCHEDULED_UPDATE_SWITCH_TITLEDB_CRON: "0 4 * * *"  # at 4am
 
               OIDC_ENABLED: "true"
               OIDC_PROVIDER: authentik
@@ -55,10 +59,10 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        controller: "romm"
+        controller: romm
         ports:
           http:
-            port: 8080
+            port: *port
     ingress:
       app:
         className: internal
@@ -69,25 +73,25 @@ spec:
                 service:
                   identifier: app
                   port: http
-    persistence:
-      data:
-        existingClaim: romm
-        advancedMounts:
-          - subPath: resources
-            path: /romm/resources  # Resources fetched from IGDB (covers, screenshots, etc.)
-          - subPath: assets
-            path: /romm/assets  # Uploaded saves, states, etc.
-      config:
-        type: emptyDir
-        globalMounts:
-          - path: /romm/config
-      redis-data:  # cached directory for background tasks
-        type: emptyDir
-      tmp:
-        type: emptyDir
-      library:
-        type: nfs
-        server: nas.local.martinbjeldbak.com
-        path: /volume1/data/emulators
-        globalMounts:
-          - path: /romm/library
+    # persistence:
+    #   data:
+    #     existingClaim: romm
+    #     advancedMounts:
+    #       - subPath: resources
+    #         path: /romm/resources  # Resources fetched from IGDB (covers, screenshots, etc.)
+    #       - subPath: assets
+    #         path: /romm/assets  # Uploaded saves, states, etc.
+    #   config:
+    #     type: emptyDir
+    #     globalMounts:
+    #       - path: /romm/config
+    #   redis-data:  # cached directory for background tasks
+    #     type: emptyDir
+    #   tmp:
+    #     type: emptyDir
+    #   library:
+    #     type: nfs
+    #     server: nas.local.martinbjeldbak.com
+    #     path: /volume1/data/emulators
+    #     globalMounts:
+    #       - path: /romm/library
