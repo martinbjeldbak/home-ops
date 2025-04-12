@@ -32,7 +32,7 @@ spec:
               DB_HOST: romm-database-rw
               DB_NAME: romm
               ROMM_DB_DRIVER: postgresql
-              DISABLE_USERPASS_LOGIN: true # TODO: enable
+              # DISABLE_USERPASS_LOGIN: true  # TODO: enable
               ROMM_PORT: &port 8080
 
               OIDC_ENABLED: true
