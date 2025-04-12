@@ -33,9 +33,9 @@ spec:
               DB_NAME: romm
               ROMM_DB_DRIVER: postgresql
               # DISABLE_USERPASS_LOGIN: true  # TODO: enable
-              ROMM_PORT: 8080
+              ROMM_PORT: "8080"
 
-              OIDC_ENABLED: true
+              OIDC_ENABLED: "true"
               OIDC_PROVIDER: authentik
               OIDC_REDIRECT_URI: https://romm.local.martinbjeldbak.com/api/oauth/openid
               OIDC_SERVER_APPLICATION_URL: https://auth.local.martinbjeldbak.com/application/o/romm
