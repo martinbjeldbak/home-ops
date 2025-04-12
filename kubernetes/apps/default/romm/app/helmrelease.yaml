@@ -73,25 +73,27 @@ spec:
                 service:
                   identifier: app
                   port: http
-    # persistence:
-    #   data:
-    #     existingClaim: romm
-    #     advancedMounts:
-    #       - subPath: resources
-    #         path: /romm/resources  # Resources fetched from IGDB (covers, screenshots, etc.)
-    #       - subPath: assets
-    #         path: /romm/assets  # Uploaded saves, states, etc.
-    #   config:
-    #     type: emptyDir
-    #     globalMounts:
-    #       - path: /romm/config
-    #   redis-data:  # cached directory for background tasks
-    #     type: emptyDir
-    #   tmp:
-    #     type: emptyDir
-    #   library:
-    #     type: nfs
-    #     server: nas.local.martinbjeldbak.com
-    #     path: /volume1/data/emulators
-    #     globalMounts:
-    #       - path: /romm/library
+    persistence:
+      data:
+        existingClaim: *app
+        advancedMounts:
+          romm:
+            app:
+              - subPath: resources
+                path: /romm/resources  # Resources fetched from IGDB (covers, screenshots, etc.)
+              - subPath: assets
+                path: /romm/assets # Uploaded saves, states, etc.
+      config:
+        type: emptyDir
+        globalMounts:
+          - path: /romm/config
+      redis-data:  # cached directory for background tasks
+        type: emptyDir
+      tmp:
+        type: emptyDir
+      library:
+        type: nfs
+        server: nas.local.martinbjeldbak.com
+        path: /volume1/data/emulators
+        globalMounts:
+          - path: /romm/library
