@@ -1,4 +1,4 @@
 # see https://gethomepage.dev/configs/kubernetes/
 ---
-mode: default
+mode: cluster
 ingress: true

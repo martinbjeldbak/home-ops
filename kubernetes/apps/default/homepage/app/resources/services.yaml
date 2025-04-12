@@ -210,8 +210,8 @@
     - Grafana:
         icon: grafana.png
         href: "https://grafana.local.martinbjeldbak.com"
-        app: grafana
         namespace: observability
+        app: grafana
         widget:
           type: grafana
           url: http://grafana.observability.svc.cluster.local:80
@@ -221,14 +221,14 @@
         icon: docker.svg
         description: alertmanager
         href: https://alertmanager.local.martinbjeldbak.com
-        app: alertmanager
         namespace: observability
+        app: alertmanager
     - Blackbox Exporter:
         icon: docker.svg
         description: monitor probes
         href: https://blackbox-exporter.local.martinbjeldbak.com
-        app: blackbox-exporter
         namespace: observability
+        app: blackbox-exporter
     - Health checks:
         icon: healthchecks.svg
         description: monitor health
