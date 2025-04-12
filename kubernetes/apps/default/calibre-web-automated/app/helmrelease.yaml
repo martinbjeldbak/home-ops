@@ -38,8 +38,8 @@ spec:
                 spec:
                   failureThreshold: 30
                   periodSeconds: 5
-            securityContext:
-              allowPrivilegeEscalation: false
+            # securityContext:
+            #   allowPrivilegeEscalation: false
             #   readOnlyRootFilesystem: true
             #   capabilities: { drop: ["ALL"] } # ss6 image needs to start as root
             resources:
