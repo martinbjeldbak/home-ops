@@ -62,15 +62,15 @@ spec:
     ingress:
       app:
         className: internal
-        # annotations:
-        #   gethomepage.dev/enabled: "true"
-        #   gethomepage.dev/icon: calibre-web-automated
-        #   gethomepage.dev/name: calibre-web-automated
-        #   gethomepage.dev/group: Observability
-        #   gethomepage.dev/description: UPS Monitor
-        #   gethomepage.dev/widget.type: calibre-web-automated
-        #   gethomepage.dev/widget.url: http://calibre-web-automated:8080
-        #   gethomepage.dev/widget.key: Eeaton-5e-1100i
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: calibre
+          gethomepage.dev/group: Media
+          gethomepage.dev/icon: calibre-web.png
+          gethomepage.dev/name: Calibre-web-automated
+          gethomepage.dev/widget.type: calibreweb
+          gethomepage.dev/widget.url: "https://calibre.local.martinbjeldbak.com"
+          gethomepage.dev/pod-selector: "app.kubernetes.io/name=calibre-web-automated"
         hosts:
           - host: calibre.local.martinbjeldbak.com
             paths:
