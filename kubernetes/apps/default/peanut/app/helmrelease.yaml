@@ -52,15 +52,6 @@ spec:
     ingress:
       app:
         className: internal
-        annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/icon: peanut
-          gethomepage.dev/name: Peanut
-          gethomepage.dev/group: Observability
-          gethomepage.dev/description: UPS Monitor
-          gethomepage.dev/widget.type: peanut
-          gethomepage.dev/widget.url: http://peanut:8080
-          gethomepage.dev/widget.key: Eeaton-5e-1100i
         hosts:
           - host: peanut.local.martinbjeldbak.com
             paths:

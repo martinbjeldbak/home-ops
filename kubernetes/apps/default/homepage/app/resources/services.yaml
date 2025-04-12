@@ -36,14 +36,6 @@
           type: bazarr
           url: http://bazarr:6767
           key: {{HOMEPAGE_VAR_BAZARR_API_KEY}}
-    # - Readarr:
-    #     icon: readarr.svg
-    #     description: books
-    #     href: "https://readarr.local.martinbjeldbak.com"
-    #     widget:
-    #       type: readarr
-    #       url: http://readarr:8787
-    #       key: {{HOMEPAGE_VAR_READARR_API_KEY}}
     - Synology:
         icon: synology.svg
         description: diskstation
@@ -60,17 +52,17 @@
         description: plex media requests
         href: "https://request.local.martinbjeldbak.com"
         widget:
-            type: overseerr
-            url: http://overseerr:80
-            key: {{HOMEPAGE_VAR_OVERSEERR_API_KEY}}
+          type: overseerr
+          url: http://overseerr:80
+          key: {{HOMEPAGE_VAR_OVERSEERR_API_KEY}}
     - Prowlarr:
         icon: prowlarr.svg
         description: indexer
         href: "https://prowlarr.local.martinbjeldbak.com"
         widget:
-            type: prowlarr
-            url: http://prowlarr:9696
-            key: {{HOMEPAGE_VAR_PROWLARR_API_KEY}}
+          type: prowlarr
+          url: http://prowlarr:9696
+          key: {{HOMEPAGE_VAR_PROWLARR_API_KEY}}
     - Radarr:
         icon: radarr.svg
         description: movies
@@ -78,37 +70,42 @@
         namespace: default
         app: radarr
         widget:
-            type: radarr
-            url: http://radarr:80
-            key: {{HOMEPAGE_VAR_RADARR_API_KEY}}
+          type: radarr
+          url: http://radarr:80
+          key: {{HOMEPAGE_VAR_RADARR_API_KEY}}
     - Transmission:
         icon: transmission.svg
         description: torrents
         href: "https://torrents.local.martinbjeldbak.com"
         widget:
-            type: transmission
-            url: http://transmission:9091
-            username: {{HOMEPAGE_VAR_TRANSMISSION_USERNAME}}
-            password: {{HOMEPAGE_VAR_TRANSMISSION_PASSWORD}}
-    # - Romm: # NOTE: TODO
-    #     icon: romm.svg
-    #     description: roms
-    #     href: "https://roms.local.martinbjeldbak.com"
-    #     widget:
-    #         type: romm
-    #         url: http://romm:8080
-    #         username: {{HOMEPAGE_VAR_ROMM_USERNAME}}
-    #         password: {{HOMEPAGE_VAR_ROMM_PASSWORD}}
+          type: transmission
+          url: http://transmission:9091
+          username: {{HOMEPAGE_VAR_TRANSMISSION_USERNAME}}
+          password: {{HOMEPAGE_VAR_TRANSMISSION_PASSWORD}}
+    - Romm:
+        icon: romm.svg
+        description: roms
+        href: "https://romm.local.martinbjeldbak.com"
+        widget:
+          type: romm
+          url: http://romm:8080
+          username: {{HOMEPAGE_VAR_ROMM_USERNAME}}
+          password: {{HOMEPAGE_VAR_ROMM_PASSWORD}}
 
-    # - Calibre-web: # NOTE: todo
-    #     icon: calibreweb.svg
-    #     description: ebooks
-    #     href: "https://calibre-web.local.martinbjeldbak.com"
-    #     widget:
-    #         type: calibreweb
-    #         url: http://calibre-web:8083
-    #         username: {{HOMEPAGE_VAR_CALIBRE_WEB_USERNAME}}
-    #         password: {{HOMEPAGE_VAR_CALIBRE_WEB_PASSWORD}}
+    - Calibre-web:
+        icon: calibreweb.svg
+        description: ebooks
+        href: "https://calibre.local.martinbjeldbak.com"
+        widget:
+          type: calibreweb
+          url: http://calibre-web-automated:8083
+          username: {{HOMEPAGE_VAR_CALIBRE_WEB_USERNAME}}
+          password: {{HOMEPAGE_VAR_CALIBRE_WEB_PASSWORD}}
+
+    - Calibre-web-downloads:
+        icon: calibreweb.svg
+        description: ebook downloader
+        href: "https://calibre-book-downloader.local.martinbjeldbak.com"
 
     - Autobrr:
         icon: autobrr.svg
@@ -117,9 +114,9 @@
         namespace: default
         app: autobrr
         widget:
-            type: autobrr
-            url: http://autobrr:80
-            key: {{HOMEPAGE_VAR_AUTOBRR_KEY}}
+          type: autobrr
+          url: http://autobrr:80
+          key: {{HOMEPAGE_VAR_AUTOBRR_KEY}}
 
 - Releases:
     - Calendar:
@@ -142,10 +139,10 @@
         namespace: default
         app: homebox
         widget:
-            type: homebox
-            url: http://homebox:7745
-            username: {{HOMEPAGE_VAR_HOMEBOX_USERNAME}}
-            password: {{HOMEPAGE_VAR_HOMEBOX_PASSWORD}}
+          type: homebox
+          url: http://homebox:7745
+          username: {{HOMEPAGE_VAR_HOMEBOX_USERNAME}}
+          password: {{HOMEPAGE_VAR_HOMEBOX_PASSWORD}}
 
     - Authentik:
         icon: authentik.svg
@@ -154,9 +151,9 @@
         namespace: default
         app: authentik-server
         widget:
-            type: authentik
-            url: http://authentik-server
-            key: {{HOMEPAGE_VAR_AUTHENTIK_API_KEY}}
+          type: authentik
+          url: http://authentik-server
+          key: {{HOMEPAGE_VAR_AUTHENTIK_API_KEY}}
     - Paperless-ngx:
         icon: paperless-ngx.svg
         href: "https://paperless.local.martinbjeldbak.com"
@@ -173,21 +170,14 @@
     #         type: lubelogger
     #         url: http://lubelogger:8080
     #         vehicleID: 1
-    # - Watchtower:
-    #     icon: watchtower.svg
-    #     description: docker updates
-    #     widget:
-    #         type: watchtower
-    #         url: http://watchtower:8080
-    #         key: {{HOMEPAGE_VAR_WATCHTOWER_API_TOKEN}}
-    - Peanut Eaton 5E 1100i:
+    - Peanut:
         icon: peanut.svg
         href: "https://peanut.local.martinbjeldbak.com"
         description: ups monitoring
         widget:
-            type: peanut
-            url: http://peanut:8080
-            key: ups
+          type: peanut
+          url: http://peanut:8080
+          key: ups
     # - Scrutiny:
     #     icon: scrutiny.svg
     #     href: "https://scrutiny.local.martinbjeldbak.com"
@@ -198,11 +188,9 @@
     - Speedtest Tracker:
         icon: speedtest-tracker.png
         href: "https://speedtest-tracker.local.martinbjeldbak.com"
-        namespace: default
-        app: plex
         widget:
-            type: speedtest
-            url: http://speedtest-tracker
+          type: speedtest
+          url: http://speedtest-tracker
     # - Immich:
     #     icon: immich.svg
     #     href: "https://immich.local.martinbjeldbak.com"
@@ -211,10 +199,10 @@
     #         url: http://immich-server:2283
     #         key: {{HOMEPAGE_VAR_IMMICH_KEY}}
     #         version: 2
-    # - icloudpd:
-    #     icon: docker.svg
-    #     description: icloud photos downloader for backup to NAS
-    #     href: https://icloudpd-n.local.martinbjeldbak.com
+    - icloudpd:
+        icon: docker.svg
+        description: icloud photos downloader for backup to NAS
+        href: https://icloudpd.local.martinbjeldbak.com
     # - dawarich:
     #     icon: dawarich.svg
     #     description: Location tracking
@@ -287,9 +275,9 @@
         namespace: default
         app: home-assistant
         widget:
-            type: homeassistant
-            url: http://home-assistant:8123
-            key: {{HOMEPAGE_VAR_HOMEASSISTANT_ACCESS_TOKEN}}
+          type: homeassistant
+          url: http://home-assistant:8123
+          key: {{HOMEPAGE_VAR_HOMEASSISTANT_ACCESS_TOKEN}}
     - Scrypted:
         icon: scrypted.webp
         href: "https://scrypted.local.martinbjeldbak.com"
@@ -301,10 +289,10 @@
         href: "https://esphome.local.martinbjeldbak.com"
         description: esp32 configuration
         widget:
-            type: esphome
-            url: http://esphome:6052
-            # username: {{HOMEPAGE_VAR_ESPHOME_USERNAME}}
-            # password: {{HOMEPAGE_VAR_ESPHOME_PASSWORD}}
+          type: esphome
+          url: http://esphome:6052
+          # username: {{HOMEPAGE_VAR_ESPHOME_USERNAME}}
+          # password: {{HOMEPAGE_VAR_ESPHOME_PASSWORD}}
     - zigbee2mqtt:
         icon: zigbee2mqtt.svg
         description: z2m integration

@@ -62,15 +62,6 @@ spec:
     ingress:
       app:
         className: internal
-        annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/description: calibre
-          gethomepage.dev/group: Media
-          gethomepage.dev/icon: calibre-web.png
-          gethomepage.dev/name: Calibre-web-automated
-          gethomepage.dev/widget.type: calibreweb
-          gethomepage.dev/widget.url: "https://calibre.local.martinbjeldbak.com"
-          gethomepage.dev/pod-selector: "app.kubernetes.io/name=calibre-web-automated"
         hosts:
           - host: calibre.local.martinbjeldbak.com
             paths:
