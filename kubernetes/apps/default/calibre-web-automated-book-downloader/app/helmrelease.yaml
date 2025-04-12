@@ -41,18 +41,18 @@ spec:
             #       periodSeconds: 5
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+              # readOnlyRootFilesystem: true
+              # capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 5m
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 100
-        fsGroup: 100
-        fsGroupChangePolicy: OnRootMismatch
+    # defaultPodOptions:
+    #   securityContext:
+    #     runAsNonRoot: true
+    #     runAsUser: 1000
+    #     runAsGroup: 100
+    #     fsGroup: 100
+    #     fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: calibre-web-automated-book-downloader
