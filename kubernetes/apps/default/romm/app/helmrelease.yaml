@@ -33,13 +33,12 @@ spec:
               DB_PORT: 5432
               DB_NAME: romm
               ROMM_DB_DRIVER: postgresql
-              # DISABLE_USERPASS_LOGIN: true  # TODO: enable
-              ROMM_PORT: &port "8080"
+              ROMM_PORT: &port 8080
               ENABLE_SCHEDULED_RESCAN: true
               SCHEDULED_RESCAN_CRON: "0 3 * * *"  # at 3am
               ENABLE_SCHEDULED_UPDATE_SWITCH_TITLEDB: true
               SCHEDULED_UPDATE_SWITCH_TITLEDB_CRON: "0 4 * * *"  # at 4am
-
+              DISABLE_USERPASS_LOGIN: true  # require sign in with Authentik
               OIDC_ENABLED: "true"
               OIDC_PROVIDER: authentik
               OIDC_REDIRECT_URI: https://romm.local.martinbjeldbak.com/api/oauth/openid
