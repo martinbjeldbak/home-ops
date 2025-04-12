@@ -28,7 +28,7 @@ spec:
               TZ: Australia/Melbourne
               PUID: 1029  # 'docker' user
               PGID: 100  # 'users' group
-              DOCKER_MODS: ghcr.io/linuxserver/mods:universal-calibre-v8.2.100
+              DOCKER_MODS: ghcr.io/linuxserver/mods:universal-calibre-v7.16.0
             probes:
               liveness:
                 enabled: true
