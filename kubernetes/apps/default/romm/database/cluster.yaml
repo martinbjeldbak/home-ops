@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: romm-database
+spec:
+  instances: 1
+  # renovate: datasource=docker depName=ghcr.io/cloudnative-pg/postgresql
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.4-9@sha256:507376cb4fb29498d767fbc1ed5c3a9ee6099136d3519be69bdb463b92b5120e
+  bootstrap:  # following https://cloudnative-pg.io/documentation/1.25/bootstrap/
+    initdb:
+      database: romm
+      owner: romm
+      secret:
+        name: romm-cluster-credentials-secret
+  storage:
+    size: 5Gi
+    pvcTemplate:
+      storageClassName: proxmox
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 5Gi
+  superuserSecret:
+    name: romm-pg-superuser-secret
+  enableSuperuserAccess: true
+  backup:
+    retentionPolicy: "30d"
+    barmanObjectStore:
+      destinationPath: "s3://home-ops-postgres-backups/romm/"
+      endpointURL: "https://s3.eu-central-003.backblazeb2.com"
+      s3Credentials:
+        accessKeyId:
+          name: romm-backblaze-secret
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: romm-backblaze-secret
+          key: ACCESS_SECRET_KEY
