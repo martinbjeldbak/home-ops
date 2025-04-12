@@ -1,3 +1,4 @@
+# see https://gethomepage.dev/configs/kubernetes/
 ---
-mode: default
+mode: disabled  # default
 ingress: true
