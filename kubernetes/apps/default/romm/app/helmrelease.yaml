@@ -30,6 +30,7 @@ spec:
             env:
               TZ: Australia/Melbourne
               DB_HOST: romm-database-rw
+              DB_PORT: 5432
               DB_NAME: romm
               ROMM_DB_DRIVER: postgresql
               # DISABLE_USERPASS_LOGIN: true  # TODO: enable
