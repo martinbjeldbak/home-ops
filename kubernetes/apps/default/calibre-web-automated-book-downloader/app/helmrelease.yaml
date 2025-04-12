@@ -82,7 +82,7 @@ spec:
       ingest:
         type: nfs
         server: nas.local.martinbjeldbak.com
-        path: /volume4/calibre-web-automated-book-downloader-inbox
+        path: /volume4/calibre-web-automated-inbox
         advancedMounts:
           calibre-web-automated-book-downloader:
             app:
