@@ -33,7 +33,7 @@ spec:
               DB_NAME: romm
               ROMM_DB_DRIVER: postgresql
               # DISABLE_USERPASS_LOGIN: true  # TODO: enable
-              ROMM_PORT: &port 8080
+              ROMM_PORT: &port "8080"
 
               OIDC_ENABLED: true
               OIDC_PROVIDER: authentik
