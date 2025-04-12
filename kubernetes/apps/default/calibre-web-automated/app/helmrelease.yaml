@@ -45,13 +45,13 @@ spec:
             resources:
               requests:
                 cpu: 5m
-    defaultPodOptions: # it's a s6 image..
-      securityContext:
+    # defaultPodOptions: # it's a s6 image..
+    #   securityContext:
     #     runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
+        # runAsUser: 1000
+        # runAsGroup: 1000
+        # fsGroup: 1000
+        # fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: calibre-web-automated
