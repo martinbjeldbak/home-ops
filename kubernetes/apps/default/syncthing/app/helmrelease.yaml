@@ -101,7 +101,7 @@ spec:
       config:
         existingClaim: *app
         globalMounts:
-          - /var/syncthing
+          - path: /var/syncthing
       data:
         type: nfs
         server: nas.local.martinbjeldbak.com
