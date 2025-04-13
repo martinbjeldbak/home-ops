@@ -100,7 +100,7 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: *app
+        existingClaim: syncthing
         globalMounts:
           - /var/syncthing
       data:
