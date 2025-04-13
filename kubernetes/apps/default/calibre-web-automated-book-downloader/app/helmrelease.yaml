@@ -29,6 +29,7 @@ spec:
               UID: 1000
               GID: 100
               BOOK_LANGUAGE: en
+              CUSTOM_DNS: 192.168.1.1,192.168.10.15
             # probes:
             #   liveness:
             #     enabled: true
