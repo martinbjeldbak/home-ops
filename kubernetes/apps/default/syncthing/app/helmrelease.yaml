@@ -1,0 +1,110 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app syncthing
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    controllers:
+      syncthing:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/syncthing/syncthing
+              tag: 1.29.5@sha256:1914deddb3be7808579f3ce0eb4a1c493daa2f01e8953c2d73ba52ee2b1b418a
+            env:
+              TZ: Australia/Melbourne
+              PUID: 1000
+              PGID: 1000
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: false
+              capabilities: { drop: ["ALL"] }
+            probes:
+              liveness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /rest/noauth/health
+                    port: &port 8384
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /rest/noauth/health
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: syncthing
+        ports:
+          http:
+            port: 8384
+      transfer:
+        controller: syncthing
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 192.168.1.130
+        # See https://github.com/syncthing/syncthing/blob/e46a0f99c34cf7e0841bb83b9e050b44bdc42238/README-Docker.md for ports
+        ports:
+          transfer:
+            port: 22000
+            protocol: TCP
+          transfer-quic:
+            port: 22000
+            protocol: UDP
+          discovery:
+            port: 21027
+            protocol: UDP
+    ingress:
+      app:
+        className: internal
+        hosts:
+          - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+    persistence:
+      config:
+        existingClaim: *app
+        globalMounts:
+          - /var/syncthing
+      data:
+        type: nfs
+        server: nas.local.martinbjeldbak.com
+        path: /volume1/syncthing
+        globalMounts:
+          - path: /data
