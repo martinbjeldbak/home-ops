@@ -191,22 +191,23 @@
         widget:
           type: speedtest
           url: http://speedtest-tracker
-    # - Immich:
-    #     icon: immich.svg
-    #     href: "https://immich.local.martinbjeldbak.com"
-    #     widget:
-    #         type: immich
-    #         url: http://immich-server:2283
-    #         key: {{HOMEPAGE_VAR_IMMICH_KEY}}
-    #         version: 2
+
+    - Immich:
+        icon: immich.svg
+        href: "https://immich.local.martinbjeldbak.com"
+        widget:
+          type: immich
+          url: http://immich-server:2283
+          key: {{HOMEPAGE_VAR_IMMICH_KEY}}
+          version: 2
     - icloudpd:
         icon: docker.svg
         description: icloud photos downloader for backup to NAS
         href: https://icloudpd.local.martinbjeldbak.com
-    # - dawarich:
-    #     icon: dawarich.svg
-    #     description: Location tracking
-    #     href: https://dawarich.local.martinbjeldbak.com
+    - dawarich:
+        icon: dawarich.svg
+        description: Location tracking
+        href: https://dawarich.local.martinbjeldbak.com
     - Grafana:
         icon: grafana.png
         href: "https://grafana.local.martinbjeldbak.com"
@@ -237,10 +238,10 @@
           type: kubernetes
           url: https://healthchecks.io
           key: {{HOMEPAGE_VAR_KUBERNETES_HEALTHCHECKS_KEY}}
-    # - syncthing:
-    #     icon: syncthing.svg
-    #     description: File syncing
-    #     href: https://syncthing.local.martinbjeldbak.com
+    - syncthing:
+        icon: syncthing.svg
+        description: File syncing
+        href: https://syncthing.local.martinbjeldbak.com
     # - thelounge:
     #     icon: thelounge.svg
     #     description: IRC
