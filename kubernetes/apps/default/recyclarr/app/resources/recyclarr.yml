@@ -1,6 +1,8 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/recyclarr/recyclarr/master/schemas/config-schema.json
 
+# Source: https://github.com/recyclarr/config-templates
+#
 # A starter config to use with Recyclarr. Most values are set to "reasonable defaults". Update the
 # values below as needed for your instance. You will be required to update the API Key and URL for
 # each instance you want to use.
@@ -158,9 +160,6 @@ sonarr:
           # French Audio Version
           - 84f0acbda9c0c9de783894fb66df25aa # FanSUB
           - ea0bb4b6ba388992fad1092703b5ff7b # FastSUB
-          - 4721382d9ee05f1b4967a25e75072911 # French Audio
-          - 2f6e84efc47246ec9071e311e71c4953 # Multi-Audio
-          - 7982e39789f17864f57b11f1996844f4 # Multi-French
           - 34789ec3caa819f087e23bbf9999daf7 # VF2
           - 0ce1e39a4676c6692ce47935278dac76 # VFB
           - 2c29a39a4fdfd6d258799bc4c09731b9 # VFF
