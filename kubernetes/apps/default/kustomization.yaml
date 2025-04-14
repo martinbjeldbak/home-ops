@@ -15,6 +15,7 @@ resources:
   - ./bazarr/ks.yaml
   - ./calibre-web-automated/ks.yaml
   - ./calibre-web-automated-book-downloader/ks.yaml
+  - ./dawarich/ks.yaml
   - ./emqx/ks.yaml
   - ./epicgames-freegames/ks.yaml
   - ./esphome/ks.yaml
