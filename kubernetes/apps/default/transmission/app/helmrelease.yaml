@@ -53,8 +53,8 @@ spec:
               TRANSMISSION__RPC_PORT: &port 9091
               TRANSMISSION__DOWNLOAD_DIR: /data/downloads/torrents/completed
               TRANSMISSION__INCOMPLETE_DIR: /data/downloads/torrents/incomplete
-              TRANSMISSION__ALT_SPEED_DOWN: 50000
-              TRANSMISSION__ALT_SPEED_UP: 50000
+              TRANSMISSION__ALT_SPEED_DOWN: 500000
+              TRANSMISSION__ALT_SPEED_UP: 500000
               TRANSMISSION__ALT_SPEED_ENABLED: true
               TRANSMISSION__ALT_SPEED_TIME_BEGIN: 480
               TRANSMISSION__ALT_SPEED_TIME_DAY: 127
