@@ -19,12 +19,12 @@ spec:
         - CREATE EXTENSION postgis_topology;
         - CREATE EXTENSION fuzzystrmatch;
         - CREATE EXTENSION postgis_tiger_geocoder;
-      import:
-        type: microservice
-        databases:
-          - dawarich_development
-        source:
-          externalCluster: docker-dawarich
+      # import:
+      #   type: microservice
+      #   databases:
+      #     - dawarich_development
+      #   source:
+      #     externalCluster: docker-dawarich
   storage:
     size: 5Gi
     pvcTemplate:
@@ -48,13 +48,13 @@ spec:
         secretAccessKey:
           name: dawarich-backblaze-secret
           key: ACCESS_SECRET_KEY
-  externalClusters:
-    - name: docker-dawarich
-      connectionParameters:
-        host: nas.local.martinbjeldbak.com
-        port: "5433"
-        user: dawarich
-        dbname: dawarich_development
-      password:
-        name: dawarich-cluster-credentials-secret
-        key: password
+  # externalClusters:
+  #   - name: docker-dawarich
+  #     connectionParameters:
+  #       host: nas.local.martinbjeldbak.com
+  #       port: "5433"
+  #       user: dawarich
+  #       dbname: dawarich_development
+  #     password:
+  #       name: dawarich-cluster-credentials-secret
+  #       key: password
