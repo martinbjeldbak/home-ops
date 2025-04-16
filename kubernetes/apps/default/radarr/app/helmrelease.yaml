@@ -98,7 +98,7 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: radarr-v2
+        existingClaim: radarr-v3
       config-cache:
         existingClaim: radarr-cache-v2
         globalMounts:
