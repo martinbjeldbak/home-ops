@@ -75,12 +75,12 @@ spec:
                   port: http
     persistence:
       data:
-        existingClaim: *app
+        existingClaim: romm-v2
         advancedMounts:
           romm:
             app:
               - subPath: resources
-                path: /romm/resources  # Resources fetched from IGDB (covers, screenshots, etc.)
+                path: /romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
               - subPath: assets
                 path: /romm/assets # Uploaded saves, states, etc.
       config:

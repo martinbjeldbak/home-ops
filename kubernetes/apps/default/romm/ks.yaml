@@ -22,7 +22,7 @@ spec:
   path: ./kubernetes/apps/default/romm/app
   postBuild:
     substitute:
-      APP: *app
+      APP: romm-v2
   prune: true
   retryInterval: 2m
   sourceRef:
