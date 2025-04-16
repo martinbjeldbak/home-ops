@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: romm-v3
+  name: romm
 spec:
   accessModes: ["ReadWriteOnce"]
   resources:

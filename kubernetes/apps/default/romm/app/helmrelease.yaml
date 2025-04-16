@@ -75,7 +75,7 @@ spec:
                   port: http
     persistence:
       data:
-        existingClaim: romm-v3
+        existingClaim: romm
         advancedMounts:
           romm:
             app:
