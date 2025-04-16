@@ -71,14 +71,13 @@ spec:
                   identifier: app
                   port: http
     persistence:
-      public:
-        existingClaim: dawarich-public
+      data:
+        existingClaim: dawarich
         globalMounts:
           - path: /var/app/public
-      storage:
-        existingClaim: dawarich-storage
-        globalMounts:
+            subPath: public
           - path: /var/app/storage
+            subPath: storage
       watched:
         type: emptyDir
         globalMounts:

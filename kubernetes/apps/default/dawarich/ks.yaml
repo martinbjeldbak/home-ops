@@ -24,7 +24,7 @@ spec:
   path: ./kubernetes/apps/default/dawarich/app
   postBuild:
     substitute:
-      APP: dawarich-public
+      APP: dawarich
   prune: true
   sourceRef:
     kind: GitRepository
