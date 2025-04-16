@@ -51,7 +51,25 @@ spec:
           sidekiq:
             <<: *app
             env:
+              TIME_ZONE: Australia/Melbourne
+              RAILS_ENV: development
+              REDIS_URL: redis://dawarich-redis:6379
+              DATABASE_HOST: dawarich-database-rw
               DATABASE_NAME: dawarich_development
+              MIN_MINUTES_SPENT_IN_CITY: 60
+              APPLICATION_HOST: localhost
+              APPLICATION_HOSTS: localhost,dawarich.local.martinbjeldbak.com,dawarich.martinbjeldbak.com
+              APPLICATION_PROTOCOL: http
+              REVERSE_GEOCODING_ENABLED: true
+              DISTANCE_UNIT: km
+              PROMETHEUS_EXPORTER_ENABLED: false  #  TODO: enable!
+              PROMETHEUS_EXPORTER_HOST: dawarich_app
+              PROMETHEUS_EXPORTER_PORT: 9394
+              ENABLE_TELEMETRY: false # More on telemetry: https://dawarich.app/docs/tutorials/telemetry
+              SELF_HOSTED: "true"
+            envFrom:
+              - secretRef:
+                  name: dawarich-secret
             command: ['sidekiq-entrypoint.sh']
             args: ['sidekiq']
     service:
