@@ -1,47 +1,16 @@
 ---
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: romm-v2
-spec:
-  accessModes:
-    - ReadWriteOnce
-  capacity:
-    storage: 10Gi
-  csi:
-    driver: csi.proxmox.sinextra.dev
-    fsType: xfs
-    volumeAttributes:
-      cache: writethrough
-      ssd: "true"
-      storage: csi-proxmox
-    volumeHandle: cluster-1/beelink-eqi12-1/csi-proxmox/vm-9999-pvc-e5f517c2-b9c8-46bc-86b5-cd8347b80799
-  storageClassName: proxmox
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: topology.kubernetes.io/region
-              operator: In
-              values:
-                - cluster-1
-            - key: topology.kubernetes.io/zone
-              operator: In
-              values:
-                - beelink-eqi12-1
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: romm-v2
+  name: romm
 spec:
   accessModes: ["ReadWriteOnce"]
   dataSourceRef:
     kind: ReplicationDestination
     apiGroup: volsync.backube
-    name: "romm-v2-dst"
+    name: "romm-dst"
   resources:
     requests:
       storage: 10Gi
   storageClassName: proxmox
-  volumeName: romm-v2
+  volumeName: romm
