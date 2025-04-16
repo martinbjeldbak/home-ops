@@ -41,7 +41,7 @@ spec:
               REVERSE_GEOCODING_ENABLED: true
               DISTANCE_UNIT: km
               PROMETHEUS_EXPORTER_ENABLED: false  #  TODO: enable!
-              PROMETHEUS_EXPORTER_HOST: 0.0.0.0
+              PROMETHEUS_EXPORTER_HOST: dawarich_app
               PROMETHEUS_EXPORTER_PORT: 9394
               ENABLE_TELEMETRY: false # More on telemetry: https://dawarich.app/docs/tutorials/telemetry
               SELF_HOSTED: "true"
@@ -50,6 +50,8 @@ spec:
                   name: dawarich-secret
           sidekiq:
             <<: *app
+            env:
+              DATABASE_NAME: dawarich_development
             command: ['sidekiq-entrypoint.sh']
             args: ['sidekiq']
     service:
