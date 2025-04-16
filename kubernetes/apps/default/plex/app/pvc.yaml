@@ -39,10 +39,6 @@ spec:
   resources:
     requests:
       storage: 50Gi
-  dataSourceRef:
-    kind: ReplicationDestination
-    apiGroup: volsync.backube
-    name: "plex-v3-dst"
   storageClassName: proxmox
   volumeName: plex-v3
 ---

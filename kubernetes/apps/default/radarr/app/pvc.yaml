@@ -36,10 +36,6 @@ metadata:
   name: radarr-v4
 spec:
   accessModes: ["ReadWriteOnce"]
-  dataSourceRef:
-    kind: ReplicationDestination
-    apiGroup: volsync.backube
-    name: "radarr-v4-dst"
   resources:
     requests:
       storage: 10Gi
