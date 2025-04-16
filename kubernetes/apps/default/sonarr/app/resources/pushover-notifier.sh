@@ -1,91 +1,44 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-# SOURCE: https://github.com/onedr0p/home-ops/blob/41de3106938c3a2f7f065ae75dc6014bdac2a5da/kubernetes/apps/default/sonarr/app/resources/pushover-notifier.sh
+function notify() {
+    if [[ "${SONARR_EVENT_TYPE}" == "Test" ]]; then
+        printf -v PUSHOVER_TITLE "Test Notification"
+        printf -v PUSHOVER_MESSAGE "Howdy this is a test notification from <b>%s</b>" "${SONARR_INSTANCE_NAME}"
+        printf -v PUSHOVER_URL "%s" "${SONARR_APPLICATION_URL}"
+        printf -v PUSHOVER_URL_TITLE "Open %s" "${SONARR_INSTANCE_NAME}"
+        printf -v PUSHOVER_PRIORITY "%s" "low"
+    elif [[ "${SONARR_EVENT_TYPE}" == "ManualInteractionRequired" ]]; then
+        printf -v PUSHOVER_TITLE "%s Import Requires Manual Interaction" "Episode"
+        printf -v PUSHOVER_MESSAGE "<b>%s (%s)</b><small>\n<b>Client:</b> %s</small>" \
+            "${SONARR_SERIES_TITLE}" \
+            "${SONARR_SERIES_YEAR}" \
+            "${SONARR_DOWNLOAD_CLIENT}"
+        printf -v PUSHOVER_URL "%s/activity/queue" "${SONARR_APPLICATION_URL}"
+        printf -v PUSHOVER_URL_TITLE "View queue in %s" "${SONARR_INSTANCE_NAME}"
+        printf -v PUSHOVER_PRIORITY "%s" "high"
+    elif [[ "${SONARR_EVENT_TYPE}" == "Download" ]]; then
+        printf -v PUSHOVER_TITLE "Episode %s" "Imported"
+        printf -v PUSHOVER_MESSAGE "<b>%s (%s) S%02dE%02d</b><small>\n%s</small><small>\n\n<b>Client:</b> %s</small><small>" \
+            "${SONARR_SERIES_TITLE}" \
+            "${SONARR_SERIES_YEAR}" \
+            "${SONARR_EPISODE_SEASON_NUMBER}" \
+            "${SONARR_EPISODE_NUMBER}" \
+            "${SONARR_EPISODE_TITLE}" \
+            "${SONARR_DOWNLOAD_CLIENT}"
+        printf -v PUSHOVER_URL "%s/series/%s" \
+            "${SONARR_APPLICATION_URL}" \
+            "${SONARR_SERIES_TITLE_SLUG}"
+        printf -v PUSHOVER_URL_TITLE "View series in %s" "${SONARR_INSTANCE_NAME}"
+        printf -v PUSHOVER_PRIORITY "%s" "low"
+    fi
 
-#!/usr/bin/env bash
-set -Eeuo pipefail
+    apprise -vv --title "${PUSHOVER_TITLE}" --body "${PUSHOVER_MESSAGE}" --input-format html \
+        "${SONARR_PUSHOVER_URL}?url=${PUSHOVER_URL}&url_title=${PUSHOVER_URL_TITLE}&priority=${PUSHOVER_PRIORITY}&format=html"
+}
 
-# User defined variables for pushover
-PUSHOVER_USER_KEY="${PUSHOVER_USER_KEY:-required}"
-PUSHOVER_TOKEN="${PUSHOVER_TOKEN:-required}"
-PUSHOVER_PRIORITY="${PUSHOVER_PRIORITY:-"-2"}"
+function main() {
+    notify
+}
 
-if [[ "${sonarr_eventtype:-}" == "Test" ]]; then
-    PUSHOVER_PRIORITY="1"
-    printf -v PUSHOVER_TITLE \
-        "Test Notification"
-    printf -v PUSHOVER_MESSAGE \
-        "Howdy this is a test notification from %s" \
-            "${sonarr_instancename:-Sonarr}"
-    printf -v PUSHOVER_URL \
-        "%s" \
-            "${sonarr_applicationurl:-localhost}"
-    printf -v PUSHOVER_URL_TITLE \
-        "Open %s" \
-            "${sonarr_instancename:-Sonarr}"
-fi
-
-if [[ "${sonarr_eventtype:-}" == "Download" ]]; then
-    printf -v PUSHOVER_TITLE \
-        "Episode %s" \
-            "$( [[ "${sonarr_isupgrade}" == "True" ]] && echo "Upgraded" || echo "Imported" )"
-    printf -v PUSHOVER_MESSAGE \
-        "<b>%s (S%02dE%02d)</b><small>\n%s</small><small>\n\n<b>Quality:</b> %s</small><small>\n<b>Size:</b> %s</small><small>\n<b>Client:</b> %s</small><small>\n<b>Indexer:</b> %s</small>" \
-            "${sonarr_series_title}" \
-            "${sonarr_episodefile_seasonnumber}" \
-            "${sonarr_episodefile_episodenumbers}" \
-            "${sonarr_episodefile_episodetitles}" \
-            "${sonarr_episodefile_quality:-Unknown}" \
-            "$(numfmt --to iec --format "%8.2f" "${sonarr_release_size:-0}")" \
-            "${sonarr_download_client:-Unknown}" \
-            "${sonarr_release_indexer:-Unknown}"
-    printf -v PUSHOVER_URL \
-        "%s/series/%s" \
-            "${sonarr_applicationurl:-localhost}" \
-            "${sonarr_series_titleslug}"
-    printf -v PUSHOVER_URL_TITLE \
-        "View series in %s" \
-            "${sonarr_instancename:-Sonarr}"
-fi
-
-if [[ "${sonarr_eventtype:-}" == "ManualInteractionRequired" ]]; then
-    PUSHOVER_PRIORITY="1"
-    printf -v PUSHOVER_TITLE \
-        "Episode import requires intervention"
-    printf -v PUSHOVER_MESSAGE \
-        "<b>%s</b><small>\n<b>Client:</b> %s</small>" \
-            "${sonarr_series_title}" \
-            "${sonarr_download_client:-Unknown}"
-    printf -v PUSHOVER_URL \
-        "%s/activity/queue" \
-            "${sonarr_applicationurl:-localhost}"
-    printf -v PUSHOVER_URL_TITLE \
-        "View queue in %s" \
-            "${sonarr_instancename:-Sonarr}"
-fi
-
-json_data=$(jo \
-    token="${PUSHOVER_TOKEN}" \
-    user="${PUSHOVER_USER_KEY}" \
-    title="${PUSHOVER_TITLE}" \
-    message="${PUSHOVER_MESSAGE}" \
-    url="${PUSHOVER_URL}" \
-    url_title="${PUSHOVER_URL_TITLE}" \
-    priority="${PUSHOVER_PRIORITY}" \
-    html="1"
-)
-
-status_code=$(curl \
-    --silent \
-    --write-out "%{http_code}" \
-    --output /dev/null \
-    --request POST \
-    --header "Content-Type: application/json" \
-    --data-binary "${json_data}" \
-    "https://api.pushover.net/1/messages.json" \
-)
-
-printf "pushover notification returned with HTTP status code %s and payload: %s\n" \
-    "${status_code}" \
-    "$(echo "${json_data}" | jq --compact-output)" >&2
+main "$@"

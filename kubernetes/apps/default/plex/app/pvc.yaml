@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: plex-v2
+  name: plex-v3
 spec:
   accessModes:
     - ReadWriteOnce
@@ -33,14 +33,18 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: plex-v2
+  name: plex-v3
 spec:
   accessModes: ["ReadWriteOnce"]
   resources:
     requests:
       storage: 50Gi
+  dataSourceRef:
+    kind: ReplicationDestination
+    apiGroup: volsync.backube
+    name: "plex-v3-dst"
   storageClassName: proxmox
-  volumeName: plex-v2
+  volumeName: plex-v3
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
