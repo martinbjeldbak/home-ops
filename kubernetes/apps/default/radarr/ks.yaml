@@ -20,7 +20,7 @@ spec:
   path: ./kubernetes/apps/default/radarr/app
   postBuild:
     substitute:
-      APP: radarr-v3
+      APP: radarr-v4
   prune: true
   retryInterval: 2m
   sourceRef:
