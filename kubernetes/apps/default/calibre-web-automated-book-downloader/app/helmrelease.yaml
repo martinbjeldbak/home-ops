@@ -23,7 +23,7 @@ spec:
           app:
             image:
               repository: ghcr.io/calibrain/calibre-web-automated-book-downloader
-              tag: 20250404@sha256:c9141176d41a20f8c348a2577315bc8f9ab73daeb5b485cdc6b414285948a543
+              tag: 20250416@sha256:7c2681419dd16c3f573c3223cfddc374d904d3a574b0e1e5a1dfe01c39244bf6
             env:
               FLASK_PORT: &port 8084
               UID: 1000
