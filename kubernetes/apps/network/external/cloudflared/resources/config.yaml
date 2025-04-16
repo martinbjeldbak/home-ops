@@ -3,7 +3,7 @@ originRequest:
   originServerName: "external.martinbjeldbak.com"
 
 ingress:
-  - hostname: "martinbjeldbak.com"
+  - hostname: martinbjeldbak.com
     service: &svc https://external-ingress-nginx-controller.network.svc.cluster.local:443
   - hostname: "*.martinbjeldbak.com"
     service: *svc
