@@ -58,7 +58,6 @@ spec:
           sidekiq:
             <<: *app
             command: ['bundle', 'exec', 'sidekiq'] # fixes https://github.com/Freika/dawarich/pull/941
-            args: ['sidekiq']
             resources:
               requests:
                 memory: "1Gi"
