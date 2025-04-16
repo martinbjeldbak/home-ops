@@ -13,4 +13,3 @@ spec:
     requests:
       storage: 10Gi
   storageClassName: proxmox
-  volumeName: romm
