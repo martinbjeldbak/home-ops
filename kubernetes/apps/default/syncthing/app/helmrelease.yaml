@@ -32,9 +32,9 @@ spec:
               PUID: 1029  # 'docker' user
               PGID: 100  # 'users' group
             securityContext:
-              allowPrivilegeEscalation: false
+              allowPrivilegeEscalation: true
               readOnlyRootFilesystem: false
-              capabilities: { drop: ["ALL"] }
+              # capabilities: { drop: ["ALL"] }
             probes:
               liveness:
                 enabled: true
