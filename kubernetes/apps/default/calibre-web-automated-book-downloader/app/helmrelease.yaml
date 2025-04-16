@@ -29,7 +29,9 @@ spec:
               UID: 1000
               GID: 100
               BOOK_LANGUAGE: en
-              CUSTOM_DNS: 192.168.1.1,192.168.10.15
+              #CUSTOM_DNS: 192.168.1.1,192.168.10.15
+              CUSTOM_DNS: cloudflare
+              USE_DOH: true
             # probes:
             #   liveness:
             #     enabled: true
