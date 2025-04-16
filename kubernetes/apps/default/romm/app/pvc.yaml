@@ -5,10 +5,6 @@ metadata:
   name: romm-v3
 spec:
   accessModes: ["ReadWriteOnce"]
-  dataSourceRef:
-    kind: ReplicationDestination
-    apiGroup: volsync.backube
-    name: "romm-v3-dst"
   resources:
     requests:
       storage: 10Gi
