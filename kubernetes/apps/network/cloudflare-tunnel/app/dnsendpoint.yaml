@@ -3,9 +3,9 @@
 apiVersion: externaldns.k8s.io/v1alpha1
 kind: DNSEndpoint
 metadata:
-  name: cloudflared
+  name: cloudflare-tunnel
 spec:
   endpoints:
-    - dnsName: "external.martinbjeldbak.com"
+    - dnsName: external.martinbjeldbak.com
       recordType: CNAME
-      targets: ["42c2421e-3778-43d5-9790-e5995d42abc2.cfargotunnel.com"]
+      targets: ["${CLOUDFLARE_TUNNEL_ID}.cfargotunnel.com"]
