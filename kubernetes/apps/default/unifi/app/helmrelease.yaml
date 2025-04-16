@@ -98,4 +98,4 @@ spec:
                   port: http
     persistence:
       unifi:
-        existingClaim: unifi-v2
+        existingClaim: unifi-v3

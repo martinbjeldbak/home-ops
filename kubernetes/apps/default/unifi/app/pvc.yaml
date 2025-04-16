@@ -33,7 +33,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: unifi-v2
+  name: unifi-v3
 spec:
   accessModes: ["ReadWriteOnce"]
   resources:

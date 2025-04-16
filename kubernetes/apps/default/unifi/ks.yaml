@@ -18,7 +18,7 @@ spec:
   path: ./kubernetes/apps/default/unifi/app
   postBuild:
     substitute:
-      APP: unifi-v2
+      APP: unifi-v3
   prune: true
   sourceRef:
     kind: GitRepository
