@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: immich-database
+  name: immich-database-2
 spec:
   instances: 1
   # renovate: datasource=docker depName=ghcr.io/tensorchord/cloudnative-pgvecto.rs
