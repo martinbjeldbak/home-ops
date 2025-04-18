@@ -46,6 +46,11 @@ spec:
       LOG_LEVEL: verbose
       REDIS_HOSTNAME: immich-redis
       TZ: Australia/Melbourne
+      DB_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: immich-secret
+            key: DB_PASSWORD
     envFrom:
       - secretRef:
           name: immich-secret
