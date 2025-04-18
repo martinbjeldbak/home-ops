@@ -51,7 +51,7 @@ spec:
           name: immich-secret
     image:
       # renovate: datasource=github-releases depName=immich-app/immich
-      tag: "v1.131.3"
+      tag: "v1.131.3" # 1.125.7
 
     server:
       resources:
