@@ -40,12 +40,12 @@ spec:
       persistence:
         library:
           existingClaim: immich-library
-        photos:
-          type: nfs
-          server: nas.local.martinbjeldbak.com
-          path: /volume1/Photos
-          globalMounts:
-            - path: /photos
+        # photos:
+        #   type: nfs
+        #   server: nas.local.martinbjeldbak.com
+        #   path: /volume1/Photos
+        #   globalMounts:
+        #     - path: /photos
     env:
       DB_HOSTNAME: immich-database-rw
       DB_DATABASE_NAME: immich
@@ -65,10 +65,10 @@ spec:
       tag: "v1.131.3" # 1.125.7
 
     server:
-      resources:
-        requests:
-          cpu: 1500m
-          memory: 2048M
+      # resources:
+      #   requests:
+      #     cpu: 1500m
+      #     memory: 2048M
       ingress:
         main:
           className: internal
