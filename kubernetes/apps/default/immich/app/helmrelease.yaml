@@ -40,6 +40,12 @@ spec:
       persistence:
         library:
           existingClaim: immich-library
+        photos:
+          type: nfs
+          server: nas.local.martinbjeldbak.com
+          path: /volume1/Photos
+          globalMounts:
+            - path: /photos
     env:
       DB_HOSTNAME: immich-database-rw
       DB_DATABASE_NAME: immich
