@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: immich-database
+spec:
+  instances: 1
+  # renovate: datasource=docker depName=ghcr.io/tensorchord/cloudnative-pgvecto.rs
+  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:17-v0.4.0
+  bootstrap:
+    initdb:
+      database: immich
+      owner: immich
+      secret:
+        name: immich-cluster-credentials-secret
+      postInitTemplateSQL:
+        - ALTER SYSTEM SET search_path TO "$user", public, vectors;
+        - CREATE EXTENSION IF NOT EXISTS "vectors";
+      import:
+        type: microservice
+        databases:
+          - immich
+        source:
+          externalCluster: docker-immich
+  storage:
+    size: 5Gi
+    pvcTemplate:
+      storageClassName: proxmox
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 5Gi
+  superuserSecret:
+    name: immich-pg-superuser-secret
+  enableSuperuserAccess: true
+  backup:
+    retentionPolicy: "30d"
+    barmanObjectStore:
+      destinationPath: "s3://home-ops-postgres-backups/immich/"
+      endpointURL: "https://s3.eu-central-003.backblazeb2.com"
+      s3Credentials:
+        accessKeyId:
+          name: immich-backblaze-secret
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: immich-backblaze-secret
+          key: ACCESS_SECRET_KEY
+  externalClusters:
+    - name: docker-immich
+      connectionParameters:
+        host: nas.local.martinbjeldbak.com
+        port: "5433"
+        user: postgres
+        dbname: immich
+      password:
+        name: immich-cluster-credentials-secret
+        key: password

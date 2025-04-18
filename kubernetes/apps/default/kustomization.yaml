@@ -23,6 +23,7 @@ resources:
   - ./homebox/ks.yaml
   - ./homepage/ks.yaml
   - ./icloudpd/ks.yaml
+  - ./immich/ks.yaml
   - ./kometa/ks.yaml
   - ./overseerr/ks.yaml
   - ./paperless/ks.yaml
