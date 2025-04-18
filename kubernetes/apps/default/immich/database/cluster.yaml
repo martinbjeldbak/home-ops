@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: immich-database
+  name: immich-database-2
 spec:
   instances: 1
   # renovate: datasource=docker depName=ghcr.io/tensorchord/cloudnative-pgvecto.rs
@@ -16,6 +16,7 @@ spec:
       secret:
         name: immich-cluster-credentials-secret
       postInitTemplateSQL:
+        - ALTER SYSTEM SET search_path TO "$user", public, vectors;
         - CREATE EXTENSION IF NOT EXISTS "vectors";
         - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
         - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
