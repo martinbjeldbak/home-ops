@@ -40,11 +40,10 @@ spec:
               APPLICATION_PROTOCOL: http
               REVERSE_GEOCODING_ENABLED: true
               DISTANCE_UNIT: km
-              PROMETHEUS_EXPORTER_ENABLED: false  #  TODO: enable!
-              PROMETHEUS_EXPORTER_HOST: dawarich_app
-              PROMETHEUS_EXPORTER_PORT: 9394
-              ENABLE_TELEMETRY: false # More on telemetry: https://dawarich.app/docs/tutorials/telemetry
               SELF_HOSTED: "true"
+              SMTP_PORT: 465
+              SMTP_DOMAIN: martinbjeldbak.com
+              SMTP_FROM: noreply@martinbjeldbak.com
             envFrom:
               - secretRef:
                   name: dawarich-secret
