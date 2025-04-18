@@ -34,7 +34,7 @@ spec:
     postgresql:
       enabled: false  # postgres chart is deprecated https://github.com/immich-app/immich-charts/issues/149
     redis:
-      enabled: true
+      enabled: false  # using dragonfly, see ../redis/cluster.yaml
     immich:
       enabled: true
       persistence:
@@ -44,6 +44,7 @@ spec:
       DB_HOSTNAME: immich-database-rw
       DB_DATABASE_NAME: immich
       LOG_LEVEL: verbose
+      REDIS_HOSTNAME: immich-redis
       TZ: Australia/Melbourne
     envFrom:
       - secretRef:
