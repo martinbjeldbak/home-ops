@@ -33,6 +33,7 @@ spec:
               HBOX_WEB_MAX_FILE_UPLOAD: 10
               HBOX_MAILER_PORT: 465
               HBOX_MAILER_FROM: homebox@martinbjeldbak.com
+              HBOX_OPTIONS_ALLOW_REGISTRATION: false  # already have everyone registered!
             envFrom:
               - secretRef:
                   name: homebox-secret
