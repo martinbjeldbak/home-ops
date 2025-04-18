@@ -14,12 +14,15 @@ spec:
       owner: immich
       secret:
         name: immich-cluster-credentials-secret
-      import:
-        type: microservice
-        databases:
-          - immich
-        source:
-          externalCluster: docker-immich
+      postInitTemplateSQL:
+        - ALTER SYSTEM SET search_path TO "$user", public, vectors;
+        - CREATE EXTENSION IF NOT EXISTS "vectors";
+      # import:
+      #   type: microservice
+      #   databases:
+      #     - immich
+      #   source:
+      #     externalCluster: docker-immich
   postgresql:
     shared_preload_libraries:
       - "vectors.so"
@@ -46,13 +49,13 @@ spec:
         secretAccessKey:
           name: immich-backblaze-secret
           key: ACCESS_SECRET_KEY
-  externalClusters:
-    - name: docker-immich
-      connectionParameters:
-        host: nas.local.martinbjeldbak.com
-        port: "5433"
-        user: postgres
-        dbname: immich
-      password:
-        name: immich-cluster-credentials-secret
-        key: password
+  # externalClusters:
+  #   - name: docker-immich
+  #     connectionParameters:
+  #       host: nas.local.martinbjeldbak.com
+  #       port: "5433"
+  #       user: postgres
+  #       dbname: immich
+  #     password:
+  #       name: immich-cluster-credentials-secret
+  #       key: password
