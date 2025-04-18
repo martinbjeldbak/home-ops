@@ -14,9 +14,6 @@ spec:
       owner: immich
       secret:
         name: immich-cluster-credentials-secret
-      postInitTemplateSQL:
-        - ALTER SYSTEM SET search_path TO "$user", public, vectors;
-        - CREATE EXTENSION IF NOT EXISTS "vectors";
       import:
         type: microservice
         databases:
