@@ -7,7 +7,8 @@ metadata:
 spec:
   instances: 1
   # renovate: datasource=docker depName=ghcr.io/tensorchord/cloudnative-pgvecto.rs
-  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.5-v0.3.0
+  # immich not compatible with pgvecto.rs >0.3
+  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.5-v0.3.0@sha256:be3f025d79aa1b747817f478e07e71be43236e14d00d8a9eb3914146245035ba
   bootstrap:
     initdb:
       database: immich
@@ -15,8 +16,9 @@ spec:
       secret:
         name: immich-cluster-credentials-secret
       postInitTemplateSQL:
-        - ALTER SYSTEM SET search_path TO "$user", public, vectors;
         - CREATE EXTENSION IF NOT EXISTS "vectors";
+        - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
+        - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
       # import:
       #   type: microservice
       #   databases:
