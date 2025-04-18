@@ -24,7 +24,7 @@ spec:
           storage: 5Gi
   superuserSecret:
     name: paperless-pg-superuser-secret
-  enableSuperuserAccess: true
+  enableSuperuserAccess: false
   backup:
     retentionPolicy: "30d"
     barmanObjectStore:
