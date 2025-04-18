@@ -23,6 +23,9 @@ spec:
           - immich
         source:
           externalCluster: docker-immich
+  postgresql:
+    shared_preload_libraries:
+      - "vectors.so"
   storage:
     size: 5Gi
     pvcTemplate:
