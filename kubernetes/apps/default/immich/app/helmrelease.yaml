@@ -39,7 +39,7 @@ spec:
       enabled: true
       persistence:
         library:
-          existingClaim: photo-library
+          existingClaim: immich-library
     env:
       DB_HOSTNAME: immich-database-rw
       DB_DATABASE_NAME: immich
