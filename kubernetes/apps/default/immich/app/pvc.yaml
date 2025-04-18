@@ -13,7 +13,7 @@ spec:
   storageClassName: manual
   nfs:
     server: nas.local.martinbjeldbak.com
-    path: /volume1/Photos
+    path: /volume1/Photos/immich
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
