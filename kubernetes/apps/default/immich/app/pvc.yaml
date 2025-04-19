@@ -26,3 +26,31 @@ spec:
   resources:
     requests:
       storage: 1T
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: immich-external-library
+spec:
+  capacity:
+    storage: 1T
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: manual
+  nfs:
+    server: nas.local.martinbjeldbak.com
+    path: /volume1/Photos
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-external-library
+spec:
+  storageClassName: manual
+  volumeName: immich-external-library
+  accessModes: ["ReadWriteMany"]
+  resources:
+    requests:
+      storage: 1T
