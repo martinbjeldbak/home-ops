@@ -49,13 +49,6 @@ spec:
     envFrom:
       - secretRef:
           name: immich-secret
-    persistence:
-      external:
-        type: nfs
-        server: nas.local.martinbjeldbak.com
-        path: /volume1/Photos
-        globalMounts:
-          - path: /mnt/photos
     postgresql:
       enabled: false  # postgres chart is deprecated https://github.com/immich-app/immich-charts/issues/149
     redis:
@@ -70,6 +63,13 @@ spec:
         requests:
           cpu: 1500m
           memory: 2048M
+      persistence:
+        external:
+          type: nfs
+          server: nas.local.martinbjeldbak.com
+          path: /volume1/Photos
+          globalMounts:
+            - path: /mnt/photos
       ingress:
         main:
           className: internal
