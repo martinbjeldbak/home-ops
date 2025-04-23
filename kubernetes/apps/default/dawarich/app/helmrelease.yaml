@@ -36,7 +36,7 @@ spec:
               DATABASE_NAME: dawarich_development
               MIN_MINUTES_SPENT_IN_CITY: 60
               APPLICATION_HOST: localhost
-              APPLICATION_HOSTS: localhost,dawarich.local.martinbjeldbak.com,dawarich.martinbjeldbak.com
+              APPLICATION_HOSTS: localhost,dawarich.martinbjeldbak.com
               APPLICATION_PROTOCOL: http
               REVERSE_GEOCODING_ENABLED: true
               DISTANCE_UNIT: km
