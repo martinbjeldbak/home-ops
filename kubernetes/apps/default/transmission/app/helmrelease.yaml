@@ -46,7 +46,7 @@ spec:
           app:
             image:
               repository: ghcr.io/home-operations/transmission
-              tag: 4.0.6@sha256:883326c02a90c3af1347301f03fdb95089c864114bd3e003190bb62c2ddd4a1f
+              tag: 4.0.6@sha256:b31ba3236a896969f31460b483c8d49c2940dfd02bfdeabd19ff00ef16e1cc5c
             env:
               TZ: Australia/Melbourne
               TRANSMISSION__DEBUG: true # log settings.json
