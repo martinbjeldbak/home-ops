@@ -49,8 +49,8 @@
           volume: volume_3
     - Overseerr:
         icon: overseerr.svg
-        description: plex media requests
-        href: "https://request.local.martinbjeldbak.com"
+        description: media requests
+        href: "https://overseerr.martinbjeldbak.com"
         widget:
           type: overseerr
           url: http://overseerr:80

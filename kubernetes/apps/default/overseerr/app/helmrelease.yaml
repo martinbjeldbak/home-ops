@@ -38,9 +38,9 @@ spec:
             port: *port
     ingress:
       app:
-        className: internal
+        className: external
         hosts:
-          - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
+          - host: "{{ .Release.Name }}.martinbjeldbak.com"
             paths:
               - path: /
                 service:
