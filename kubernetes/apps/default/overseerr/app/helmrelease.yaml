@@ -39,6 +39,8 @@ spec:
     ingress:
       app:
         className: external
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "external.martinbjeldbak.com"
         hosts:
           - host: "{{ .Release.Name }}.martinbjeldbak.com"
             paths:
