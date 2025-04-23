@@ -44,7 +44,7 @@ nodes:
       - deviceSelector:
           hardwareAddr: "bc:24:11:9b:f9:42"
         dhcp: true
-        mtu: 1420
+        mtu: 1420 # TODO: see if we can now bump to 1500
       - deviceSelector: # USER bridge interface for multus
           hardwareAddr: "bc:24:11:51:22:6c"
         dhcp: true
@@ -56,6 +56,16 @@ nodes:
     machineSpec:
       secureboot: true
       useUKI: true
+    schematic:
+      customization:
+        # Src: https://github.com/onedr0p/home-ops/blob/281630082e53ff9139db8f1cfeb68ee6b169ef12/talos/controlplane.yaml.j2
+        extraKernelArgs:
+          - apparmor=0                          # Less security, faster puter
+          - init_on_alloc=0                     # Less security, faster puter
+          - init_on_free=0                      # Less security, faster puter
+          - mitigations=off                     # Less security, faster puter
+          - security=none                       # Less security, faster puter
+          - talos.auditd.disabled=1             # Less security, faster puter
     talosImageURL: factory.talos.dev/installer-secureboot/62d0931f10c2d9734427318cc15c4fd6a0317866434e53f1bcbecab204bfc688
     controlPlane: true
     nodeLabels:
