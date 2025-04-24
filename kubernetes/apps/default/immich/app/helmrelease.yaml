@@ -67,13 +67,6 @@ spec:
         external:
           enabled: true
           existingClaim: immich-external-library
-          # type: nfs
-          # server: nas.local.martinbjeldbak.com
-          # path: /volume1/Photos
-          # advancedMounts:
-          #   paperless:
-          #     app:
-          #       - path: /library/consume
       ingress:
         main:
           className: internal
