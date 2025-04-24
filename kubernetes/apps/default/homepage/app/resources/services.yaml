@@ -50,7 +50,7 @@
     - Overseerr:
         icon: overseerr.svg
         description: media requests
-        href: "https://overseerr.martinbjeldbak.com"
+        href: "https://overseerr.local.martinbjeldbak.com"
         widget:
           type: overseerr
           url: http://overseerr:80
