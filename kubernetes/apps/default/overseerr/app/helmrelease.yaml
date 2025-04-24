@@ -48,6 +48,15 @@ spec:
                 service:
                   identifier: app
                   port: http
+      internal:
+        className: internal
+        hosts:
+          - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
     persistence:
       config:
         existingClaim: overseerr-v2
