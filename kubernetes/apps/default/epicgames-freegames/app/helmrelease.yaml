@@ -22,7 +22,7 @@ spec:
             env:
               TZ: Australia/Melbourne
               BASE_URL: https://epic.local.martinbjeldbak.com
-              CRON_SCHEDULE: "0 0,6,12,18 * * *" # every 6 hours
+              CRON_SCHEDULE: "0 0,6,12,18 * * *"  # every 6 hours
               EMAIL_SENDER_ADDRESS: epicgames@martinbjeldbak.com
               EMAIL_SENDER_NAME: "Epic Games Captchas"
               RUN_ON_STARTUP: "true"
@@ -38,9 +38,9 @@ spec:
             resources:
               requests:
                 cpu: 10m
-              #   memory: 100Mi
-              # limits:
-              #   memory: 2000Mi
+                memory: 100Mi
+              limits:
+                memory: 2000Mi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: false
