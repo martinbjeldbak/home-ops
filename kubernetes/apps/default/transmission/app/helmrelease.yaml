@@ -55,7 +55,7 @@ spec:
               TRANSMISSION__INCOMPLETE_DIR: /data/downloads/torrents/incomplete
               TRANSMISSION__ALT_SPEED_DOWN: 500000
               TRANSMISSION__ALT_SPEED_UP: 500000
-              TRANSMISSION__ALT_SPEED_ENABLED: true
+              TRANSMISSION__ALT_SPEED_ENABLED: false
               TRANSMISSION__ALT_SPEED_TIME_BEGIN: 480
               TRANSMISSION__ALT_SPEED_TIME_DAY: 127
               TRANSMISSION__ALT_SPEED_TIME_ENABLED: true
