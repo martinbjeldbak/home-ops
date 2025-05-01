@@ -8,3 +8,4 @@ spec:
   allowFirstLastIPs: "No"
   blocks:
     - cidr: "192.168.1.0/24"
+    - cidr: ::ffff:192.168.1.0/120 # IPv4-mapped IPv6
