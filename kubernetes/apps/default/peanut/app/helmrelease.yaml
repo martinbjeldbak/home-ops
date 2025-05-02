@@ -23,7 +23,7 @@ spec:
           app:
             image:
               repository: brandawg93/peanut
-              tag: 5.7.2@sha256:74f053d0ab3c9d811cb4f4685610804ccc6788f3f4ef38de6d4ef33251f5c981
+              tag: 5.7.3@sha256:ba6fa626b4fa73218443d41636c5f6c7533295799f57890ecc30b84aee87d195
             env:
               TZ: Australia/Melbourne
               WEB_PORT: &port 8080
