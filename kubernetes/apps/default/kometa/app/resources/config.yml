@@ -24,7 +24,7 @@ libraries:
     - default: imdb
       template_variables:
         use_popular: true
-        use_top: true
+        use_top: false
         use_lowest: false
         radarr_add_missing_top: true
         sonarr_add_missing_top: true
