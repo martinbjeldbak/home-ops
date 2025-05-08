@@ -15,7 +15,7 @@ spec:
       cache: writethrough
       ssd: "true"
       storage: csi-proxmox
-    volumeHandle: cluster-1/beelink-eqi12-1/local-lvm/vm-9999-pvc-568191ae-58aa-4159-ae05-6163bf5dfdc1
+    volumeHandle: cluster-1/beelink-eq12-1/local-lvm/vm-9999-pvc-568191ae-58aa-4159-ae05-6163bf5dfdc1
   storageClassName: proxmox
   nodeAffinity:
     required:
@@ -46,6 +46,17 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: radarr-cache-v2
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: proxmox
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: radarr
 spec:
   accessModes: ["ReadWriteOnce"]
   resources:
