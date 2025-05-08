@@ -7,7 +7,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   capacity:
-    storage: 10Gi
+    storage: 20Gi
   csi:
     driver: csi.proxmox.sinextra.dev
     fsType: xfs
@@ -38,7 +38,7 @@ spec:
   accessModes: ["ReadWriteOnce"]
   resources:
     requests:
-      storage: 10Gi
+      storage: 20Gi
   storageClassName: proxmox
   volumeName: radarr-v4
 ---
@@ -50,5 +50,5 @@ spec:
   accessModes: ["ReadWriteOnce"]
   resources:
     requests:
-      storage: 10Gi
+      storage: 20Gi
   storageClassName: proxmox
