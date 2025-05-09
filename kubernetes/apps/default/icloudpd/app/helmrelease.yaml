@@ -65,9 +65,7 @@ spec:
                   port: http
     persistence:
       config-cache:
-        existingClaim: icloudpd-cache
-        globalMounts:
-          - path: /root/.pyicloud
+        type: emptyDir
       data:
         type: nfs
         server: nas.local.martinbjeldbak.com
