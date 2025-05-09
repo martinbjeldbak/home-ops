@@ -18,7 +18,7 @@ spec:
   path: ./kubernetes/apps/default/plex/app
   postBuild:
     substitute:
-      APP: plex-v3
+      APP: plex
       VOLSYNC_CACHE_CAPACITY: 25Gi
   prune: true
   sourceRef:
