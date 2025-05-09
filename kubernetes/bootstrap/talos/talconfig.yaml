@@ -60,6 +60,7 @@ nodes:
       customization:
         # Src: https://github.com/onedr0p/home-ops/blob/281630082e53ff9139db8f1cfeb68ee6b169ef12/talos/controlplane.yaml.j2
         extraKernelArgs:
+          - -selinux                            # Less security, faster puter
           - apparmor=0                          # Less security, faster puter
           - init_on_alloc=0                     # Less security, faster puter
           - init_on_free=0                      # Less security, faster puter
