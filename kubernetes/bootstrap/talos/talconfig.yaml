@@ -65,6 +65,7 @@ nodes:
           - init_on_alloc=0                     # Less security, faster puter
           - init_on_free=0                      # Less security, faster puter
           - mitigations=off                     # Less security, faster puter
+          - i915.enable_guc=3                   # Meteor Lake CPU / iGPU
           - security=none                       # Less security, faster puter
           - talos.auditd.disabled=1             # Less security, faster puter
     talosImageURL: factory.talos.dev/installer-secureboot/62d0931f10c2d9734427318cc15c4fd6a0317866434e53f1bcbecab204bfc688

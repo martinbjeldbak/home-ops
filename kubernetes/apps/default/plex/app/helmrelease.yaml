@@ -11,15 +11,11 @@ spec:
     name: app-template
   install:
     remediation:
-      retries: 3
+      retries: -1
   upgrade:
     cleanupOnFail: true
     remediation:
-      strategy: rollback
       retries: 3
-  dependsOn:
-    - name: intel-device-plugin-gpu
-      namespace: kube-system
   values:
     controllers:
       plex:
@@ -70,9 +66,7 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
-        supplementalGroups: [44, 100] # 44: video, 100: user group on synology
-      nodeSelector:
-        intel.feature.node.kubernetes.io/gpu: "true"
+        supplementalGroups: [44]
     service:
       app:
         controller: plex
