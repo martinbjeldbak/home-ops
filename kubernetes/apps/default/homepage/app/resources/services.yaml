@@ -361,6 +361,14 @@
           username: {{HOMEPAGE_VAR_PROXMOX_TOKEN_ID}}
           password: {{HOMEPAGE_VAR_PROXMOX_TOKEN_PASSWORD}}
           # node: beelink-eq14-1
+    - Cloudflare Tunnel:
+        icon: proxmox.svg
+        description: cloudflare tunnel
+        widget:
+          type: cloudflared
+          accountid: {{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNT_ID}}
+          tunnelid: {{HOMEPAGE_VAR_CLOUDFLARE_TUNNEL_ID}}
+          key: {{HOMEPAGE_VAR_CLOUDFLARE_API_KEY}}
     - Proxmox Backup Server:
         icon: proxmox.svg
         description: backup server
