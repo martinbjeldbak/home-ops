@@ -22,7 +22,7 @@ spec:
             env:
               LOG_LEVEL: "info"
               ORIGIN_URL: "https://dns.local.martinbjeldbak.com"
-              REPLICA_URL: "https://dns2.local.martinbjeldbak.com"
+              REPLICA_URL: "http://adguardhome-replica:3000"
               CRON: "0 */2 * * *"  # every 2nd hour
               RUN_ON_START: true
               API_PORT: 0  # Disable sync API server
