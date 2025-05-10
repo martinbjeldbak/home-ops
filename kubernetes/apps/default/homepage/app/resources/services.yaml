@@ -362,7 +362,7 @@
           password: {{HOMEPAGE_VAR_PROXMOX_TOKEN_PASSWORD}}
           # node: beelink-eq14-1
     - Cloudflare Tunnel:
-        icon: proxmox.svg
+        icon: cloudflare.svg
         description: cloudflare tunnel
         widget:
           type: cloudflared
