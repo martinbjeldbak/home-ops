@@ -9,6 +9,7 @@ components:
   - ../../flux/components/namespace
   - ../../flux/components/sops
 resources:
+  - ./adguardhome-replica/ks.yaml
   - ./adguardhome-sync/ks.yaml
   - ./authentik/ks.yaml
   - ./autobrr/ks.yaml
