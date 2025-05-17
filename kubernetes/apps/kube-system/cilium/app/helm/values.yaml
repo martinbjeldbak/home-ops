@@ -26,8 +26,8 @@ endpointRoutes:
 envoy:
   rollOutPods: true
   prometheus:
-     serviceMonitor:
-       enabled: true
+    serviceMonitor:
+      enabled: true
 gatewayAPI:
   enabled: true
   enableAlpn: true
