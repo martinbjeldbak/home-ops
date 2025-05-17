@@ -1,8 +1,8 @@
 ---
 autoDirectNodeRoutes: true
-bandwidthManager:
-  enabled: true
-  bbr: true
+# bandwidthManager: # TODO: Look into enabling
+#   enabled: true
+#   bbr: true
 bpf:
   datapathMode: netkit
   masquerade: true
@@ -22,7 +22,7 @@ cni:
 dashboards:
   enabled: true
 devices: ens+
-enableIPv4BIGTCP: false
+enableIPv4BIGTCP: false # TODO: look into enabling
 endpointRoutes:
   enabled: true
 envoy:
