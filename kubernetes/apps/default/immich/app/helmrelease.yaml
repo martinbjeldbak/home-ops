@@ -67,11 +67,14 @@ spec:
         external:
           enabled: true
           existingClaim: immich-external-library
-      ingress:
-        main:
-          className: internal
-          enabled: true
-          hosts:
-            - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
-              paths:
-                - path: "/"
+      route:
+        app:
+          hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+          parentRefs:
+            - name: internal
+              namespace: kube-system
+              sectionName: https
+          rules:
+            - backendRefs:
+                - name: immich
+                  port: 2283

@@ -47,11 +47,14 @@ spec:
         persistence:
           existingClaim: authentik-redis-v4
     server:
-      ingress:
-        enabled: true
-        ingressClassName: internal
-        hosts:
-          - auth.local.martinbjeldbak.com
+      route:
+        main:
+          enabled: true
+          hostnames: ["auth.local.martinbjeldbak.com"]
+          parentRefs:
+            - name: internal
+              namespace: kube-system
+              sectionName: https
       volumes:
         - name: postgres-creds
           secret:

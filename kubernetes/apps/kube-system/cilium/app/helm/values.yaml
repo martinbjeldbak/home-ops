@@ -13,8 +13,9 @@ cgroup:
   hostRoot: /sys/fs/cgroup
 endpointRoutes:
   enabled: true
-envoy:
-  enabled: false
+gatewayAPI:
+  enabled: true
+  enableAlpn: true
 dashboards:
   enabled: true
 hubble:
