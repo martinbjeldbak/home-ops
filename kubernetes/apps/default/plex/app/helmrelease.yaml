@@ -104,7 +104,7 @@ spec:
         type: emptyDir
       media:
         type: nfs
-        server: nas.local.martinbjeldbak.com
+        server: 192.168.10.10
         path: /volume1/data/media
         globalMounts:
           - path: /media
