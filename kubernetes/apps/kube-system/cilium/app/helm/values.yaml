@@ -10,7 +10,7 @@ bpf:
   # tproxy: true
 bpfClockProbe: true
 bgpControlPlane:
-  enabled: false
+  enabled: false # TODO: look into enabling
 cgroup:
   automount:
     enabled: false
@@ -20,7 +20,7 @@ cni:
 dashboards:
   enabled: true
 devices: enp+
-enableIPv4BIGTCP: true
+enableIPv4BIGTCP: false # TODO: look into enabling
 endpointRoutes:
   enabled: true
 envoy:
