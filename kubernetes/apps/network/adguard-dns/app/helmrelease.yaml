@@ -44,7 +44,7 @@ spec:
           - name: LOG_LEVEL
             value: debug
           - name: ADGUARD_URL
-            value: https://dns.local.martinbjeldbak.com
+            value: https://192.168.1.1
           - name: ADGUARD_USER
             valueFrom:
               secretKeyRef:
