@@ -29,7 +29,7 @@ envoy:
     serviceMonitor:
       enabled: true
 gatewayAPI:
-  enabled: false
+  enabled: true
   enableAlpn: true
   xffNumTrustedHops: 1
 hubble:
