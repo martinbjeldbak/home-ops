@@ -7,10 +7,11 @@ metadata:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: onepassword-service-account-kubernetes
+  name: onepassword-secret
   namespace: external-secrets
 stringData:
-  token: {{ ENV.ONEPASSWORD_SERVICE_ACCOUNT_TOKEN }}
+  1password-credentials.json: {{ ENV.ONEPASSWORD_CREDENTIALS }}
+  token: {{ ENV.ONEPASSWORD_CONNECT_TOKEN }}
 ---
 apiVersion: v1
 kind: Namespace
