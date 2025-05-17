@@ -60,7 +60,7 @@ spec:
         controller: syncthing
         ports:
           http:
-            port: 8384
+            port: &port 8384
       transfer:
         controller: syncthing
         type: LoadBalancer
@@ -77,16 +77,17 @@ spec:
           discovery:
             port: 21027
             protocol: UDP
-    ingress:
+    route:
       app:
-        className: internal
-        hosts:
-          - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     persistence:
       config:
         existingClaim: *app

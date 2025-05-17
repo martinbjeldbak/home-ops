@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: home-assistant
+  name: &app home-assistant
 spec:
   interval: 30m
   chartRef:
@@ -84,37 +84,39 @@ spec:
         controller: home-assistant
         ports:
           http:
-            port: 8123
+            port: &port 8123
           code-server:
             port: 12321
-    ingress:
+    # ingress:
+    #   app:
+    #     className: internal
+    #     hosts:
+    #       - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
+    #         paths:
+    #           - path: /
+    #             service:
+    #               identifier: app
+    #               port: http
+    #   code:
+    #     className: internal
+    #     hosts:
+    #       - host: "hass-vscode.local.martinbjeldbak.com"
+    #         paths:
+    #           - path: /
+    #             service:
+    #               identifier: app
+    #               port: 12321
+    route:
       app:
-        className: internal
-        annotations:
-          # nginx.ingress.kubernetes.io/auth-url: |-
-          #     http://ak-outpost-authentik-embedded-outpost.default.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
-          # nginx.ingress.kubernetes.io/auth-signin: |-
-          #     https://home-assistant.local.martinbjeldbak.com/outpost.goauthentik.io/start?rd=$scheme://$http_host$escaped_request_uri
-          # nginx.ingress.kubernetes.io/auth-response-headers: |-
-          #     Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-entitlements,X-authentik-email,X-authentik-name,X-authentik-uid
-          # nginx.ingress.kubernetes.io/auth-snippet: |
-          #     proxy_set_header X-Forwarded-Host $http_host;
-        hosts:
-          - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
-      code:
-        className: internal
-        hosts:
-          - host: "hass-vscode.local.martinbjeldbak.com"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: 12321
+        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     persistence:
       config:
         existingClaim: home-assistant-v2

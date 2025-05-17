@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: prowlarr
+  name: &app prowlarr
 spec:
   interval: 1h
   chartRef:
@@ -50,6 +50,9 @@ spec:
               tag: 1.36.1.5049@sha256:94504dfaeccc5a72ae5cb9c8d776ebdddf91ab709a40bbacaf68bf7509f368d4
             env:
               TZ: Australia/Melbourne
+              PROWLARR__SERVER__PORT: &port 80
+              PROWLARR__LOG__LEVEL: info
+              PROWLARR__UPDATE__BRANCH: develop
             envFrom:
               - secretRef:
                   name: prowlarr-secret
@@ -80,27 +83,18 @@ spec:
         controller: prowlarr
         ports:
           http:
-            port: 9696
-
-    ingress:
+            port: *port
+    route:
       app:
-        className: internal
-        # annotations:
-        #   nginx.ingress.kubernetes.io/auth-url: |-
-        #       http://ak-outpost-authentik-embedded-outpost.default.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
-        #   nginx.ingress.kubernetes.io/auth-signin: |-
-        #       https://prowlarr.local.martinbjeldbak.com/outpost.goauthentik.io/start?rd=$scheme://$http_host$escaped_request_uri
-        #   nginx.ingress.kubernetes.io/auth-response-headers: |-
-        #       Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-entitlements,X-authentik-email,X-authentik-name,X-authentik-uid
-        #   nginx.ingress.kubernetes.io/auth-snippet: |
-        #       proxy_set_header X-Forwarded-Host $http_host;
-        hosts:
-          - host: "prowlarr.local.martinbjeldbak.com"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     persistence:
       config:
         existingClaim: prowlarr-v2
