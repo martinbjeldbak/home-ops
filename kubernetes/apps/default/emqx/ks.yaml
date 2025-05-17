@@ -11,9 +11,6 @@ spec:
       app.kubernetes.io/name: *app
   path: ./kubernetes/apps/default/emqx/app
   prune: true
-  dependsOn:
-    - name: onepassword-store
-      namespace: external-secrets
   sourceRef:
     kind: GitRepository
     namespace: flux-system
