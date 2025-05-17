@@ -8,6 +8,8 @@ bpf:
   masquerade: true
   preallocateMaps: true
   # tproxy: true
+  # Ref: https://github.com/siderolabs/talos/issues/10002
+  hostLegacyRouting: true
 bpfClockProbe: true
 bgpControlPlane:
   enabled: false
@@ -20,7 +22,7 @@ cni:
 dashboards:
   enabled: true
 devices: ens+
-enableIPv4BIGTCP: false
+enableIPv4BIGTCP: true
 endpointRoutes:
   enabled: true
 envoy:
