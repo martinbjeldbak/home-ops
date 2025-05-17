@@ -10,7 +10,7 @@ bpf:
   # tproxy: true
 bpfClockProbe: true
 bgpControlPlane:
-  enabled: true
+  enabled: false
 cgroup:
   automount:
     enabled: false
