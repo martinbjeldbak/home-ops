@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: external-secrets
 resources:
   - ./external-secrets/ks.yaml
+  - ./onepassword/ks.yaml
 components:
   - ../../components/common
   - ../../flux/components/alerts
