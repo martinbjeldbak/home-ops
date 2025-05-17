@@ -29,7 +29,7 @@ spec:
               tag: v1.2.0
             env:
               TZ: Australia/Melbourne
-              HOMEPAGE_ALLOWED_HOSTS: homepage.local.martinbjeldbak.com
+              HOMEPAGE_ALLOWED_HOSTS: homepage.martinbjeldbak.com
               PORT: &port 3000
               # LOG_LEVEL: debug
             envFrom:
@@ -69,7 +69,7 @@ spec:
             port: *port
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+        hostnames: ["{{ .Release.Name }}.martinbjeldbak.com"]
         parentRefs:
           - name: internal
             namespace: kube-system
