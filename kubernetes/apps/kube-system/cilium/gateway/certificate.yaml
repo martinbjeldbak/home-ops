@@ -3,13 +3,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: "martinbjeldbak-com-production"
+  name: martinbjeldbak-com
 spec:
-  secretName: "martinbjeldbak-com-production-tls"
+  secretName: martinbjeldbak-com-tls
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "martinbjeldbak.com"
+  commonName: martinbjeldbak.com
   dnsNames:
     - "martinbjeldbak.com"
     - "*.local.martinbjeldbak.com"
