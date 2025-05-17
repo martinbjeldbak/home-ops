@@ -29,7 +29,7 @@ spec:
     - name: https
       protocol: HTTPS
       port: 443
-      hostname: "*.martinbjeldbak.com"
+      hostname: "*.local.martinbjeldbak.com"
       allowedRoutes:
         namespaces:
           from: All
