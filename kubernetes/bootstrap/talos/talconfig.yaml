@@ -49,7 +49,6 @@ nodes:
           hardwareAddr: "bc:24:11:51:22:6c"
         dhcp: true
         mtu: 1420
-        ignore: true
   - hostname: "node-02"
     ipAddress: "192.168.1.102"
     installDisk: /dev/sda
@@ -86,7 +85,6 @@ nodes:
           hardwareAddr: "bc:24:11:51:22:7c"
         dhcp: true
         mtu: 1420
-        ignore: true
 
 # Global patches
 patches:

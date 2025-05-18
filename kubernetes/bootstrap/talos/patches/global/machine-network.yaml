@@ -3,6 +3,7 @@ machine:
     disableSearchDomain: true
     nameservers:
       - 192.168.1.1
-      - 192.168.10.15
+      - 192.168.1.2  # this is running in-cluster
+      # - 192.168.10.15
       # - 1.1.1.1
       # - 1.0.0.1

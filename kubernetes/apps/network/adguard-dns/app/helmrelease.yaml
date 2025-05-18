@@ -71,7 +71,7 @@ spec:
           timeoutSeconds: 60
     triggerLoopOnEvent: true
     policy: sync
-    sources: ["crd", "gateway-httproute", "service"]
+    sources: ["gateway-httproute", "service"] # TODO: remove crd?
     txtOwnerId: main
     txtPrefix: k8s.main.
     domainFilters: ["martinbjeldbak.com"]
@@ -79,3 +79,5 @@ spec:
       enabled: true
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret
+    extraArgs:
+      - --gateway-name=internal
