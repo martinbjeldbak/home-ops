@@ -301,9 +301,9 @@
         namespace: default
         app: zigbee2mqtt
     - SLZB-06M:
-        icon: "https://slzb-06m.local.martinbjeldbak.com/icons.svg?upd=1#SMLogo"
+        icon: "http://192.168.30.27/icons.svg?upd=1#SMLogo"
         description: zigbee hub
-        href: https://slzb-06m.local.martinbjeldbak.com
+        href: http://192.168.30.27/
 
 
 - Network:

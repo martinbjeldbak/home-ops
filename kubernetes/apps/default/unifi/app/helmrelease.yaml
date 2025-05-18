@@ -59,13 +59,13 @@ spec:
         # See https://github.com/jacobalberty/unifi-docker
         ports:
           http:
-            port: &port 8443 # web interface + API
+            port: 8443 # web interface + API
             protocol: HTTPS
           controller:
             port: 8080
             protocol: TCP
           portal-http:
-            port: 8880 # http portal
+            port: &port 8880 # http portal
             protocol: HTTP
           portal-https:
             enabled: false
