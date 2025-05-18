@@ -37,7 +37,7 @@ spec:
               DNS_ADDRESS: 10.96.0.10  # CoreDNS
             envFrom:
               - secretRef:
-                  name: prowlarr-secret
+                  name: prowlarr-gluetun-secret
             securityContext:
               readOnlyRootFilesystem: false
               runAsNonRoot: false
@@ -57,6 +57,9 @@ spec:
               PROWLARR__LOG__LEVEL: info
               PROWLARR__SERVER__PORT: *port
               PROWLARR__UPDATE__BRANCH: develop
+            envFrom:
+              - secretRef:
+                  name: prowlarr-secret
             probes:
               liveness: &probes
                 enabled: true
