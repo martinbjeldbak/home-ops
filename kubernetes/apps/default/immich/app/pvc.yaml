@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: immich-library
+  name: immich-library-nas
 spec:
   capacity:
     storage: 1T
@@ -18,10 +18,10 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: immich-library
+  name: immich-library-nas
 spec:
   storageClassName: manual
-  volumeName: immich-library
+  volumeName: immich-library-nas
   accessModes: ["ReadWriteMany"]
   resources:
     requests:

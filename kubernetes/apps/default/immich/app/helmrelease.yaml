@@ -57,7 +57,7 @@ spec:
       enabled: true
       persistence:
         library:
-          existingClaim: immich-library
+          existingClaim: immich-library-nas
     server:
       resources:
         requests:
