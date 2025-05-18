@@ -5,7 +5,7 @@ kind: Certificate
 metadata:
   name: martinbjeldbak-com-unifi
 spec:
-  secretName: martinbjeldbak-com-unifi
+  secretName: martinbjeldbak-com-unifi-tls
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
