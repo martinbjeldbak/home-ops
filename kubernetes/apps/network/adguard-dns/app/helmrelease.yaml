@@ -24,12 +24,10 @@ spec:
     kind: OCIRepository
     name: adguard-dns
   install:
-    disableSchemaValidation: true # Ref: https://github.com/kubernetes-sigs/external-dns/issues/5206
     remediation:
       retries: -1
   upgrade:
     cleanupOnFail: true
-    disableSchemaValidation: true # Ref: https://github.com/kubernetes-sigs/external-dns/issues/5206
     remediation:
       retries: 3
   values:
@@ -60,13 +58,13 @@ spec:
         livenessProbe:
           httpGet:
             path: /healthz
-            port: 8080
+            port: "8080"
           initialDelaySeconds: 10
           timeoutSeconds: 60
         readinessProbe:
           httpGet:
             path: /healthz
-            port: 8080
+            port: "8080"
           initialDelaySeconds: 10
           timeoutSeconds: 60
     triggerLoopOnEvent: true

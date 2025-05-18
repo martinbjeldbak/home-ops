@@ -95,7 +95,7 @@ spec:
           - path: /var/syncthing
       data:
         type: nfs
-        server: nas.local.martinbjeldbak.com
+        server: alderaan.internal
         path: /volume1/syncthing
         globalMounts:
           - path: /data

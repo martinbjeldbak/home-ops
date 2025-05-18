@@ -87,7 +87,7 @@ spec:
           - path: /config/log
       data:
         type: nfs
-        server: nas.local.martinbjeldbak.com
+        server: alderaan.internal
         path: /volume1/data
         globalMounts:
           - path: /data

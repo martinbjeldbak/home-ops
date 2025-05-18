@@ -94,7 +94,7 @@ spec:
         type: emptyDir
       library:
         type: nfs
-        server: nas.local.martinbjeldbak.com
+        server: alderaan.internal
         path: /volume1/data/emulators
         globalMounts:
           - path: /romm/library
