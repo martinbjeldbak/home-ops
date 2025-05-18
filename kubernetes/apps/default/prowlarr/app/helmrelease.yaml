@@ -39,6 +39,7 @@ spec:
               - secretRef:
                   name: prowlarr-secret
             securityContext:
+              runAsNonRoot: false  # NOTE: have to run as root https://github.com/qdm12/gluetun/issues/1519
               capabilities:
                 add: ["NET_ADMIN"]
               allowPrivilegeEscalation: false
