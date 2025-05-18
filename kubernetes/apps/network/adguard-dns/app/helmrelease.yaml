@@ -71,10 +71,10 @@ spec:
           timeoutSeconds: 60
     triggerLoopOnEvent: true
     policy: sync
-    sources: ["gateway-httproute", "service"] # TODO: remove crd?
+    sources: ["gateway-httproute", "service"]
     txtOwnerId: main
     txtPrefix: k8s.main.
-    domainFilters: ["martinbjeldbak.com"]
+    domainFilters: ["local.martinbjeldbak.com"]
     serviceMonitor:
       enabled: true
     podAnnotations:

@@ -10,4 +10,7 @@ spec:
     name: letsencrypt-production
     kind: ClusterIssuer
   commonName: martinbjeldbak.com
-  dnsNames: ["martinbjeldbak.com", "*.martinbjeldbak.com"]
+  dnsNames:
+    - "martinbjeldbak.com"
+    - "*.local.martinbjeldbak.com"
+    - "*.martinbjeldbak.com"
