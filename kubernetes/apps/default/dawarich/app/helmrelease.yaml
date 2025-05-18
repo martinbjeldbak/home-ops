@@ -26,7 +26,7 @@ spec:
           app: &dawarich
             image:
               repository: docker.io/freikin/dawarich
-              tag: 0.26.0 # TODO: update with sha
+              tag: 0.26.1 # TODO: update with sha
             command: ['bin/rails', 'server', '-p', '3000', '-b', '::']
             env:
               TIME_ZONE: Australia/Melbourne
