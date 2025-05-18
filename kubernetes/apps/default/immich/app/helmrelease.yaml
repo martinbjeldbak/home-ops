@@ -66,7 +66,7 @@ spec:
       persistence:
         external:
           enabled: true
-          existingClaim: immich-external-library
+          existingClaim: immich-external-library-nas
       route:
         app:
           hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
