@@ -58,13 +58,13 @@ spec:
         livenessProbe:
           httpGet:
             path: /healthz
-            port: 8080
+            port: "8080"
           initialDelaySeconds: 10
           timeoutSeconds: 60
         readinessProbe:
           httpGet:
             path: /healthz
-            port: 8080
+            port: "8080"
           initialDelaySeconds: 10
           timeoutSeconds: 60
     triggerLoopOnEvent: true
