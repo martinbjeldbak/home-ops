@@ -21,6 +21,11 @@ spec:
       prowlarr:
         annotations:
           reloader.stakater.com/auto: "true"
+        pod:
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+          terminationGracePeriodSeconds: 120
         initContainers:
           gluetun:
             image:
@@ -39,7 +44,6 @@ spec:
               - secretRef:
                   name: prowlarr-secret
             securityContext:
-              runAsNonRoot: false  # NOTE: have to run as root https://github.com/qdm12/gluetun/issues/1519
               capabilities:
                 add: ["NET_ADMIN"]
               allowPrivilegeEscalation: false
