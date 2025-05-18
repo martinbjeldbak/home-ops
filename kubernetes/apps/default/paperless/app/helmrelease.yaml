@@ -28,7 +28,7 @@ spec:
               repository: ghcr.io/paperless-ngx/paperless-ngx
               tag: 2.15.3@sha256:39b337e73c978238f0b529baf42f1b59b65d17eed35cd61bc1ccbbf779b5d58b
             env:
-              PAPERLESS_URL: https://paperless.martinbjeldbak.com
+              PAPERLESS_URL: https://paperless.local.martinbjeldbak.com
               PAPERLESS_TIME_ZONE: Australia/Melbourne
               PAPERLESS_OCR_LANGUAGES: dan
               PAPERLESS_OCR_LANGUAGE: dan+eng
@@ -116,7 +116,7 @@ spec:
             port: *port
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.martinbjeldbak.com"]
+        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
         parentRefs:
           - name: internal
             namespace: kube-system
