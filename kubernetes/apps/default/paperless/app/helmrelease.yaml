@@ -130,7 +130,7 @@ spec:
         existingClaim: paperless-v2
       consumption:
         type: nfs
-        server: nas.local.martinbjeldbak.com
+        server: alderaan.internal
         path: /volume4/paperless-inbox
         advancedMounts:
           paperless:

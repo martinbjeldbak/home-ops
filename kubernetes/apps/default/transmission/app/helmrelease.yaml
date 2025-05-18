@@ -126,7 +126,7 @@ spec:
               - path: /tmp
       downloads:
         type: nfs
-        server: nas.local.martinbjeldbak.com
+        server: alderaan.internal
         path: /volume1/data/downloads/torrents
         advancedMounts:
           transmission:

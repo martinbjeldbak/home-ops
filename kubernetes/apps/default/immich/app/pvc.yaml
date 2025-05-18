@@ -12,7 +12,7 @@ spec:
   persistentVolumeReclaimPolicy: Recycle
   storageClassName: manual
   nfs:
-    server: nas.local.martinbjeldbak.com
+    server: alderaan.internal
     path: /volume1/Photos/immich
 ---
 apiVersion: v1
@@ -40,7 +40,7 @@ spec:
   persistentVolumeReclaimPolicy: Recycle
   storageClassName: manual
   nfs:
-    server: nas.local.martinbjeldbak.com
+    server: alderaan.internal
     path: /volume1/Photos
 ---
 apiVersion: v1
