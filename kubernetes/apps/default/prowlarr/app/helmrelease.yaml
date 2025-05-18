@@ -32,7 +32,7 @@ spec:
               VPN_SERVICE_PROVIDER: airvpn
               VPN_TYPE: wireguard
               UPDATER_PERIOD: 48h
-              FIREWALL_INPUT_PORTS: "9696"
+              FIREWALL_INPUT_PORTS: &port 80
               FIREWALL_OUTBOUND_SUBNETS: 10.96.0.0/16,10.69.0.0/16  # Allow access to k8s subnets
               DNS_ADDRESS: 10.96.0.10  # CoreDNS
             envFrom:
@@ -55,7 +55,7 @@ spec:
               PROWLARR__AUTH__REQUIRED: DisabledForLocalAddresses
               PROWLARR__LOG__DBENABLED: "False"
               PROWLARR__LOG__LEVEL: info
-              PROWLARR__SERVER__PORT: &port 80
+              PROWLARR__SERVER__PORT: *port
               PROWLARR__UPDATE__BRANCH: develop
             probes:
               liveness: &probes
