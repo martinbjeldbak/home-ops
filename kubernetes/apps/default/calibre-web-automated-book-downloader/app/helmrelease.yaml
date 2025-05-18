@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app calibre-web-automated-book-downloader
+  name: calibre-web-automated-book-downloader
 spec:
   interval: 30m
   chartRef:
@@ -71,7 +71,7 @@ spec:
             sectionName: https
         rules:
           - backendRefs:
-              - name: *app
+              - identifier: app
                 port: *port
     persistence:
       ingest:
