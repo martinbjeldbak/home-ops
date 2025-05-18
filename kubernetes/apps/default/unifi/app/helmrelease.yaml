@@ -59,13 +59,13 @@ spec:
         # See https://github.com/jacobalberty/unifi-docker
         ports:
           http:
-            port: 8443 # web interface + API
+            port: &port 8443 # web interface + API
             protocol: HTTPS
           controller:
             port: 8080
             protocol: TCP
           portal-http:
-            port: &port 8880 # http portal
+            port: 8880 # http portal
             protocol: HTTP
           portal-https:
             enabled: false
@@ -95,6 +95,24 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
+            timeouts:
+              request: 0s  # websocket, never time out
+              backendRequest: 0s  # websocket, never time out
     persistence:
       unifi:
         existingClaim: unifi-v3
+      cert:
+        type: secret
+        name: 'martinbjeldbak-com-unifi-tls'
+        advancedMounts:
+          unifi:
+            app:
+              - path: /unifi/cert/cert.pem
+                subPath: tls.crt
+                readOnly: true
+              - path: /unifi/cert/privkey.pem
+                subPath: tls.key
+                readOnly: true
+              - path: /unifi/data/keystore
+                subPath: keystore.jks
+                readOnly: false

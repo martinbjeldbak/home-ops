@@ -1,0 +1,19 @@
+---
+# yaml-language-server: $schema=https://schemas.tholinka.dev/cert-manager.io/certificate_v1.json
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: martinbjeldbak-com-unifi
+spec:
+  secretName: martinbjeldbak-com-unifi
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: unifi.local.martinbjeldbak.com
+  dnsNames:
+    - 'unifi.local.martinbjeldbak.com'
+  keystores:
+    jks:
+      create: true
+      alias: unifi
+      password: aircontrolenterprise
