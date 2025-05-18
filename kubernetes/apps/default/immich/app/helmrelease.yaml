@@ -68,7 +68,7 @@ spec:
           enabled: true
           existingClaim: immich-external-library-nas
       route:
-        main:
+        main: # TODO: broken https://github.com/immich-app/immich-charts/issues/165
           hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
           parentRefs:
             - name: internal
