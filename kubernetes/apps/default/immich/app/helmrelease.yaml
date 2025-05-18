@@ -68,7 +68,7 @@ spec:
           enabled: true
           existingClaim: immich-external-library-nas
       route:
-        app:
+        main:
           hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
           parentRefs:
             - name: internal
