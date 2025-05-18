@@ -39,7 +39,6 @@ spec:
               APPLICATION_HOSTS: localhost,dawarich.martinbjeldbak.com,dawarich.local.martinbjeldbak.com
               APPLICATION_PROTOCOL: http
               REVERSE_GEOCODING_ENABLED: true
-              DISTANCE_UNIT: km
               SELF_HOSTED: "true"
               SMTP_PORT: 465
               SMTP_DOMAIN: martinbjeldbak.com
