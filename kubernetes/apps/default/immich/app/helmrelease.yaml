@@ -76,5 +76,5 @@ spec:
               sectionName: https
           rules:
             - backendRefs:
-                - name: immich
+                - name: immich-server
                   port: 2283
