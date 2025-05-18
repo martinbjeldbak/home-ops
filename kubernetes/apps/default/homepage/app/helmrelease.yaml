@@ -63,7 +63,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        controller: homepage
+        controller: *app
         ports:
           http:
             port: *port
