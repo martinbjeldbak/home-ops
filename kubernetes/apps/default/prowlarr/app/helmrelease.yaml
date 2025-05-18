@@ -109,9 +109,5 @@ spec:
     persistence:
       config:
         existingClaim: prowlarr-v2
-        advancedMounts:
-          prowlarr:
-            app:
-              - path: /config
       tmp:
         type: emptyDir
