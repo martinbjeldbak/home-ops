@@ -3,9 +3,9 @@
 clusterName: kubernetes
 
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-talosVersion: v1.10.1
+talosVersion: v1.10.2
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-kubernetesVersion: v1.33.0
+kubernetesVersion: v1.33.1
 
 endpoint: https://kubernetes.local.martinbjeldbak.com:6443
 
@@ -49,7 +49,6 @@ nodes:
           hardwareAddr: "bc:24:11:51:22:6c"
         dhcp: true
         mtu: 1420
-        ignore: true
   - hostname: "node-02"
     ipAddress: "192.168.1.102"
     installDisk: /dev/sda
@@ -86,7 +85,6 @@ nodes:
           hardwareAddr: "bc:24:11:51:22:7c"
         dhcp: true
         mtu: 1420
-        ignore: true
 
 # Global patches
 patches:

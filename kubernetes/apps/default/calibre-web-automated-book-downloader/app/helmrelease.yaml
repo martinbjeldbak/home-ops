@@ -62,20 +62,21 @@ spec:
         ports:
           http:
             port: *port
-    ingress:
+    route:
       app:
-        className: internal
-        hosts:
-          - host: calibre-book-downloader.local.martinbjeldbak.com
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames: ["calibre-book-downloader.local.martinbjeldbak.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     persistence:
       ingest:
         type: nfs
-        server: nas.local.martinbjeldbak.com
+        server: alderaan.internal
         path: /volume4/calibre-web-automated-inbox
         advancedMounts:
           calibre-web-automated-book-downloader:

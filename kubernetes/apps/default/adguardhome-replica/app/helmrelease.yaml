@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: adguardhome-replica
+  name: &app adguardhome-replica
 spec:
   interval: 1h
   chartRef:
@@ -30,23 +30,24 @@ spec:
         ports:
           http:
             primary: true
-            port: 3000
+            port: &port 3000
           dns-tcp:
             port: 53
             protocol: TCP
           dns-udp:
             port: 53
             protocol: UDP
-    ingress:
+    route:
       app:
-        className: internal
-        hosts:
-          - host: "dns3.local.martinbjeldbak.com"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames: ["dns3.local.martinbjeldbak.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     persistence:
       data:
         existingClaim: adguardhome-replica

@@ -63,16 +63,17 @@ spec:
         ports:
           http:
             port: *port
-    ingress:
+    route:
       app:
-        className: internal
-        hosts:
-          - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     persistence:
       data:
         existingClaim: romm
@@ -93,7 +94,7 @@ spec:
         type: emptyDir
       library:
         type: nfs
-        server: nas.local.martinbjeldbak.com
+        server: alderaan.internal
         path: /volume1/data/emulators
         globalMounts:
           - path: /romm/library

@@ -51,7 +51,7 @@ spec:
   # externalClusters:
   #   - name: docker-dawarich
   #     connectionParameters:
-  #       host: nas.local.martinbjeldbak.com
+  #       host: alderaan.internal
   #       port: "5433"
   #       user: dawarich
   #       dbname: dawarich_development

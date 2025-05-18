@@ -28,7 +28,7 @@ spec:
               TZ: Australia/Melbourne
               PUID: 1029  # 'docker' user
               PGID: 100  # 'users' group
-              # DOCKER_MODS: ghcr.io/linuxserver/mods:universal-calibre-v7.16.0
+              CALIBRE_PORT: &port 8083
             probes:
               liveness:
                 enabled: true
@@ -58,23 +58,24 @@ spec:
         controller: calibre-web-automated
         ports:
           http:
-            port: 8083
-    ingress:
+            port: *port
+    route:
       app:
-        className: internal
-        hosts:
-          - host: calibre.local.martinbjeldbak.com
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames: ["calibre.local.martinbjeldbak.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     persistence:
       config:
         existingClaim: calibre-web-automated
       calibre-library:
         type: nfs
-        server: nas.local.martinbjeldbak.com
+        server: alderaan.internal
         path: /volume1/data/media/books
         advancedMounts:
           calibre-web-automated:
@@ -82,7 +83,7 @@ spec:
               - path: /calibre-library
       ingest:
         type: nfs
-        server: nas.local.martinbjeldbak.com
+        server: alderaan.internal
         path: /volume4/calibre-web-automated-inbox
         advancedMounts:
           calibre-web-automated:

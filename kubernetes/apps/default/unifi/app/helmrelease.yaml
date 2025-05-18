@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: unifi
+  name: &app unifi
 spec:
   interval: 30m
   chartRef:
@@ -29,7 +29,7 @@ spec:
           app:
             image:
               repository: jacobalberty/unifi
-              tag:  v9.1.120@sha256:150af8f7bd96f597e7441f4598bd82435c2ee73b03b833179d30e6e2666be12b
+              tag: v9.1.120@sha256:150af8f7bd96f597e7441f4598bd82435c2ee73b03b833179d30e6e2666be12b
             env:
               TZ: Australia/Melbourne
               RUNAS_UID0: "false"
@@ -59,7 +59,7 @@ spec:
         # See https://github.com/jacobalberty/unifi-docker
         ports:
           http:
-            port: 8443 # web interface + API
+            port: &port 8443 # web interface + API
             protocol: HTTPS
           controller:
             port: 8080
@@ -84,18 +84,17 @@ spec:
           discovery:
             port: 10001
             protocol: UDP
-    ingress:
+    route:
       app:
-        className: internal
-        annotations:
-          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-        hosts:
-          - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     persistence:
       unifi:
         existingClaim: unifi-v3

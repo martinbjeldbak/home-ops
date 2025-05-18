@@ -24,12 +24,10 @@ spec:
     kind: OCIRepository
     name: adguard-dns
   install:
-    disableSchemaValidation: true # Ref: https://github.com/kubernetes-sigs/external-dns/issues/5206
     remediation:
       retries: -1
   upgrade:
     cleanupOnFail: true
-    disableSchemaValidation: true # Ref: https://github.com/kubernetes-sigs/external-dns/issues/5206
     remediation:
       retries: 3
   values:
@@ -44,7 +42,7 @@ spec:
           - name: LOG_LEVEL
             value: debug
           - name: ADGUARD_URL
-            value: https://dns.local.martinbjeldbak.com
+            value: http://192.168.1.1:3000
           - name: ADGUARD_USER
             valueFrom:
               secretKeyRef:
@@ -60,22 +58,24 @@ spec:
         livenessProbe:
           httpGet:
             path: /healthz
-            port: 8080
+            port: "8080"
           initialDelaySeconds: 10
           timeoutSeconds: 60
         readinessProbe:
           httpGet:
             path: /healthz
-            port: 8080
+            port: "8080"
           initialDelaySeconds: 10
           timeoutSeconds: 60
     triggerLoopOnEvent: true
     policy: sync
-    sources: ["crd", "ingress", "service"]
+    sources: ["gateway-httproute", "service"]
     txtOwnerId: main
     txtPrefix: k8s.main.
-    domainFilters: ["martinbjeldbak.com"]
+    domainFilters: ["local.martinbjeldbak.com"]
     serviceMonitor:
       enabled: true
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret
+    extraArgs:
+      - --gateway-name=internal

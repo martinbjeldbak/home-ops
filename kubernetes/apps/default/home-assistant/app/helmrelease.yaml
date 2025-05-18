@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: home-assistant
+  name: &app home-assistant
 spec:
   interval: 30m
   chartRef:
@@ -38,7 +38,7 @@ spec:
           app:
             image:
               repository: ghcr.io/home-operations/home-assistant
-              tag: 2025.5.1@sha256:020eecfb33fbc8473a54d24607e0352d4381af51d9963cfa70b7b915115da2d1
+              tag: 2025.5.2@sha256:92594f14fd3cc0795c1934690aa7ea0bc99622edf0029df8a52a23e95ad3af2f
             env:
               TZ: Australia/Melbourne
               HASS_HTTP_TRUSTED_PROXY_1: 192.168.0.0/16
@@ -59,7 +59,7 @@ spec:
           code-server:
             image:
               repository: ghcr.io/coder/code-server
-              tag: 4.100.1@sha256:85d8de203d9f4b59aabbb9f88cdf3aa1cb8000aa53459556225b2754e2a785c8
+              tag: 4.100.2@sha256:0c31654f1125c3a685a42ed1f2946573f5ebaaf016c5bc0640c72f9f571267e0
             args:
               - --auth
               - none
@@ -84,37 +84,39 @@ spec:
         controller: home-assistant
         ports:
           http:
-            port: 8123
+            port: &port 8123
           code-server:
             port: 12321
-    ingress:
+    # ingress:
+    #   app:
+    #     className: internal
+    #     hosts:
+    #       - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
+    #         paths:
+    #           - path: /
+    #             service:
+    #               identifier: app
+    #               port: http
+    #   code:
+    #     className: internal
+    #     hosts:
+    #       - host: "hass-vscode.local.martinbjeldbak.com"
+    #         paths:
+    #           - path: /
+    #             service:
+    #               identifier: app
+    #               port: 12321
+    route:
       app:
-        className: internal
-        annotations:
-          # nginx.ingress.kubernetes.io/auth-url: |-
-          #     http://ak-outpost-authentik-embedded-outpost.default.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
-          # nginx.ingress.kubernetes.io/auth-signin: |-
-          #     https://home-assistant.local.martinbjeldbak.com/outpost.goauthentik.io/start?rd=$scheme://$http_host$escaped_request_uri
-          # nginx.ingress.kubernetes.io/auth-response-headers: |-
-          #     Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-entitlements,X-authentik-email,X-authentik-name,X-authentik-uid
-          # nginx.ingress.kubernetes.io/auth-snippet: |
-          #     proxy_set_header X-Forwarded-Host $http_host;
-        hosts:
-          - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
-      code:
-        className: internal
-        hosts:
-          - host: "hass-vscode.local.martinbjeldbak.com"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: 12321
+        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     persistence:
       config:
         existingClaim: home-assistant-v2

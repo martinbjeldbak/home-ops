@@ -11,5 +11,5 @@ spec:
   targets:
     staticConfig:
       static:
-        - nas.local.martinbjeldbak.com
+        - alderaan.internal
         - slzb-06m.local.martinbjeldbak.com

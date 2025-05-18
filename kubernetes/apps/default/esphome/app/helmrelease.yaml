@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: esphome
+  name: &app esphome
 spec:
   interval: 30m
   chartRef:
@@ -47,7 +47,7 @@ spec:
           code-server:
             image:
               repository: ghcr.io/coder/code-server
-              tag: 4.100.1@sha256:85d8de203d9f4b59aabbb9f88cdf3aa1cb8000aa53459556225b2754e2a785c8
+              tag: 4.100.2@sha256:0c31654f1125c3a685a42ed1f2946573f5ebaaf016c5bc0640c72f9f571267e0
             args:
               - --auth
               - none
@@ -71,27 +71,40 @@ spec:
         controller: esphome
         ports:
           http:
-            port: 6052
+            port: &port 6052
             primary: true
           code-server:
             port: 12321
 
-    ingress:
+    # ingress:
+    #   app:
+    #     className: internal
+    #     annotations:
+    #       nginx.ingress.kubernetes.io/rewrite-target: /$1
+    #     hosts:
+    #       - host: esphome.local.martinbjeldbak.com
+    #         paths:
+    #           - path: /(.*)
+    #             service:
+    #               identifier: app
+    #               port: http
+    #           - path: /code/(.*)
+    #             service:
+    #               identifier: app
+    #               port: code-server
+
+    # TODO: route to code-server
+    route:
       app:
-        className: internal
-        annotations:
-          nginx.ingress.kubernetes.io/rewrite-target: /$1
-        hosts:
-          - host: esphome.local.martinbjeldbak.com
-            paths:
-              - path: /(.*)
-                service:
-                  identifier: app
-                  port: http
-              - path: /code/(.*)
-                service:
-                  identifier: app
-                  port: code-server
+        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
 
     persistence:
       config:

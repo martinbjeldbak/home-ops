@@ -1,6 +1,6 @@
 ---
 NUT_SERVERS:
-  - HOST: nas.local.martinbjeldbak.com
+  - HOST: alderaan.internal
     PORT: 3493
 INFLUX_HOST: ''
 INFLUX_TOKEN: ''
