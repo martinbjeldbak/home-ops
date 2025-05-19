@@ -87,36 +87,7 @@ spec:
             port: &port 8123
           code-server:
             port: 12321
-    # ingress:
-    #   app:
-    #     className: internal
-    #     hosts:
-    #       - host: "{{ .Release.Name }}.local.martinbjeldbak.com"
-    #         paths:
-    #           - path: /
-    #             service:
-    #               identifier: app
-    #               port: http
-    #   code:
-    #     className: internal
-    #     hosts:
-    #       - host: "hass-vscode.local.martinbjeldbak.com"
-    #         paths:
-    #           - path: /
-    #             service:
-    #               identifier: app
-    #               port: 12321
-    route:
-      app:
-        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
+    # HTTPRoute moved behind Authentik
     persistence:
       config:
         existingClaim: home-assistant-v2
