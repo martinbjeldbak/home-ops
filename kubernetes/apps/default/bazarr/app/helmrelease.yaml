@@ -65,7 +65,7 @@ spec:
             port: *port
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+        hostnames: ["subtitles.local.martinbjeldbak.com"]
         parentRefs:
           - name: internal
             namespace: kube-system
