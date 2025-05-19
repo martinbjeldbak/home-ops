@@ -62,7 +62,7 @@ spec:
         controller: bazarr
         ports:
           http:
-            port: *port
+            port: &port 6767
     route:
       app:
         hostnames: ["subtitles.local.martinbjeldbak.com"]
