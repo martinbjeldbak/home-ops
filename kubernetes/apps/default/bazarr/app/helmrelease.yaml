@@ -62,18 +62,7 @@ spec:
         controller: bazarr
         ports:
           http:
-            port: &port 6767
-    route:
-      app:
-        hostnames: ["subtitles.local.martinbjeldbak.com"]
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
+            port: 6767
     persistence:
       config:
         existingClaim: bazarr-v2
