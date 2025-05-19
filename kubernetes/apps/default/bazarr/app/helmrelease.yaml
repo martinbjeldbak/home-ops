@@ -63,6 +63,7 @@ spec:
         ports:
           http:
             port: 6767
+    # HTTPRoute moved behind Authentik
     persistence:
       config:
         existingClaim: bazarr-v2
