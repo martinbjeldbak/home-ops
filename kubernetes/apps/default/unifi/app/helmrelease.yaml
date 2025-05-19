@@ -103,7 +103,7 @@ spec:
         existingClaim: unifi-v3
       cert:
         type: secret
-        name: 'martinbjeldbak-com-unifi-tls'
+        name: martinbjeldbak-com-unifi-tls
         advancedMounts:
           unifi:
             app:

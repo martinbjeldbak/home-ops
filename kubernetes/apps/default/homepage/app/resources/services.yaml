@@ -50,7 +50,7 @@
     - Overseerr:
         icon: overseerr.svg
         description: media requests
-        href: "https://overseerr.local.martinbjeldbak.com"
+        href: "https://overseerr.martinbjeldbak.com"
         widget:
           type: overseerr
           url: http://overseerr:80
@@ -61,7 +61,7 @@
         href: "https://prowlarr.local.martinbjeldbak.com"
         widget:
           type: prowlarr
-          url: http://prowlarr:9696
+          url: http://prowlarr
           key: {{HOMEPAGE_VAR_PROWLARR_API_KEY}}
     - Radarr:
         icon: radarr.svg
