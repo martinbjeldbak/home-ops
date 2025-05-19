@@ -31,7 +31,7 @@ spec:
               TZ: Australia/Melbourne
               RADARR__APP__INSTANCENAME: Radarr
               RADARR__APP__THEME: dark
-              RADARR__AUTH__METHOD: External
+              PROWLARR__AUTH__METHOD: Basic
               RADARR__LOG__DBENABLED: "False"
               RADARR__LOG__LEVEL: info
               RADARR__SERVER__PORT: &port 80
@@ -74,17 +74,7 @@ spec:
         ports:
           http:
             port: *port
-    route:
-      app:
-        hostnames: ["movies.local.martinbjeldbak.com"]
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
+    # HTTPRoute moved behind Authentik
     persistence:
       config:
         existingClaim: radarr
