@@ -28,7 +28,7 @@ spec:
         containers:
           app:
             image:
-              repository: jacobalberty/unifi
+              repository: ghcr.io/jacobalberty/unifi-docker
               tag: v9.1.120@sha256:150af8f7bd96f597e7441f4598bd82435c2ee73b03b833179d30e6e2666be12b
             env:
               TZ: Australia/Melbourne
@@ -65,7 +65,7 @@ spec:
             port: 8080
             protocol: TCP
           portal-http:
-            port: 8880 # http portal
+            port: 8880  # http portal
             protocol: HTTP
           portal-https:
             enabled: false
