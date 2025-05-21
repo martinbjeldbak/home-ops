@@ -55,6 +55,14 @@ spec:
                 key: password
           - name: DRY_RUN
             value: "false"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: http-webhook
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: http-webhook
     triggerLoopOnEvent: true
     policy: sync
     sources: ["gateway-httproute", "service"]
