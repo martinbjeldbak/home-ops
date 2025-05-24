@@ -71,8 +71,6 @@ spec:
   dependsOn:
     - name: dragonfly-operator
       namespace: dragonfly-operator-system
-    - name: onepassword-store
-      namespace: external-secrets
   interval: 30m
   path: ./kubernetes/apps/default/immich/redis
   prune: true
