@@ -111,6 +111,7 @@ spec:
   externalClusters:
     - name: immichClusterBackup
       barmanObjectStore:
+        serverName: immich-database
         destinationPath: "s3://home-ops-postgres-backups/immich/"
         endpointURL: "https://s3.eu-central-003.backblazeb2.com"
         s3Credentials:
