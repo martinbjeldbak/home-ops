@@ -11,6 +11,9 @@ spec:
       sectionName: https
   rules:
     - matches:
+        - path:
+            type: PathPrefix
+            value: /
       backendRefs:
         - name: immich-server
           port: 2283
