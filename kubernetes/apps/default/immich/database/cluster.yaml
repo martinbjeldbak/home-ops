@@ -14,6 +14,8 @@ spec:
       owner: immich
       secret:
         name: immich-cluster-credentials-secret
+      postInitSQL:
+        - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
       # Source: https://github.com/immich-app/immich/discussions/9060#discussioncomment-9688353
       postInitApplicationSQL:
         - ALTER SYSTEM SET search_path TO "$user", public, vectors;
@@ -37,7 +39,7 @@ spec:
           storage: 5Gi
   superuserSecret:
     name: immich-pg-superuser-secret
-  enableSuperuserAccess: true
+  enableSuperuserAccess: false
   backup:
     retentionPolicy: "30d"
     barmanObjectStore:
