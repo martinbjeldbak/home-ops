@@ -10,7 +10,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 6.29.0
+    tag: 6.30.0
   url: oci://ghcr.io/grafana/helm-charts/loki
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
@@ -26,12 +26,11 @@ spec:
   install:
     crds: Skip
     remediation:
-      retries: 3
+      retries: -1
   upgrade:
     cleanupOnFail: true
     crds: Skip
     remediation:
-      strategy: rollback
       retries: 3
   values:
     deploymentMode: SingleBinary
@@ -62,16 +61,16 @@ spec:
             index:
               prefix: loki_index_
               period: 24h
-              # structuredConfig: # TODO: setup alertmanager
-      #   ruler:
-      #     enable_api: true
-      #     enable_alertmanager_v2: true
-      #     alertmanager_url: http://alertmanager-operated.observability.svc.cluster.local:9093
-      #     storage:
-      #       type: local
-      #       local:
-      #         directory: /rules
-      #     rule_path: /rules/fake
+      structuredConfig:
+        ruler:
+          enable_api: true
+          enable_alertmanager_v2: true
+          alertmanager_url: http://alertmanager-operated.observability.svc.cluster.local:9093
+          storage:
+            type: local
+            local:
+              directory: /rules
+          rule_path: /rules/fake
     singleBinary:
       replicas: 1
       persistence:
@@ -96,6 +95,7 @@ spec:
       enabled: false
     sidecar:
       image:
-        repository: ghcr.io/kiwigrid/k8s-sidecar
+        repository: ghcr.io/home-operations/k8s-sidecar
+        tag: 1.30.3@sha256:39cca7abcad8f1621b9462d95f7d0e60301b92fcb0ff4de0ad4561859011cddf
       rules:
         searchNamespace: ALL
