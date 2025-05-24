@@ -38,8 +38,8 @@ spec:
               requests:
                 cpu: 5m
                 memory: 512Mi
-              # limits:
-              #   memory: 3072Mi
+              limits:
+                memory: 3072Mi
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -63,8 +63,8 @@ spec:
             resources:
               requests:
                 cpu: 10m
-              # limits:
-              #   memory: 512Mi
+              limits:
+                memory: 512Mi
 
     service:
       app:
@@ -74,26 +74,8 @@ spec:
             port: &port 6052
             primary: true
           code-server:
-            port: 12321
+            port: &port-code-server 12321
 
-    # ingress:
-    #   app:
-    #     className: internal
-    #     annotations:
-    #       nginx.ingress.kubernetes.io/rewrite-target: /$1
-    #     hosts:
-    #       - host: esphome.local.martinbjeldbak.com
-    #         paths:
-    #           - path: /(.*)
-    #             service:
-    #               identifier: app
-    #               port: http
-    #           - path: /code/(.*)
-    #             service:
-    #               identifier: app
-    #               port: code-server
-
-    # TODO: route to code-server
     route:
       app:
         hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
@@ -102,6 +84,19 @@ spec:
             namespace: kube-system
             sectionName: https
         rules:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /code/
+            filters:
+              - type: URLRewrite
+                urlRewrite:
+                  path:
+                    type: ReplacePrefixMatch
+                    replacePrefixMatch: /
+            backendRefs:
+              - identifier: app
+                port: *port-code-server
           - backendRefs:
               - identifier: app
                 port: *port
@@ -121,9 +116,15 @@ spec:
         globalMounts:
           - path: /config/secrets.yaml
             subPath: secrets.yaml
-      cache:
+      tmpfs:
         type: emptyDir
         advancedMounts:
           esphome:
             app:
               - path: /cache
+                subPath: cache
+            code-server:
+              - path: /tmp
+                subPath: code-server-tmp
+              - path: /nonexistent
+                subPath: nonexistent
