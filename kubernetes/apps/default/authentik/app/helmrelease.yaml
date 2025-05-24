@@ -41,11 +41,8 @@ spec:
         from: Authentik <authentik@martinbjeldbak.com>
         port: 465
         use_tls: true
-    redis:
-      enabled: true
-      master:
-        persistence:
-          existingClaim: authentik-redis-v4
+      redis:
+        host: authentik-redis
     server:
       route:
         main:
@@ -80,6 +77,9 @@ spec:
         - name: postgres-creds
           mountPath: /postgres-creds
           readOnly: true
+      metrics:
+        serviceMonitor:
+          enabled: true
     worker:
       volumes:
         - name: postgres-creds
