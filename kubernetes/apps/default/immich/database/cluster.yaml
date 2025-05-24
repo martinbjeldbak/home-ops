@@ -6,9 +6,8 @@ metadata:
   name: immich-database
 spec:
   instances: 1
-  # renovate: datasource=docker depName=ghcr.io/tensorchord/cloudnative-pgvecto.rs
-  # immich not compatible with pgvecto.rs >0.3
-  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.5-v0.3.0@sha256:be3f025d79aa1b747817f478e07e71be43236e14d00d8a9eb3914146245035ba
+  # renovate: datasource=docker depName=ghcr.io/tensorchord/cloudnative-vectorchord
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16.9-0.3.0@sha256:69c827b85380454b46260219a93c9fd13942453200d1d07f856a17d7af0df8b2
   bootstrap:
     initdb:
       database: immich
@@ -19,21 +18,15 @@ spec:
       postInitApplicationSQL:
         - ALTER SYSTEM SET search_path TO "$user", public, vectors;
         - SET search_path TO "$user", public, vectors;
-        - CREATE EXTENSION IF NOT EXISTS "vectors";
+        - CREATE EXTENSION IF NOT EXISTS "vchord";
         - CREATE EXTENSION IF NOT EXISTS "cube";
         - CREATE EXTENSION IF NOT EXISTS "earthdistance";
         - ALTER SCHEMA vectors OWNER TO "immich";
         - GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA vectors TO "immich";
         - GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO "immich";
-      # import:
-      #   type: microservice
-      #   databases:
-      #     - immich
-      #   source:
-      #     externalCluster: docker-immich
   postgresql:
     shared_preload_libraries:
-      - "vectors.so"
+      - "vchord.so"
   storage:
     size: 5Gi
     pvcTemplate:
