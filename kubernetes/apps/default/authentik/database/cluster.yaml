@@ -7,7 +7,7 @@ metadata:
 spec:
   instances: 1
   # renovate: datasource=docker depName=ghcr.io/cloudnative-pg/postgresql
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.2-34@sha256:61d2b391e3e324d05edc6c65c555989a7c544ddb72ef271b3abd4a35b57942b1
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.5-standard-bookworm@sha256:8bcc3eb5b0b2dd7ad91c3c57eadc0df37148f28be16fc8062ed5eb29a2a4a4b7
   bootstrap:  # following https://cloudnative-pg.io/documentation/1.25/bootstrap/
     initdb:
       database: authentik
