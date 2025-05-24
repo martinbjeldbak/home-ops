@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: immich-database
+  name: immich-database-v2
 spec:
   instances: 1
   # renovate: datasource=docker depName=ghcr.io/tensorchord/cloudnative-vectorchord
@@ -50,76 +50,3 @@ spec:
         secretAccessKey:
           name: immich-backblaze-secret
           key: ACCESS_SECRET_KEY
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json
-apiVersion: postgresql.cnpg.io/v1
-kind: Cluster
-metadata:
-  name: immich-database-v2
-spec:
-  instances: 1
-  # renovate: datasource=docker depName=ghcr.io/tensorchord/cloudnative-vectorchord
-  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16.9-0.3.0@sha256:69c827b85380454b46260219a93c9fd13942453200d1d07f856a17d7af0df8b2
-  bootstrap:
-    recovery:
-      source: immichClusterBackup
-      database: immich
-      owner: immich
-      secret:
-        name: immich-cluster-credentials-secret
-    # initdb:
-    #   database: immich
-    #   owner: immich
-    #   secret:
-    #     name: immich-cluster-credentials-secret
-    #   # Source: https://github.com/immich-app/immich/discussions/9060#discussioncomment-9688353
-    #   postInitApplicationSQL:
-    #     - ALTER SYSTEM SET search_path TO "$user", public, vectors;
-    #     - SET search_path TO "$user", public, vectors;
-    #     - CREATE EXTENSION IF NOT EXISTS "vchord" CASCADE;
-    #     - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
-    #     - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
-    #     - ALTER SCHEMA vectors OWNER TO "immich";
-    #     - GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA vectors TO "immich";
-    #     - GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO "immich";
-  postgresql:
-    shared_preload_libraries:
-      - "vchord.so"
-  storage:
-    size: 5Gi
-    pvcTemplate:
-      storageClassName: proxmox
-      accessModes: ["ReadWriteOnce"]
-      resources:
-        requests:
-          storage: 5Gi
-  superuserSecret:
-    name: immich-pg-superuser-secret
-  enableSuperuserAccess: false
-  backup:
-    retentionPolicy: "30d"
-    barmanObjectStore:
-      destinationPath: "s3://home-ops-postgres-backups/immich/"
-      endpointURL: "https://s3.eu-central-003.backblazeb2.com"
-      s3Credentials:
-        accessKeyId:
-          name: immich-backblaze-secret
-          key: ACCESS_KEY_ID
-        secretAccessKey:
-          name: immich-backblaze-secret
-          key: ACCESS_SECRET_KEY
-  externalClusters:
-    - name: immichClusterBackup
-      barmanObjectStore:
-        serverName: immich-database
-        destinationPath: "s3://home-ops-postgres-backups/immich/"
-        endpointURL: "https://s3.eu-central-003.backblazeb2.com"
-        s3Credentials:
-          accessKeyId:
-            name: immich-backblaze-secret
-            key: ACCESS_KEY_ID
-          secretAccessKey:
-            name: immich-backblaze-secret
-            key: ACCESS_SECRET_KEY
-        wal:
-          maxParallel: 8
