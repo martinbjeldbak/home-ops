@@ -7,4 +7,4 @@ spec:
   schedule: "0 0 0 * * *"  # midnight
   backupOwnerReference: self
   cluster:
-    name: immich-database
+    name: immich-database-v2
