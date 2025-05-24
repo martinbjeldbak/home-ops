@@ -7,8 +7,8 @@ metadata:
 spec:
   instances: 1
   # renovate: datasource=docker depName=ghcr.io/cloudnative-pg/postgresql
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.4-9@sha256:507376cb4fb29498d767fbc1ed5c3a9ee6099136d3519be69bdb463b92b5120e
-  bootstrap:  # following https://cloudnative-pg.io/documentation/1.25/bootstrap/
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.5-standard-bookworm@sha256:8bcc3eb5b0b2dd7ad91c3c57eadc0df37148f28be16fc8062ed5eb29a2a4a4b7
+  bootstrap:
     initdb:
       database: romm
       owner: romm

@@ -7,8 +7,8 @@ metadata:
 spec:
   instances: 1
   # renovate: datasource=docker depName=ghcr.io/cloudnative-pg/postgresql
-  imageName: ghcr.io/cloudnative-pg/postgis:17
-  bootstrap:  # following https://cloudnative-pg.io/documentation/1.25/bootstrap/
+  imageName: ghcr.io/cloudnative-pg/postgis:17-3.5@sha256:f429306b52e07d013e13cdc78fe987e29f81ed7e3e115784c12073f598904786
+  bootstrap:
     initdb:
       database: dawarich_development
       owner: dawarich

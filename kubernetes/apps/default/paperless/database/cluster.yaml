@@ -7,7 +7,7 @@ metadata:
 spec:
   instances: 1
   # renovate: datasource=docker depName=ghcr.io/cloudnative-pg/postgresql
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.4-7@sha256:84bc07f2c73f4f5473774e6502c5b1ca2d11ae87e4ca5445c646c0d80d2792ec
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.5-standard-bookworm@sha256:8bcc3eb5b0b2dd7ad91c3c57eadc0df37148f28be16fc8062ed5eb29a2a4a4b7
   bootstrap:  # following https://cloudnative-pg.io/documentation/1.25/bootstrap/
     initdb:
       database: paperless
