@@ -18,5 +18,5 @@ spec:
   accessModes: ["ReadWriteOnce"]
   resources:
     requests:
-      storage: 100Gi
+      storage: 150Gi
   storageClassName: proxmox
