@@ -1,0 +1,16 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute # NOTE: remove when https://github.com/immich-app/immich-charts/issues/165 resolved
+metadata:
+  name: immich
+spec:
+  hostnames: ["immich.local.martinbjeldbak.com"]
+  parentRefs:
+    - name: internal
+      namespace: kube-system
+      sectionName: https
+  rules:
+    - matches:
+      backendRefs:
+        - name: immich-server
+          port: 2283
