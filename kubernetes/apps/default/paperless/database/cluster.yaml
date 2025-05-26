@@ -24,10 +24,17 @@ spec:
           storage: 10Gi
   superuserSecret:
     name: paperless-pg-superuser-secret
+  monitoring:
+    enablePodMonitor: true
   enableSuperuserAccess: false
   backup:
-    retentionPolicy: "30d"
+    retentionPolicy: 30d
     barmanObjectStore:
+      data:
+        compression: bzip2
+      wal:
+        compression: bzip2
+        maxParallel: 8
       destinationPath: "s3://home-ops-postgres-backups/paperless/"
       endpointURL: "https://s3.eu-central-003.backblazeb2.com"
       s3Credentials:
