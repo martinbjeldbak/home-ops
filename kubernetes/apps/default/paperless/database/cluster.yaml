@@ -15,13 +15,13 @@ spec:
       secret:
         name: paperless-cluster-credentials-secret
   storage:
-    size: 5Gi
+    size: 10Gi
     pvcTemplate:
       storageClassName: proxmox
       accessModes: ["ReadWriteOnce"]
       resources:
         requests:
-          storage: 5Gi
+          storage: 10Gi
   superuserSecret:
     name: paperless-pg-superuser-secret
   enableSuperuserAccess: false
