@@ -1,0 +1,22 @@
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: b2-immich
+spec:
+  retentionPolicy: 30d
+  configuration:
+    data:
+      compression: bzip2
+    wal:
+      compression: bzip2
+      maxParallel: 8
+    destinationPath: "s3://home-ops-postgres-backups/immich/"
+    endpointURL: "https://s3.eu-central-003.backblazeb2.com"
+    s3Credentials:
+      accessKeyId:
+        name: immich-backblaze-secret
+        key: ACCESS_KEY_ID
+      secretAccessKey:
+        name: immich-backblaze-secret
+        key: ACCESS_SECRET_KEY
