@@ -44,4 +44,4 @@ spec:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
-        barmanObjectName: b2-romm
+        barmanObjectName: b2-immich
