@@ -1,0 +1,31 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/refs/heads/main/gitrepository-source-v1.json
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: barman-cloud-crd
+spec:
+  interval: 30m
+  url: https://github.com/cloudnative-pg/plugin-barman-cloud
+  ref:
+    tag: v0.4.0
+  ignore: |
+    # exclude
+    /*
+    # include
+    !manifest.yaml
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: barman-cloud-crd
+spec:
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: barman-cloud-crd
+  wait: true
+  interval: 15m
+  retryInterval: 1m
+  timeout: 5m
