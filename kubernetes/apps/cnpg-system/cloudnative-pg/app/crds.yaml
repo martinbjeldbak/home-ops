@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: barman-cloud-crd
+  name: barman-cloud-crd # until https://github.com/cloudnative-pg/charts/issues/575 resolved
 spec:
   interval: 30m
   url: https://github.com/cloudnative-pg/plugin-barman-cloud
