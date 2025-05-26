@@ -55,13 +55,3 @@ spec:
         secretAccessKey:
           name: dawarich-backblaze-secret
           key: ACCESS_SECRET_KEY
-  # externalClusters:
-  #   - name: docker-dawarich
-  #     connectionParameters:
-  #       host: alderaan.internal
-  #       port: "5433"
-  #       user: dawarich
-  #       dbname: dawarich_development
-  #     password:
-  #       name: dawarich-cluster-credentials-secret
-  #       key: password
