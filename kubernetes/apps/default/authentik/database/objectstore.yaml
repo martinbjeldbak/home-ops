@@ -1,0 +1,22 @@
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: b2-authentik
+spec:
+  retentionPolicy: 30d
+  configuration:
+    data:
+      compression: bzip2
+    wal:
+      compression: bzip2
+      maxParallel: 8
+    destinationPath: "s3://home-ops-postgres-backups/authentik/"
+    endpointURL: "https://s3.eu-central-003.backblazeb2.com"
+    s3Credentials:
+      accessKeyId:
+        name: authentik-backblaze-secret
+        key: ACCESS_KEY_ID
+      secretAccessKey:
+        name: authentik-backblaze-secret
+        key: ACCESS_SECRET_KEY

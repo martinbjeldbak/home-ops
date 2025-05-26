@@ -19,12 +19,6 @@ spec:
         - CREATE EXTENSION postgis_topology;
         - CREATE EXTENSION fuzzystrmatch;
         - CREATE EXTENSION postgis_tiger_geocoder;
-      # import:
-      #   type: microservice
-      #   databases:
-      #     - dawarich_development
-      #   source:
-      #     externalCluster: docker-dawarich
   storage:
     size: 5Gi
     pvcTemplate:
@@ -38,30 +32,8 @@ spec:
   monitoring:
     enablePodMonitor: true
   enableSuperuserAccess: false
-  backup:
-    retentionPolicy: 30d
-    barmanObjectStore:
-      data:
-        compression: bzip2
-      wal:
-        compression: bzip2
-        maxParallel: 8
-      destinationPath: "s3://home-ops-postgres-backups/dawarich/"
-      endpointURL: "https://s3.eu-central-003.backblazeb2.com"
-      s3Credentials:
-        accessKeyId:
-          name: dawarich-backblaze-secret
-          key: ACCESS_KEY_ID
-        secretAccessKey:
-          name: dawarich-backblaze-secret
-          key: ACCESS_SECRET_KEY
-  # externalClusters:
-  #   - name: docker-dawarich
-  #     connectionParameters:
-  #       host: alderaan.internal
-  #       port: "5433"
-  #       user: dawarich
-  #       dbname: dawarich_development
-  #     password:
-  #       name: dawarich-cluster-credentials-secret
-  #       key: password
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: b2-dawarich
