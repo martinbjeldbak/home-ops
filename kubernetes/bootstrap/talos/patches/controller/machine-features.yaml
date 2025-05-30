@@ -1,0 +1,14 @@
+machine:
+  features:
+    rbac: true
+    stableHostname: true
+    kubernetesTalosAPIAccess:
+      enabled: true
+      allowedRoles: ["os:admin"]
+      allowedKubernetesNamespaces: ["system-upgrade"]
+    apidCheckExtKeyUsage: true # Enable checks for extended key usage of client certificates in apid.
+    diskQuotaSupport: true
+    # hostDNS:
+    #   enabled: true
+    #   resolveMemberNames: true
+    #   forwardKubeDNSToHost: false

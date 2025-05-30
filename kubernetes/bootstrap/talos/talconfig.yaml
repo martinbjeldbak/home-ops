@@ -2,11 +2,6 @@
 ---
 clusterName: kubernetes
 
-# renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-talosVersion: v1.10.3
-# renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-kubernetesVersion: v1.33.1
-
 endpoint: https://kubernetes.local.martinbjeldbak.com:6443
 
 clusterPodNets: ["10.69.0.0/16"]
@@ -101,4 +96,5 @@ controlPlane:
   patches:
     - "@./patches/controller/admission-controller-patch.yaml"
     - "@./patches/controller/cluster.yaml"
+    - "@./patches/controller/machine-features.yaml"
 
