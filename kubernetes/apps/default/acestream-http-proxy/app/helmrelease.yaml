@@ -40,6 +40,18 @@ spec:
         annotations:
           lbipam.cilium.io/ips: 192.168.1.131
         ports:
-          streaming:
-            port: 6878
+          stream:
+            primary: true
+            port: &port 6878
             protocol: TCP
+    route:
+      app:
+        hostnames: ["acestream.local.martinbjeldbak.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
