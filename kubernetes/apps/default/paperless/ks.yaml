@@ -25,6 +25,7 @@ spec:
   postBuild:
     substitute:
       APP: paperless-v2
+      VOLSYNC_CACHE_CAPACITY: 10Gi
   prune: true
   sourceRef:
     kind: GitRepository
