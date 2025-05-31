@@ -2,7 +2,7 @@
 ---
 clusterName: kubernetes
 
-endpoint: https://kubernetes.local.martinbjeldbak.com:6443
+endpoint: https://192.168.1.100:6443
 
 clusterPodNets: ["10.69.0.0/16"]
 clusterSvcNets: ["10.96.0.0/16"]

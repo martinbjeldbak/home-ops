@@ -3,6 +3,8 @@ cluster:
   controllerManager:
     extraArgs:
       bind-address: 0.0.0.0
+  controlPlane:
+    endpoint: https://192.168.1.100:6443
   coreDNS:
     disabled: true
   etcd:
