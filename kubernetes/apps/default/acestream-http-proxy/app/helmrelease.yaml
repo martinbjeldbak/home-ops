@@ -31,7 +31,7 @@ spec:
               requests:
                 cpu: 100m
     service:
-      stream:
+      app:
         controller: acestream-http-proxy
         type: LoadBalancer
         annotations:
