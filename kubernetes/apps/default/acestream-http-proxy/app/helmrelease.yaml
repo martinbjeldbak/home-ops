@@ -30,9 +30,6 @@ spec:
             resources:
               requests:
                 cpu: 100m
-            securityContext:
-              supplementalGroups: [1000]
-              fsGroup: 1000
     service:
       stream:
         controller: acestream-http-proxy
