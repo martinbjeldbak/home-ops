@@ -27,9 +27,22 @@ spec:
             image:
               repository: ghcr.io/martinbjeldbak/acestream-http-proxy
               tag: 2.3.0@sha256:660398884fa2ab6058583a7e66c1a3b4ea1e0cd6764a9a30448f9f6d6563f36e
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
-                cpu: 100m
+                cpu: 10m
+              limits:
+                memory: 256Mi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: acestream-http-proxy
