@@ -70,3 +70,7 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /.cache
+      ace-cache:
+        type: emptyDir
+        globalMounts:
+          - path: /home/appuser/.ACEStream
