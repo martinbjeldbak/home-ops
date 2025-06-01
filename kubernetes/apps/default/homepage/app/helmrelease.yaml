@@ -26,7 +26,7 @@ spec:
           app:
             image:
               repository: ghcr.io/gethomepage/homepage
-              tag: v1.3.0
+              tag: v1.3.0@sha256:b3815e5dc3ac685298350e03975948f0a3ba5be48216a97ec1860f8c6515ddfc
             env:
               TZ: Australia/Melbourne
               HOMEPAGE_ALLOWED_HOSTS: homepage.local.martinbjeldbak.com
