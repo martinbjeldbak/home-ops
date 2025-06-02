@@ -26,7 +26,7 @@ spec:
           app: &dawarich
             image:
               repository: docker.io/freikin/dawarich
-              tag: 0.27.1 # TODO: update with sha
+              tag: 0.27.1@sha256:5754d4804cf1e724d84d5e2b670eb45d5aec6c310904c84cfddc2e4cc54abc76
             command: ['bin/rails', 'server', '-p', '3000', '-b', '::']
             env:
               TIME_ZONE: Australia/Melbourne
@@ -40,10 +40,14 @@ spec:
               APPLICATION_PROTOCOL: http
               REVERSE_GEOCODING_ENABLED: true
               SELF_HOSTED: "true"
+              STORE_GEODATA: "true"
               SMTP_PORT: 465
               SMTP_DOMAIN: martinbjeldbak.com
               SMTP_FROM: noreply@martinbjeldbak.com
               PORT: &port 3000
+              QUEUE_DATABASE_PATH: /dawarich_db_data/dawarich_development_queue.sqlite3
+              CACHE_DATABASE_PATH: /dawarich_db_data/dawarich_development_cache.sqlite3
+              CABLE_DATABASE_PATH: /dawarich_db_data/dawarich_development_cable.sqlite3
             envFrom:
               - secretRef:
                   name: dawarich-secret
@@ -90,6 +94,8 @@ spec:
             subPath: public
           - path: /var/app/storage
             subPath: storage
+          - path: /dawarich_db_data
+            subPath: dawarich_db_data
       watched:
         type: emptyDir
         globalMounts:
