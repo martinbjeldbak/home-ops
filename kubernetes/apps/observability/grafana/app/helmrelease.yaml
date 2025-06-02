@@ -57,11 +57,6 @@ spec:
         check_for_updates: false
         check_for_plugin_updates: false
         reporting_enabled: false
-      auth.anonymous:
-        enabled: true
-        org_id: 1
-        org_name: Main Org.
-        org_role: Viewer
       news:
         news_feed_enabled: false
     datasources:
@@ -106,6 +101,11 @@ spec:
               path: /var/lib/grafana/dashboards/default
     dashboards:
       default:
+        authentik:
+          # renovate: depName="authentik"
+          gnetId: 14837
+          revision: 2
+          datasource: Prometheus
         cert-manager:
           # renovate: depName="Cert-manager-Kubernetes"
           gnetId: 20842
@@ -117,6 +117,12 @@ spec:
           revision: 6
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
+        envoy:
+            # renovate: depName="Envoy Proxy Monitoring gRPC"
+            gnetId: 23239
+            revision: 1
+            datasource:
+              - { name: DS_AFRANET_PROMETHEUS, value: Prometheus }
         external-dns:
           # renovate: depName="External-dns"
           gnetId: 15038
@@ -176,7 +182,6 @@ spec:
           revision: 2
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
-        # TODO: look at these unifi ones
         unifi-insights:
           # renovate: depName="UniFi-Poller: Client Insights - Prometheus"
           gnetId: 11315
@@ -197,12 +202,18 @@ spec:
           gnetId: 11312
           revision: 9
           datasource: Prometheus
-        authentik:
-          # renovate: depName="authentik"
-          gnetId: 14837
-          revision: 2
-          datasource: Prometheus
+        volsync:
+          # renovate: depName="VolSync Dashboard"
+          gnetId: 21356
+          revision: 3
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
+            - { name: VAR_REPLICATIONDESTNAME, value: .*-dst }
     sidecar:
+      image:
+        registry: ghcr.io
+        repository: home-operations/k8s-sidecar
+        tag: 1.30.3@sha256:39cca7abcad8f1621b9462d95f7d0e60301b92fcb0ff4de0ad4561859011cddf
       dashboards:
         enabled: true
         searchNamespace: ALL
