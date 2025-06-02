@@ -325,6 +325,9 @@
       ],
       separateMajorMinor: true,
     },
+    { matchPackageNames: ["/ghcr.io\\/cloudnative-pg\\/postgresql/"], matchUpdateTypes: ["major"], enabled: false },
+    { matchPackageNames: ["/ghcr.io\\/cloudnative-pg\\/postgresql/"], matchCurrentVersion: "16.*", groupName: "PG 16.x" },
+    { matchPackageNames: ["/ghcr.io\\/cloudnative-pg\\/postgresql/"], matchCurrentVersion: "17.*", groupName: "PG 17.x" },
   ],
   customManagers: [
     {
