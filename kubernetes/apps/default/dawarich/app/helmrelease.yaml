@@ -23,7 +23,7 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          app: &dawarich
+          app:
             image:
               repository: docker.io/freikin/dawarich
               tag: 0.27.2@sha256:8e092b7d9085450878864251d7c921d6a408291270401a127e48b11dd97b5e20
@@ -31,7 +31,6 @@ spec:
             env:
               TIME_ZONE: Australia/Melbourne
               RAILS_ENV: development
-              REDIS_URL: redis://dawarich-redis:6379
               DATABASE_HOST: dawarich-database-rw
               DATABASE_NAME: dawarich_development
               MIN_MINUTES_SPENT_IN_CITY: 60
@@ -58,16 +57,6 @@ spec:
               limits:
                 memory: "3Gi"
                 cpu: "2000m"
-          sidekiq:
-            <<: *dawarich
-            command: ['bundle', 'exec', 'sidekiq'] # fixes https://github.com/Freika/dawarich/pull/941
-            resources:
-              requests:
-                memory: "1Gi"
-                cpu: "250m"
-              limits:
-                memory: "3Gi"
-                cpu: "1500m"
     service:
       app:
         controller: dawarich
