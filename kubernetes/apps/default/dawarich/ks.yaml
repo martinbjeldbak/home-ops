@@ -14,8 +14,6 @@ spec:
   dependsOn:
     - name: dawarich-database
       namespace: default
-    - name: dawarich-redis
-      namespace: default
     - name: proxmox-csi
       namespace: csi-proxmox
     - name: onepassword-store
@@ -53,30 +51,6 @@ spec:
       namespace: external-secrets
   interval: 30m
   path: ./kubernetes/apps/default/dawarich/database
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-    namespace: flux-system
-  targetNamespace: *namespace
-  timeout: 5m
-  wait: true
----
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: &app dawarich-redis
-  namespace: &namespace default
-spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
-  dependsOn:
-    - name: dragonfly-operator
-      namespace: dragonfly-operator-system
-  interval: 30m
-  path: ./kubernetes/apps/default/dawarich/redis
   prune: true
   sourceRef:
     kind: GitRepository
