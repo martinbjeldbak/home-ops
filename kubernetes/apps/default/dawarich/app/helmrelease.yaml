@@ -26,7 +26,7 @@ spec:
           app:
             image:
               repository: docker.io/freikin/dawarich
-              tag: 0.27.2@sha256:8e092b7d9085450878864251d7c921d6a408291270401a127e48b11dd97b5e20
+              tag: 0.27.3@sha256:2a9e165b6739374a30917e1b57ead457edde3a52d1399cec4cbd12a784563960
             command: ['bin/rails', 'server', '-p', '3000', '-b', '::']
             env:
               TIME_ZONE: Australia/Melbourne
