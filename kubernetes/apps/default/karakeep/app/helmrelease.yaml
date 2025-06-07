@@ -1,0 +1,133 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: karakeep
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        fsGroup: 1000
+        fsGroupChangePolicy: "OnRootMismatch"
+
+    controllers:
+      karakeep:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/karakeep-app/karakeep
+              tag: 0.24.1@sha256:e72341d7626b7f92ea9b4d5e1a671ae1b8b2f6d85873a5f482e836978b650f99
+            env:
+              OAUTH_WELLKNOWN_URL: https://auth.local.martinbjeldbak.com/application/o/karakeep/.well-known/openid-configuration
+              OAUTH_PROVIDER_NAME: authentik
+              OAUTH_ALLOW_DANGEROUS_EMAIL_ACCOUNT_LINKING: true
+              DISABLE_PASSWORD_AUTH: true  # OAuth login only
+              DISABLE_SIGNUPS: true
+              BROWSER_WEB_URL: http://127.0.0.1:9222
+              CRAWLER_DOWNLOAD_BANNER_IMAGE: true
+              CRAWLER_STORE_SCREENSHOT: true
+              CRAWLER_ENABLE_ADBLOCKER: true
+              DATA_DIR: /data
+              MEILI_ADDR: http://127.0.0.1:7700
+              NEXTAUTH_URL: https://karakeep.local.martinbjeldbak.com
+              DISABLE_NEW_RELEASE_CHECK: true
+              OCR_LANGS: eng,dan
+            envFrom:
+              - secretRef:
+                  name: karakeep-secret
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 1Gi
+          chrome:
+            image:
+              repository: gcr.io/zenika-hub/alpine-chrome
+              tag: 124
+            command:
+              - chromium-browser
+            args:
+              - --headless
+              - --no-sandbox
+              - --disable-gpu
+              - --disable-dev-shm-usage
+              - --remote-debugging-address=0.0.0.0
+              - --remote-debugging-port=9222
+              - --hide-scrollbars
+            securityContext:
+              capabilities:
+                drop:
+                  - ALL
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 1Gi
+          meilisearch:
+            image:
+              repository: docker.io/getmeili/meilisearch
+              tag: v1.14.0@sha256:8cd411ba5d9ec2dfce02e241305208eebacce0fd74a72bece21cadd03dc566ce
+            args:
+              - /bin/meilisearch
+              - --experimental-dumpless-upgrade
+            env:
+              MEILI_NO_ANALYTICS: true
+            envFrom:
+              - secretRef:
+                  name: karakeep-secret
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 4Gi
+    service:
+      app:
+        controller: karakeep
+        ports:
+          http:
+            port: &port 3000
+    route:
+      app:
+        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
+    persistence:
+      data:
+        existingClaim: karakeep
+        advancedMounts:
+          karakeep:
+            app:
+              - path: /data
+                subPath: karakeep
+            meilisearch:
+              - path: /meili_data
+                subPath: meilisearch
