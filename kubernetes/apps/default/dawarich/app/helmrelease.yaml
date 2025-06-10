@@ -23,7 +23,7 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          app:
+          app: &dawarich
             image:
               repository: docker.io/freikin/dawarich
               tag: 0.28.0@sha256:0967848d87c750a49b7a33f7f95710ffb347c1301e838d970e64855f9ec00fb5
@@ -44,12 +44,6 @@ spec:
               SMTP_DOMAIN: martinbjeldbak.com
               SMTP_FROM: noreply@martinbjeldbak.com
               PORT: &port 3000
-              # PostgreSQL database name for solid_queue
-              QUEUE_DATABASE_NAME: dawarich_development_queue
-              QUEUE_DATABASE_HOST: dawarich-database-rw
-              # SQLite database paths for cache and cable databases
-              CACHE_DATABASE_PATH: /dawarich_sqlite_data/dawarich_development_cache.sqlite3
-              CABLE_DATABASE_PATH: /dawarich_sqlite_data/dawarich_development_cable.sqlite3
             envFrom:
               - secretRef:
                   name: dawarich-secret
@@ -60,6 +54,16 @@ spec:
               limits:
                 memory: "3Gi"
                 cpu: "2000m"
+          sidekiq:
+            <<: *dawarich
+            command: ['bundle', 'exec', 'sidekiq'] # fixes https://github.com/Freika/dawarich/pull/941
+            resources:
+              requests:
+                memory: "1Gi"
+                cpu: "250m"
+              limits:
+                memory: "3Gi"
+                cpu: "1500m"
     service:
       app:
         controller: dawarich
@@ -87,8 +91,6 @@ spec:
             subPath: storage
           - path: /dawarich_db_data
             subPath: dawarich_db_data
-          - path: /dawarich_sqlite_data
-            subPath: dawarich_sqlite_data
       watched:
         type: emptyDir
         globalMounts:
