@@ -242,6 +242,14 @@
         icon: syncthing.svg
         description: File syncing
         href: https://syncthing.local.martinbjeldbak.com
+    - Karakeep:
+        icon: karakeep.svg
+        description: read it later
+        href: https://karakeep.local.martinbjeldbak.com
+        widget:
+          type: karakeep
+          url: http://karakeep:3000
+          key: {{HOMEPAGE_VAR_KARAKEEP_API_KEY}}
     # - thelounge:
     #     icon: thelounge.svg
     #     description: IRC
