@@ -44,9 +44,12 @@ spec:
               SMTP_DOMAIN: martinbjeldbak.com
               SMTP_FROM: noreply@martinbjeldbak.com
               PORT: &port 3000
-              QUEUE_DATABASE_PATH: /dawarich_db_data/dawarich_development_queue.sqlite3
-              CACHE_DATABASE_PATH: /dawarich_db_data/dawarich_development_cache.sqlite3
-              CABLE_DATABASE_PATH: /dawarich_db_data/dawarich_development_cable.sqlite3
+              # PostgreSQL database name for solid_queue
+              QUEUE_DATABASE_NAME: dawarich_development_queue
+              QUEUE_DATABASE_HOST: dawarich-database-rw
+              # SQLite database paths for cache and cable databases
+              CACHE_DATABASE_PATH: /dawarich_sqlite_data/dawarich_development_cache.sqlite3
+              CABLE_DATABASE_PATH: /dawarich_sqlite_data/dawarich_development_cable.sqlite3
             envFrom:
               - secretRef:
                   name: dawarich-secret
@@ -84,6 +87,8 @@ spec:
             subPath: storage
           - path: /dawarich_db_data
             subPath: dawarich_db_data
+          - path: /dawarich_sqlite_data
+            subPath: dawarich_sqlite_data
       watched:
         type: emptyDir
         globalMounts:
