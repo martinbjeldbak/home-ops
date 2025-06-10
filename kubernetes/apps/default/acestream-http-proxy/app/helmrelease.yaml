@@ -50,10 +50,9 @@ spec:
         annotations:
           lbipam.cilium.io/ips: 192.168.1.131
         ports:
-          stream:
+          http:
             primary: true
             port: &port 6878
-            protocol: TCP
     route:
       app:
         hostnames: ["acestream.local.martinbjeldbak.com"]
