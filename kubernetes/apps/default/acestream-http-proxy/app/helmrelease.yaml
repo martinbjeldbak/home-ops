@@ -74,3 +74,7 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /home/appuser/.ACEStream
+      engine-runtime:
+        type: emptyDir
+        globalMounts:
+          - path: /app
