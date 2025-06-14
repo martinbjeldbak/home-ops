@@ -23,7 +23,6 @@ spec:
               TZ: Australia/Melbourne
     service:
       app:
-        controller: adguardhome-replica
         type: LoadBalancer
         annotations:
           lbipam.cilium.io/ips: 192.168.1.2

@@ -67,7 +67,6 @@ spec:
                 cpu: "1500m"
     service:
       app:
-        controller: dawarich
         ports:
           http:
             port: *port

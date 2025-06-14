@@ -110,7 +110,6 @@ spec:
               runAsGroup: 65534
     service:
       app:
-        controller: paperless
         ports:
           http:
             port: *port

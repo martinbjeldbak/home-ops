@@ -45,7 +45,6 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        controller: peanut
         ports:
           http:
             port: *port

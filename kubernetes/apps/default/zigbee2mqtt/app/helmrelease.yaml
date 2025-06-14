@@ -86,7 +86,6 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        controller: zigbee2mqtt
         ports:
           http:
             port: *port

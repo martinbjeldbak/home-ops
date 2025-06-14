@@ -95,7 +95,6 @@ spec:
               #   memory: 1Gi
     service:
       app:
-        controller: transmission
         ports:
           http:
             port: *port

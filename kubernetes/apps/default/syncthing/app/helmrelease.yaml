@@ -57,12 +57,10 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        controller: syncthing
         ports:
           http:
             port: &port 8384
       transfer:
-        controller: syncthing
         type: LoadBalancer
         annotations:
           lbipam.cilium.io/ips: 192.168.1.130

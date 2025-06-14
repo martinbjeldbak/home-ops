@@ -45,13 +45,11 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        controller: acestream-http-proxy
         type: LoadBalancer
         annotations:
           lbipam.cilium.io/ips: 192.168.1.131
         ports:
           http:
-            primary: true
             port: &port 6878
     route:
       app:

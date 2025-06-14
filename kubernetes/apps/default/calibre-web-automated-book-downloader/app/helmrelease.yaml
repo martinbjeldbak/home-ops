@@ -58,7 +58,6 @@ spec:
     #     fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        controller: calibre-web-automated-book-downloader
         ports:
           http:
             port: *port

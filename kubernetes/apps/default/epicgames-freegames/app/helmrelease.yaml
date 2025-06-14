@@ -51,7 +51,6 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        controller: epicgames
         ports:
           http:
             port: *port

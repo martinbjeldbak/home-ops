@@ -55,7 +55,6 @@ spec:
         # fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        controller: calibre-web-automated
         ports:
           http:
             port: *port
