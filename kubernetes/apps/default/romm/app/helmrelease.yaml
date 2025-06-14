@@ -59,7 +59,6 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        controller: romm
         ports:
           http:
             port: *port

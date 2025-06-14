@@ -32,7 +32,6 @@ spec:
               PORT: &port 80
     service:
       app:
-        controller: overseerr
         ports:
           http:
             port: *port
