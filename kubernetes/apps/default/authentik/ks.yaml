@@ -18,9 +18,10 @@ spec:
       namespace: default
     - name: onepassword-store
       namespace: external-secrets
-  interval: 30m
+  interval: 1h
   path: ./kubernetes/apps/default/authentik/app
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -43,9 +44,10 @@ spec:
   dependsOn:
     - name: cloudnative-pg
       namespace: cnpg-system
-  interval: 30m
+  interval: 1h
   path: ./kubernetes/apps/default/authentik/database
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -67,9 +69,10 @@ spec:
   dependsOn:
     - name: dragonfly-operator
       namespace: dragonfly-operator-system
-  interval: 30m
+  interval: 1h
   path: ./kubernetes/apps/default/authentik/redis
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system

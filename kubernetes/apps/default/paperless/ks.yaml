@@ -20,13 +20,14 @@ spec:
       namespace: csi-proxmox
     - name: onepassword-store
       namespace: external-secrets
-  interval: 30m
+  interval: 1h
   path: ./kubernetes/apps/default/paperless/app
   postBuild:
     substitute:
       APP: paperless-v2
       VOLSYNC_CACHE_CAPACITY: 10Gi
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -52,9 +53,10 @@ spec:
       namespace: csi-proxmox
     - name: onepassword-store
       namespace: external-secrets
-  interval: 30m
+  interval: 1h
   path: ./kubernetes/apps/default/paperless/database
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -76,9 +78,10 @@ spec:
   dependsOn:
     - name: dragonfly-operator
       namespace: dragonfly-operator-system
-  interval: 30m
+  interval: 1h
   path: ./kubernetes/apps/default/paperless/redis
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system

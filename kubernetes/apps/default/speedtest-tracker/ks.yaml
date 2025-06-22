@@ -11,6 +11,7 @@ spec:
       app.kubernetes.io/name: *app
   path: ./kubernetes/apps/default/speedtest-tracker/app
   prune: true
+  retryInterval: 2m
   dependsOn:
     - name: proxmox-csi
       namespace: csi-proxmox
@@ -24,7 +25,7 @@ spec:
     name: flux-system
   wait: false
   targetNamespace: *namespace
-  interval: 30m
+  interval: 1h
   timeout: 5m
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
@@ -40,9 +41,10 @@ spec:
   dependsOn:
     - name: proxmox-csi
       namespace: csi-proxmox
-  interval: 30m
+  interval: 1h
   path: ./kubernetes/apps/default/speedtest-tracker/database
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system

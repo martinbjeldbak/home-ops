@@ -20,12 +20,13 @@ spec:
       namespace: csi-proxmox
     - name: onepassword-store
       namespace: external-secrets
-  interval: 30m
+  interval: 1h
   path: ./kubernetes/apps/default/dawarich/app
   postBuild:
     substitute:
       APP: dawarich
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -51,9 +52,10 @@ spec:
       namespace: csi-proxmox
     - name: onepassword-store
       namespace: external-secrets
-  interval: 30m
+  interval: 1h
   path: ./kubernetes/apps/default/dawarich/database
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -75,9 +77,10 @@ spec:
   dependsOn:
     - name: dragonfly-operator
       namespace: dragonfly-operator-system
-  interval: 30m
+  interval: 1h
   path: ./kubernetes/apps/default/dawarich/redis
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system

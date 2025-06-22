@@ -14,12 +14,13 @@ spec:
   dependsOn:
     - name: proxmox-csi
       namespace: csi-proxmox
-  interval: 30m
+  interval: 1h
   path: ./kubernetes/apps/default/unifi/app
   postBuild:
     substitute:
       APP: unifi-v3
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system

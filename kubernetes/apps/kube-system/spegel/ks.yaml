@@ -12,10 +12,11 @@ spec:
       app.kubernetes.io/name: *app
   path: ./kubernetes/apps/kube-system/spegel/app
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     namespace: flux-system
     name: flux-system
   wait: false
-  interval: 30m
+  interval: 1h
   timeout: 5m
