@@ -5,7 +5,7 @@ kind: GitRepository
 metadata:
   name: barman-cloud-crd # until https://github.com/cloudnative-pg/charts/issues/575 resolved
 spec:
-  interval: 30m
+  interval: 1h
   url: https://github.com/cloudnative-pg/plugin-barman-cloud
   ref:
     tag: v0.5.0

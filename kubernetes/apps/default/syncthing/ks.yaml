@@ -14,12 +14,13 @@ spec:
   dependsOn:
     - name: proxmox-csi
       namespace: csi-proxmox
-  interval: 30m
+  interval: 1h
   path: ./kubernetes/apps/default/syncthing/app
   postBuild:
     substitute:
       APP: syncthing
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
