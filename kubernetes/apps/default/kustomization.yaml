@@ -18,7 +18,6 @@ resources:
   - ./calibre-web-automated/ks.yaml
   - ./calibre-web-automated-book-downloader/ks.yaml
   - ./dawarich/ks.yaml
-  - ./emqx/ks.yaml
   - ./epicgames-freegames/ks.yaml
   - ./esphome/ks.yaml
   - ./home-assistant/ks.yaml
@@ -28,6 +27,7 @@ resources:
   - ./immich/ks.yaml
   - ./karakeep/ks.yaml
   - ./kometa/ks.yaml
+  - ./mosquitto/ks.yaml
   - ./overseerr/ks.yaml
   - ./paperless/ks.yaml
   - ./peanut/ks.yaml
