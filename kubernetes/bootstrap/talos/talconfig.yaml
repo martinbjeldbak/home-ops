@@ -69,6 +69,7 @@ nodes:
       # for proxmox-csi https://github.com/sergelogvinov/proxmox-csi-plugin?tab=readme-ov-file#kubernetes-topology-labels
       topology.kubernetes.io/region: cluster-1
       topology.kubernetes.io/zone: beelink-eqi12-1
+      csi.proxmox.sinextra.dev/max-volume-attachments: "30"
 
     networkInterfaces:
       - deviceSelector:
