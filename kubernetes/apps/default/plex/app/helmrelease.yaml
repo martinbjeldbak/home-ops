@@ -84,7 +84,7 @@ spec:
         rules:
           - backendRefs:
               - identifier: app
-                port: 32400
+                port: *port
             filters:
               - type: RequestHeaderModifier
                 requestHeaderModifier:

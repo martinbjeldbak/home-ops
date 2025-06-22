@@ -2,7 +2,7 @@
 - Media:
     - Plex:
         icon: plex.svg
-        href: "https://plex.local.martinbjeldbak.com"
+        href: "https://plex.martinbjeldbak.com"
         description: media server
         namespace: default
         app: plex
