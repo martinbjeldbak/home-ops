@@ -10,8 +10,8 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
+    - name: proxmox-csi
+      namespace: csi-proxmox
   interval: 1h
   path: ./kubernetes/apps/default/mosquitto/app
   prune: true
