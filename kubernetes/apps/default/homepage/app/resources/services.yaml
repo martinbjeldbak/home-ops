@@ -39,11 +39,11 @@
     - Synology:
         icon: synology.svg
         description: diskstation
-        ping: 192.168.10.10
+        ping: alderaan.internal
         href: "http://alderaan.internal:5000"
         widget:
           type: diskstation
-          url: http://192.168.10.10:5000
+          url: http://alderaan.internal:5000
           username: {{HOMEPAGE_VAR_SYNOLOGY_STATS_USERNAME}}
           password: {{HOMEPAGE_VAR_SYNOLOGY_STATS_PASSWORD}}
           volume: volume_3
