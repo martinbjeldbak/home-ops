@@ -18,6 +18,12 @@ resource "proxmox_virtual_environment_vm" "talos_node_01" {
     type = "host"
   }
 
+  lifecycle {
+    ignore_changes = [
+      disk,
+    ]
+  }
+
   memory {
     dedicated = 28672
     floating  = 0
