@@ -29,33 +29,13 @@ spec:
               UID: 1000
               GID: 100
               BOOK_LANGUAGE: en
-              #CUSTOM_DNS: 192.168.1.1,192.168.10.15
               CUSTOM_DNS: cloudflare
               USE_DOH: true
-            # probes:
-            #   liveness:
-            #     enabled: true
-            #   readiness:
-            #     enabled: true
-            #   startup:
-            #     enabled: true
-            #     spec:
-            #       failureThreshold: 30
-            #       periodSeconds: 5
             securityContext:
               allowPrivilegeEscalation: false
-              # readOnlyRootFilesystem: true
-              # capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 5m
-    # defaultPodOptions:
-    #   securityContext:
-    #     runAsNonRoot: true
-    #     runAsUser: 1000
-    #     runAsGroup: 100
-    #     fsGroup: 100
-    #     fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         ports:

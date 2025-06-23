@@ -39,20 +39,9 @@ spec:
                 spec:
                   failureThreshold: 600
                   periodSeconds: 5
-            # securityContext:
-            #   allowPrivilegeEscalation: false
-            #   readOnlyRootFilesystem: true
-            #   capabilities: { drop: ["ALL"] } # ss6 image needs to start as root
             resources:
               requests:
                 cpu: 5m
-    # defaultPodOptions: # it's a s6 image..
-    #   securityContext:
-    #     runAsNonRoot: true
-        # runAsUser: 1000
-        # runAsGroup: 1000
-        # fsGroup: 1000
-        # fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         ports:
