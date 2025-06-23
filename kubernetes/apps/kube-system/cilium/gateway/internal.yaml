@@ -6,6 +6,11 @@ metadata:
   name: internal
 spec:
   gatewayClassName: cilium
+  addresses:
+    - type: IPAddress
+      value: 192.168.1.121
+    - type: IPAddress
+      value: ::ffff:192.168.1.121
   listeners:
     - name: http
       protocol: HTTP
