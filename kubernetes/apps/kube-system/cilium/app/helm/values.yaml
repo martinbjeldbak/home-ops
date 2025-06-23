@@ -12,7 +12,7 @@ bpf:
   hostLegacyRouting: true
 bpfClockProbe: true
 bgpControlPlane:
-  enabled: false
+  enabled: true
 cgroup:
   automount:
     enabled: false
