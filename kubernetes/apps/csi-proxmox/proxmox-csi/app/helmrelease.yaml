@@ -56,7 +56,7 @@ spec:
         reclaimPolicy: Delete
         ssd: true
         # https://pve.proxmox.com/wiki/Performance_Tweaks
-        cache: none
+        cache: writethrough
   valuesFrom:
     - targetPath: config.clusters[0].token_secret
       kind: Secret
