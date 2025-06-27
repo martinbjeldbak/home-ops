@@ -9,7 +9,7 @@ spec:
   trigger:
     schedule: "0 * * * *"
   restic:
-    copyMethod: "${VOLSYNC_COPYMETHOD:=Direct}" # proxmox-csi does not support snapshotting https://github.com/sergelogvinov/proxmox-csi-plugin/issues/259
+    copyMethod: "${VOLSYNC_COPYMETHOD:=Direct}" # proxmox-csi does not support snapshotting https://github.com/sergelogvinov/proxmox-csi-plugin/issues/259 and Clone takes many volumes
     pruneIntervalDays: 14
     repository: "${APP}-volsync-secret"
     cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:=5Gi}"
@@ -17,6 +17,13 @@ spec:
     cacheAccessModes: ["${VOLSYNC_CACHE_ACCESSMODES:=ReadWriteOnce}"]
     storageClassName: "${VOLSYNC_STORAGECLASS:=proxmox}"
     accessModes: ["${VOLSYNC_SNAP_ACCESSMODES:=ReadWriteOnce}"]
+    moverAffinity:
+      podAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app: ${APP}
+            topologyKey: kubernetes.io/hostname
     moverSecurityContext:
       runAsUser: ${VOLSYNC_PUID:=1000}
       runAsGroup: ${VOLSYNC_PGID:=1000}
@@ -24,3 +31,4 @@ spec:
     retain:
       hourly: 24
       daily: 7
+
