@@ -22,7 +22,7 @@ spec:
         requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchLabels:
-                app: ${APP}
+                app.kubernetes.io/name: ${APP}
             topologyKey: kubernetes.io/hostname
     moverSecurityContext:
       runAsUser: ${VOLSYNC_PUID:=1000}
