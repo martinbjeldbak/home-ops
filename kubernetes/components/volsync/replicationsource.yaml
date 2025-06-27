@@ -9,7 +9,7 @@ spec:
   trigger:
     schedule: "0 * * * *"
   restic:
-    copyMethod: "${VOLSYNC_COPYMETHOD:=Clone}" # proxmox-csi does not support snapshotting https://github.com/sergelogvinov/proxmox-csi-plugin/issues/259
+    copyMethod: "${VOLSYNC_COPYMETHOD:=Direct}" # proxmox-csi does not support snapshotting https://github.com/sergelogvinov/proxmox-csi-plugin/issues/259
     pruneIntervalDays: 14
     repository: "${APP}-volsync-secret"
     cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:=5Gi}"
