@@ -25,11 +25,10 @@ spec:
     name: kube-prometheus-stack
   install:
     remediation:
-      retries: 3
+      retries: -1
   upgrade:
     cleanupOnFail: true
     remediation:
-      strategy: rollback
       retries: 3
   values:
     crds:
@@ -81,10 +80,6 @@ spec:
         ruleSelectorNilUsesHelmValues: false
         scrapeConfigSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
-        enableAdminAPI: true
-        walCompression: true
-        enableFeatures:
-          - memory-snapshot-on-shutdown
         retention: 14d
         retentionSize: 50GB
         resources:
@@ -125,7 +120,7 @@ spec:
               replacement: $1
               sourceLabels: ["__meta_kubernetes_pod_node_name"]
               targetLabel: kubernetes_node
-    grafana: # already set this up manually
+    grafana:
       enabled: false
       forceDeployDashboards: true
     additionalPrometheusRulesMap:
