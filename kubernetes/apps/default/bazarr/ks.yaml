@@ -20,7 +20,7 @@ spec:
   path: ./kubernetes/apps/default/bazarr/app
   postBuild:
     substitute:
-      APP: bazarr
+      APP: bazarr-v3
   prune: true
   retryInterval: 2m
   sourceRef:
