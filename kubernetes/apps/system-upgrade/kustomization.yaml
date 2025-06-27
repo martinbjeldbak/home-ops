@@ -5,9 +5,6 @@ kind: Kustomization
 namespace: system-upgrade
 components:
   - ../../components/common
-  - ../../flux/components/alerts
-  - ../../flux/components/namespace
-  - ../../flux/components/sops
 resources:
   - ./system-upgrade-controller/ks.yaml
 configMapGenerator:
