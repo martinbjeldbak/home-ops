@@ -11,7 +11,7 @@ spec:
     manual: restore-once
   restic:
     repository: "${APP}-volsync-secret"
-    copyMethod: "${VOLSYNC_COPYMETHOD:=Clone}" # proxmox-csi does not support snapshotting https://github.com/sergelogvinov/proxmox-csi-plugin/issues/259
+    copyMethod: "${VOLSYNC_COPYMETHOD:=Direct}" # proxmox-csi does not support snapshotting https://github.com/sergelogvinov/proxmox-csi-plugin/issues/259 and Clone takes many volumes
     cacheStorageClassName: "${VOLSYNC_CACHE_SNAPSHOTCLASS:=proxmox}"
     cacheAccessModes: ["${VOLSYNC_CACHE_ACCESSMODES:=ReadWriteOnce}"]
     cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:=5Gi}"
