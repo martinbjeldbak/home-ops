@@ -5,9 +5,6 @@ kind: Kustomization
 namespace: default
 components:
   - ../../components/common
-  - ../../flux/components/alerts
-  - ../../flux/components/namespace
-  - ../../flux/components/sops
 resources:
   - ./acestream-http-proxy/ks.yaml
   - ./adguardhome-replica/ks.yaml
