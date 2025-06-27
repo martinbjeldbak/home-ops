@@ -47,6 +47,7 @@ spec:
               namespace: kube-system
               sectionName: https
       alertmanagerSpec:
+        forceEnableClusterMode: true # https://github.com/prometheus-community/helm-charts/issues/1452
         alertmanagerConfiguration:
           name: alertmanager
           global:
