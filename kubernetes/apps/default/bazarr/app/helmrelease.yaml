@@ -65,7 +65,7 @@ spec:
     # HTTPRoute moved behind Authentik
     persistence:
       config:
-        existingClaim: bazarr-v3
+        existingClaim: bazarr
       config-cache:
         type: emptyDir
         globalMounts:
