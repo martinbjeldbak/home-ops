@@ -3,6 +3,10 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute # NOTE: remove when https://github.com/immich-app/immich-charts/issues/165 resolved
 metadata:
   name: immich
+  labels:
+    app.kubernetes.io/instance: immich
+    app.kubernetes.io/name: immich
+    app.kubernetes.io/part-of: immich
 spec:
   hostnames: ["immich.local.martinbjeldbak.com"]
   parentRefs:
