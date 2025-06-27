@@ -3,15 +3,15 @@
 apiVersion: admissionregistration.k8s.io/v1alpha1
 kind: MutatingAdmissionPolicyBinding
 metadata:
-  name: volsync-mover-jitter
+  name: volsync-mover-jitter-v2
 spec:
-  policyName: volsync-mover-jitter
+  policyName: volsync-mover-jitter-v2
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.0/mutatingadmissionpolicy-admissionregistration-v1alpha1.json
 apiVersion: admissionregistration.k8s.io/v1alpha1
 kind: MutatingAdmissionPolicy
 metadata:
-  name: volsync-mover-jitter
+  name: volsync-mover-jitter-v2
   namespace: volsync-system
 spec:
   matchConstraints:
@@ -53,15 +53,15 @@ spec:
 apiVersion: admissionregistration.k8s.io/v1alpha1
 kind: MutatingAdmissionPolicyBinding
 metadata:
-  name: volsync-mover-nfs
+  name: volsync-mover-nfs-v2
 spec:
-  policyName: volsync-mover-nfs
+  policyName: volsync-mover-nfs-v2
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.0/mutatingadmissionpolicy-admissionregistration-v1alpha1.json
 apiVersion: admissionregistration.k8s.io/v1alpha1
 kind: MutatingAdmissionPolicy
 metadata:
-  name: volsync-mover-nfs
+  name: volsync-mover-nfs-v2
 spec:
   matchConstraints:
     resourceRules:
