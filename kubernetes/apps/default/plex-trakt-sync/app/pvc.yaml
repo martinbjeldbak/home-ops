@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: plex-trakt-sync-cache-v2
+  name: plex-trakt-sync-cache
 spec:
   accessModes: ["ReadWriteOnce"]
   resources:
