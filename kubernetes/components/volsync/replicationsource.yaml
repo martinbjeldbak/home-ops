@@ -17,7 +17,7 @@ spec:
     cacheAccessModes: ["${VOLSYNC_CACHE_ACCESSMODES:=ReadWriteOnce}"]
     storageClassName: "${VOLSYNC_STORAGECLASS:=proxmox}"
     accessModes: ["${VOLSYNC_SNAP_ACCESSMODES:=ReadWriteOnce}"]
-    moverAffinity:
+    moverAffinity:  # proxmox-csi-plugin prefers volumes to be on the same node
       podAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
