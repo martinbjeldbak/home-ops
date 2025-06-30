@@ -285,7 +285,7 @@
         app: home-assistant
         widget:
           type: homeassistant
-          url: http://home-assistant:8123
+          url: http://home-assistant-app:8123
           key: {{HOMEPAGE_VAR_HOMEASSISTANT_ACCESS_TOKEN}}
     - Scrypted:
         icon: scrypted.webp
