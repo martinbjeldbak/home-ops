@@ -84,6 +84,8 @@ spec:
         ports:
           http:
             port: 8123
+      code-server:
+        ports:
           code-server:
             port: &vscode-port 12321
     route:
