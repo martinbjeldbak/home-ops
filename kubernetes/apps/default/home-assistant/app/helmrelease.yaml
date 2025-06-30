@@ -83,10 +83,21 @@ spec:
       app:
         ports:
           http:
-            port: &port 8123
+            port: 8123
           code-server:
-            port: 12321
-    # HTTPRoute moved behind Authentik
+            port: &vscode-port 12321
+    route:
+      app:
+        hostnames: ["hass-vscode.local.martinbjeldbak.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: code-server
+                port: *vscode-port
+    # Application HTTPRoute moved behind Authentik
     persistence:
       config:
         existingClaim: home-assistant-v2
