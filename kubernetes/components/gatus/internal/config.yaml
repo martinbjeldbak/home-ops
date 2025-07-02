@@ -1,0 +1,7 @@
+endpoints:
+  - name: "${APP}"
+    group: internal
+    url: "https://${GATUS_SUBDOMAIN:=${APP}}.local.martinbjeldbak.com${GATUS_PATH:=/}"
+    interval: 1m
+    conditions:
+      - "[STATUS] == ${GATUS_STATUS:=200}"
