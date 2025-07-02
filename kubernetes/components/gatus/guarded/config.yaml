@@ -4,8 +4,8 @@ endpoints:
     url: 1.1.1.1
     interval: 1m
     ui:
-      hide-hostname: true
-      hide-url: true
+      hide-hostname: false
+      hide-url: false
     dns:
       query-name: "${GATUS_SUBDOMAIN:=${APP}}.local.martinbjeldbak.com"
       query-type: A
