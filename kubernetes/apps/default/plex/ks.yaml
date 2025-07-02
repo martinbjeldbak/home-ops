@@ -10,6 +10,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   components:
+    - ../../../../components/gatus/external
     - ../../../../components/volsync
   dependsOn:
     - name: proxmox-csi
@@ -19,6 +20,7 @@ spec:
   postBuild:
     substitute:
       APP: plex
+      GATUS_PATH: /web/index.html
       VOLSYNC_CACHE_CAPACITY: 25Gi
   prune: true
   retryInterval: 2m
