@@ -8,7 +8,7 @@ components:
 resources:
   - ./alloy/ks.yaml
   - ./blackbox-exporter/ks.yaml
-  # - ./gatus/ks.yaml # TODO: look into
+  - ./gatus/ks.yaml
   - ./grafana/ks.yaml
   # - ./kromgo/ks.yaml # TODO: look into
   - ./kube-prometheus-stack/ks.yaml
