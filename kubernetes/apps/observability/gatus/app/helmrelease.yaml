@@ -33,6 +33,7 @@ spec:
               RESOURCE: both
               UNIQUE_FILENAMES: true
               METHOD: WATCH
+              GATUS_LOG_LEVEL: debug # TODO: remove
             restartPolicy: Always
             resources:
               requests:
