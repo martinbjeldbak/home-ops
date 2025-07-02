@@ -22,7 +22,7 @@ spec:
   postBuild:
     substitute:
       APP: transmission-v2
-      GATUS_SUBDOMAIN: *app
+      GATUS_SUBDOMAIN: torrents
       VOLSYNC_CAPACITY: 512Mi
   prune: true
   retryInterval: 2m
