@@ -10,6 +10,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   components:
+    - ../../../../components/gatus/guarded
     - ../../../../components/volsync
   dependsOn:
     - name: proxmox-csi
@@ -19,6 +20,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
+      GATUS_SUBDOMAIN: atuin
       VOLSYNC_CAPACITY: 5Gi
   prune: true
   retryInterval: 2m
