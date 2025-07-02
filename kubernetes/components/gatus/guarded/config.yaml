@@ -1,8 +1,10 @@
 endpoints:
   - name: "${APP}"
     group: guarded
-    url: 192.168.1.1
+    url: 1.1.1.1
     interval: 1m
+    client:
+      dns-resolver: "tcp://192.168.1.1:53"
     ui:
       hide-hostname: false
       hide-url: false # TODO: revert
