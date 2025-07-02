@@ -10,6 +10,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   components:
+    - ../../../../components/gatus/internal
     - ../../../../components/volsync
   dependsOn:
     - name: onepassword-store
@@ -21,6 +22,7 @@ spec:
   postBuild:
     substitute:
       APP: homebox-v2
+      GATUS_SUBDOMAIN: *app
   prune: true
   retryInterval: 2m
   sourceRef:

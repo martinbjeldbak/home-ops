@@ -10,6 +10,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   components:
+    - ../../../../components/gatus/internal
     - ../../../../components/volsync
   dependsOn:
     - name: onepassword
@@ -20,8 +21,10 @@ spec:
   path: ./kubernetes/apps/default/radarr/app
   postBuild:
     substitute:
-      APP: radarr
+      APP: *app
+      GATUS_SUBDOMAIN: movies
       VOLSYNC_CACHE_CAPACITY: 10Gi
+      VOLSYNC_CAPACITY: 20Gi
   prune: true
   retryInterval: 2m
   sourceRef:

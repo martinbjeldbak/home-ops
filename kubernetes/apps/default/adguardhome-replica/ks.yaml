@@ -9,11 +9,18 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/gatus/internal
   dependsOn:
-    - name: onepassword-store
-      namespace: external-secrets
+    - name: proxmox-csi
+      namespace: csi-proxmox
   interval: 1h
   path: ./kubernetes/apps/default/adguardhome-replica/app
+  postBuild:
+    substitute:
+      APP: *app
+      GATUS_SUBDOMAIN: dns2
+      VOLSYNC_CAPACITY: 1Gi
   prune: true
   retryInterval: 2m
   sourceRef:

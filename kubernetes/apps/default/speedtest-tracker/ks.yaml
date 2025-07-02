@@ -9,12 +9,15 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/gatus/internal
   path: ./kubernetes/apps/default/speedtest-tracker/app
+  postBuild:
+    substitute:
+      APP: *app
   prune: true
   retryInterval: 2m
   dependsOn:
-    - name: proxmox-csi
-      namespace: csi-proxmox
     - name: speedtest-tracker-database
       namespace: default
     - name: onepassword-store

@@ -10,6 +10,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   components:
+    - ../../../../components/gatus/internal
     - ../../../../components/volsync
   dependsOn:
     - name: proxmox-csi
@@ -21,6 +22,8 @@ spec:
   postBuild:
     substitute:
       APP: transmission-v2
+      GATUS_SUBDOMAIN: *app
+      VOLSYNC_CAPACITY: 512Mi
   prune: true
   retryInterval: 2m
   sourceRef:
