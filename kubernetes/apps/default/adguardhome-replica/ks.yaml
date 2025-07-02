@@ -20,6 +20,7 @@ spec:
     substitute:
       APP: *app
       GATUS_SUBDOMAIN: dns2
+      VOLSYNC_CAPACITY: 1Gi
   prune: true
   retryInterval: 2m
   sourceRef:

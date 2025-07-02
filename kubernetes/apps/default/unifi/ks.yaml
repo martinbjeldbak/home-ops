@@ -20,7 +20,7 @@ spec:
   postBuild:
     substitute:
       APP: unifi-v3
-      GATUS_SUBDOMAIN: unifi
+      GATUS_SUBDOMAIN: *app
       VOLSYNC_CAPACITY: 5Gi
   prune: true
   retryInterval: 2m
