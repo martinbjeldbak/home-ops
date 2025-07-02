@@ -185,6 +185,12 @@
     #     widget:
     #         type: scrutiny
     #         url: http://scrutiny-web:8080
+    - Gatus:
+        icon: gatus.svg
+        href: "https://gatus.local.martinbjeldbak.com"
+        widget:
+          type: gatus
+          url: http://gatus.observability.svc.cluster.local:80
     - Speedtest Tracker:
         icon: speedtest-tracker.png
         href: "https://speedtest-tracker.local.martinbjeldbak.com"
