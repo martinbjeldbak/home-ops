@@ -10,6 +10,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   components:
+    - ../../../../components/gatus/internal
     - ../../../../components/volsync
   dependsOn:
     - name: proxmox-csi
@@ -18,7 +19,8 @@ spec:
   path: ./kubernetes/apps/default/calibre-web-automated/app
   postBuild:
     substitute:
-      APP: calibre-web-automated
+      APP: *app
+      GATUS_SUBDOMAIN: calibre
   prune: true
   retryInterval: 2m
   sourceRef:

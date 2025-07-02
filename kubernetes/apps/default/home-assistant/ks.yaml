@@ -10,6 +10,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   components:
+    - ../../../../components/gatus/internal
     - ../../../../components/volsync
   dependsOn:
     - name: mosquitto
@@ -24,6 +25,7 @@ spec:
     substitute:
       APP: home-assistant-v2
       VOLSYNC_CACHE_CAPACITY: 10Gi
+      GATUS_SUBDOMAIN: home-assistant
   prune: true
   retryInterval: 2m
   sourceRef:

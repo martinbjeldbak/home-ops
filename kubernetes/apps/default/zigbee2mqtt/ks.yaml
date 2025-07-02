@@ -23,6 +23,7 @@ spec:
     substitute:
       APP: zigbee2mqtt-v3
       GATUS_SUBDOMAIN: *app
+      VOLSYNC_CAPACITY: 5Gi
   prune: true
   retryInterval: 2m
   sourceRef:

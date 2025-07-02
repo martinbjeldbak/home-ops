@@ -9,6 +9,9 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/gatus/internal
+    - ../../../../components/volsync
   dependsOn:
     - name: proxmox-csi
       namespace: csi-proxmox
@@ -16,6 +19,9 @@ spec:
       namespace: external-secrets
   interval: 1h
   path: ./kubernetes/apps/default/karakeep/app
+  postBuild:
+    substitute:
+      APP: *app
   prune: true
   retryInterval: 2m
   sourceRef:
@@ -25,8 +31,3 @@ spec:
   targetNamespace: *namespace
   timeout: 5m
   wait: false
-  components:
-    - ../../../../components/volsync
-  postBuild:
-    substitute:
-      APP: *app

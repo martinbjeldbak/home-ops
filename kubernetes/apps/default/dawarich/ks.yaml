@@ -10,6 +10,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   components:
+    - ../../../../components/gatus/internal
     - ../../../../components/volsync
   dependsOn:
     - name: dawarich-database
@@ -24,7 +25,7 @@ spec:
   path: ./kubernetes/apps/default/dawarich/app
   postBuild:
     substitute:
-      APP: dawarich
+      APP: *app
   prune: true
   retryInterval: 2m
   sourceRef:

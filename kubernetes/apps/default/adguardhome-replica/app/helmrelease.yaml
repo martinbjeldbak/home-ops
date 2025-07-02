@@ -38,7 +38,7 @@ spec:
             protocol: UDP
     route:
       app:
-        hostnames: ["dns3.local.martinbjeldbak.com"]
+        hostnames: ["dns2.local.martinbjeldbak.com"]
         parentRefs:
           - name: internal
             namespace: kube-system

@@ -9,8 +9,14 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/gatus/internal
   interval: 1h
   path: ./kubernetes/apps/default/calibre-web-automated-book-downloader/app
+  postBuild:
+    substitute:
+      APP: *app
+      GATUS_SUBDOMAIN: calibre-book-downloader
   prune: true
   retryInterval: 2m
   sourceRef:

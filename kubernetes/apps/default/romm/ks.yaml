@@ -10,6 +10,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   components:
+    - ../../../../components/gatus/internal
     - ../../../../components/volsync
   dependsOn:
     - name: romm-database
@@ -22,7 +23,8 @@ spec:
   path: ./kubernetes/apps/default/romm/app
   postBuild:
     substitute:
-      APP: romm
+      APP: *app
+      VOLSYNC_CAPACITY: 10Gi
   prune: true
   retryInterval: 2m
   sourceRef:

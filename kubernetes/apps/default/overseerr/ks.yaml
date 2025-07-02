@@ -10,6 +10,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   components:
+    - ../../../../components/gatus/external
     - ../../../../components/volsync
   interval: 1h
   dependsOn:
@@ -19,6 +20,7 @@ spec:
   postBuild:
     substitute:
       APP: overseerr-v2
+      GATUS_SUBDOMAIN: *app
   prune: true
   retryInterval: 2m
   sourceRef:

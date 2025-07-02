@@ -9,6 +9,8 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/gatus/internal
   dependsOn:
     - name: proxmox-csi
       namespace: csi-proxmox
@@ -20,6 +22,9 @@ spec:
       namespace: default
   interval: 1h
   path: ./kubernetes/apps/default/immich/app
+  postBuild:
+    substitute:
+      APP: *app
   prune: true
   retryInterval: 2m
   sourceRef:

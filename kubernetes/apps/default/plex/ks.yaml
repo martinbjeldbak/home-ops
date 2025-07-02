@@ -19,9 +19,10 @@ spec:
   path: ./kubernetes/apps/default/plex/app
   postBuild:
     substitute:
-      APP: plex
+      APP: *app
       GATUS_PATH: /web/index.html
       VOLSYNC_CACHE_CAPACITY: 25Gi
+      VOLSYNC_CAPACITY: 200Gi
   prune: true
   retryInterval: 2m
   sourceRef:
