@@ -1,14 +1,14 @@
 ---
 autoDirectNodeRoutes: true
 bandwidthManager:
-  enabled: true
+  enabled: false #  TODO: need to disable hostLegacyRouting
   bbr: true
 bpf:
   datapathMode: netkit
   masquerade: true
   preallocateMaps: true
   # tproxy: true
-  hostLegacyRouting: true
+  hostLegacyRouting: true  # NOTE: leave this enabled, CoreDNS returns i/o timeout if enabled
 bpfClockProbe: true
 bgpControlPlane:
   enabled: true
