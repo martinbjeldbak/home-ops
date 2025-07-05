@@ -1,8 +1,9 @@
 ---
 autoDirectNodeRoutes: true
-bandwidthManager:
-  enabled: false #  TODO: need to disable hostLegacyRouting
-  bbr: true
+#  TODO: need to disable hostLegacyRouting
+# bandwidthManager:
+#   enabled: false
+#   bbr: true
 bpf:
   datapathMode: netkit
   masquerade: true
@@ -29,8 +30,6 @@ envoy:
   prometheus:
     serviceMonitor:
       enabled: true
-  log:
-    defaultLevel: debug
 gatewayAPI:
   enabled: true
   enableAlpn: true
