@@ -28,6 +28,8 @@ envoy:
   prometheus:
     serviceMonitor:
       enabled: true
+  log:
+    defaultLevel: debug
 gatewayAPI:
   enabled: true
   enableAlpn: true
