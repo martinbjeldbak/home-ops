@@ -1,15 +1,13 @@
 ---
 autoDirectNodeRoutes: true
-# bandwidthManager: # TODO: Look into enabling
-#   enabled: true
-#   bbr: true
+bandwidthManager:
+  enabled: true
+  bbr: true
 bpf:
   datapathMode: netkit
   masquerade: true
   preallocateMaps: true
   # tproxy: true
-  # Ref: https://github.com/siderolabs/talos/issues/10002
-  hostLegacyRouting: true
 bpfClockProbe: true
 bgpControlPlane:
   enabled: true
@@ -38,7 +36,7 @@ hubble:
   enabled: false
 ipam:
   mode: kubernetes
-ipv4NativeRoutingCIDR: "10.69.0.0/16"
+ipv4NativeRoutingCIDR: 10.69.0.0/16
 k8sServiceHost: 127.0.0.1
 k8sServicePort: 7445
 kubeProxyReplacement: true
