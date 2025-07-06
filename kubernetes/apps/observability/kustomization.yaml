@@ -15,5 +15,4 @@ resources:
   - ./loki/ks.yaml
   # - ./silence-operator/ks.yaml  TODO: look into
   - ./smartctl-exporter/ks.yaml
-  # - ./snmp-exporter/ks.yaml  TODO: look into
   - ./unpoller/ks.yaml

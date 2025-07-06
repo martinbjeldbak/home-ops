@@ -94,17 +94,14 @@ libraries:
         template_variables:
           rating1: critic
           rating1_image: rt_tomato
-          # rating1_font: config/overlays/fonts/Adlib.ttf # TODO: try reenabling
           rating1_font_size: 63
 
           rating2: user
           rating2_image: imdb
-          # rating2_font: config/overlays/fonts/Impact.ttf# TODO: try reenabling
           rating2_font_size: 70
 
           rating3: audience
           rating3_image: tmdb
-            # rating3_font: config/overlays/fonts/Avenir_95_Black.ttf # TODO: try reenabling
           rating3_font_size: 70
           vertical_position: bottom
 

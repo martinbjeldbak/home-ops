@@ -331,15 +331,6 @@
           url: https://192.168.1.1
           username: {{HOMEPAGE_VAR_OPNSENSE_HOMEPAGE_USERNAME}}
           password: {{HOMEPAGE_VAR_OPNSENSE_HOMEPAGE_PASSWORD}}
-    - Crowdsec:
-        icon: crowdsec.svg
-        description: ids/ips
-        ping: 192.168.1.1
-        # widget: # TODO: warning ing logs something about response being too large?
-        #     type: crowdsec
-        #     url: https://192.168.1.1:8089
-        #     username: {{HOMEPAGE_VAR_CROWDSEC_USERNAME}}
-        #     password: {{HOMEPAGE_VAR_CROWDSEC_PASSWORD}}
     - Unifi:
         icon: unifi.svg
         description: network infra
@@ -383,13 +374,3 @@
           accountid: {{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNT_ID}}
           tunnelid: {{HOMEPAGE_VAR_CLOUDFLARE_TUNNEL_ID}}
           key: {{HOMEPAGE_VAR_CLOUDFLARE_API_KEY}}
-    - Proxmox Backup Server:
-        icon: proxmox.svg
-        description: backup server
-        href: "https://pbs.local.martinbjeldbak.com:8007"
-        # TODO: this is giving invalid url
-        # widget:
-        #   type: proxmoxbackupserver
-        #   url: https://pbs.local.martinbjeldbak.com:8007
-        #   username: {{HOMEPAGE_VAR_PROXMOX_BACKUP_SERVER_TOKEN_ID}}
-        #   password: {{HOMEPAGE_VAR_PROXMOX_BACKUP_SERVER_TOKEN_PASSWORD}}
