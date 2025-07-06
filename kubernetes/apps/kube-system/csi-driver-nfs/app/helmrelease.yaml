@@ -31,6 +31,3 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  values:
-    controller:
-      replicas: 1
