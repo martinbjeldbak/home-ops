@@ -73,7 +73,7 @@ spec:
                 port: *port
     persistence:
       config:
-        existingClaim: scrypted-config-v2
+        existingClaim: scrypted
         advancedMounts:
           scrypted:
             app:
