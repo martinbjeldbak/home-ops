@@ -21,7 +21,7 @@ spec:
   path: ./kubernetes/apps/default/scrypted/app
   postBuild:
     substitute:
-      APP: scrypted-config-v2
+      APP: *app
       GATUS_SUBDOMAIN: *app
       VOLSYNC_CAPACITY: 5Gi
       VOLSYNC_CACHE_CAPACITY: 10Gi
