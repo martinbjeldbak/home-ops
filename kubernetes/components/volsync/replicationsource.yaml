@@ -22,7 +22,7 @@ spec:
         requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchLabels:
-                app.kubernetes.io/name: ${APP%%-*} # hack to remove any -v2 values postfixed to volumes
+                app.kubernetes.io/name: ${APP%%-v*} # hack to remove any -v2 values postfixed to volumes
             topologyKey: kubernetes.io/hostname
     moverSecurityContext:
       runAsUser: ${VOLSYNC_PUID:=1000}
