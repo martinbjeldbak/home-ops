@@ -110,3 +110,14 @@ tasks:
     preconditions:
       - test -f {{.VOLSYNC_RESOURCES_DIR}}/unlock.yaml.j2
       - which kubectl minijinja-cli stern
+
+  fix-suspended-caches:
+    desc: The Volsync cache volume will sometimes get stuck in proxmox CSI, resulting in hanging pods
+    cmds:
+      - for: { var: STUCK, split: "\n" }
+        cmd: kubectl delete pvc --wait=false "{{ regexReplaceAll "volsync-src-(.*)-.*" .ITEM  "volsync-${1}-cache" }}"
+      - for: { var: STUCK, split: "\n" }
+        cmd: kubectl delete job "{{ regexReplaceAll "(volsync-src-.*)-.*" .ITEM  "${1}" }}"
+    vars:
+      STUCK:
+        sh: kubectl get pods --field-selector status.phase!=Running,status.phase!=Succeeded --no-headers --output=jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}'
