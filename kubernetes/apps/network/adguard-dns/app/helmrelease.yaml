@@ -59,12 +59,12 @@ spec:
           httpGet:
             path: /healthz
             port: http-webhook
-          timeoutSeconds: 30  # TODO: lower this with different main adguard home install?
+          timeoutSeconds: 30
         readinessProbe:
           httpGet:
             path: /healthz
             port: http-webhook
-          timeoutSeconds: 30  # TODO: lower this with different main adguard home install?
+          timeoutSeconds: 30
     triggerLoopOnEvent: true
     policy: sync
     sources: ["gateway-httproute", "service"]

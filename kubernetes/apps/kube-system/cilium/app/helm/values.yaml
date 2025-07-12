@@ -1,6 +1,6 @@
 ---
 autoDirectNodeRoutes: true
-#  TODO: need to disable hostLegacyRouting
+#  NOTE:: need to enable hostLegacyRouting, which means no bandwitHManager support
 # bandwidthManager:
 #   enabled: false
 #   bbr: true
@@ -22,7 +22,7 @@ cni:
 dashboards:
   enabled: true
 devices: ens+
-enableIPv4BIGTCP: false # TODO: look into enabling
+enableIPv4BIGTCP: false # NOTE: requires disabling hostLegacyRouting
 endpointRoutes:
   enabled: true
 envoy:
