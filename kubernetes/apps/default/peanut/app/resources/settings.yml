@@ -2,8 +2,6 @@
 NUT_SERVERS:
   - HOST: alderaan.internal
     PORT: 3493
-    USERNAME: monuser
-    PASSWORD: secret
 INFLUX_HOST: ''
 INFLUX_TOKEN: ''
 INFLUX_ORG: ''
