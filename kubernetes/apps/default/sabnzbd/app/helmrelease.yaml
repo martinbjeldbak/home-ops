@@ -35,7 +35,7 @@ spec:
                 sabnzbd.default.svc,
                 sabnzbd.default.svc.cluster,
                 sabnzbd.default.svc.cluster.local,
-                sab.local.martinbjeldbak.com
+                sab.local.martinbjeldbak.com,
                 sabnzbd.local.martinbjeldbak.com
               TZ: Australia/Melbourne
             envFrom:
