@@ -74,10 +74,10 @@ spec:
           - path: /config/config.js
             subPath: config.js
             readOnly: true
-      media:
+      data:
         type: nfs
         server: alderaan.internal
         path: /volume1/data
         globalMounts:
-          - path: /media/downloads
+          - path: /data/downloads
             subPath: downloads
