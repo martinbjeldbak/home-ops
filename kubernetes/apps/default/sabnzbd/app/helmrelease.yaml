@@ -87,12 +87,12 @@ spec:
     persistence:
       config:
         existingClaim: sabnzbd
-      media:
+      data:
         type: nfs
         server: alderaan.internal
         path: /volume1/data
         globalMounts:
-          - path: /media/downloads/sabnzbd
+          - path: /data/downloads/sabnzbd
             subPath: downloads/sabnzbd
       scripts:
         type: configMap
