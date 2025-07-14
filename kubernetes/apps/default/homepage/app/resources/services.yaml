@@ -82,6 +82,14 @@
           url: http://transmission:9091
           username: {{HOMEPAGE_VAR_TRANSMISSION_USERNAME}}
           password: {{HOMEPAGE_VAR_TRANSMISSION_PASSWORD}}
+    - SABnzbd:
+        icon: sabnzbd.svg
+        description: usenet
+        href: "https://sab.local.martinbjeldbak.com"
+        widget:
+          type: sabnzbd
+          url: http://sabnzbd
+          key:
     - Romm:
         icon: romm.svg
         description: roms
@@ -178,13 +186,13 @@
           type: peanut
           url: http://peanut:8080
           key: ups
-    # - Scrutiny:
-    #     icon: scrutiny.svg
-    #     href: "https://scrutiny.local.martinbjeldbak.com"
-    #     description: s.m.a.r.t. tools
-    #     widget:
-    #         type: scrutiny
-    #         url: http://scrutiny-web:8080
+    - Prometheus:
+        icon: prometheus.svg
+        href: "https://prometheus.local.martinbjeldbak.com"
+        description: monitoring
+        widget:
+          type: prometheus
+          url: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090
     - Gatus:
         icon: gatus.svg
         href: "https://gatus.local.martinbjeldbak.com"
