@@ -40,11 +40,11 @@ nodes:
       - deviceSelector:
           hardwareAddr: "bc:24:11:9b:f9:42"
         dhcp: true
-        mtu: 1420 # TODO: see if we can now bump to 1500
+        mtu: 1500
       - deviceSelector: # USER bridge interface for multus
           hardwareAddr: "bc:24:11:51:22:6c"
         dhcp: true
-        mtu: 1420
+        mtu: 1500
         ignore: true # not 100% sure why I have to do this, but multus can attach if done
   - hostname: "node-02"
     ipAddress: "192.168.1.102"
@@ -76,13 +76,13 @@ nodes:
       - deviceSelector:
           hardwareAddr: "bc:24:11:9b:a8:42"
         dhcp: true
-        mtu: 1420
+        mtu: 1500
         vip:
           ip: 192.168.1.100
       - deviceSelector: # USER bridge interface for multus
           hardwareAddr: "bc:24:11:51:22:7c"
         dhcp: true
-        mtu: 1420
+        mtu: 1500
         ignore: true # not 100% sure why I have to do this, but multus can attach if done
 
 # Global patches
