@@ -199,13 +199,6 @@
         widget:
           type: gatus
           url: http://gatus.observability.svc.cluster.local:80
-    - Speedtest Tracker:
-        icon: speedtest-tracker.png
-        href: "https://speedtest-tracker.local.martinbjeldbak.com"
-        widget:
-          type: speedtest
-          url: http://speedtest-tracker
-
     - Immich:
         icon: immich.svg
         href: "https://immich.local.martinbjeldbak.com"
@@ -367,10 +360,10 @@
     - Proxmox:
         icon: proxmox.svg
         description: hypervisor
-        href: "https://pve-home.local.martinbjeldbak.com:8006"
+        href: "https://192.168.1.50:8006"
         widget:
           type: proxmox
-          url: https://pve-home.local.martinbjeldbak.com:8006
+          url: https://192.168.1.50:8006
           username: {{HOMEPAGE_VAR_PROXMOX_TOKEN_ID}}
           password: {{HOMEPAGE_VAR_PROXMOX_TOKEN_PASSWORD}}
           # node: beelink-eq14-1
