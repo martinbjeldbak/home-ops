@@ -26,3 +26,4 @@ Brewfile.lock.json
 wiki
 # Bootstrap
 /config.yaml
+hack/cloud-config.yaml
