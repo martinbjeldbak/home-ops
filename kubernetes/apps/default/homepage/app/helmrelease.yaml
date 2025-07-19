@@ -111,6 +111,9 @@ spec:
           - path: /app/config/custom.js
             subPath: custom.js
             readOnly: true
+          - path: /app/config/proxmox.yaml
+            subPath: proxmox.yaml
+            readOnly: true
       config-logs:
         type: emptyDir
         enabled: true
