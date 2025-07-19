@@ -40,7 +40,6 @@ resources:
   - ./sabnzbd/ks.yaml
   - ./scrypted/ks.yaml
   - ./sonarr/ks.yaml
-  - ./speedtest-tracker/ks.yaml
   - ./syncthing/ks.yaml
   - ./tautulli/ks.yaml
   - ./transmission/ks.yaml
