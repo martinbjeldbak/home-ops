@@ -1,3 +1,3 @@
-url: https://192.168.1.50:8006
+url: https://pve.internal:8006
 token: {{HOMEPAGE_VAR_PROXMOX_TOKEN_ID}}
 secret: {{HOMEPAGE_VAR_PROXMOX_TOKEN_PASSWORD}}

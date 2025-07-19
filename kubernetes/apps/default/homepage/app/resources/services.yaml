@@ -360,10 +360,10 @@
     - Proxmox:
         icon: proxmox.svg
         description: hypervisor
-        href: "https://192.168.1.50:8006"
+        href: "https://pve.internal:8006"
         widget:
           type: proxmox
-          url: https://192.168.1.50:8006
+          url: https://pve.internal:8006
           username: {{HOMEPAGE_VAR_PROXMOX_TOKEN_ID}}
           password: {{HOMEPAGE_VAR_PROXMOX_TOKEN_PASSWORD}}
           # node: beelink-eq14-1
