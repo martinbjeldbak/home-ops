@@ -99,7 +99,7 @@ spec:
               backendRequest: 0s  # websocket, never time out
     persistence:
       unifi:
-        existingClaim: unifi-v3
+        existingClaim: unifi
       cert:
         type: secret
         name: martinbjeldbak-com-unifi-tls

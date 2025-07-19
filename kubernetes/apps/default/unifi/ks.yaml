@@ -19,8 +19,7 @@ spec:
   path: ./kubernetes/apps/default/unifi/app
   postBuild:
     substitute:
-      APP: unifi-v3
-      GATUS_SUBDOMAIN: *app
+      APP: unifi
       VOLSYNC_CAPACITY: 5Gi
   prune: true
   retryInterval: 2m
