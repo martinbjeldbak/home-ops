@@ -103,29 +103,21 @@ spec:
     # Application HTTPRoute moved behind Authentik
     persistence:
       config:
-        existingClaim: home-assistant-v2
-        advancedMounts:
-          home-assistant:
-            app:
-              - path: /config
-            code-server:
-              - path: /config
+        existingClaim: home-assistant
+        globalMounts:
+          - path: /config
       config-cache:
-        existingClaim: home-assistant-cache-v2
-        advancedMounts:
-          home-assistant:
-            app:
-              - path: /venv
-                subPath: hass-venv
+        existingClaim: home-assistant-cache
+        globalMounts:
+          - path: /config/.venv
       tmpfs:
         type: emptyDir
         advancedMounts:
           home-assistant:
             app:
+              - path: /config/logs
+                subPath: logs
+              - path: /config/tts
+                subPath: tts
               - path: /tmp
-                subPath: hass-tmp
-            code-server:
-              - path: /tmp
-                subPath: code-server-tmp
-              - path: /nonexistent
-                subPath: nonexistent
+                subPath: tmp

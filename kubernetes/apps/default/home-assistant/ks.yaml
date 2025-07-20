@@ -23,10 +23,8 @@ spec:
   path: ./kubernetes/apps/default/home-assistant/app
   postBuild:
     substitute:
-      APP: home-assistant-v2
-      GATUS_SUBDOMAIN: home-assistant
-      VOLSYNC_CACHE_CAPACITY: 10Gi
-      VOLSYNC_CAPACITY: 10Gi
+      APP: *app
+      VOLSYNC_CAPACITY: 5Gi
   prune: true
   retryInterval: 2m
   sourceRef:
