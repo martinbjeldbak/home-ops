@@ -11,15 +11,11 @@ spec:
     name: app-template
   install:
     remediation:
-      retries: 3
+      retries: -1
   upgrade:
     cleanupOnFail: true
     remediation:
-      strategy: rollback
       retries: 3
-  dependsOn:
-    - name: proxmox-csi
-      namespace: csi-proxmox
   values:
     controllers:
       home-assistant:
@@ -49,29 +45,12 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities:
-                add: ["NET_ADMIN"] # for ping presence detection
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 10m
-              # limits:
-              #   memory: 2Gi
-          code-server:
-            image:
-              repository: ghcr.io/coder/code-server
-              tag: 4.102.1@sha256:8e54ed8a175d4dc223186078dc0c89157887ad8a2c17b41b2ff6f1a0b3d724d9
-            args:
-              - --auth
-              - none
-              - --disable-telemetry
-              - --disable-update-check
-              - --user-data-dir
-              - /config/.code-server
-              - --extensions-dir
-              - /config/.code-server
-              - --port
-              - "12321"
-              - /config
+              limits:
+                memory: 2Gi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -84,22 +63,7 @@ spec:
         ports:
           http:
             port: 8123
-      code-server:
-        ports:
-          code-server:
-            port: &vscode-port 12321
-    # Application HTTPRoute moved behind Authentik
-    route:
-      code-server:
-        hostnames: ["hass-vscode.local.martinbjeldbak.com"]
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: code-server
-                port: *vscode-port
+    # HTTPRoute created by Authentik proxy provider
     persistence:
       config:
         existingClaim: home-assistant
