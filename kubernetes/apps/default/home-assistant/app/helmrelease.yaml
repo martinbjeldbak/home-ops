@@ -89,8 +89,9 @@ spec:
         ports:
           code-server:
             port: &vscode-port 12321
+    # Application HTTPRoute moved behind Authentik
     route:
-      app:
+      code-server:
         hostnames: ["hass-vscode.local.martinbjeldbak.com"]
         parentRefs:
           - name: internal
@@ -100,7 +101,6 @@ spec:
           - backendRefs:
               - identifier: code-server
                 port: *vscode-port
-    # Application HTTPRoute moved behind Authentik
     persistence:
       config:
         existingClaim: home-assistant
