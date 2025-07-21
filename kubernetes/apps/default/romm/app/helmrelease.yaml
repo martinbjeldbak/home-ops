@@ -81,9 +81,9 @@ spec:
           romm:
             app:
               - subPath: resources
-                path: /romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
+                path: /romm/resources
               - subPath: assets
-                path: /romm/assets # Uploaded saves, states, etc.
+                path: /romm/assets
       config:
         type: emptyDir
         globalMounts:
