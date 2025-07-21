@@ -43,6 +43,7 @@ spec:
               OIDC_PROVIDER: authentik
               OIDC_REDIRECT_URI: https://romm.local.martinbjeldbak.com/api/oauth/openid
               OIDC_SERVER_APPLICATION_URL: https://auth.local.martinbjeldbak.com/application/o/romm
+              HASHEOUS_API_ENABLED: true
             envFrom:
               - secretRef:
                   name: romm-secret
