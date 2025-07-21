@@ -28,7 +28,11 @@ spec:
                   --password "$ICLOUD_PASSWORD" \
                   --password-provider webui \
                   --mfa-provider webui \
-                  --watch-with-interval 3600
+                  --watch-with-interval 3600 \
+                  --smtp-username "$SMTP_USERNAME" \
+                  --smtp-password "$SMTP_PASSWORD" \
+                  --smtp-host "$SMTP_HOST" \
+                  --smtp-port 465
             env:
               TZ: Australia/Melbourne
             envFrom:
