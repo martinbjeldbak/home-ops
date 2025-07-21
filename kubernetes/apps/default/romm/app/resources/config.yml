@@ -1,0 +1,14 @@
+---
+exclude:
+  platforms:
+    - '@eaDir'
+  roms:
+    single_file:
+      names:
+        - '@eaDir'
+    multi_file:
+      names:
+        - '@eaDir'
+filesystem:
+  firmware_folder: bios
+  roms_folder: roms
