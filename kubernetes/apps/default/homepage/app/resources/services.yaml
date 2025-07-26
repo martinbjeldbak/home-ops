@@ -89,7 +89,7 @@
         widget:
           type: sabnzbd
           url: http://sabnzbd
-          key:
+          key: {{HOMEPAGE_VAR_SABNZBD_API_KEY}}
     - Romm:
         icon: romm.svg
         description: roms
