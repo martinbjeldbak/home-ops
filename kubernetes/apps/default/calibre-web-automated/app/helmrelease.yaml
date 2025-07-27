@@ -31,7 +31,7 @@ spec:
             securityContext:
               allowPrivilegeEscalation: true # s6 container
               readOnlyRootFilesystem: false # s6 container
-              # capabilities: { drop: ["ALL"] }
+              capabilities: { drop: ["ALL"] }
             probes:
               liveness:
                 enabled: true
