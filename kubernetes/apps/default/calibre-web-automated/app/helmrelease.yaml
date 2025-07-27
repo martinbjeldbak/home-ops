@@ -31,7 +31,6 @@ spec:
             securityContext:
               allowPrivilegeEscalation: true # s6 container
               readOnlyRootFilesystem: false # s6 container
-              capabilities: { drop: ["ALL"] }
             probes:
               liveness:
                 enabled: true
@@ -45,13 +44,13 @@ spec:
             resources:
               requests:
                 cpu: 5m
-    # defaultPodOptions:
-    #   securityContext:
-    #     # runAsNonRoot: true
-    #     runAsUser: 1000
-    #     runAsGroup: 1000
-    #     fsGroup: 1000
-    #     fsGroupChangePolicy: OnRootMismatch
+    defaultPodOptions:
+      securityContext:
+        # runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         ports:
