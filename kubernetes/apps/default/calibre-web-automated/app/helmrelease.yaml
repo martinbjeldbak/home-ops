@@ -30,6 +30,8 @@ spec:
               PGID: 1000
             securityContext:
               allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
             probes:
               liveness:
                 enabled: true
@@ -43,6 +45,13 @@ spec:
             resources:
               requests:
                 cpu: 5m
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         ports:
