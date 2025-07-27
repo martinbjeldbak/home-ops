@@ -30,7 +30,7 @@ spec:
               PGID: 1000
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
+              readOnlyRootFilesystem: false
               capabilities: { drop: ["ALL"] }
             probes:
               liveness:
