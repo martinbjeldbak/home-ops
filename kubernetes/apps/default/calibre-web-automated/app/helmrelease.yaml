@@ -29,8 +29,8 @@ spec:
               PUID: 1000
               PGID: 1000
             securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: false
+              allowPrivilegeEscalation: true # s6 container
+              readOnlyRootFilesystem: false # s6 container
               capabilities: { drop: ["ALL"] }
             probes:
               liveness:
