@@ -29,8 +29,8 @@ spec:
               PUID: 1000
               PGID: 1000
             securityContext:
-              allowPrivilegeEscalation: true # s6 container
-              readOnlyRootFilesystem: false # s6 container
+              allowPrivilegeEscalation: true  # s6 container
+              readOnlyRootFilesystem: false  # s6 container
             probes:
               liveness:
                 enabled: true
@@ -46,7 +46,7 @@ spec:
                 cpu: 5m
     defaultPodOptions:
       securityContext:
-        runAsNonRoot: false
+        runAsNonRoot: false  # s6-based image...
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
