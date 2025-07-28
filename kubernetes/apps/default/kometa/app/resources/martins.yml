@@ -44,14 +44,3 @@ collections:
       filepath.regex:
         - '(?<=[0-9]{4}[)}>\]]\s).*\bTheatrical\b'
       title.regex: '(?i)\b(The Lord of the Rings)|(The Hobbit)\b'
-
-  Star Wars the Complete Collection:
-    trakt_list:
-      - https://trakt.tv/users/darkman1498/lists/star-wars
-    collection_order: custom
-    sync_mode: sync
-    radarr_add_missing: true
-    radarr_add_existing: true
-    radarr_monitor: true
-    radarr_quality: Ultra-HD
-
