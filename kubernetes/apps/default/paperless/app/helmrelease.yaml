@@ -65,6 +65,9 @@ spec:
               runAsUser: 1000
               runAsGroup: 1000
               fsGroup: 1000
+              fsGroupChangePolicy: OnRootMismatch
+              allowPrivilegeEscalation: true  # s6 container, can't run as rootless, see https://github.com/paperless-ngx/paperless-ngx/blob/f0b6e79d14a0b2aa7e2a2b0383cdd0bdacbf6f50/docs/setup.md#use-docker-compose-docker
+              readOnlyRootFilesystem: false  # s6 container
             # probes:
             #   liveness: &probes
             #     enabled: true
@@ -95,10 +98,6 @@ spec:
               tag: 8.21.1@sha256:91486863744f7420ca985ee6cef7c216910e40faffd378f3da7c0fad724d01ba
             env:
               DISABLE_GOOGLE_CHROME: "1"
-              # LIBREOFFICE_AUTO_START: true
-              # LIBREOFFICE_START_TIMEOUT: 301s
-              # API_TIMEOUT: 900s
-              # LOG_LEVEL: debug
             securityContext:
               runAsUser: 65534
               runAsGroup: 65534
