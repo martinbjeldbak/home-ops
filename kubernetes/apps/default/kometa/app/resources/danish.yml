@@ -5,7 +5,7 @@ collections:
     sync_mode: sync
     radarr_add_missing: true
     imdb_search: # see: https://metamanager.wiki/en/latest/files/builders/imdb/#imdb-search
-      type: movie
+      type: movie,tv_movie
       sort_by: popularity.asc
       limit: 20
       language.primary: da
