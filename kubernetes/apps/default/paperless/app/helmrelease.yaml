@@ -62,8 +62,6 @@ spec:
               # limits:
               #   memory: 5000Mi
             securityContext:
-              runAsUser: 1000
-              runAsGroup: 1000
               fsGroup: 1000
               fsGroupChangePolicy: OnRootMismatch
               allowPrivilegeEscalation: true  # s6 container, can't run as rootless, see https://github.com/paperless-ngx/paperless-ngx/blob/f0b6e79d14a0b2aa7e2a2b0383cdd0bdacbf6f50/docs/setup.md#use-docker-compose-docker
