@@ -34,7 +34,7 @@ spec:
               SERVER_REGIONS: Oceania
               UPDATER_PERIOD: 48h
               FIREWALL_INPUT_PORTS: 80,42162
-              FIREWALL_VPN_INPUT_PORTS: &torrentPort 42162
+              # FIREWALL_VPN_INPUT_PORTS: &torrentPort 42162
             envFrom:
               - secretRef:
                   name: qbittorrent-secret
