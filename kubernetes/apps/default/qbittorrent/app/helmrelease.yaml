@@ -21,6 +21,13 @@ spec:
       qbittorrent:
         annotations:
           reloader.stakater.com/auto: "true"
+
+        pod:
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+          terminationGracePeriodSeconds: 120
+
         initContainers:
           gluetun:
             image:
@@ -34,16 +41,15 @@ spec:
               SERVER_REGIONS: Oceania
               UPDATER_PERIOD: 48h
               FIREWALL_INPUT_PORTS: 80,42162
-              # FIREWALL_VPN_INPUT_PORTS: &torrentPort 42162
+              FIREWALL_VPN_INPUT_PORTS: &torrentPort 42162
             envFrom:
               - secretRef:
                   name: qbittorrent-secret
             securityContext:
-              fsGroup: 1000
-              fsGroupChangePolicy: OnRootMismatch
               capabilities:
                 add: ["NET_ADMIN"]
               allowPrivilegeEscalation: false
+
         containers:
           app:
             image:
@@ -52,7 +58,7 @@ spec:
             env:
               TZ: Australia/Melbourne
               QBT_WEBUI_PORT: &port 80
-              # QBT_TORRENTING_PORT: *torrentPort
+              QBT_TORRENTING_PORT: *torrentPort
             probes:
               liveness: &probes
                 enabled: true
