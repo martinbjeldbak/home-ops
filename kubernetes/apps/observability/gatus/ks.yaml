@@ -9,9 +9,6 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  dependsOn:
-    - name: proxmox-csi
-      namespace: csi-proxmox
   interval: 1h
   path: ./kubernetes/apps/observability/gatus/app
   postBuild:
