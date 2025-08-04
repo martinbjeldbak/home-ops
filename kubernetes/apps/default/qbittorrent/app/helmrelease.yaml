@@ -38,11 +38,11 @@ spec:
               - secretRef:
                   name: qbittorrent-secret
             securityContext:
+              runAsNonRoot: false
               fsGroup: 1000
               fsGroupChangePolicy: OnRootMismatch
               capabilities:
                 add: ["NET_ADMIN"]
-              allowPrivilegeEscalation: false
         containers:
           app:
             image:
