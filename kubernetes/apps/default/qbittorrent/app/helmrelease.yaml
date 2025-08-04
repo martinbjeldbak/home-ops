@@ -38,6 +38,8 @@ spec:
               - secretRef:
                   name: qbittorrent-secret
             securityContext:
+              fsGroup: 1000
+              fsGroupChangePolicy: OnRootMismatch
               capabilities:
                 add: ["NET_ADMIN"]
               allowPrivilegeEscalation: false
