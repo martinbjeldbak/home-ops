@@ -31,18 +31,7 @@ spec:
               TZ: Australia/Melbourne
               QBT_WEBUI_PORT: &port 80
               QBT_TORRENTING_PORT: &torrentPort 42162
-            probes:
-              liveness:
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /api/v2/app/version
-                    port: *port
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
+            # TODO: look into adding probes
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
