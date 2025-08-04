@@ -78,7 +78,7 @@ spec:
       config:
         existingClaim: radarr
       config-cache:
-        existingClaim: radarr-cache-v2
+        existingClaim: radarr-cache
         globalMounts:
           - path: /config/MediaCover
       scripts:
