@@ -36,6 +36,8 @@ spec:
             restartPolicy: Always
             env:
               TZ: Australia/Melbourne
+              DOT: off
+              DNS: 1.1.1.1,8.8.8.8
               VPN_SERVICE_PROVIDER: airvpn
               VPN_TYPE: wireguard
               SERVER_REGIONS: Oceania
