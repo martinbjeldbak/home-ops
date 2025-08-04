@@ -43,6 +43,8 @@ spec:
               runAsGroup: 0
               capabilities:
                 add: ["NET_ADMIN", "SYS_MODULE"]
+              privileged: false
+              allowPrivilegeEscalation: true
         containers:
           app:
             image:
