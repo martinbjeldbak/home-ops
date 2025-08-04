@@ -52,7 +52,7 @@ spec:
             env:
               TZ: Australia/Melbourne
               QBT_WEBUI_PORT: &port 80
-              QBT_TORRENTING_PORT: *torrentPort
+              # QBT_TORRENTING_PORT: *torrentPort
             probes:
               liveness: &probes
                 enabled: true
