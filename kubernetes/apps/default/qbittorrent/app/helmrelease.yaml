@@ -1,9 +1,10 @@
+
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: qbittorrent
+  name: &app qbittorrent
 spec:
   interval: 1h
   chartRef:
@@ -21,37 +22,6 @@ spec:
       qbittorrent:
         annotations:
           reloader.stakater.com/auto: "true"
-
-        pod:
-          securityContext:
-            fsGroup: 1000
-            fsGroupChangePolicy: OnRootMismatch
-          terminationGracePeriodSeconds: 120
-
-        initContainers:
-          gluetun:
-            image:
-              repository: ghcr.io/qdm12/gluetun
-              tag: v3.40.0@sha256:2b42bfa046757145a5155acece417b65b4443c8033fb88661a8e9dcf7fda5a00
-            restartPolicy: Always
-            env:
-              TZ: Australia/Melbourne
-              DOT: off
-              DNS: 1.1.1.1,8.8.8.8
-              VPN_SERVICE_PROVIDER: airvpn
-              VPN_TYPE: wireguard
-              SERVER_REGIONS: Oceania
-              UPDATER_PERIOD: 48h
-              FIREWALL_INPUT_PORTS: 80,42162
-              FIREWALL_VPN_INPUT_PORTS: &torrentPort 42162
-            envFrom:
-              - secretRef:
-                  name: qbittorrent-secret
-            securityContext:
-              capabilities:
-                add: ["NET_ADMIN"]
-              allowPrivilegeEscalation: false
-
         containers:
           app:
             image:
@@ -60,7 +30,7 @@ spec:
             env:
               TZ: Australia/Melbourne
               QBT_WEBUI_PORT: &port 80
-              QBT_TORRENTING_PORT: *torrentPort
+              QBT_TORRENTING_PORT: &torrentPort 42162
             probes:
               liveness: &probes
                 enabled: true
@@ -83,16 +53,18 @@ spec:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
-              runAsNonRoot: true
-              runAsUser: 1000
-              runAsGroup: 1000
-              fsGroup: 1000
-              fsGroupChangePolicy: OnRootMismatch
             resources:
               requests:
                 cpu: 100m
-              # limits:
-              #   memory: 18Gi
+              limits:
+                memory: 18Gi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         forceRename: "{{ .Release.Name }}"
@@ -100,6 +72,14 @@ spec:
         ports:
           http:
             port: *port
+      bittorrent:
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 192.168.1.132
+        ports:
+          bittorrent-tcp:
+            port: *torrentPort
+            protocol: TCP
     route:
       app:
         hostnames:
@@ -133,10 +113,8 @@ spec:
         type: nfs
         server: alderaan.internal
         path: /volume1/data
-        advancedMounts:
-          qbittorrent:
-            app:
-              - path: /data/downloads/qbittorrent
-                subPath: downloads/qbittorrent
+        globalMounts:
+          - path: /data/downloads/qbittorrent
+            subPath: downloads/qbittorrent
       tmp:
         type: emptyDir
