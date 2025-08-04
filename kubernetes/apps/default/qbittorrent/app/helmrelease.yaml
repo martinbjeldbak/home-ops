@@ -38,7 +38,11 @@ spec:
               - secretRef:
                   name: qbittorrent-secret
             securityContext:
-              privileged: true
+              fsGroup: 1000
+              fsGroupChangePolicy: OnRootMismatch
+              capabilities:
+                add: ["NET_ADMIN"]
+              allowPrivilegeEscalation: false
         containers:
           app:
             image:
@@ -70,18 +74,16 @@ spec:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
+              runAsNonRoot: true
+              runAsUser: 1000
+              runAsGroup: 1000
+              fsGroup: 1000
+              fsGroupChangePolicy: OnRootMismatch
             resources:
               requests:
                 cpu: 100m
               # limits:
               #   memory: 18Gi
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         forceRename: "{{ .Release.Name }}"
