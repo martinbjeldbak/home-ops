@@ -8,7 +8,7 @@ ui:
   logo: https://avatars.githubusercontent.com/u/823316
   link: https://github.com/martinbjeldbak
   buttons:
-    - name: Github
+    - name: GitHub
       link: https://github.com/martinbjeldbak
     - name: Homelab
       link: https://github.com/martinbjeldbak/home-ops
