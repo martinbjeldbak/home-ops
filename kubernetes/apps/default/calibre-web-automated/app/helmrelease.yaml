@@ -28,19 +28,25 @@ spec:
               TZ: Australia/Melbourne
               PUID: 1029  # 'docker' user
               PGID: 100  # 'users' group
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
+            # probes:
+            #   liveness: &probes
+            #     enabled: true
+            #     custom: true
+            #     spec:
+            #       httpGet:
+            #         path: /health
+            #         port: &port 80
+            #       initialDelaySeconds: 0
+            #       periodSeconds: 10
+            #       timeoutSeconds: 1
+            #       failureThreshold: 3
+            #   readiness: *probes
             securityContext:
               allowPrivilegeEscalation: true  # s6 container
               readOnlyRootFilesystem: false  # s6 container
-            probes:
-              liveness:
-                enabled: true
-              readiness:
-                enabled: true
-              startup:
-                enabled: true
-                spec:
-                  failureThreshold: 600
-                  periodSeconds: 5
             resources:
               requests:
                 cpu: 5m
@@ -62,7 +68,7 @@ spec:
                 port: *port
     persistence:
       config:
-        existingClaim: calibre-web-automated
+        existingClaim: "{{ .Release.Name }}"
       calibre-library:
         type: nfs
         server: alderaan.internal
