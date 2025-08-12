@@ -28,6 +28,8 @@ spec:
               TZ: Australia/Melbourne
               PUID: 1029  # 'docker' user
               PGID: 100  # 'users' group
+              LDAP_LOGLEVEL: debug
+              LOG_LEVEL: debug
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
