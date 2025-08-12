@@ -28,6 +28,9 @@ spec:
               TZ: Australia/Melbourne
               PUID: 1029  # 'docker' user
               PGID: 100  # 'users' group
+            securityContext:
+              allowPrivilegeEscalation: true  # s6 container
+              readOnlyRootFilesystem: false  # s6 container
             probes:
               liveness:
                 enabled: true
