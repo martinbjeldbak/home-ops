@@ -44,10 +44,6 @@ spec:
             resources:
               requests:
                 cpu: 5m
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: false  # s6-based image...
-        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         ports:
