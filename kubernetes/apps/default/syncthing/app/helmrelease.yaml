@@ -26,7 +26,7 @@ spec:
           app:
             image:
               repository: ghcr.io/syncthing/syncthing
-              tag: 1.30.0@sha256:74eeedb08d4912763055594f8bd98bfc039f3bc504b6cd2c2adc8294111c1251
+              tag: 2.0.1@sha256:d0d4d861b594ff6e3bd55d11b79d97dddf3d1f6d6450ab2f79750c33d5ea726e
             env:
               TZ: Australia/Melbourne
               PGID: 1000
