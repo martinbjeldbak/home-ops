@@ -18,7 +18,7 @@ spec:
           app:
             image:
               repository: icloudpd/icloudpd
-              tag: 1.29.2@sha256:a7032d1671a4aa8a74b4552aa880ab130881ad7f892d30a8e6103dbbeb34e37c
+              tag: 1.29.4@sha256:ea6a22e8b4ee23d8502afd5eb8d253e955f5a13b4f1dcd670f3f63099e704c75
             command: ["/bin/sh", "-c"]
             args:
               - |

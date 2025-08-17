@@ -6,9 +6,11 @@ exclude:
     single_file:
       names:
         - '@eaDir'
+        - '.DS_Store'
     multi_file:
       names:
         - '@eaDir'
+        - '.DS_Store'
 filesystem:
   firmware_folder: bios
   roms_folder: roms
