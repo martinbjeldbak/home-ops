@@ -46,7 +46,7 @@ spec:
               CRAWLER_STORE_SCREENSHOT: true
               CRAWLER_ENABLE_ADBLOCKER: true
               DATA_DIR: /data
-              MEILI_ADDR: http://127.0.0.1:7700
+              # MEILI_ADDR: http://127.0.0.1:7700
               NEXTAUTH_URL: https://karakeep.local.martinbjeldbak.com
               DISABLE_NEW_RELEASE_CHECK: true
               OCR_LANGS: eng,dan
@@ -86,23 +86,23 @@ spec:
                 cpu: 10m
               limits:
                 memory: 1Gi
-          meilisearch:
-            image:
-              repository: docker.io/getmeili/meilisearch
-              tag: v1.16.0@sha256:c0c45cb82a96221d7c855d1cc36ca04ff4b3ce6330fbd8df5ba82e86e632a053
-            args:
-              - /bin/meilisearch
-              - --experimental-dumpless-upgrade
-            env:
-              MEILI_NO_ANALYTICS: true
-            envFrom:
-              - secretRef:
-                  name: karakeep-secret
-            resources:
-              requests:
-                cpu: 10m
-              limits:
-                memory: 4Gi
+          # meilisearch:
+          #   image:
+          #     repository: docker.io/getmeili/meilisearch
+          #     tag: v1.16.0@sha256:c0c45cb82a96221d7c855d1cc36ca04ff4b3ce6330fbd8df5ba82e86e632a053
+          #   args:
+          #     - /bin/meilisearch
+          #     - --experimental-dumpless-upgrade
+          #   env:
+          #     MEILI_NO_ANALYTICS: true
+          #   envFrom:
+          #     - secretRef:
+          #         name: karakeep-secret
+          #   resources:
+          #     requests:
+          #       cpu: 10m
+          #     limits:
+          #       memory: 4Gi
     service:
       app:
         ports:
