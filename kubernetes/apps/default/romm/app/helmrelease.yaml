@@ -87,6 +87,7 @@ spec:
         globalMounts:
           - path: /romm/config/config.yml
             subPath: config.yml
+            readOnly: false
       redis-data:  # cached directory for background tasks
         type: emptyDir
       tmp:
