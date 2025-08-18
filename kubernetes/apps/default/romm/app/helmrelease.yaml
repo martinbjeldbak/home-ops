@@ -80,6 +80,10 @@ spec:
                 path: /romm/resources
               - subPath: assets
                 path: /romm/assets
+      config:
+        type: emptyDir
+        globalMounts:
+          - path: /romm/config
       config-files:
         type: configMap
         name: romm-configmap
@@ -87,7 +91,7 @@ spec:
         globalMounts:
           - path: /romm/config/config.yml
             subPath: config.yml
-            readOnly: false
+            readOnly: true
       redis-data:  # cached directory for background tasks
         type: emptyDir
       tmp:
