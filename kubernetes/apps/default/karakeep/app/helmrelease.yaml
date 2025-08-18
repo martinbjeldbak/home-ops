@@ -127,3 +127,6 @@ spec:
             app:
               - path: /data
                 subPath: karakeep
+            meilisearch:
+              - path: /meili_data
+                subPath: meilisearch
