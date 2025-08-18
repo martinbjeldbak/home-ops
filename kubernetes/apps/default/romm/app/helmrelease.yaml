@@ -26,7 +26,7 @@ spec:
           app:
             image:
               repository: ghcr.io/rommapp/romm
-              tag: 4.0.1@sha256:2f31f792885cd0fc839a590b9645ada846106d4893e5de0be68dc6580b11b5f9
+              tag: 4.1.2@sha256:14ddc5abbfda99fcf60db9fa124b52727518b82deae8ece63f1e1b70873f471a
             env:
               TZ: Australia/Melbourne
               DB_HOST: romm-database-rw
