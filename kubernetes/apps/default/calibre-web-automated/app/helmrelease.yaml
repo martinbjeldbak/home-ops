@@ -28,6 +28,7 @@ spec:
               TZ: Australia/Melbourne
               PUID: 1000
               PGID: 1000
+              NETWORK_SHARE_MODE: true
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
