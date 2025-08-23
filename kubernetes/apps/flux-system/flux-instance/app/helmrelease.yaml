@@ -44,7 +44,7 @@ spec:
         - notification-controller
       sync:
         kind: GitRepository
-        url: https://github.com/onedr0p/home-ops
+        url: https://github.com/martinbjeldbak/home-ops
         ref: refs/heads/main
         path: kubernetes/flux/cluster
         interval: 1h
