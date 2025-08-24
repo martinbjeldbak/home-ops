@@ -44,6 +44,5 @@ resources:
   - ./syncthing/ks.yaml
   - ./tautulli/ks.yaml
   - ./thelounge/ks.yaml
-  - ./transmission/ks.yaml
   - ./unifi/ks.yaml
   - ./zigbee2mqtt/ks.yaml
