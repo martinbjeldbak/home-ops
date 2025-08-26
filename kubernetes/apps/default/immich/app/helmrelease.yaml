@@ -34,7 +34,7 @@ spec:
   values:
     image:
       # renovate: datasource=github-releases depName=immich-app/immich
-      tag: v1.139.3
+      tag: v1.139.4
     env:
       DB_HOSTNAME: immich-database-v2-rw
       DB_DATABASE_NAME: immich
