@@ -22,12 +22,6 @@ spec:
       romm:
         annotations:
           reloader.stakater.com/auto: "true"
-        initContainers:
-          copy-config:
-            image:
-              repository: busybox
-              tag: 1.37.0@sha256:ab33eacc8251e3807b85bb6dba570e4698c3998eca6f0fc2ccb60575a563ea74
-            command: ["cp", "/romm/config-template/config.yml", "/romm/config/config.yml"]
         containers:
           app:
             image:
@@ -95,7 +89,7 @@ spec:
         name: romm-configmap
         defaultMode: 0775
         globalMounts:
-          - path: /romm/config-template/config.yml
+          - path: /romm/config/config.yml
             subPath: config.yml
             readOnly: true
       redis-data:  # cached directory for background tasks
