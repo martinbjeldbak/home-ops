@@ -101,8 +101,8 @@ spec:
             resources:
               requests:
                 cpu: 10m
-              limits:
-                memory: 4Gi
+              # limits:
+              #   memory: 4Gi
     service:
       app:
         ports:

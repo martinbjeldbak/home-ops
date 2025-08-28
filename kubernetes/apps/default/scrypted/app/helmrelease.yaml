@@ -42,14 +42,14 @@ spec:
               tag: 0.141.0@sha256:5a18d0dc431ff8ec0388e4177e53b4abc58c07fea1111a9deb5dcbe2947bb66a
             env:
               SCRYPTED_INSECURE_PORT: &port 80
-            resources:
-              requests:
-                cpu: 136m
-                memory: 1024Mi
-              limits:
+            # resources:
+              # requests:
+              #   cpu: 136m
+              #   memory: 1024Mi
+              # limits:
                 # gpu.intel.com/i915: 3 # not sure why this isn't working
                 # squat.ai/coral: 1
-                memory: 8192Mi
+                # memory: 8192Mi
 
     service:
       app:
