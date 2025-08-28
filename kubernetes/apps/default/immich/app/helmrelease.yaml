@@ -61,7 +61,7 @@ spec:
     server:
       resources:
         requests:
-          cpu: 1500m
+          cpu: 100m
           memory: 2048M
       persistence:
         external:

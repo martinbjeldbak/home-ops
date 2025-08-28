@@ -48,23 +48,23 @@ spec:
             envFrom:
               - secretRef:
                   name: dawarich-secret
-            resources:
-              requests:
-                memory: "1Gi"
-                cpu: "250m"
-              limits:
-                memory: "3Gi"
-                cpu: "2000m"
+            # resources:
+            #   requests:
+            #     memory: "1Gi"
+            #     cpu: "250m"
+            #   limits:
+            #     memory: "3Gi"
+            #     cpu: "2000m"
           sidekiq:
             <<: *dawarich
             command: ['bundle', 'exec', 'sidekiq'] # fixes https://github.com/Freika/dawarich/pull/941
-            resources:
-              requests:
-                memory: "1Gi"
-                cpu: "250m"
-              limits:
-                memory: "3Gi"
-                cpu: "1500m"
+            # resources:
+            #   requests:
+            #     memory: "1Gi"
+            #     cpu: "250m"
+            #   limits:
+            #     memory: "3Gi"
+            #     cpu: "150m"
     service:
       app:
         ports:
