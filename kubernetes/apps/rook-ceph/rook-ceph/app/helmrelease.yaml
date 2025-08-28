@@ -44,5 +44,5 @@ spec:
     resources:
       requests:
         memory: 128Mi # unchangable
-        cpu: 100m # unchangable
+        cpu: 1m # unchangable
       limits: {}
