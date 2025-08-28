@@ -40,8 +40,9 @@ spec:
   dependsOn:
     - name: rook-ceph
       namespace: *namespace
-    - name: volsync
-      namespace: volsync-system
+    # TODO: reenable
+    # - name: volsync
+    #   namespace: volsync-system
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
