@@ -11,7 +11,7 @@ run = "uv pip install -r requirements.txt"
 [tools]
 # Template tools
 python = "3.13"
-uv = "0.8.13"
+uv = "0.8.14"
 # Operations tools
 "aqua:cloudflare/cloudflared" = "2025.8.1"
 "aqua:FiloSottile/age" = "1.2.1"
