@@ -32,9 +32,9 @@ spec:
               - /thin_entrypoint
             args:
               - --cleanup-config-on-exit=true
-            resources:
-              requests:
-                cpu: "10m"
+            # resources:
+            #   requests:
+            #     cpu: "10m"
               # limits:
               #   memory: "512Mi"
             securityContext:
