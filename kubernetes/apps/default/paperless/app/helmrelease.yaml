@@ -55,9 +55,9 @@ spec:
             envFrom:
               - secretRef:
                   name: paperless-secret
-            resources:
-              requests:
-                cpu: 100m
+            # resources:
+            #   requests:
+            #     cpu: 100m
               #   memory: 1000Mi
               # limits:
               #   memory: 5000Mi
