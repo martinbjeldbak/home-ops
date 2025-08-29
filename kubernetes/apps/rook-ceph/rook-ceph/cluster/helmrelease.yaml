@@ -65,6 +65,11 @@ spec:
         prometheusEndpoint: http://prometheus-operated.observability.svc.cluster.local:9090
       mon:
         count: 2 # TODO: 3 nodes
+        requests:
+          cpu: "100m"
+          memory: "1Gi"
+        limits:
+          memory: "2Gi"
       mgr:
         modules:
           - name: diskprediction_local
@@ -75,6 +80,17 @@ spec:
             enabled: true
           - name: rook
             enabled: true
+        requests:
+          cpu: "100m"
+          memory: "256Mi"
+        limits:
+          memory: "1Gi"
+      osd:
+        requests:
+          cpu: "500m"
+          memory: "2Gi"
+        limits:
+          memory: "4Gi"
       network:
         provider: host
         connections:
@@ -140,12 +156,12 @@ spec:
                     matchLabels:
                       app.kubernetes.io/name: ceph-mds
                       app.kubernetes.io/part-of: *cephFileSystemName
-            # resources:
-            #   requests:
-            #     cpu: 100m
-            #     memory: 1Gi
-            #   limits:
-            #     memory: 4Gi
+            resources:
+              requests:
+                cpu: 100m
+                memory: 1Gi
+              limits:
+                memory: 4Gi
         storageClass:
           enabled: true
           isDefault: false
