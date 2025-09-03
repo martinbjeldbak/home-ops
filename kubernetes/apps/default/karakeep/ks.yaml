@@ -13,8 +13,8 @@ spec:
     - ../../../../components/gatus/internal
     - ../../../../components/volsync
   dependsOn:
-    - name: proxmox-csi
-      namespace: csi-proxmox
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
     - name: onepassword
       namespace: external-secrets
   interval: 1h
