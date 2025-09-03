@@ -69,7 +69,7 @@ spec:
                 port: *port
     persistence:
       config:
-        existingClaim: "{{ .Release.Name }}"
+        existingClaim: "{{ .Release.Name }}-data"
       calibre-library:
         type: nfs
         server: alderaan.internal
