@@ -72,7 +72,7 @@ spec:
             sectionName: https
     persistence:
       data:
-        existingClaim: romm
+        existingClaim: "{{ .Release.Name }}-data"
         advancedMounts:
           romm:
             app:
