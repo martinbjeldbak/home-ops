@@ -68,8 +68,6 @@ spec:
               - identifier: app
                 port: *port
     persistence:
-      config-cache:
-        type: emptyDir
       data:
         type: nfs
         server: alderaan.internal
