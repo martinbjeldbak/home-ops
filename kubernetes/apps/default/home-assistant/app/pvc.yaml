@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: home-assistant-cache
+  name: home-assistant-data-cache
 spec:
   accessModes:
     - ReadWriteOnce
