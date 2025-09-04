@@ -8,7 +8,7 @@ machine:
     {% endif %}
   certSANs:
     - 127.0.0.1
-    - 192.168.1.100
+    - 192.168.1.120
   features:
     apidCheckExtKeyUsage: true
     diskQuotaSupport: true
@@ -47,8 +47,9 @@ machine:
         nconnect=16
         noatime=True
   install:
-    disk: /dev/sda
-    image: factory.talos.dev/installer-secureboot/62d0931f10c2d9734427318cc15c4fd6a0317866434e53f1bcbecab204bfc688:v1.11.0
+    diskSelector:
+      model: CT500P3PSSD8
+    image:  factory.talos.dev/metal-installer-secureboot/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba:v1.11.0
     wipe: false
   kernel:
     modules:
@@ -64,9 +65,16 @@ machine:
     nodeIP:
       validSubnets:
         - 192.168.1.0/24
+  network:
+    interfaces:
+      - deviceSelector:
+          hardwareAddr: "e8:ff:1e:da:2d:80"
+        mtu: 1500
+        dhcp: true
+        vip:
+          ip: 192.168.1.120
   nodeLabels:
-    topology.kubernetes.io/region: cluster-1
-    csi.proxmox.sinextra.dev/max-volume-attachments: "29"
+    topology.kubernetes.io/region: main
   sysctls:
     fs.inotify.max_user_instances: "8192"
     fs.inotify.max_user_watches: "1048576"
@@ -93,18 +101,18 @@ cluster:
     {% if machinetype == 'controlplane' %}
     key: op://kubernetes/talos/CLUSTER_CA_KEY
     {% endif %}
-  clusterName: kubernetes
+  clusterName: main
   controlPlane:
-    endpoint: https://192.168.1.100:6443
+    endpoint: https://192.168.1.120:6443
   id: op://kubernetes/talos/CLUSTER_ID
   network:
     cni:
       name: none
     dnsDomain: cluster.local
     podSubnets:
-      - 10.69.0.0/16
+      - 10.42.0.0/16
     serviceSubnets:
-      - 10.96.0.0/16
+      - 10.43.0.0/16
   secret: op://kubernetes/talos/CLUSTER_SECRET
   token: op://kubernetes/talos/CLUSTER_TOKEN
   {% if machinetype == 'controlplane' %}
@@ -119,13 +127,13 @@ cluster:
       rules:
         - level: Metadata
     certSANs:
-      - 192.168.1.100
+      - 192.168.1.120
       - 127.0.0.1
     disablePodSecurityPolicy: true
     extraArgs:
       enable-aggregator-routing: "true"
       feature-gates: ImageVolume=true,MutatingAdmissionPolicy=true
-      runtime-config: admissionregistration.k8s.io/v1alpha1=true
+      runtime-config: admissionregistration.k8s.io/v1beta1=true
     image: registry.k8s.io/kube-apiserver:v1.34.0
   controllerManager:
     extraArgs:
@@ -169,14 +177,14 @@ cluster:
   serviceAccount:
     key: op://kubernetes/talos/CLUSTER_SERVICEACCOUNT_KEY
   {% endif %}
----
-apiVersion: v1alpha1
-kind: UserVolumeConfig
-name: local-hostpath
-provisioning:
-  diskSelector:
-    match:  disk.model == "QEMU HARDDISK" && !system_disk
-  minSize: 25GB
+# ---
+# apiVersion: v1alpha1
+# kind: UserVolumeConfig
+# name: local-hostpath
+# provisioning:
+#   diskSelector:
+#     match:  disk.model == "Samsung SSD 990 PRO 1TB" && !system_disk
+#   minSize: 25GB
 ---
 apiVersion: v1alpha1
 kind: WatchdogTimerConfig
