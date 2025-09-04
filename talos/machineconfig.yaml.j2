@@ -50,7 +50,7 @@ machine:
   install:
     diskSelector:
       model: CT500P3PSSD8
-    image: factory.talos.dev/metal-installer-secureboot/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba:v1.11.0
+    image: factory.talos.dev/metal-installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba:v1.11.0
     wipe: false
   kernel:
     modules:
@@ -178,14 +178,14 @@ cluster:
   serviceAccount:
     key: op://kubernetes/talos/CLUSTER_SERVICEACCOUNT_KEY
   {% endif %}
-# ---
-# apiVersion: v1alpha1
-# kind: UserVolumeConfig
-# name: local-hostpath
-# provisioning:
-#   diskSelector:
-#     match: disk.model == "Corsair MP600 MICRO" && !system_disk
-#   minSize: 1TB
+---
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: local-hostpath
+provisioning:
+  diskSelector:
+    match: disk.model == "Samsung SSD 990 PRO 1TB" && !system_disk
+  minSize: 1TB
 ---
 apiVersion: v1alpha1
 kind: WatchdogTimerConfig
