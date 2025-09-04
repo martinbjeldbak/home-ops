@@ -64,7 +64,7 @@ spec:
         ssl: false
         prometheusEndpoint: http://prometheus-operated.observability.svc.cluster.local:9090
       mon:
-        count: 2 # TODO: 3 nodes
+        count: 1 # TODO: 3 nodes
       mgr:
         modules:
           - name: diskprediction_local
@@ -140,11 +140,11 @@ spec:
         spec:
           metadataPool:
             replicated:
-              size: 2 # TODO: 3 nodes
+              size: 1 # TODO: 3 nodes
           dataPools:
             - failureDomain: host
               replicated:
-                size: 2 # TODO: 3 nodes
+                size: 1 # TODO: 3 nodes
               name: data0
           metadataServer:
             activeCount: 1
