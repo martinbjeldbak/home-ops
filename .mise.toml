@@ -2,7 +2,7 @@
 _.python.venv = { path = "{{config_root}}/.venv", create = true }
 KUBECONFIG = "{{config_root}}/kubeconfig"
 SOPS_AGE_KEY_FILE = "{{config_root}}/age.key"
-TALOSCONFIG = "{{config_root}}/kubernetes/bootstrap/talos/clusterconfig/talosconfig"
+TALOSCONFIG = "{{config_root}}/talosconfig"
 
 [tasks.deps]
 description = "Install dependencies"
@@ -26,3 +26,4 @@ uv = "0.8.14"
 "aqua:mikefarah/yq" = "4.47.1"
 "aqua:siderolabs/talos" = "1.11.0"
 "aqua:yannh/kubeconform" = "0.7.0"
+talhelper = "latest"

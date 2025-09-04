@@ -12,6 +12,8 @@ machine:
         mtu: 1500
         dhcp: true
         ignore: true
+    nameservers:
+      - 8.8.8.8
   nodeLabels:
     topology.kubernetes.io/zone: beelink-eq14-1
   type: worker

@@ -48,7 +48,7 @@ machine:
         noatime=True
   install:
     disk: /dev/sda
-    image: factory.talos.dev/installer-secureboot/62d0931f10c2d9734427318cc15c4fd6a0317866434e53f1bcbecab204bfc688:v1.11.0-rc.0
+    image: factory.talos.dev/installer-secureboot/62d0931f10c2d9734427318cc15c4fd6a0317866434e53f1bcbecab204bfc688:v1.11.0
     wipe: false
   kernel:
     modules:
@@ -143,6 +143,7 @@ cluster:
       listen-metrics-urls: http://0.0.0.0:2381
   proxy:
     disabled: true
+    image: registry.k8s.io/kube-proxy:v1.34.0
   scheduler:
     config:
       apiVersion: kubescheduler.config.k8s.io/v1

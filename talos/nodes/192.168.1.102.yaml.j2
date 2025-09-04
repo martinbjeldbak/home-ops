@@ -14,6 +14,8 @@ machine:
         mtu: 1500
         dhcp: true
         ignore: true
+    nameservers:
+      - 8.8.8.8
   nodeLabels:
     topology.kubernetes.io/zone: beelink-eqi12-1
     intel.feature.node.kubernetes.io/gpu: "true"

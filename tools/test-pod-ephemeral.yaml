@@ -18,6 +18,8 @@ spec:
       volumeMounts:
         - name: task-pv-storage
           mountPath: /mnt/vol
+        - name: task-pv-storage-data
+          mountPath: /mnt/vol-data
         - name: nas-docker
           mountPath: /mnt/nas-docker
         - name: nas-data
@@ -28,7 +30,10 @@ spec:
   volumes:
     - name: task-pv-storage
       persistentVolumeClaim: # NOTE: SET CONTAINER NAME HERE
-        claimName: radarr-v4
+        claimName: home-assistant
+    - name: task-pv-storage-data
+      persistentVolumeClaim: # NOTE: SET CONTAINER NAME HERE
+        claimName: home-assistant-data
     - name: nas-docker
       nfs:
         server: 192.168.10.10
