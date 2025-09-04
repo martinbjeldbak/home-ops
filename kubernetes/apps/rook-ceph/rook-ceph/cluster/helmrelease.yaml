@@ -82,7 +82,7 @@ spec:
       storage:
         useAllNodes: true
         useAllDevices: false
-        devicePathFilter: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi2
+        devicePathFilter: /dev/disk/by-id/nvme-Samsung_SSD_990_PRO_1TB_S7HDNJ0Y716919M_.*
         config:
           osdsPerDevice: "1"
       resources:

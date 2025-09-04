@@ -3,7 +3,7 @@ version: v1alpha1
 machine:
   ca:
     crt: op://kubernetes/talos/MACHINE_CA_CRT
-    {% if machinetype == 'controlplane' %}
+    {% if ENV.IS_CONTROLLER %}
     key: op://kubernetes/talos/MACHINE_CA_KEY
     {% endif %}
   certSANs:
@@ -19,9 +19,10 @@ machine:
     kubePrism:
       enabled: true
       port: 7445
-    {% if machinetype == 'controlplane' %}
+    {% if ENV.IS_CONTROLLER %}
     kubernetesTalosAPIAccess:
       allowedKubernetesNamespaces:
+        - actions-runner-system
         - system-upgrade
       allowedRoles:
         - os:admin
@@ -49,7 +50,7 @@ machine:
   install:
     diskSelector:
       model: CT500P3PSSD8
-    image:  factory.talos.dev/metal-installer-secureboot/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba:v1.11.0
+    image: factory.talos.dev/metal-installer-secureboot/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba:v1.11.0
     wipe: false
   kernel:
     modules:
@@ -68,7 +69,7 @@ machine:
   network:
     interfaces:
       - deviceSelector:
-          hardwareAddr: "e8:ff:1e:da:2d:80"
+          hardwareAddr: e8:ff:1e:da:2d:*
         mtu: 1500
         dhcp: true
         vip:
@@ -98,7 +99,7 @@ machine:
 cluster:
   ca:
     crt: op://kubernetes/talos/CLUSTER_CA_CRT
-    {% if machinetype == 'controlplane' %}
+    {% if ENV.IS_CONTROLLER %}
     key: op://kubernetes/talos/CLUSTER_CA_KEY
     {% endif %}
   clusterName: main
@@ -115,7 +116,7 @@ cluster:
       - 10.43.0.0/16
   secret: op://kubernetes/talos/CLUSTER_SECRET
   token: op://kubernetes/talos/CLUSTER_TOKEN
-  {% if machinetype == 'controlplane' %}
+  {% if ENV.IS_CONTROLLER %}
   aggregatorCA:
     crt: op://kubernetes/talos/CLUSTER_AGGREGATORCA_CRT
     key: op://kubernetes/talos/CLUSTER_AGGREGATORCA_KEY
@@ -127,8 +128,8 @@ cluster:
       rules:
         - level: Metadata
     certSANs:
-      - 192.168.1.120
       - 127.0.0.1
+      - 192.168.1.120
     disablePodSecurityPolicy: true
     extraArgs:
       enable-aggregator-routing: "true"
@@ -183,8 +184,8 @@ cluster:
 # name: local-hostpath
 # provisioning:
 #   diskSelector:
-#     match:  disk.model == "Samsung SSD 990 PRO 1TB" && !system_disk
-#   minSize: 25GB
+#     match: disk.model == "Corsair MP600 MICRO" && !system_disk
+#   minSize: 1TB
 ---
 apiVersion: v1alpha1
 kind: WatchdogTimerConfig
