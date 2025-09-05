@@ -39,7 +39,7 @@ spec:
             env:
               TZ: Australia/Melbourne
               HASS_HTTP_TRUSTED_PROXY_1: 192.168.0.0/16
-              HASS_HTTP_TRUSTED_PROXY_2: 10.69.0.0/16
+              HASS_HTTP_TRUSTED_PROXY_2: 10.42.0.0/16
             envFrom:
               - secretRef:
                   name: home-assistant-secret
@@ -64,14 +64,21 @@ spec:
         ports:
           http:
             port: 8123
-    # HTTPRoute created by Authentik proxy provider
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.local.martinbjeldbak.com"
+        parentRefs:
+          - name: external
+            namespace: kube-system
+            sectionName: https
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
         globalMounts:
           - path: /config
       config-cache:
-        existingClaim: home-assistant-cache
+        existingClaim: "{{ .Release.Name }}-cache"
         globalMounts:
           - path: /config/.venv
       tmpfs:
