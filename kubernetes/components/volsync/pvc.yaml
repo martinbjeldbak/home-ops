@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: "${APP}-data" # TODO :remove suffix when all pvcs have migrated to rook
+  name: "${APP}" # TODO :remove suffix when all pvcs have migrated to rook
 spec:
   accessModes: ["${VOLSYNC_ACCESSMODES:=ReadWriteOnce}"]
   dataSourceRef:

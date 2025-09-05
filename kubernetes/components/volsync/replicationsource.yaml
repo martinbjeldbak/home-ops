@@ -5,7 +5,7 @@ kind: ReplicationSource
 metadata:
   name: "${APP}"
 spec:
-  sourcePVC: "${APP}-data" # TODO :remove suffix when all pvcs have migrated to rook
+  sourcePVC: "${APP}"
   trigger:
     schedule: "0 * * * *"
   restic:
