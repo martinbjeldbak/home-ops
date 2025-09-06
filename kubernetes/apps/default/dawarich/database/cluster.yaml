@@ -9,16 +9,19 @@ spec:
   # renovate: datasource=docker depName=ghcr.io/cloudnative-pg/postgresql
   imageName: ghcr.io/cloudnative-pg/postgis:17-3.5@sha256:f429306b52e07d013e13cdc78fe987e29f81ed7e3e115784c12073f598904786
   bootstrap:
-    initdb:
-      database: dawarich_development
-      owner: dawarich
-      secret:
-        name: dawarich-cluster-credentials-secret
-      postInitTemplateSQL:
-        - CREATE EXTENSION postgis;
-        - CREATE EXTENSION postgis_topology;
-        - CREATE EXTENSION fuzzystrmatch;
-        - CREATE EXTENSION postgis_tiger_geocoder;
+    # initdb:
+    #   database: dawarich_development
+    #   owner: dawarich
+    #   secret:
+    #     name: dawarich-cluster-credentials-secret
+    #   postInitTemplateSQL:
+    #     - CREATE EXTENSION postgis;
+    #     - CREATE EXTENSION postgis_topology;
+    #     - CREATE EXTENSION fuzzystrmatch;
+    #     - CREATE EXTENSION postgis_tiger_geocoder;
+    recovery:
+      backup:
+        name: b2-dawarich
   storage:
     size: 5Gi
     pvcTemplate:
