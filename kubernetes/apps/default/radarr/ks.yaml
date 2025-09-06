@@ -15,15 +15,14 @@ spec:
   dependsOn:
     - name: onepassword
       namespace: external-secrets
-    - name: proxmox-csi
-      namespace: csi-proxmox
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/default/radarr/app
   postBuild:
     substitute:
       APP: *app
       GATUS_SUBDOMAIN: movies
-      VOLSYNC_CACHE_CAPACITY: 10Gi
       VOLSYNC_CAPACITY: 20Gi
   prune: true
   retryInterval: 2m
