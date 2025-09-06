@@ -8,18 +8,14 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: app-template
+    name: unifi
   install:
     remediation:
-      retries: 3
+      retries: -1
   upgrade:
     cleanupOnFail: true
     remediation:
-      strategy: rollback
       retries: 3
-  dependsOn:
-    - name: proxmox-csi
-      namespace: csi-proxmox
   values:
     controllers:
       unifi:
@@ -36,20 +32,32 @@ spec:
               UNIFI_UID: "999"
               UNIFI_GID: "999"
               UNIFI_STDOUT: "true"
-            resources:
-              requests:
-                cpu: 50m
-                # memory: 1390M
             probes:
-              liveness:
+              liveness: &probes
                 enabled: true
                 port: 8080
-              readiness:
-                enabled: true
-                port: 8080
+              readiness: *probes
               startup:
                 enabled: true
-                port: 8080
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 10
+            # securityContext:
+            #   allowPrivilegeEscalation: false
+            #   readOnlyRootFilesystem: true
+            #   capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 100m
+              # limits:
+              #   memory: 18Gi
+    # defaultPodOptions:
+    #   securityContext:
+    #     runAsNonRoot: true
+    #     runAsUser: 1000
+    #     runAsGroup: 1000
+    #     fsGroup: 1000
+    #     fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         type: LoadBalancer
@@ -98,20 +106,5 @@ spec:
               request: 0s  # websocket, never time out
               backendRequest: 0s  # websocket, never time out
     persistence:
-      unifi:
-        existingClaim: "{{ .Release.Name }}-data"
-      cert:
-        type: secret
-        name: martinbjeldbak-com-unifi-tls
-        advancedMounts:
-          unifi:
-            app:
-              - path: /unifi/cert/cert.pem
-                subPath: tls.crt
-                readOnly: true
-              - path: /unifi/cert/privkey.pem
-                subPath: tls.key
-                readOnly: true
-              - path: /unifi/data/keystore
-                subPath: keystore.jks
-                readOnly: false
+      config:
+        existingClaim: "{{ .Release.Name }}"
