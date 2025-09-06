@@ -25,7 +25,7 @@ spec:
   storage:
     size: 5Gi
     pvcTemplate:
-      storageClassName: proxmox
+      storageClassName: ceph-block
       accessModes: ["ReadWriteOnce"]
       resources:
         requests:
