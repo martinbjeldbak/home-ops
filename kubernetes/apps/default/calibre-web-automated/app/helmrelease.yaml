@@ -8,7 +8,7 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: app-template
+    name: calibre-web-automated
   install:
     remediation:
       retries: -1
@@ -69,7 +69,7 @@ spec:
                 port: *port
     persistence:
       config:
-        existingClaim: "{{ .Release.Name }}-data"
+        existingClaim: "{{ .Release.Name }}"
       calibre-library:
         type: nfs
         server: alderaan.internal
