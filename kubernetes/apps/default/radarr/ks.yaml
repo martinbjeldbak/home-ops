@@ -22,7 +22,6 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      GATUS_SUBDOMAIN: movies
       VOLSYNC_CAPACITY: 20Gi
   prune: true
   retryInterval: 2m

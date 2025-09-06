@@ -33,7 +33,7 @@ resources:
   - ./plex/ks.yaml
   # - ./plex-auto-languages/ks.yaml
   # - ./plex-trakt-sync/ks.yaml
-  # - ./prowlarr/ks.yaml
+  - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
   - ./radarr/ks.yaml
   # - ./recyclarr/ks.yaml
