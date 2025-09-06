@@ -13,15 +13,13 @@ spec:
     - ../../../../components/gatus/internal
     - ../../../../components/volsync
   dependsOn:
-    - name: onepassword
-      namespace: external-secrets
-    - name: proxmox-csi
-      namespace: csi-proxmox
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/default/sonarr/app
   postBuild:
     substitute:
-      APP: sonarr-v2
+      APP: *app
       GATUS_SUBDOMAIN: tv
       VOLSYNC_CAPACITY: 5Gi
   prune: true

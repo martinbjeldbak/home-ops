@@ -8,14 +8,13 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: app-template
+    name: sonarr
   install:
     remediation:
-      retries: 3
+      retries: -1
   upgrade:
     cleanupOnFail: true
     remediation:
-      strategy: rollback
       retries: 3
   values:
     controllers:
@@ -28,17 +27,18 @@ spec:
               repository: ghcr.io/home-operations/sonarr
               tag: 4.0.15.2940@sha256:ca6c735014bdfb04ce043bf1323a068ab1d1228eea5bab8305ca0722df7baf78
             env:
-              TZ: Australia/Melbourne
               SONARR__APP__INSTANCENAME: Sonarr
               SONARR__APP__THEME: dark
-              SONARR__AUTH__METHOD: Basic
+              SONARR__AUTH__METHOD: External
+              SONARR__AUTH__REQUIRED: DisabledForLocalAddresses
               SONARR__LOG__DBENABLED: "False"
               SONARR__LOG__LEVEL: info
               SONARR__SERVER__PORT: &port 80
               SONARR__UPDATE__BRANCH: develop
+              TZ: Australia/Melbourne
             envFrom:
               - secretRef:
-                  name: sonarr-secret
+                  name: "{{ .Release.Name }}-secret"
             probes:
               liveness: &probes
                 enabled: true
@@ -55,10 +55,10 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            # resources:
-            #   requests:
-            #     cpu: 100m
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 100m
               # limits:
               #   memory: 4Gi
     defaultPodOptions:
@@ -73,23 +73,22 @@ spec:
         ports:
           http:
             port: *port
-    # HTTPRoute moved behind Authentik
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.local.martinbjeldbak.com"
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
     persistence:
       config:
-        existingClaim: sonarr-v2
+        existingClaim: "{{ .Release.Name }}"
       config-cache:
-        existingClaim: sonarr-cache
+        existingClaim: "{{ .Release.Name }}-cache"
         globalMounts:
           - path: /config/MediaCover
-      scripts:
-        type: configMap
-        name: sonarr-configmap
-        defaultMode: 0775
-        globalMounts:
-          - path: /scripts/pushover-notifier.sh
-            subPath: pushover-notifier.sh
-            readOnly: true
-      media:
+      data:
         type: nfs
         server: alderaan.internal
         path: /volume1/data
