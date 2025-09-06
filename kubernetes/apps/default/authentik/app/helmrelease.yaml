@@ -34,7 +34,7 @@ spec:
   values:
     authentik:
       postgresql:
-        host: authentik-database-v4-rw
+        host: authentik-database-rw
         user: file:///postgres-creds/username
         password: file:///postgres-creds/password
       email:

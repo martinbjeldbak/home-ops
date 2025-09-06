@@ -4,9 +4,9 @@ kind: ScheduledBackup
 metadata:
   name: immich-backup
 spec:
-  schedule: "0 0 0 * * *"  # midnight
+  schedule: "0 * * * *"  # every hour
   backupOwnerReference: self
   cluster:
-    name: immich-database-v2
+    name: immich-database
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
