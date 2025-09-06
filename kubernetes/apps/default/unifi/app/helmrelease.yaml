@@ -106,5 +106,5 @@ spec:
               request: 0s  # websocket, never time out
               backendRequest: 0s  # websocket, never time out
     persistence:
-      config:
+      unifi:
         existingClaim: "{{ .Release.Name }}"
