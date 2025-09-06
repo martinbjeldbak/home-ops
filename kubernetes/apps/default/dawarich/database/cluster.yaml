@@ -42,7 +42,7 @@ spec:
   externalClusters:
     - name: clusterBackup
       barmanObjectStore:
-        destinationPath: "s3://home-ops-postgres-backups/dawarich/"
+        destinationPath: "s3://home-ops-postgres-backups/dawarich/dawarich-database"
         endpointURL: "https://s3.eu-central-003.backblazeb2.com"
         s3Credentials:
           accessKeyId:
