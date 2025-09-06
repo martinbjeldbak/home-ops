@@ -6,10 +6,8 @@ resources:
   - ./externalsecret.yaml
   - ./pvc.yaml
   - ./helmrelease.yaml
+  - ./ocirepository.yaml
 configMapGenerator:
-  - name: sonarr-configmap
-    files:
-      - pushover-notifier.sh=./resources/pushover-notifier.sh
   - name: sonarr-loki-rules
     files:
       - sonarr.yaml=./lokirule.yaml
