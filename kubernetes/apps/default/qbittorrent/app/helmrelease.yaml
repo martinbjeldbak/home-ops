@@ -1,15 +1,14 @@
-
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app qbittorrent
+  name: qbittorrent
 spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: app-template
+    name: qbittorrent
   install:
     remediation:
       retries: -1
@@ -26,16 +25,33 @@ spec:
           app:
             image:
               repository: ghcr.io/home-operations/qbittorrent
-              tag: 5.1.2@sha256:9dd0164cc23e9c937e0af27fd7c3f627d1df30c182cf62ed34d3f129c55dc0e8
+              tag: 5.1.2@sha256:285daaa6403d89f77b4c94fdbd0fba571b7cc505c6c576b1e89e60c7aa2dfb47
             env:
               TZ: Australia/Melbourne
               QBT_WEBUI_PORT: &port 80
               QBT_TORRENTING_PORT: &torrentPort 42162
-            # TODO: look into adding probes
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/v2/app/version
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 10
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+              capabilities: {drop: ["ALL"]}
             resources:
               requests:
                 cpu: 100m
@@ -67,7 +83,6 @@ spec:
       app:
         hostnames:
           - "{{ .Release.Name }}.local.martinbjeldbak.com"
-          - qb.local.martinbjeldbak.com
         parentRefs:
           - name: internal
             namespace: kube-system
@@ -79,7 +94,7 @@ spec:
     configMaps:
       config:
         data:
-          .qbt.toml: |
+          .qbt.toml: |-
             [qbittorrent]
             addr = "http://localhost:80"
     persistence:
@@ -99,5 +114,10 @@ spec:
         globalMounts:
           - path: /data/downloads/qbittorrent
             subPath: downloads/qbittorrent
+      qbrr:
+        type: image
+        image: ghcr.io/buroa/qbrr:0.1.1@sha256:fe4a1d100ba896999253a5122d9c77cc4920779d618c23f765458cb6ec7383ca
+        globalMounts:
+          - readOnly: true
       tmp:
         type: emptyDir
