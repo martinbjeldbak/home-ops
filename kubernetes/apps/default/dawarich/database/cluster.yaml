@@ -21,7 +21,7 @@ spec:
     #     - CREATE EXTENSION postgis_tiger_geocoder;
     recovery:
       backup:
-        name: b2-dawarich
+        name: dawarich-database
   storage:
     size: 5Gi
     pvcTemplate:
