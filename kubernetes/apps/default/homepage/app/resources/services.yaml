@@ -77,7 +77,7 @@
     - qBittorrent:
         icon: qbittorrent.svg
         description: torrents
-        href: "https://qb.local.martinbjeldbak.com"
+        href: "https://qbittorrent.local.martinbjeldbak.com"
         widget:
           type: qbittorrent
           url: http://qbittorrent

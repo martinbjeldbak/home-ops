@@ -72,7 +72,7 @@ spec:
         enabled: true
         serviceMonitor:
           enabled: true
-      replicas: 2
+      replicas: 1 #  TODO: 3 node cluster
       rollOutPods: true
     prometheus:
       enabled: true
