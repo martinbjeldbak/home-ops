@@ -20,8 +20,7 @@ spec:
     #     - CREATE EXTENSION fuzzystrmatch;
     #     - CREATE EXTENSION postgis_tiger_geocoder;
     recovery:
-      backup:
-        name: dawarich
+      source: clusterBackup
   storage:
     size: 5Gi
     pvcTemplate:
@@ -40,3 +39,17 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: b2-dawarich
+  externalClusters:
+    - name: clusterBackup
+      barmanObjectStore:
+        destinationPath: "s3://home-ops-postgres-backups/dawarich/"
+        endpointURL: "https://s3.eu-central-003.backblazeb2.com"
+        s3Credentials:
+          accessKeyId:
+            name: dawarich-backblaze-secret
+            key: ACCESS_KEY_ID
+          secretAccessKey:
+            name: dawarich-backblaze-secret
+            key: ACCESS_SECRET_KEY
+        wal:
+          maxParallel: 8
