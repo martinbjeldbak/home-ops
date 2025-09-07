@@ -29,7 +29,13 @@ spec:
             env:
               CROSS_SEED_HOST: cross-seed.default.svc.cluster.local
               SABNZBD__PORT: &port 80
-              SABNZBD__HOST_WHITELIST_ENTRIES: sabnzbd.local.martinbjeldbak.com
+              SABNZBD__HOST_WHITELIST_ENTRIES: >-
+                sabnzbd,
+                sabnzbd.default,
+                sabnzbd.default.svc,
+                sabnzbd.default.svc.cluster,
+                sabnzbd.default.svc.cluster.local,
+                sabnzbd.local.martinbjeldbak.com
               TZ: Australia/Melbourne
             envFrom:
               - secretRef:
