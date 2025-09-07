@@ -8,7 +8,7 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: app-template
+    name: sabnzbd
   install:
     remediation:
       retries: -1
@@ -29,18 +29,11 @@ spec:
             env:
               CROSS_SEED_HOST: cross-seed.default.svc.cluster.local
               SABNZBD__PORT: &port 80
-              SABNZBD__HOST_WHITELIST_ENTRIES: >-
-                sabnzbd,
-                sabnzbd.default,
-                sabnzbd.default.svc,
-                sabnzbd.default.svc.cluster,
-                sabnzbd.default.svc.cluster.local,
-                sab.local.martinbjeldbak.com,
-                sabnzbd.local.martinbjeldbak.com
+              SABNZBD__HOST_WHITELIST_ENTRIES: sabnzbd.local.martinbjeldbak.com
               TZ: Australia/Melbourne
             envFrom:
               - secretRef:
-                  name: sabnzbd-secret
+                  name: "{{ .Release.Name }}-secret"
             probes:
               liveness: &probes
                 enabled: true
@@ -57,10 +50,10 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            # resources:
-            #   requests:
-            #     cpu: 100m
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 100m
               # limits:
               #   memory: 12Gi
     defaultPodOptions:
@@ -79,15 +72,14 @@ spec:
       app:
         hostnames:
           - "{{ .Release.Name }}.local.martinbjeldbak.com"
-          - sab.local.martinbjeldbak.com
         parentRefs:
           - name: internal
             namespace: kube-system
             sectionName: https
     persistence:
       config:
-        existingClaim: sabnzbd
-      data:
+        existingClaim: "{{ .Release.Name }}"
+      media:
         type: nfs
         server: alderaan.internal
         path: /volume1/data
@@ -96,7 +88,7 @@ spec:
             subPath: downloads/sabnzbd
       scripts:
         type: configMap
-        name: sabnzbd-scripts
+        name: "{{ .Release.Name }}-scripts"
         defaultMode: 0775
         globalMounts:
           - readOnly: true
