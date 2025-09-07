@@ -7,7 +7,7 @@ metadata:
 spec:
   instances: 1
   # renovate: datasource=docker depName=ghcr.io/cloudnative-pg/postgresql
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.5-202508110807-standard-bullseye@sha256:1d7f569a093d1cc625c148f7ac5e93a899a891151900969ef18e48dfa57d1eab
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.6-202509010806-standard-trixie
   bootstrap:
     recovery:
       source: *cluster
