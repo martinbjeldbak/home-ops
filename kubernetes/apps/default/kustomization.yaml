@@ -36,7 +36,7 @@ resources:
   - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
   - ./radarr/ks.yaml
-  # - ./recyclarr/ks.yaml
+  - ./recyclarr/ks.yaml
   - ./romm/ks.yaml
   - ./sabnzbd/ks.yaml
   # - ./scrypted/ks.yaml
