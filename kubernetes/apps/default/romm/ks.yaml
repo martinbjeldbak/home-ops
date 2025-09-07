@@ -13,12 +13,12 @@ spec:
     - ../../../../components/gatus/internal
     - ../../../../components/volsync
   dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
     - name: romm-database
       namespace: default
     - name: onepassword
       namespace: external-secrets
-    - name: proxmox-csi
-      namespace: csi-proxmox
   interval: 1h
   path: ./kubernetes/apps/default/romm/app
   postBuild:
@@ -48,8 +48,8 @@ spec:
   dependsOn:
     - name: cloudnative-pg
       namespace: cnpg-system
-    - name: proxmox-csi
-      namespace: csi-proxmox
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
     - name: onepassword-store
       namespace: external-secrets
   interval: 1h
