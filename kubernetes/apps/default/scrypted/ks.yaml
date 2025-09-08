@@ -15,16 +15,16 @@ spec:
   dependsOn:
     - name: multus-networks
       namespace: network
-    - name: proxmox-csi
-      namespace: csi-proxmox
+    - name: onepassword-store
+      namespace: external-secrets
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/default/scrypted/app
   postBuild:
     substitute:
       APP: *app
-      GATUS_SUBDOMAIN: *app
       VOLSYNC_CAPACITY: 5Gi
-      VOLSYNC_CACHE_CAPACITY: 10Gi
   prune: true
   retryInterval: 2m
   sourceRef:

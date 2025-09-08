@@ -8,24 +8,28 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: app-template
-  dependsOn:
-    - name: proxmox-csi
-      namespace: csi-proxmox
+    name: scrypted
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
   values:
     controllers:
       scrypted:
         annotations:
           reloader.stakater.com/auto: "true"
         pod:
-          annotations:
-            k8s.v1.cni.cncf.io/networks: |
-              [{
-                "name":"multus-user",
-                "namespace": "network",
-                "ips": ["192.168.20.212/24"],
-                "mac": "76:fa:11:c0:c9:82"
-              }]
+          # annotations:
+          #   k8s.v1.cni.cncf.io/networks: |
+          #     [{
+          #       "name":"multus-user",
+          #       "namespace": "network",
+          #       "ips": ["192.168.20.212/24"],
+          #       "mac": "76:fa:11:c0:c9:82"
+          #     }]
           securityContext:
             runAsUser: 2000
             runAsGroup: 2000
@@ -42,15 +46,14 @@ spec:
               tag: 0.141.0@sha256:5a18d0dc431ff8ec0388e4177e53b4abc58c07fea1111a9deb5dcbe2947bb66a
             env:
               SCRYPTED_INSECURE_PORT: &port 80
-            # resources:
-              # requests:
-              #   cpu: 136m
+            resources:
+              requests:
+                cpu: 136m
               #   memory: 1024Mi
               # limits:
                 # gpu.intel.com/i915: 3 # not sure why this isn't working
                 # squat.ai/coral: 1
                 # memory: 8192Mi
-
     service:
       app:
         ports:
@@ -59,7 +62,6 @@ spec:
             primary: true
           rebroadcast1:
             port: 33819 # C210 #1
-
     route:
       app:
         hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
