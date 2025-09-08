@@ -8,7 +8,7 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: app-template
+    name: mosquitto
   install:
     remediation:
       retries: -1
@@ -29,12 +29,12 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            # resources:
-            #   requests:
-            #     cpu: 10m
-            #   limits:
-            #     memory: 100Mi
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 100Mi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -54,17 +54,17 @@ spec:
     configMaps:
       config:
         data:
-          mosquitto.conf: |
+          mosquitto.conf: |-
             allow_anonymous true
             autosave_interval 60
             connection_messages false
             listener 1883
             per_listener_settings false
             persistence true
-            persistence_location /data
+            persistence_location /config
     persistence:
-      data:
-        existingClaim: mosquitto-cache
+      config:
+        existingClaim: "{{ .Release.Name }}-cache"
       config-file:
         type: configMap
         name: mosquitto

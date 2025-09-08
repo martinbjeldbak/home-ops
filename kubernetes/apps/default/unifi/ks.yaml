@@ -19,7 +19,7 @@ spec:
   path: ./kubernetes/apps/default/unifi/app
   postBuild:
     substitute:
-      APP: unifi
+      APP: *app
       VOLSYNC_CAPACITY: 5Gi
   prune: true
   retryInterval: 2m

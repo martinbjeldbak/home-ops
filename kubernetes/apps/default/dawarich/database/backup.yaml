@@ -4,7 +4,7 @@ kind: ScheduledBackup
 metadata:
   name: dawarich-backup
 spec:
-  schedule: "0 0 0 * * *"  # midnight
+  schedule: "0 * * * *"  # every hour
   backupOwnerReference: self
   cluster:
     name: dawarich-database

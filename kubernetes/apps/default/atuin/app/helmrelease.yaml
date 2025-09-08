@@ -8,7 +8,7 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: app-template
+    name: atuin
   install:
     remediation:
       retries: -1
@@ -30,7 +30,10 @@ spec:
               ATUIN_OPEN_REGISTRATION: "true"
               ATUIN_DB_URI: sqlite:///config/atuin.db
               TZ: Australia/Melbourne
-            command: ["atuin", "server", "start"]
+            command:
+              - atuin
+              - server
+              - start
             probes:
               liveness: &probes
                 enabled: true
@@ -47,12 +50,12 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            # resources:
-            #   requests:
-            #     cpu: 10m
-            #   limits:
-            #     memory: 256Mi
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 256Mi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -67,11 +70,12 @@ spec:
             port: *port
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+        hostnames:
+          - "{{ .Release.Name }}.local.martinbjeldbak.com"
         parentRefs:
           - name: internal
             namespace: kube-system
             sectionName: https
     persistence:
       config:
-        existingClaim: atuin
+        existingClaim: "{{ .Release.Name }}"

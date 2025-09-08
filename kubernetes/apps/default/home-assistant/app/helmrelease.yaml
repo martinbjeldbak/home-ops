@@ -23,22 +23,23 @@ spec:
           reloader.stakater.com/auto: "true"
         pod:
           annotations:
-            k8s.v1.cni.cncf.io/networks: |
-              [{
-                "name":"multus-user",
-                "namespace": "network",
-                "ips": ["192.168.20.213/24"],
-                "mac": "76:fa:11:c0:c9:83"
-              }]
+          # TODO: figure out how to do this on baremetal
+            # k8s.v1.cni.cncf.io/networks: |
+            #   [{
+            #     "name":"multus-user",
+            #     "namespace": "network",
+            #     "ips": ["192.168.20.213/24"],
+            #     "mac": "76:fa:11:c0:c9:83"
+            #   }]
         containers:
           app:
             image:
               repository: ghcr.io/home-operations/home-assistant
-              tag: 2025.8.3@sha256:7ef14f513e487add292b43306cccb4f1cd9dbcbd5eaf85d6438f98b197f930a4
+              tag: 2025.9.1@sha256:fe188478864988a04274743529685ad2f15dd3bb0041096a79dbe5a7b5ebc770
             env:
               TZ: Australia/Melbourne
               HASS_HTTP_TRUSTED_PROXY_1: 192.168.0.0/16
-              HASS_HTTP_TRUSTED_PROXY_2: 10.69.0.0/16
+              HASS_HTTP_TRUSTED_PROXY_2: 10.42.0.0/16
             envFrom:
               - secretRef:
                   name: home-assistant-secret
@@ -63,14 +64,21 @@ spec:
         ports:
           http:
             port: 8123
-    # HTTPRoute created by Authentik proxy provider
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.local.martinbjeldbak.com"
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
     persistence:
       config:
-        existingClaim: "{{ .Release.Name }}-data"
+        existingClaim: "{{ .Release.Name }}"
         globalMounts:
           - path: /config
       config-cache:
-        existingClaim: home-assistant-cache
+        existingClaim: "{{ .Release.Name }}-cache"
         globalMounts:
           - path: /config/.venv
       tmpfs:

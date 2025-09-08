@@ -6,10 +6,8 @@ resources:
   - ./externalsecret.yaml
   - ./pvc.yaml
   - ./helmrelease.yaml
+  - ./ocirepository.yaml
 configMapGenerator:
-  - name: radarr-configmap
-    files:
-      - pushover-notifier.sh=./resources/pushover-notifier.sh
   - name: radarr-loki-rules
     files:
       - radarr.yaml=./lokirule.yaml

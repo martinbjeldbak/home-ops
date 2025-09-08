@@ -4,9 +4,9 @@ kind: ScheduledBackup
 metadata:
   name: authentik-backup
 spec:
-  schedule: "0 0 0 * * *"  # midnight
+  schedule: "0 * * * *"  # every hour
   backupOwnerReference: self
   cluster:
-    name: authentik-database-v4
+    name: authentik-database
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io

@@ -8,7 +8,7 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: app-template
+    name: plex
   install:
     remediation:
       retries: -1
@@ -51,10 +51,10 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            # resources:
-            #   requests:
-            #     cpu: 100m
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 100m
               # limits:
                 # gpu.intel.com/i915: 1
                 # memory: 16Gi
@@ -75,7 +75,8 @@ spec:
             port: *port
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.martinbjeldbak.com"]
+        hostnames:
+          - "{{ .Release.Name }}.martinbjeldbak.com"
         parentRefs:
           - name: external
             namespace: kube-system
@@ -87,7 +88,8 @@ spec:
             filters:
               - type: RequestHeaderModifier
                 requestHeaderModifier:
-                  remove: ["Range"]
+                  remove:
+                    - Range
             matches:
               - path:
                   type: PathPrefix
@@ -97,19 +99,13 @@ spec:
                 port: *port
     persistence:
       config:
-        existingClaim: plex
+        existingClaim: "{{ .Release.Name }}"
         globalMounts:
           - path: /config/Library/Application Support/Plex Media Server
       config-cache:
-        existingClaim: plex-cache-v3
+        existingClaim: "{{ .Release.Name }}-cache"
         globalMounts:
           - path: /config/Library/Application Support/Plex Media Server/Cache
-      config-logs:
-        type: emptyDir
-        globalMounts:
-          - path: /config/Library/Application Support/Plex Media Server/Logs
-      transcode:
-        type: emptyDir
       media:
         type: nfs
         server: alderaan.internal
@@ -117,5 +113,14 @@ spec:
         globalMounts:
           - path: /media
             readOnly: true
-      tmp:
+      tmpfs:
         type: emptyDir
+        advancedMounts:
+          plex:
+            app:
+              - path: /config/Library/Application Support/Plex Media Server/Logs
+                subPath: logs
+              - path: /transcode
+                subPath: transcode
+              - path: /tmp
+                subPath: tmp

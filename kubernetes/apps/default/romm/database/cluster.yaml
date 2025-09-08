@@ -3,28 +3,22 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: romm-database
+  name: &cluster romm-database
 spec:
   instances: 1
   # renovate: datasource=docker depName=ghcr.io/cloudnative-pg/postgresql
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.5-standard-bookworm@sha256:8bcc3eb5b0b2dd7ad91c3c57eadc0df37148f28be16fc8062ed5eb29a2a4a4b7
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.5-bookworm
   bootstrap:
-    initdb:
-      database: romm
-      owner: romm
-      secret:
-        name: romm-cluster-credentials-secret
-  affinity:
-    nodeSelector:
-      kubernetes.io/hostname: node-01  # this is where the romm db PV is
+    recovery:
+      source: *cluster
   storage:
-    size: 5Gi
+    size: 10Gi
     pvcTemplate:
-      storageClassName: proxmox
+      storageClassName: ceph-block
       accessModes: ["ReadWriteOnce"]
       resources:
         requests:
-          storage: 5Gi
+          storage: 10Gi
   superuserSecret:
     name: romm-pg-superuser-secret
   monitoring:
@@ -35,3 +29,17 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: b2-romm
+  externalClusters:
+    - name: *cluster
+      barmanObjectStore:
+        destinationPath: "s3://home-ops-postgres-backups/romm/"
+        endpointURL: "https://s3.eu-central-003.backblazeb2.com"
+        s3Credentials:
+          accessKeyId:
+            name: romm-backblaze-secret
+            key: ACCESS_KEY_ID
+          secretAccessKey:
+            name: romm-backblaze-secret
+            key: ACCESS_SECRET_KEY
+        wal:
+          maxParallel: 8

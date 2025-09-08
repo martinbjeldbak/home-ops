@@ -8,14 +8,13 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: app-template
+    name: romm
   install:
     remediation:
-      retries: 3
+      retries: -1
   upgrade:
     cleanupOnFail: true
     remediation:
-      strategy: rollback
       retries: 3
   values:
     controllers:
@@ -72,7 +71,7 @@ spec:
             sectionName: https
     persistence:
       data:
-        existingClaim: "{{ .Release.Name }}-data"
+        existingClaim: "{{ .Release.Name }}"
         advancedMounts:
           romm:
             app:
@@ -94,7 +93,7 @@ spec:
             readOnly: true
       redis-data:  # cached directory for background tasks
         type: emptyDir
-      tmp:
+      tmpfs:
         type: emptyDir
       library:
         type: nfs

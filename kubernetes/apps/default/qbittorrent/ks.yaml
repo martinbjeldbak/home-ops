@@ -13,14 +13,13 @@ spec:
     - ../../../../components/gatus/internal
     - ../../../../components/volsync
   dependsOn:
-    - name: proxmox-csi
-      namespace: csi-proxmox
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/default/qbittorrent/app
   postBuild:
     substitute:
       APP: *app
-      GATUS_SUBDOMAIN: qb
       VOLSYNC_CAPACITY: 2Gi
   prune: true
   retryInterval: 2m
