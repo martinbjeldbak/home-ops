@@ -91,6 +91,6 @@ spec:
       recordings:
         type: nfs
         server: alderaan.internal
-        path: /volume1/apps/scrypted
+        path: /volume4/scrypted
         globalMounts:
           - path: /recordings
