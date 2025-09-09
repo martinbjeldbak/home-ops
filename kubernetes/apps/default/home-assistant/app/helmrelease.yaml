@@ -51,6 +51,10 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
+        annotations:
+          lbipam.cilium.io/ips: 192.168.1.205
+        sessionAffinity: ClientIP
+        type: LoadBalancer
         ports:
           http:
             appProtocol: kubernetes.io/ws
