@@ -68,17 +68,10 @@ machine:
         - 192.168.1.0/24
   network:
     interfaces:
-      - interface: bond0
+      - deviceSelector:
+          hardwareAddr: e8:ff:1e:da:2d:*
+        mtu: 1500
         dhcp: true
-        bond:
-          mode: 802.3ad
-          lacpRate: fast
-          xmitHashPolicy: layer3+4
-          miimon: 100
-          updelay: 200
-          downdelay: 200
-          deviceSelectors:
-            - permanentAddr: e8:ff:1e:da:2d:*
         vip:
           ip: 192.168.1.120
   nodeLabels:
