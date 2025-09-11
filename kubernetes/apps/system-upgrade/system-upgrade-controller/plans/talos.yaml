@@ -5,7 +5,8 @@ kind: Plan
 metadata:
   name: talos
 spec:
-  version: ${TALOS_VERSION}
+  # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
+  version: v1.11.1
   concurrency: 1
   postCompleteDelay: 2m
   exclusive: true
@@ -20,12 +21,7 @@ spec:
         operator: Exists
   upgrade:
     image: ghcr.io/jfroy/tnu:0.4.3
-    envs:
-      - name: NODE_IP
-        valueFrom:
-          fieldRef:
-            fieldPath: status.hostIP
     args:
-      - --node=$(NODE_IP)
+      - --node=$(SYSTEM_UPGRADE_NODE_NAME)
       - --tag=$(SYSTEM_UPGRADE_PLAN_LATEST_VERSION)
       - --powercycle
