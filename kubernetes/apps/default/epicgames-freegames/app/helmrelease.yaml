@@ -18,7 +18,7 @@ spec:
           app:
             image:
               repository: ghcr.io/claabs/epicgames-freegames-node
-              tag: latest@sha256:87b57c8c5caf801de3c83d01c3d886e927c2f3e0b2f424b1b66165e96c3be6f7
+              tag: latest@sha256:288d57a0951b243e8e7f091d440bd9c7a8e3030c1592802fe20696ba8d1fd325
             env:
               TZ: Australia/Melbourne
               BASE_URL: https://epic.local.martinbjeldbak.com
