@@ -12,13 +12,13 @@ spec:
     recovery:
       source: *cluster
   storage:
-    size: 5Gi
+    size: 10Gi
     pvcTemplate:
       storageClassName: ceph-block
       accessModes: ["ReadWriteOnce"]
       resources:
         requests:
-          storage: 5Gi
+          storage: 10Gi
   superuserSecret:
     name: dawarich-pg-superuser-secret
   monitoring:
