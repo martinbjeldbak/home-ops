@@ -66,6 +66,7 @@ spec:
       mon:
         count: 1 # TODO: 3 nodes
       mgr:
+        count: 1 # TODO: 3 nodes
         modules:
           - name: diskprediction_local
             enabled: true
