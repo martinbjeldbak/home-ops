@@ -192,14 +192,6 @@ cluster:
   {% endif %}
 ---
 apiVersion: v1alpha1
-kind: UserVolumeConfig
-name: local-hostpath
-provisioning:
-  diskSelector:
-    match: disk.model == "Samsung SSD 990 PRO 1TB" && !system_disk
-  minSize: 1TB
----
-apiVersion: v1alpha1
 kind: WatchdogTimerConfig
 device: /dev/watchdog0
 timeout: 5m
