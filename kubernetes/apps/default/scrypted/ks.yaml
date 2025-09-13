@@ -13,10 +13,8 @@ spec:
     - ../../../../components/gatus/internal
     - ../../../../components/volsync
   dependsOn:
-    - name: multus-networks
-      namespace: network
-    - name: onepassword-store
-      namespace: external-secrets
+    # - name: multus-networks
+    #   namespace: network
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h

@@ -19,8 +19,6 @@ spec:
       namespace: default
     - name: proxmox-csi
       namespace: csi-proxmox
-    - name: onepassword-store
-      namespace: external-secrets
   interval: 1h
   path: ./kubernetes/apps/default/paperless/app
   postBuild:
@@ -54,8 +52,6 @@ spec:
       namespace: cnpg-system
     - name: proxmox-csi
       namespace: csi-proxmox
-    - name: onepassword-store
-      namespace: external-secrets
   interval: 1h
   path: ./kubernetes/apps/default/paperless/database
   prune: true
