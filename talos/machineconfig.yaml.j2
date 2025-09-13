@@ -8,7 +8,7 @@ machine:
     {% endif %}
   certSANs:
     - 127.0.0.1
-    - 192.168.1.120  # TODO: delete me once vlan working
+    - 192.168.42.120  # TODO: delete me once vlan working
   features:
     apidCheckExtKeyUsage: true
     diskQuotaSupport: true
@@ -65,14 +65,13 @@ machine:
     image: ghcr.io/siderolabs/kubelet:v1.34.1
     nodeIP:
       validSubnets:
-        - 192.168.1.0/24 # TODO: DELETE ME ONCE WROKING
+        - 192.168.42.0/24 # TODO: DELETE ME ONCE WROKING
   network:
     interfaces:
       - interface: bond0
         bond:
           deviceSelectors:
             - hardwareAddr: e8:ff:1e:da:*
-              driver: atlantic
           mode: active-backup
         dhcp: true
         mtu: 1500
@@ -115,7 +114,7 @@ cluster:
     {% endif %}
   clusterName: main
   controlPlane:
-    endpoint: https://192.168.1.120:6443
+    endpoint: https://192.168.42.120:6443
   id: op://kubernetes/talos/CLUSTER_ID
   network:
     cni:
@@ -140,7 +139,7 @@ cluster:
         - level: Metadata
     certSANs:
       - 127.0.0.1
-      - 192.168.1.120 # TODO: delete me once vlan up
+      - 192.168.42.120 # TODO: delete me once vlan up
     disablePodSecurityPolicy: true
     extraArgs:
       enable-aggregator-routing: "true"
@@ -155,7 +154,7 @@ cluster:
     disabled: true
   etcd:
     advertisedSubnets:
-      - 192.168.1.0/24 # TODO: delete me once vlan working
+      - 192.168.42.0/24 # TODO: delete me once vlan working
     ca:
       crt: op://kubernetes/talos/CLUSTER_ETCD_CA_CRT
       key: op://kubernetes/talos/CLUSTER_ETCD_CA_KEY
