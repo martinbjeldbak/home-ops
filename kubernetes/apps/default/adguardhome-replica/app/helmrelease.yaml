@@ -25,7 +25,7 @@ spec:
       app:
         type: LoadBalancer
         annotations:
-          lbipam.cilium.io/ips: 192.168.1.2
+          lbipam.cilium.io/ips: 192.168.42.2
         ports:
           http:
             primary: true

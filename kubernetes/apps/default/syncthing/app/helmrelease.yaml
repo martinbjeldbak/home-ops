@@ -63,7 +63,7 @@ spec:
       transfer:
         type: LoadBalancer
         annotations:
-          lbipam.cilium.io/ips: 192.168.1.130
+          lbipam.cilium.io/ips: 192.168.42.130
         # See https://github.com/syncthing/syncthing/blob/e46a0f99c34cf7e0841bb83b9e050b44bdc42238/README-Docker.md for ports
         ports:
           transfer:

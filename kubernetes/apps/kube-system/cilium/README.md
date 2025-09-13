@@ -13,14 +13,14 @@ From "Running Configuration" tab in <https://192.168.1.1/ui/quagga/diagnostics/g
 router bgp 64513
  no bgp ebgp-requires-policy
  no bgp default ipv4-unicast
- neighbor 192.168.1.103 remote-as 64514
- neighbor 192.168.1.103 update-source em0
+ neighbor 192.168.42.10 remote-as 64514
+ neighbor 192.168.42.10 update-source em0
  !
  address-family ipv4 unicast
   network 192.168.1.0/24
-  neighbor 192.168.1.103 activate
-  neighbor 192.168.1.103 next-hop-self
-  neighbor 192.168.1.103 soft-reconfiguration inbound
+  neighbor 192.168.42.10 activate
+  neighbor 192.168.42.10 next-hop-self
+  neighbor 192.168.42.10 soft-reconfiguration inbound
  exit-address-family
 exit
 ```
