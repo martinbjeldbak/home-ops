@@ -8,7 +8,7 @@ machine:
     {% endif %}
   certSANs:
     - 127.0.0.1
-    - 192.168.1.120
+    - 192.168.42.120
   features:
     apidCheckExtKeyUsage: true
     diskQuotaSupport: true
@@ -50,7 +50,7 @@ machine:
   install:
     diskSelector:
       model: CT500P3PSSD8
-    image: factory.talos.dev/metal-installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba:v1.11.0
+    image: factory.talos.dev/metal-installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba:v1.11.1
     wipe: false
   kernel:
     modules:
@@ -62,18 +62,29 @@ machine:
       featureGates:
         ImageVolume: true
       serializeImagePulls: false
-    image: ghcr.io/siderolabs/kubelet:v1.34.0
+    image: ghcr.io/siderolabs/kubelet:v1.34.1
     nodeIP:
       validSubnets:
-        - 192.168.1.0/24
+        - 192.168.42.0/24
   network:
     interfaces:
-      - deviceSelector:
-          hardwareAddr: e8:ff:1e:da:2d:*
-        mtu: 1500
+      - interface: bond0
+        bond:
+          deviceSelectors:
+            - hardwareAddr: e8:ff:1e:da:*
+              driver: atlantic
+          mode: active-backup
         dhcp: true
-        vip:
-          ip: 192.168.1.120
+        mtu: 1500
+        # vlans:
+        #   - # IOT
+        #     vlanId: 70
+        #     dhcp: false
+        #     mtu: 9000
+        #   - # VPN
+        #     vlanId: 90
+        #     dhcp: false
+        #     mtu: 9000
   nodeLabels:
     topology.kubernetes.io/region: main
   sysctls:
@@ -104,7 +115,7 @@ cluster:
     {% endif %}
   clusterName: main
   controlPlane:
-    endpoint: https://192.168.1.120:6443
+    endpoint: https://192.168.42.120:6443
   id: op://kubernetes/talos/CLUSTER_ID
   network:
     cni:
@@ -129,22 +140,22 @@ cluster:
         - level: Metadata
     certSANs:
       - 127.0.0.1
-      - 192.168.1.120
+      - 192.168.42.120
     disablePodSecurityPolicy: true
     extraArgs:
       enable-aggregator-routing: "true"
       feature-gates: ImageVolume=true,MutatingAdmissionPolicy=true
       runtime-config: admissionregistration.k8s.io/v1beta1=true
-    image: registry.k8s.io/kube-apiserver:v1.34.0
+    image: registry.k8s.io/kube-apiserver:v1.34.1
   controllerManager:
     extraArgs:
       bind-address: 0.0.0.0
-    image: registry.k8s.io/kube-controller-manager:v1.34.0
+    image: registry.k8s.io/kube-controller-manager:v1.34.1
   coreDNS:
     disabled: true
   etcd:
     advertisedSubnets:
-      - 192.168.1.0/24
+      - 192.168.42.0/24
     ca:
       crt: op://kubernetes/talos/CLUSTER_ETCD_CA_CRT
       key: op://kubernetes/talos/CLUSTER_ETCD_CA_KEY
@@ -152,7 +163,7 @@ cluster:
       listen-metrics-urls: http://0.0.0.0:2381
   proxy:
     disabled: true
-    image: registry.k8s.io/kube-proxy:v1.34.0
+    image: registry.k8s.io/kube-proxy:v1.34.1
   scheduler:
     config:
       apiVersion: kubescheduler.config.k8s.io/v1
@@ -173,7 +184,7 @@ cluster:
                     whenUnsatisfiable: ScheduleAnyway
     extraArgs:
       bind-address: 0.0.0.0
-    image: registry.k8s.io/kube-scheduler:v1.34.0
+    image: registry.k8s.io/kube-scheduler:v1.34.1
   secretboxEncryptionSecret: op://kubernetes/talos/CLUSTER_SECRETBOXENCRYPTIONSECRET
   serviceAccount:
     key: op://kubernetes/talos/CLUSTER_SERVICEACCOUNT_KEY
