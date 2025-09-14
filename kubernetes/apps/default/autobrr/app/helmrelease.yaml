@@ -51,7 +51,7 @@ spec:
                     port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 20
-                  timeoutSeconds: 10
+                  timeoutSeconds: 30
                   failureThreshold: 3
               readiness: *probes
             securityContext:
