@@ -11,7 +11,7 @@ default:
 
 [doc('Apply Talos config to a node')]
 apply-node node *args:
-    just talos render-config "{{ node }}" | talosctl -n "{{ node }}" apply-config -f /dev/stdin {{ args }}
+    just talos render-config "{{ node }}" | talosctl -n "{{ node }}" apply-config -f /dev/stdin {{ args }} --insecure
 
 [doc('Download Talos machine image')]
 download-image version schematic:

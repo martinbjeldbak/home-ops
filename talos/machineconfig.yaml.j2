@@ -3,7 +3,7 @@ version: v1alpha1
 machine:
   ca:
     crt: op://kubernetes/talos/MACHINE_CA_CRT
-    {% if ENV.IS_CONTROLLER %}
+    {% if ENV.IS_CONTROLLER == "true" %}
     key: op://kubernetes/talos/MACHINE_CA_KEY
     {% endif %}
   certSANs:
@@ -19,7 +19,7 @@ machine:
     kubePrism:
       enabled: true
       port: 7445
-    {% if ENV.IS_CONTROLLER %}
+    {% if ENV.IS_CONTROLLER == "true" %}
     kubernetesTalosAPIAccess:
       allowedKubernetesNamespaces:
         - actions-runner-system
@@ -48,9 +48,7 @@ machine:
         nconnect=16
         noatime=True
   install:
-    diskSelector:
-      model: CT500P3PSSD8
-    image: factory.talos.dev/metal-installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba:v1.11.1
+    image: factory.talos.dev/metal-installer/2e593476b8d8832e6643546be93dc2e6c1ac40820fef147d8661a382186e803d:v1.11.1
     wipe: false
   kernel:
     modules:
@@ -71,21 +69,27 @@ machine:
       - interface: bond0
         bond:
           deviceSelectors:
-            - hardwareAddr: e8:ff:1e:da:*
+            - hardwareAddr: e8:ff:1e:*:*
           mode: active-backup
         dhcp: true
         mtu: 1500
+        {% if ENV.IS_CONTROLLER == "true" %}
         vip:
           ip: 192.168.42.120
-        # vlans:
-        #   - # IOT
-        #     vlanId: 70
-        #     dhcp: false
-        #     mtu: 9000
-        #   - # VPN
-        #     vlanId: 90
-        #     dhcp: false
-        #     mtu: 9000
+        {% endif %}
+        vlans:
+          - # USER
+            vlanId: 20
+            dhcp: false
+            mtu: 1500
+          - # IOT
+            vlanId: 30
+            dhcp: false
+            mtu: 1500
+          - # IPCAM
+            vlanId: 50
+            dhcp: false
+            mtu: 1500
   nodeLabels:
     topology.kubernetes.io/region: main
   sysctls:
@@ -111,7 +115,7 @@ machine:
 cluster:
   ca:
     crt: op://kubernetes/talos/CLUSTER_CA_CRT
-    {% if ENV.IS_CONTROLLER %}
+    {% if ENV.IS_CONTROLLER == "true" %}
     key: op://kubernetes/talos/CLUSTER_CA_KEY
     {% endif %}
   clusterName: main
@@ -128,7 +132,7 @@ cluster:
       - 10.43.0.0/16
   secret: op://kubernetes/talos/CLUSTER_SECRET
   token: op://kubernetes/talos/CLUSTER_TOKEN
-  {% if ENV.IS_CONTROLLER %}
+  {% if ENV.IS_CONTROLLER == "true" %}
   aggregatorCA:
     crt: op://kubernetes/talos/CLUSTER_AGGREGATORCA_CRT
     key: op://kubernetes/talos/CLUSTER_AGGREGATORCA_KEY
