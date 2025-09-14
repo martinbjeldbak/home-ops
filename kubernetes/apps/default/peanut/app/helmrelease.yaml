@@ -62,7 +62,7 @@ spec:
     persistence:
       config-file:
         type: configMap
-        name: *app
+        name: peanut
         globalMounts:
           - path: /config/settings.yml
             subPath: settings.yml
