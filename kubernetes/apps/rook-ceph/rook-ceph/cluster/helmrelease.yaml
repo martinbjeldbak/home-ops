@@ -83,7 +83,7 @@ spec:
       storage:
         useAllNodes: true
         useAllDevices: false
-        devicePathFilter: /dev/disk/by-id/nvme-Samsung_SSD_990_PRO_1TB_S7HDNJ0Y716919M_.*
+        devicePathFilter: /dev/disk/by-id/nvme-Samsung_SSD_990_PRO_1TB_S7HDNJ0Y7.*_.*
         config:
           osdsPerDevice: "1"
       resources:
