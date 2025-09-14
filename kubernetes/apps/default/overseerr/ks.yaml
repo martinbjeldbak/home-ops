@@ -12,15 +12,14 @@ spec:
   components:
     - ../../../../components/gatus/external
     - ../../../../components/volsync
-  interval: 1h
   dependsOn:
-    - name: proxmox-csi
-      namespace: csi-proxmox
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
+  interval: 1h
   path: ./kubernetes/apps/default/overseerr/app
   postBuild:
     substitute:
-      APP: overseerr-v2
-      GATUS_SUBDOMAIN: *app
+      APP: *app
       VOLSYNC_CAPACITY: 5Gi
   prune: true
   retryInterval: 2m
