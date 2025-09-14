@@ -10,7 +10,7 @@ resources:
   - ./acestream-http-proxy/ks.yaml
   # - ./adguardhome-replica/ks.yaml
   # - ./adguardhome-sync/ks.yaml
-  - ./authentik/ks.yaml
+  # - ./authentik/ks.yaml
   - ./autobrr/ks.yaml
   # - ./bazarr/ks.yaml
   - ./calibre-web-automated/ks.yaml
