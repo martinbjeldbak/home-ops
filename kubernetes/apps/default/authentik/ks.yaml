@@ -11,9 +11,10 @@ spec:
       app.kubernetes.io/name: *app
   components:
     - ../../../../components/gatus/internal
+    - ../../../../components/volsync
   dependsOn:
-    - name: proxmox-csi
-      namespace: csi-proxmox
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
     - name: authentik-database
       namespace: default
     - name: authentik-redis
@@ -24,6 +25,7 @@ spec:
     substitute:
       APP: *app
       GATUS_SUBDOMAIN: auth
+      VOLSYNC_CAPACITY: 1Gi
   prune: true
   retryInterval: 2m
   sourceRef:
@@ -33,7 +35,6 @@ spec:
   targetNamespace: *namespace
   timeout: 5m
   wait: false
-
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1

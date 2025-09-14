@@ -3,21 +3,18 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: authentik-database
+  name: &cluster authentik-database
 spec:
   instances: 1
   # renovate: datasource=docker depName=ghcr.io/cloudnative-pg/postgresql
   imageName: ghcr.io/cloudnative-pg/postgresql:17.5-standard-bookworm@sha256:8bcc3eb5b0b2dd7ad91c3c57eadc0df37148f28be16fc8062ed5eb29a2a4a4b7
-  bootstrap:  # following https://cloudnative-pg.io/documentation/1.25/bootstrap/
-    initdb:
-      database: authentik
-      owner: authentik
-      secret:
-        name: authentik-cluster-credentials-secret
+  bootstrap:
+    recovery:
+      source: *cluster
   storage:
     size: 10Gi
     pvcTemplate:
-      storageClassName: proxmox
+      storageClassName: ceph-block
       accessModes: ["ReadWriteOnce"]
       resources:
         requests:
@@ -32,3 +29,18 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: b2-authentik
+  externalClusters:
+    - name: *cluster
+      barmanObjectStore:
+        serverName: authentik-database-v4 # TODO: remove me once new backup created
+        destinationPath: "s3://home-ops-postgres-backups/authentik/"
+        endpointURL: "https://s3.eu-central-003.backblazeb2.com"
+        s3Credentials:
+          accessKeyId:
+            name: authentik-backblaze-secret
+            key: ACCESS_KEY_ID
+          secretAccessKey:
+            name: authentik-backblaze-secret
+            key: ACCESS_SECRET_KEY
+        wal:
+          maxParallel: 8
