@@ -23,7 +23,7 @@
     - Sonarr:
         icon: sonarr.svg
         description: tv
-        href: "https://tv.local.martinbjeldbak.com"
+        href: "https://sonarr.local.martinbjeldbak.com"
         widget:
           type: sonarr
           url: http://sonarr:80
@@ -31,7 +31,7 @@
     - Bazarr:
         icon: bazarr.svg
         description: subtitles
-        href: "https://subtitles.local.martinbjeldbak.com"
+        href: "https://bazarr.local.martinbjeldbak.com"
         widget:
           type: bazarr
           url: http://bazarr:6767
@@ -66,7 +66,7 @@
     - Radarr:
         icon: radarr.svg
         description: movies
-        href: "https://movies.local.martinbjeldbak.com"
+        href: "https://radarr.local.martinbjeldbak.com"
         namespace: default
         app: radarr
         widget:
