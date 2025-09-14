@@ -8,7 +8,7 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: app-template
+    name: cross-seed
   install:
     remediation:
       retries: -1
@@ -29,7 +29,8 @@ spec:
             env:
               CROSS_SEED_PORT: &port 80
               TZ: Australia/Melbourne
-            args: ["daemon"]
+            args:
+              - daemon
             probes:
               liveness: &probes
                 enabled: true
@@ -46,10 +47,10 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            # resources:
-            #   requests:
-            #     cpu: 10m
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 10m
               # limits:
               #   memory: 512Mi
     defaultPodOptions:
@@ -66,10 +67,10 @@ spec:
             port: *port
     persistence:
       config:
-        existingClaim: cross-seed
+        existingClaim: "{{ .Release.Name }}"
       secret-file:
         type: secret
-        name: cross-seed-secret
+        name: "{{ .Release.Name }}-secret"
         globalMounts:
           - path: /config/config.js
             subPath: config.js

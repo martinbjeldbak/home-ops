@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
-  - ./pvc.yaml
+  - ./ocirepository.yaml
 configMapGenerator:
   - name: cross-seed-loki-rules
     files:
