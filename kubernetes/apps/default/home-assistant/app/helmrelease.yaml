@@ -43,6 +43,14 @@ spec:
               # limits:
               #   memory: 2Gi
     defaultPodOptions:
+      annotations:
+        k8s.v1.cni.cncf.io/networks: |-
+          [{
+            "name": "iot",
+            "namespace": "kube-system",
+            "ips": ["192.168.30.20/24"],
+            "mac": "c6:07:27:af:fb:53"
+          }]
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
@@ -51,10 +59,6 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        annotations:
-          lbipam.cilium.io/ips: 192.168.42.205
-        sessionAffinity: ClientIP
-        type: LoadBalancer
         ports:
           http:
             appProtocol: kubernetes.io/ws
