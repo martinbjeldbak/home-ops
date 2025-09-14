@@ -110,7 +110,7 @@ spec:
         existingClaim: "{{ .Release.Name }}"
       cert:
         type: secret
-        name: lets-encrypt-unifi
+        name: martinbjeldbak-com-unifi-tls
         advancedMounts:
           unifi:
             app:
