@@ -108,6 +108,8 @@ spec:
     persistence:
       unifi:
         existingClaim: "{{ .Release.Name }}"
+        globalMounts:
+          - path: /unifi
       cert:
         type: secret
         name: martinbjeldbak-com-unifi-tls
