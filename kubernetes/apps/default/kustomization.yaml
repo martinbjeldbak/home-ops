@@ -20,7 +20,7 @@ resources:
   - ./epicgames-freegames/ks.yaml
   - ./esphome/ks.yaml
   - ./home-assistant/ks.yaml
-  # - ./homebox/ks.yaml
+  - ./homebox/ks.yaml
   - ./homepage/ks.yaml
   # - ./icloudpd/ks.yaml
   # - ./immich/ks.yaml

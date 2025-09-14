@@ -13,14 +13,14 @@ spec:
     - ../../../../components/gatus/internal
     - ../../../../components/volsync
   dependsOn:
-    - name: proxmox-csi
-      namespace: csi-proxmox
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/default/homebox/app
   postBuild:
     substitute:
-      APP: homebox-v2
-      GATUS_SUBDOMAIN: *app
+      APP: *app
+      VOLSYNC_CAPACITY: 5Gi
   prune: true
   retryInterval: 2m
   sourceRef:
