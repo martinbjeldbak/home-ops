@@ -108,3 +108,18 @@ spec:
     persistence:
       unifi:
         existingClaim: "{{ .Release.Name }}"
+      cert:
+        type: secret
+        name: martinbjeldbak-com-unifi-tls
+        advancedMounts:
+          unifi:
+            app:
+              - path: /unifi/cert/cert.pem
+                subPath: tls.crt
+                readOnly: true
+              - path: /unifi/cert/privkey.pem
+                subPath: tls.key
+                readOnly: true
+              - path: /unifi/data/keystore
+                subPath: keystore.jks
+                readOnly: false
