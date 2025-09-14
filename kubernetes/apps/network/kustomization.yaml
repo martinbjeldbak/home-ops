@@ -9,4 +9,3 @@ resources:
   - ./adguard-dns/ks.yaml
   - ./cloudflare-dns/ks.yaml
   - ./cloudflare-tunnel/ks.yaml
-  # - ./multus/ks.yaml
