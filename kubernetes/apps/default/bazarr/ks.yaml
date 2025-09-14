@@ -13,17 +13,14 @@ spec:
     - ../../../../components/gatus/internal
     - ../../../../components/volsync
   dependsOn:
-    - name: onepassword
-      namespace: external-secrets
-    - name: proxmox-csi
-      namespace: csi-proxmox
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/default/bazarr/app
   postBuild:
     substitute:
       APP: *app
       VOLSYNC_CAPACITY: 5Gi
-      GATUS_SUBDOMAIN: subtitles
   prune: true
   retryInterval: 2m
   sourceRef:

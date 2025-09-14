@@ -8,7 +8,7 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: app-template
+    name: bazarr
   install:
     remediation:
       retries: -1
@@ -27,12 +27,25 @@ spec:
               repository: ghcr.io/home-operations/bazarr
               tag: 1.5.2@sha256:dbc87e5ce9e199709188e152e82b3ff5d33e6521a1b3d61e465aa75b4b739e7f
             env:
-              TZ: Australia/Melbourne
               BAZARR__PORT: &port 80
+              TZ: Australia/Melbourne
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+              capabilities: {drop: ["ALL"]}
             resources:
               requests:
                 cpu: 10m
@@ -50,23 +63,23 @@ spec:
         ports:
           http:
             port: *port
-    # HTTPRoute moved behind Authentik
     persistence:
       config:
-        existingClaim: bazarr
-      config-cache:
-        type: emptyDir
-        globalMounts:
-          - path: /config/cache
-      config-log:
-        type: emptyDir
-        globalMounts:
-          - path: /config/log
+        existingClaim: "{{ .Release.Name }}"
       data:
         type: nfs
         server: alderaan.internal
         path: /volume1/data
         globalMounts:
           - path: /data
-      tmp:
+      tmpfs:
         type: emptyDir
+        advancedMounts:
+          bazarr:
+            app:
+              - path: /config/cache
+                subPath: cache
+              - path: /config/log
+                subPath: log
+              - path: /tmp
+                subPath: tmp

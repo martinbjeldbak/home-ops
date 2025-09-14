@@ -12,7 +12,7 @@ resources:
   # - ./adguardhome-sync/ks.yaml
   - ./authentik/ks.yaml
   - ./autobrr/ks.yaml
-  # - ./bazarr/ks.yaml
+  - ./bazarr/ks.yaml
   - ./calibre-web-automated/ks.yaml
   - ./calibre-web-automated-book-downloader/ks.yaml
   # - ./cross-seed/ks.yaml
