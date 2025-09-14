@@ -4,8 +4,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: plex-trakt-sync-cache
 spec:
-  accessModes: ["ReadWriteOnce"]
+  accessModes:
+    - ReadWriteOnce
   resources:
     requests:
       storage: 512Mi
-  storageClassName: proxmox
+  storageClassName: ceph-block

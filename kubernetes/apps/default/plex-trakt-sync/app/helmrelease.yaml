@@ -5,12 +5,17 @@ kind: HelmRelease
 metadata:
   name: plex-trakt-sync
 spec:
+  interval: 1h
   chartRef:
     kind: OCIRepository
-    name: app-template
-  interval: 1h
-  dependsOn:
-    - name: plex
+    name: plex-trakt-sync
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
   values:
     controllers:
       plex-trakt-sync:
@@ -24,17 +29,17 @@ spec:
           app:
             image:
               repository: ghcr.io/taxel/plextraktsync
-              tag: 0.34.14
+              tag: 0.34.14 # TODO: pin shasum
             args:
               - watch
             env:
               PLEX_BASEURL: http://plex.default.svc.cluster.local:32400
               PLEX_LOCALURL: http://plex.default.svc.cluster.local:32400
-              PLEX_USERNAME: martinbjeldbak
-              TRAKT_USERNAME: martinbjeldbak
+              PLEX_USERNAME: &username martinbjeldbak
+              TRAKT_USERNAME: *username
             envFrom:
               - secretRef:
-                  name: plex-trakt-sync-secret
+                  name: "{{ .Release.Name }}-secret"
             probes:
               liveness:
                 enabled: false
@@ -42,20 +47,18 @@ spec:
                 enabled: false
               startup:
                 enabled: false
-            # resources:
-            #   requests:
-            #     cpu: 5m
+            resources:
+              requests:
+                cpu: 5m
             #     memory: 128M
               # limits:
               #   memory: 512M
     persistence:
       config:
         enabled: true
-        existingClaim: plex-trakt-sync-cache
-        advancedMounts:
-          plex-trakt-sync:
-            app:
-              - path: /app/config
+        existingClaim: "{{ .Release.Name }}-cache"
+        globalMounts:
+          - path: /app/config
       config-yaml:
         type: configMap
         name: plex-trakt-sync-configmap
