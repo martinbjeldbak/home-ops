@@ -8,7 +8,7 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: app-template
+    name: calibre-web-automated-book-downloader
   install:
     remediation:
       retries: -1
