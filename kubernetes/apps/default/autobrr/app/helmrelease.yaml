@@ -8,14 +8,13 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: app-template
+    name: autobrr
   install:
     remediation:
       retries: -1
   upgrade:
     cleanupOnFail: true
     remediation:
-      strategy: rollback
       retries: 3
   values:
     controllers:
@@ -30,16 +29,18 @@ spec:
             env:
               AUTOBRR__HOST: 0.0.0.0
               AUTOBRR__PORT: &port 80
+              AUTOBRR__METRICS_ENABLED: true
+              AUTOBRR__METRICS_HOST: 0.0.0.0
+              AUTOBRR__METRICS_PORT: &metricsPort 9094
+              AUTOBRR__CHECK_FOR_UPDATES: false
               AUTOBRR__LOG_LEVEL: INFO
               AUTOBRR__OIDC_ENABLED: true
               AUTOBRR__OIDC_ISSUER: https://auth.local.martinbjeldbak.com/application/o/autobrr/
               AUTOBRR__OIDC_REDIRECT_URL: https://autobrr.local.martinbjeldbak.com/api/auth/oidc/callback
               AUTOBRR__OIDC_DISABLE_BUILT_IN_LOGIN: true
-              AUTOBRR__METRICS_ENABLED: true
-              AUTOBRR__METRICS_PORT: &metricsPort 9094
             envFrom:
               - secretRef:
-                  name: autobrr-secret
+                  name: "{{ .Release.Name }}-secret"
             probes:
               liveness: &probes
                 enabled: true
@@ -56,10 +57,10 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            # resources:
-            #   requests:
-            #     cpu: 10m
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 10m
               # limits:
               #   memory: 256Mi
     defaultPodOptions:
@@ -82,21 +83,21 @@ spec:
           - port: metrics
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+        hostnames:
+          - "{{ .Release.Name }}.local.martinbjeldbak.com"
         parentRefs:
           - name: internal
             namespace: kube-system
             sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
     persistence:
       config:
-        existingClaim: autobrr-v5
-      config-log:
+        existingClaim: "{{ .Release.Name }}"
+      tmpfs:
         type: emptyDir
-        globalMounts:
-          - path: /config/log
-      tmp:
-        type: emptyDir
+        advancedMounts:
+          autobrr:
+            app:
+              - path: /config/log
+                subPath: log
+              - path: /tmp
+                subPath: tmp
