@@ -48,8 +48,6 @@ spec:
   dependsOn:
     - name: cloudnative-pg
       namespace: cnpg-system
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/default/romm/database
   prune: true
