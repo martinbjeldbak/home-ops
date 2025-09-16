@@ -6,8 +6,7 @@ metadata:
   name: &cluster romm-database
 spec:
   instances: 1
-  # renovate: datasource=docker depName=ghcr.io/cloudnative-pg/postgresql
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.6-202509151215-system-trixie
+  imageName: ghcr.io/cloudnative-pg/ postgresql:17.5-bookworm
   bootstrap:
     recovery:
       source: *cluster
