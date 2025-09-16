@@ -6,7 +6,7 @@ metadata:
   name: &cluster romm-database
 spec:
   instances: 1
-  imageName: ghcr.io/cloudnative-pg/ postgresql:17.6-minimal-trixie
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.6-minimal-trixie
   bootstrap:
     recovery:
       source: *cluster
