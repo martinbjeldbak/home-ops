@@ -36,6 +36,8 @@ spec:
               ENABLE_SCHEDULED_RESCAN: true
               SCHEDULED_RESCAN_CRON: "0 3 * * *"  # at 3am
               ENABLE_SCHEDULED_UPDATE_SWITCH_TITLEDB: true
+              ENABLE_SCHEDULED_RETROACHIEVEMENTS_PROGRESS_SYNC: true
+              ENABLE_SCHEDULED_CONVERT_IMAGES_TO_WEBP: true
               SCHEDULED_UPDATE_SWITCH_TITLEDB_CRON: "0 4 * * *"  # at 4am
               DISABLE_USERPASS_LOGIN: true  # require sign in with Authentik
               OIDC_ENABLED: "true"
