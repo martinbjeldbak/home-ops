@@ -24,7 +24,7 @@ spec:
       APP: *app
       GATUS_PATH: /web/index.html
       VOLSYNC_CAPACITY: 200Gi
-      VOLSYNC_CACHE_CAPACITY: 10Gi
+      VOLSYNC_CACHE_CAPACITY: 20Gi
   prune: true
   retryInterval: 2m
   sourceRef:
