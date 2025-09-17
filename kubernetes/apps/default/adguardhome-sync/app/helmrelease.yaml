@@ -18,7 +18,7 @@ spec:
           app:
             image:
               repository: ghcr.io/bakito/adguardhome-sync
-              tag: v0.7.9@sha256:ae7240756ce71e7c4c7fde543d761d95789e5c29b4531132602aadb24b877d4f
+              tag: v0.8.1@sha256:8c041de3155875bc3a9f28a0fca7f3abc3402a7587a62c8bc70631b1dd92b5b8
             env:
               LOG_LEVEL: "info"
               ORIGIN_URL: "https://dns.local.martinbjeldbak.com"

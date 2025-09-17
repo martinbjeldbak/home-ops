@@ -6,7 +6,7 @@ metadata:
   name: &cluster authentik-database
 spec:
   instances: 1
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.5-bookworm
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.6-standard-trixie
   bootstrap:
     recovery:
       source: *cluster
