@@ -29,6 +29,8 @@ spec:
               tag: 0.32.0@sha256:4cb9bd4e05dbea4cf5176c2d07c613c10bff231e487e2a95ab978fd7e3e7c174
             command:
               - "web-entrypoint.sh"
+            args:
+              - "bin/railse server -p 3000 -b 0.0.0.0"
             env:
               TIME_ZONE: Australia/Melbourne
               RAILS_ENV: development
@@ -58,7 +60,8 @@ spec:
             #     cpu: "2000m"
           sidekiq:
             <<: *dawarich
-            command: ['bundle', 'exec', 'sidekiq'] # fixes https://github.com/Freika/dawarich/pull/941
+            command:
+              - "sidekiq-entrypoint.sh"
             # resources:
             #   requests:
             #     memory: "1Gi"
