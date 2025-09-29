@@ -16,7 +16,7 @@ resources:
   - ./calibre-web-automated/ks.yaml
   - ./calibre-web-automated-book-downloader/ks.yaml
   - ./cross-seed/ks.yaml
-  # - ./dawarich/ks.yaml
+  - ./dawarich/ks.yaml
   - ./epicgames-freegames/ks.yaml
   - ./esphome/ks.yaml
   - ./home-assistant/ks.yaml
