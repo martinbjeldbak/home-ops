@@ -22,6 +22,7 @@ spec:
         repository: ghcr.io/dragonflydb/operator
     serviceMonitor:
       enabled: true
+      timeout: 30s # puter is slow and TargetDown are raised
     grafanaDashboard:
       enabled: true
       folder: Storage
