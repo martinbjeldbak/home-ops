@@ -6,8 +6,7 @@ metadata:
   name: &cluster dawarich-database
 spec:
   instances: 1
-  # renovate: datasource=docker depName=ghcr.io/cloudnative-pg/postgresql
-  imageName: ghcr.io/cloudnative-pg/postgis:17-3.5@sha256:f429306b52e07d013e13cdc78fe987e29f81ed7e3e115784c12073f598904786
+  imageName: ghcr.io/cloudnative-pg/postgis:17.6-3.6.0-standard-trixie@sha256:76a8e1eec61156d255462757a32e4003b3ed2c69e910e2abab95d3f736733f57
   bootstrap:
     recovery:
       source: *cluster
