@@ -30,7 +30,7 @@ spec:
             command:
               - "web-entrypoint.sh"
             args:
-              - "bin/railse server -p 3000 -b 0.0.0.0"
+              - "bin/rails server -p 3000 -b 0.0.0.0"
             env:
               TIME_ZONE: Australia/Melbourne
               RAILS_ENV: development
