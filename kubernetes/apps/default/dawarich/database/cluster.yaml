@@ -30,15 +30,8 @@ spec:
         barmanObjectName: b2-dawarich
   externalClusters:
     - name: *cluster
-      barmanObjectStore:
-        destinationPath: "s3://home-ops-postgres-backups/dawarich/"
-        endpointURL: "https://s3.eu-central-003.backblazeb2.com"
-        s3Credentials:
-          accessKeyId:
-            name: dawarich-backblaze-secret
-            key: ACCESS_KEY_ID
-          secretAccessKey:
-            name: dawarich-backblaze-secret
-            key: ACCESS_SECRET_KEY
-        wal:
-          maxParallel: 8
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+         barmanObjectName: b2-dawarich
+         serverName: dawarich-database
