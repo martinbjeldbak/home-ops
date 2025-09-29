@@ -27,6 +27,8 @@ spec:
             image:
               repository: docker.io/freikin/dawarich
               tag: 0.32.0@sha256:4cb9bd4e05dbea4cf5176c2d07c613c10bff231e487e2a95ab978fd7e3e7c174
+            command:
+              - "web-entrypoint.sh"
             env:
               TIME_ZONE: Australia/Melbourne
               RAILS_ENV: development
