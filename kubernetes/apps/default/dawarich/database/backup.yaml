@@ -8,5 +8,6 @@ spec:
   backupOwnerReference: self
   cluster:
     name: dawarich-database
+  method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
