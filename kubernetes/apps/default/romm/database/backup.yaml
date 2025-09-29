@@ -5,7 +5,7 @@ kind: ScheduledBackup
 metadata:
   name: romm-backup
 spec:
-  schedule: "0 * * * *"  # every hour
+  schedule: "0 0 * * 0"  # at 00:00 on Sunday
   backupOwnerReference: self
   cluster:
     name: romm-database

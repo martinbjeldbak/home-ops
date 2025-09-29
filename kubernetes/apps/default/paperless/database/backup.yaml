@@ -4,7 +4,7 @@ kind: ScheduledBackup
 metadata:
   name: paperless-backup
 spec:
-  schedule: "0 0 0 * * *"  # midnight
+  schedule: "0 0 * * 0"  # at 00:00 on Sunday
   backupOwnerReference: self
   cluster:
     name: paperless-database
