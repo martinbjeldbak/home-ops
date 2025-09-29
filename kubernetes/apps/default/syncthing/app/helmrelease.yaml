@@ -29,8 +29,8 @@ spec:
               tag: 2.0.10@sha256:3faeb52baa7de3fbe7007cecc6829a4bc71cc6ac62d3967459a8228979c38943
             env:
               TZ: Australia/Melbourne
-              PGID: 1024 # 'admin' user on Synology nas
-              PUID: 100 # 'users' user on Synology nas
+              PGID: 1024 # 'admin' user on Synology NAS
+              PUID: 100 # 'users' group on Synology NAS
             probes:
               liveness: &probes
                 enabled: true

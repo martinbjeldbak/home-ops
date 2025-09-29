@@ -25,8 +25,3 @@ spec:
       timeout: 30s # puter is slow and TargetDown are raised
     grafanaDashboard:
       enabled: true
-      folder: Storage
-      # -- Grafana dashboard configmap annotations.
-      annotations:
-        name: grafana_folder
-
