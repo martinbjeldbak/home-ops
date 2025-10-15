@@ -14,14 +14,12 @@ resources:
   - ./autobrr/ks.yaml
   - ./bazarr/ks.yaml
   - ./calibre-web-automated/ks.yaml
-  - ./calibre-web-automated-book-downloader/ks.yaml
   - ./cross-seed/ks.yaml
   - ./dawarich/ks.yaml
   - ./epicgames-freegames/ks.yaml
   - ./esphome/ks.yaml
   - ./home-assistant/ks.yaml
   - ./homebox/ks.yaml
-  - ./homepage/ks.yaml
   # - ./icloudpd/ks.yaml
   # - ./immich/ks.yaml
   - ./karakeep/ks.yaml
@@ -39,7 +37,7 @@ resources:
   - ./recyclarr/ks.yaml
   - ./romm/ks.yaml
   - ./sabnzbd/ks.yaml
-  # - ./scrypted/ks.yaml
+  - ./scrypted/ks.yaml
   - ./sonarr/ks.yaml
   - ./syncthing/ks.yaml
   - ./tautulli/ks.yaml
