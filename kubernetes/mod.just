@@ -53,3 +53,9 @@ sync-oci:
     kubectl get ocirepo --no-headers -A | while read -r ns name _; do \
         kubectl -n "$ns" annotate --field-manager flux-client-side-apply --overwrite ocirepo "$name" reconcile.fluxcd.io/requestedAt="$(date +%s)"; \
     done
+
+[doc('Suspend or resume Keda ScaledObjects')]
+keda state:
+    kubectl get scaledobjects --no-headers -A | while read -r ns name _; do \
+        kubectl -n "$ns" annotate --field-manager flux-client-side-apply --overwrite so "$name" autoscaling.keda.sh/paused{{ if state != "suspend" { "-" } else { "=true" } }}; \
+    done
