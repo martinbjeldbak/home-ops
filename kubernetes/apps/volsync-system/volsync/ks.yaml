@@ -6,8 +6,6 @@ metadata:
   name: &app volsync
   namespace: &namespace volsync-system
 spec:
-  components:
-    - ../../../../components/nfs-scaler
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
