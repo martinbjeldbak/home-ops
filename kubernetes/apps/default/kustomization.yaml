@@ -7,8 +7,6 @@ components:
   - ../../components/common
 resources:
   - ./atuin/ks.yaml
-  # - ./adguardhome-replica/ks.yaml
-  # - ./adguardhome-sync/ks.yaml
   - ./authentik/ks.yaml
   - ./autobrr/ks.yaml
   - ./bazarr/ks.yaml
