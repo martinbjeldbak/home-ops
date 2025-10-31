@@ -65,7 +65,7 @@ spec:
 
     route:
       app:
-        hostnames: ["calibre.local.martinbjeldbak.com"]
+        hostnames: ["calibre.martinbjeldbak.com"]
         parentRefs:
           - name: external
             namespace: kube-system
