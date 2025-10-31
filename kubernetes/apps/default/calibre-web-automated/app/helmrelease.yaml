@@ -79,10 +79,6 @@ spec:
                       value: https
                     - name: HTTP_X_FORWARDED_PROTO
                       value: https
-                responseHeaderModifier:
-                  add:
-                    - name: HTTP_X_FORWARDED_PROTO
-                      value: https
             backendRefs:
               - identifier: app
                 port: *port
