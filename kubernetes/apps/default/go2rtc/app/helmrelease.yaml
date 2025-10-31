@@ -99,7 +99,7 @@ spec:
                     - stun:stun.cloudflare.com:3478
             streams:
               livingroom:
-                - rtsp://192.168.50.80/stream1
+                - onvif://adminadmin:K4Fqd7LNNZmAazJeXnj2nMeYhD7mH7@192.168.50.80:2020
     persistence:
       config-file:
         type: configMap
