@@ -109,3 +109,4 @@ spec:
         globalMounts:
           - path: /config/go2rtc.yaml
             subPath: go2rtc.yaml
+            readOnly: false
