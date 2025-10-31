@@ -77,8 +77,6 @@ spec:
                   add:
                     - name: X-Scheme
                       value: https
-                    - name: HTTP_X_FORWARDED_PROTO
-                      value: https
             backendRefs:
               - identifier: app
                 port: *port
