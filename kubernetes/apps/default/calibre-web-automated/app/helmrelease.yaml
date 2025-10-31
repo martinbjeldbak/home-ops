@@ -69,7 +69,13 @@ spec:
             namespace: kube-system
             sectionName: https
         rules:
-          - backendRefs:
+          - filters:
+              - type: RequestHeaderModifier
+                requestHeaderModifier:
+                  add:
+                    - name: X-Scheme
+                      value: https
+            backendRefs:
               - identifier: app
                 port: *port
     persistence:
