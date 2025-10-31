@@ -99,7 +99,7 @@ spec:
                     - stun:stun.cloudflare.com:3478
             streams:
               livingroom:
-                - rtsp://192.168.50.80
+                - rtsp://192.168.50.80/stream1
     persistence:
       config-file:
         type: configMap
