@@ -29,6 +29,7 @@ spec:
               PUID: 1000
               PGID: 1000
               NETWORK_SHARE_MODE: true
+              CWA_WATCH_MODE: poll
               CACHE_DIR: /cache
             envFrom:
               - secretRef:
@@ -61,11 +62,12 @@ spec:
         ports:
           http:
             port: &port 8083
+
     route:
       app:
         hostnames: ["calibre.local.martinbjeldbak.com"]
         parentRefs:
-          - name: internal
+          - name: external
             namespace: kube-system
             sectionName: https
         rules:
@@ -74,6 +76,12 @@ spec:
                 requestHeaderModifier:
                   add:
                     - name: X-Scheme
+                      value: https
+                    - name: HTTP_X_FORWARDED_PROTO
+                      value: https
+                responseHeaderModifier:
+                  add:
+                    - name: HTTP_X_FORWARDED_PROTO
                       value: https
             backendRefs:
               - identifier: app
