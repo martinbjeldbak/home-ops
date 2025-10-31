@@ -29,9 +29,12 @@ spec:
               PUID: 1000
               PGID: 1000
               NETWORK_SHARE_MODE: true
+              CACHE_DIR: /cache
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
+                # TODO: hardcover token https://github.com/blackjid/home-ops/blob/0f7ba85f5ba878b78869ee7e522d04c90f3c40b9/kubernetes/apps/media/calibre-web-automated/app/helmrelease.yaml#L37
+                #
             # probes:
             #   liveness: &probes
             #     enabled: true
@@ -50,7 +53,9 @@ spec:
               readOnlyRootFilesystem: false  # s6 container
             resources:
               requests:
-                cpu: 5m
+                cpu: 100m
+              # limits:
+              #   memory: 1Gi
     service:
       app:
         ports:
@@ -70,7 +75,7 @@ spec:
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
-      calibre-library:
+      media:
         type: nfs
         server: alderaan.internal
         path: /volume1/data/media/books
@@ -78,11 +83,15 @@ spec:
           calibre-web-automated:
             app:
               - path: /calibre-library
-      ingest:
-        type: nfs
-        server: alderaan.internal
-        path: /volume4/calibre-web-automated-inbox
+                subPath: calibre-library
+              - path: /cwa-book-ingest
+                subPath: cwa-book-ingest
+      tmpfs:
+        type: emptyDir
         advancedMounts:
           calibre-web-automated:
             app:
-              - path: /cwa-book-ingest
+              - path: /cache
+                subPath: cache
+              - path: /tmp
+                subPath: tmp
