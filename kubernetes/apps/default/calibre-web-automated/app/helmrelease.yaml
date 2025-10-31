@@ -78,14 +78,23 @@ spec:
       media:
         type: nfs
         server: alderaan.internal
+        path: /volume1/data/media
+      calibre-library:
+        type: nfs
+        server: alderaan.internal
         path: /volume1/data/media/books
         advancedMounts:
           calibre-web-automated:
             app:
               - path: /calibre-library
-                subPath: calibre-library
+      ingest:
+        type: nfs
+        server: alderaan.internal
+        path: /volume4/calibre-web-automated-inbox
+        advancedMounts:
+          calibre-web-automated:
+            app:
               - path: /cwa-book-ingest
-                subPath: cwa-book-ingest
       tmpfs:
         type: emptyDir
         advancedMounts:
