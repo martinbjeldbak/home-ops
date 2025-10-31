@@ -89,6 +89,8 @@ spec:
               origin: "*"
             rtsp:
               listen: :554
+              username: admin
+              password: pass
             webrtc:
               listen: :8555
               candidates:
