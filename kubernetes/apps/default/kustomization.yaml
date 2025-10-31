@@ -15,6 +15,7 @@ resources:
   - ./dawarich/ks.yaml
   - ./epicgames-freegames/ks.yaml
   - ./esphome/ks.yaml
+  - ./go2rtc/ks.yaml
   - ./home-assistant/ks.yaml
   - ./homebox/ks.yaml
   # - ./icloudpd/ks.yaml
