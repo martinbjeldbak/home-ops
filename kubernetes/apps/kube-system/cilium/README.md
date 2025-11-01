@@ -9,18 +9,20 @@ Set up using below guides combined with [onedr0p's setup](https://github.com/one
 
 From "Running Configuration" tab in <https://192.168.1.1/ui/quagga/diagnostics/general>
 
-```txt
+```
 router bgp 64513
- no bgp ebgp-requires-policy
- no bgp default ipv4-unicast
- neighbor 192.168.42.10 remote-as 64514
- neighbor 192.168.42.10 update-source em0
- !
- address-family ipv4 unicast
-  network 192.168.1.0/24
-  neighbor 192.168.42.10 activate
-  neighbor 192.168.42.10 next-hop-self
-  neighbor 192.168.42.10 soft-reconfiguration inbound
- exit-address-family
+  bgp router-id 192.168.1.1
+  no bgp ebgp-requires-policy
+
+  neighbor k8s peer-group
+  neighbor k8s remote-as 64514
+
+  neighbor 192.168.42.10 peer-group k8s
+  neighbor 192.168.42.11 peer-group k8s
+
+  address-family ipv4 unicast
+    neighbor k8s next-hop-self
+    neighbor k8s soft-reconfiguration inbound
+  exit-address-family
 exit
 ```
