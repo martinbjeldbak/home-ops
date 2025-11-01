@@ -22,8 +22,9 @@ spec:
         hostnames:
           - victoria-logs.local.martinbjeldbak.com
         parentRefs:
-          - name: envoy-internal
-            namespace: network
+          - name: internal
+            namespace: kube-system
+            sectionName: https
         extraRules:
           - filters:
               - type: RequestRedirect
