@@ -74,19 +74,9 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        forceRename: "{{ .Release.Name }}"
-        primary: true
         ports:
           http:
             port: *port
-      bittorrent:
-        type: LoadBalancer
-        annotations:
-          lbipam.cilium.io/ips: 192.168.42.132
-        ports:
-          bittorrent-tcp:
-            port: *torrentPort
-            protocol: TCP
     route:
       app:
         hostnames:
