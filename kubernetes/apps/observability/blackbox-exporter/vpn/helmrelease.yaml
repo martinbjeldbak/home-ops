@@ -19,7 +19,7 @@ spec:
           "name": "vpn",
           "namespace": "kube-system",
           "ips": ["192.168.80.13/24"],
-          "mac": "3e:d0:83:c0:8e:13"
+          "mac": "0a:5d:04:42:58:9c"
         }]
     securityContext:
       readOnlyRootFilesystem: true
