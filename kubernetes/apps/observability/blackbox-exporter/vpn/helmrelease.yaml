@@ -3,14 +3,24 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: blackbox-exporter-lan
+  name: blackbox-exporter-vpn
 spec:
   chartRef:
     kind: OCIRepository
-    name: blackbox-exporter-lan
+    name: blackbox-exporter-vpn
   interval: 1h
   values:
-    fullnameOverride: blackbox-exporter-lan
+    fullnameOverride: blackbox-exporter-vpn
+    strategy:
+      type: Recreate
+    podAnnotations:
+      k8s.v1.cni.cncf.io/networks: |-
+        [{
+          "name": "vpn",
+          "namespace": "kube-system",
+          "ips": ["192.168.80.13/24"],
+          "mac": "0a:5d:04:42:58:9c"
+        }]
     securityContext:
       readOnlyRootFilesystem: true
       allowPrivilegeEscalation: false
@@ -43,12 +53,21 @@ spec:
     prometheusRule:
       enabled: true
       rules:
-        - alert: LanProbeFailed
+        - alert: VpnProbeFailed
           expr: |-
-            probe_success{service="blackbox-exporter-lan"} == 0
+            probe_success{service="blackbox-exporter-vpn"} == 0
           for: 15m
           labels:
             severity: critical
           annotations:
             summary: |-
               The probe targeting {{ $labels.instance }} is currently having connectivity issues
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: Deployment
+              name: blackbox-exporter-vpn
+            patch: |-
+              - op: remove
+                path: /spec/strategy/rollingUpdate

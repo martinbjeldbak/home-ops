@@ -27,7 +27,7 @@ spec:
             env:
               TZ: Australia/Melbourne
               UP_UNIFI_DEFAULT_ROLE: home-ops
-              UP_UNIFI_DEFAULT_URL: https://unifi.default.svc.cluster.local:8443
+              UP_UNIFI_DEFAULT_URL: https://192.168.1.1
               UP_PROMETHEUS_HTTP_LISTEN: 0.0.0.0:80
               UP_INFLUXDB_DISABLE: true
             envFrom:

@@ -3,38 +3,34 @@
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
 metadata:
-  name: lan-icmp
+  name: vpn-icmp
 spec:
   module: icmp
   prober:
-    url: blackbox-exporter-lan.observability.svc.cluster.local:9115
+    url: blackbox-exporter-vpn.observability.svc.cluster.local:9115
   targets:
     staticConfig:
       static:
-        - alderaan.internal
-        - jetkvm-0.internal
-        - k8s-0.internal
-        - k8s-1.internal
-        - zigbee-controller.internal
+        - 1.1.1.1
   metricRelabelings:
     - targetLabel: service
-      replacement: blackbox-exporter-lan
+      replacement: blackbox-exporter-vpn
       action: replace
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/probe_v1.json
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
 metadata:
-  name: lan-tcp
+  name: vpn-http
 spec:
-  module: tcp_connect
+  module: http_2xx
   prober:
-    url: blackbox-exporter-lan.observability.svc.cluster.local:9115
+    url: blackbox-exporter-vpn.observability.svc.cluster.local:9115
   targets:
     staticConfig:
       static:
-        - alderaan.internal:2049
+        - https://one.one.one.one
   metricRelabelings:
     - targetLabel: service
-      replacement: blackbox-exporter-lan
+      replacement: blackbox-exporter-vpn
       action: replace

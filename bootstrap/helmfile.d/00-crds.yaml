@@ -22,7 +22,7 @@ releases:
   - name: external-secrets
     namespace: external-secrets
     chart: oci://ghcr.io/external-secrets/charts/external-secrets
-    version: 0.20.4
+    version: 1.0.0
 
   - name: gateway-api-crds
     namespace: kube-system
@@ -42,4 +42,4 @@ releases:
   - name: kube-prometheus-stack
     namespace: observability
     chart: oci://ghcr.io/prometheus-community/charts/kube-prometheus-stack
-    version: 79.1.0
+    version: 79.5.0

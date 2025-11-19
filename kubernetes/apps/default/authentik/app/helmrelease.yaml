@@ -26,8 +26,6 @@ spec:
         from: Authentik <authentik@martinbjeldbak.com>
         port: 465
         use_tls: true
-      redis:
-        host: authentik-redis
     server:
       route:
         main:

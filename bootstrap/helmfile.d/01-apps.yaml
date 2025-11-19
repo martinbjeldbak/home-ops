@@ -10,7 +10,7 @@ releases:
   - name: cilium
     namespace: kube-system
     chart: oci://ghcr.io/home-operations/charts-mirror/cilium
-    version: 1.18.3
+    version: 1.18.4
     values:
       - ./templates/values.yaml.gotmpl
     hooks:
@@ -46,7 +46,7 @@ releases:
   - name: spegel
     namespace: kube-system
     chart: oci://ghcr.io/spegel-org/helm-charts/spegel
-    version: 0.4.0
+    version: 0.5.1
     values:
       - ./templates/values.yaml.gotmpl
     needs:
