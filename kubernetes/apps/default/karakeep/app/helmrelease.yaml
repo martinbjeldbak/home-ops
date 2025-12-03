@@ -32,7 +32,7 @@ spec:
           app:
             image:
               repository: ghcr.io/karakeep-app/karakeep
-              tag: 0.28.0@sha256:cd2348520ba25bbee64199468cd41758ab325eecd6a3a5c40cd6443a1607f9e9
+              tag: 0.29.1@sha256:3b521070cdc26d7385cc288fe0cf7aef17e1fa551a1960cdfd7b8d5d732167a9
             env:
               OAUTH_WELLKNOWN_URL: https://auth.local.martinbjeldbak.com/application/o/karakeep/.well-known/openid-configuration
               OAUTH_PROVIDER_NAME: authentik
