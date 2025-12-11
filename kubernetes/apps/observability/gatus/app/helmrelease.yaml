@@ -38,7 +38,7 @@ spec:
             env:
               GATUS_CONFIG_PATH: /config
               GATUS_WEB_PORT: &port 80
-              TZ: Australia/Melbourne
+              TZ: Australia/Sydney
             probes:
               liveness: &probes
                 enabled: true

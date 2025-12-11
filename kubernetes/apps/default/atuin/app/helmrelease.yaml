@@ -29,7 +29,7 @@ spec:
               ATUIN_PORT: &port 80
               ATUIN_OPEN_REGISTRATION: "true"
               ATUIN_DB_URI: sqlite:///config/atuin.db
-              TZ: Australia/Melbourne
+              TZ: Australia/Sydney
             command:
               - atuin
               - server

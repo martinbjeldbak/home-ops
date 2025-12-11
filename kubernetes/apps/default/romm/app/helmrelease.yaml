@@ -27,7 +27,7 @@ spec:
               repository: ghcr.io/rommapp/romm
               tag: 4.4.0@sha256:056114e8fdab8d6b592d1330390e6203f08642d6ba17d1b3ad1681ce8fc8fee3
             env:
-              TZ: Australia/Melbourne
+              TZ: Australia/Sydney
               DB_HOST: romm-database-rw
               DB_PORT: 5432
               DB_NAME: romm

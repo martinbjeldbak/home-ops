@@ -28,7 +28,7 @@ spec:
               repository: ghcr.io/syncthing/syncthing
               tag: 2.0.11@sha256:905d4a8fac511e0022432d084413a2a8578a67036dc44cc3df184c4e6f20ec33
             env:
-              TZ: Australia/Melbourne
+              TZ: Australia/Sydney
               PGID: 1024 # 'admin' user on Synology NAS
               PUID: 100 # 'users' group on Synology NAS
             probes:

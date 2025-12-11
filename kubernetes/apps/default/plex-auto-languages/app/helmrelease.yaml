@@ -27,7 +27,7 @@ spec:
               repository: ghcr.io/journeydocker/plex-auto-languages
               tag: 1.3.16@sha256:f178d9e0da97605aac544114d8dd4f40eefb44398354c20d637f5f967aa25376
             env:
-              TZ: Australia/Melbourne
+              TZ: Australia/Sydney
               PLEX_URL: http://plex.default.svc.cluster.local:32400
               # DEBUG: true
             envFrom:

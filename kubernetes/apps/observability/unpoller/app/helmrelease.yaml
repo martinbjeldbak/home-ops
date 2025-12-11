@@ -25,7 +25,7 @@ spec:
               repository: ghcr.io/unpoller/unpoller
               tag: v2.18.0@sha256:d1f98188d0a7a3022ebaabe6d46466652ca89ac0d5d5c2b966c2b1f0cb1cf6e1
             env:
-              TZ: Australia/Melbourne
+              TZ: Australia/Sydney
               UP_UNIFI_DEFAULT_ROLE: home-ops
               UP_UNIFI_DEFAULT_URL: https://192.168.1.1
               UP_PROMETHEUS_HTTP_LISTEN: 0.0.0.0:80

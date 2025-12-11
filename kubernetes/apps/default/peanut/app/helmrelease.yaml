@@ -25,7 +25,7 @@ spec:
               repository: brandawg93/peanut
               tag: 5.17.0@sha256:723f51f562cc44a340c38d1db98809d3b07474a44616943c741884feeceb8c99
             env:
-              TZ: Australia/Melbourne
+              TZ: Australia/Sydney
               WEB_PORT: &port 8080
             securityContext:
               allowPrivilegeEscalation: false

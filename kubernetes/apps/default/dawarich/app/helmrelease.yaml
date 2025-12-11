@@ -31,7 +31,7 @@ spec:
             args:
               - "bin/rails server -p 3000 -b 0.0.0.0"
             env:
-              TIME_ZONE: Australia/Melbourne
+              TIME_ZONE: Australia/Sydney
               RAILS_ENV: development
               REDIS_URL: redis://dawarich-redis:6379
               DATABASE_HOST: dawarich-database-rw

@@ -41,7 +41,7 @@ spec:
                   --smtp-host "$SMTP_HOST" \
                   --smtp-port 465
             env:
-              TZ: Australia/Melbourne
+              TZ: Australia/Sydney
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
