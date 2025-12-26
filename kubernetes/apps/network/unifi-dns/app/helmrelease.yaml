@@ -45,7 +45,7 @@ spec:
     txtOwnerId: main
     txtPrefix: k8s.main.
     domainFilters:
-      - local.martinbjeldbak.com
+      - martinbjeldbak.com
     serviceMonitor:
       enabled: true
     podAnnotations:

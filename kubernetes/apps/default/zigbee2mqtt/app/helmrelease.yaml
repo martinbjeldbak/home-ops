@@ -88,7 +88,7 @@ spec:
     route:
       app:
         hostnames:
-          - "{{ .Release.Name }}.local.martinbjeldbak.com"
+          - "{{ .Release.Name }}.martinbjeldbak.com"
         parentRefs:
           - name: envoy-internal
             namespace: network
