@@ -118,3 +118,5 @@ spec:
             subPath: secrets.yaml
       tmp:
         type: emptyDir
+      cache:
+        type: emptyDir
