@@ -10,3 +10,15 @@ machine:
 apiVersion: v1alpha1
 kind: HostnameConfig
 hostname: k8s-1  # Beelink EQ14
+---
+apiVersion: v1alpha1
+kind: LinkAliasConfig
+name: net0
+selector:
+  match: link.driver == "r8169" && mac(link.permanent_addr) == "e8:ff:1e:d8:85:b5"
+---
+apiVersion: v1alpha1
+kind: LinkAliasConfig
+name: net1
+selector:
+  match: link.driver == "r8169" && mac(link.permanent_addr) == "e8:ff:1e:d8:85:b6"

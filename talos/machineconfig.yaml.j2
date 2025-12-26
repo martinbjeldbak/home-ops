@@ -9,7 +9,6 @@ machine:
   certSANs:
     - 127.0.0.1
     - 192.168.42.120
-    - k8s.internal
   features:
     apidCheckExtKeyUsage: true
     diskQuotaSupport: true
@@ -93,7 +92,7 @@ cluster:
     {% endif %}
   clusterName: main
   controlPlane:
-    endpoint: https://k8s.internal:6443
+    endpoint: https://192.168.42.120:6443
   discovery:
     enabled: true
     registries:
@@ -126,7 +125,6 @@ cluster:
     certSANs:
       - 127.0.0.1
       - 192.168.42.120
-      - k8s.internal
     disablePodSecurityPolicy: true
     extraArgs:
       enable-aggregator-routing: "true"
@@ -177,16 +175,11 @@ cluster:
   {% endif %}
 ---
 apiVersion: v1alpha1
-kind: LinkAliasConfig
-name: net0
-selector:
-  match: link.driver == "r8169" && mac(link.permanent_addr).startsWith("e8:ff:1e:")
----
-apiVersion: v1alpha1
 kind: BondConfig
 name: bond0
 links:
   - net0
+  # - net1
 bondMode: active-backup
 mtu: 1500
 ---
@@ -208,13 +201,6 @@ name: bond0.80
 vlanID: 80 # VPN
 parent: bond0
 mtu: 1500
-{% if ENV.IS_CONTROLLER == "true" %}
----
-apiVersion: v1alpha1
-kind: Layer2VIPConfig
-name: 192.168.42.120
-link: bond0
-{% endif %}
 ---
 apiVersion: v1alpha1
 kind: WatchdogTimerConfig

@@ -3,9 +3,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: default
+
 components:
-  - ../../components/common
+  - ../../components/alerts
+
 resources:
+  - ./namespace.yaml
   - ./atuin/ks.yaml
   - ./authentik/ks.yaml
   - ./autobrr/ks.yaml

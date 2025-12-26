@@ -1,9 +1,9 @@
 ---
 machine:
+  type: controlplane
   nodeLabels:
     topology.kubernetes.io/zone: m
     intel.feature.node.kubernetes.io/gpu: "true"
-  type: controlplane
   install:
     diskSelector:
       model: CT500P3PSSD8
@@ -11,3 +11,20 @@ machine:
 apiVersion: v1alpha1
 kind: HostnameConfig
 hostname: k8s-0 # Beelink EQi12
+---
+apiVersion: v1alpha1
+kind: LinkAliasConfig
+name: net0
+selector:
+  match: link.driver == "r8169" && mac(link.permanent_addr) == "e8:ff:1e:da:2d:80"
+---
+apiVersion: v1alpha1
+kind: LinkAliasConfig
+name: net1
+selector:
+  match: link.driver == "r8169" && mac(link.permanent_addr) == "e8:ff:1e:da:2d:7f"
+---
+apiVersion: v1alpha1
+kind: Layer2VIPConfig
+name: 192.168.42.120
+link: bond0
