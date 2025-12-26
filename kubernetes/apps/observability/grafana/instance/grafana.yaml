@@ -29,7 +29,7 @@ spec:
       angular_support_enabled: "true"
     server:
       enable_gzip: "true"
-      root_url: https://grafana.local.martinbjeldbak.com
+      root_url: https://grafana.martinbjeldbak.com
   deployment:
     spec:
       strategy:
@@ -58,6 +58,17 @@ spec:
             - name: grafana-data
               persistentVolumeClaim:
                 claimName: grafana-pvc
+  httpRoute:
+    spec:
+      hostnames:
+        - grafana.martinbjeldbak.com
+      parentRefs:
+        - name: envoy-internal
+          namespace: network
+      rules:
+        - backendRefs:
+            - name: grafana-service
+              port: 3000
   persistentVolumeClaim:
     spec:
       accessModes:
