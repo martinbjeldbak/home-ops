@@ -116,15 +116,5 @@ spec:
         globalMounts:
           - path: /config/secrets.yaml
             subPath: secrets.yaml
-      tmpfs:
+      tmp:
         type: emptyDir
-        advancedMounts:
-          esphome:
-            app:
-              - path: /cache
-                subPath: cache
-            code-server:
-              - path: /tmp
-                subPath: code-server-tmp
-              - path: /nonexistent
-                subPath: nonexistent
