@@ -5,17 +5,10 @@ kind: HelmRelease
 metadata:
   name: cilium
 spec:
-  interval: 1h
   chartRef:
     kind: OCIRepository
     name: cilium
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
+  interval: 1h
   values:
     autoDirectNodeRoutes: true
     bandwidthManager:
@@ -25,7 +18,7 @@ spec:
       datapathMode: netkit
       masquerade: true
       preallocateMaps: true
-      # tproxy: true
+      tproxy: true
     bpfClockProbe: true
     bgpControlPlane:
       enabled: true
@@ -64,7 +57,8 @@ spec:
     loadBalancer:
       algorithm: maglev
       mode: dsr
-    localRedirectPolicy: true
+    localRedirectPolicies:
+      enabled: true
     operator:
       dashboards:
         enabled: true
@@ -74,6 +68,8 @@ spec:
           enabled: true
       replicas: 1 #  TODO: 3 node cluster
       rollOutPods: true
+    pmtuDiscovery:
+      enabled: true
     prometheus:
       enabled: true
       serviceMonitor:
@@ -101,3 +97,6 @@ spec:
           - NET_ADMIN
           - SYS_ADMIN
           - SYS_RESOURCE
+    socketLB:
+      enabled: true
+      hostNamespaceOnly: true
