@@ -20,11 +20,10 @@ spec:
       route:
         enabled: true
         hostnames:
-          - victoria-logs.local.martinbjeldbak.com
+          - victoria-logs.martinbjeldbak.com
         parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
+          - name: envoy-internal
+            namespace: network
         extraRules:
           - filters:
               - type: RequestRedirect

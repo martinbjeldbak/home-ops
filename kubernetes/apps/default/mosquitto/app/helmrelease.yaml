@@ -46,7 +46,7 @@ spec:
       app:
         type: LoadBalancer
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: mosquitto.local.martinbjeldbak.com
+          external-dns.alpha.kubernetes.io/hostname: mosquitto.martinbjeldbak.com
           lbipam.cilium.io/ips: 192.168.42.129
         ports:
           http:

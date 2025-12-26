@@ -23,17 +23,16 @@ spec:
         main:
           enabled: true
           hostnames:
-            - alertmanager.local.martinbjeldbak.com
+            - alertmanager.martinbjeldbak.com
           parentRefs:
-            - name: internal
-              namespace: kube-system
-              sectionName: https
+            - name: envoy-internal
+              namespace: network
       alertmanagerSpec:
         alertmanagerConfiguration:
           name: alertmanager
           global:
             resolveTimeout: 5m
-        externalUrl: https://alertmanager.local.martinbjeldbak.com
+        externalUrl: https://alertmanager.martinbjeldbak.com
         storage:
           volumeClaimTemplate:
             spec:
@@ -52,11 +51,10 @@ spec:
         main:
           enabled: true
           hostnames:
-            - prometheus.local.martinbjeldbak.com
+            - prometheus.martinbjeldbak.com
           parentRefs:
-            - name: internal
-              namespace: kube-system
-              sectionName: https
+            - name: envoy-internal
+              namespace: network
       prometheusSpec:
         image:
           registry: docker.io

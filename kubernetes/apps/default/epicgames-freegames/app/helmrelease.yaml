@@ -28,7 +28,7 @@ spec:
               tag: latest@sha256:47e298bafc8719607174a4039acb14a58ec354217d02441f3a63087d852928d7
             env:
               TZ: Australia/Sydney
-              BASE_URL: https://epic.local.martinbjeldbak.com
+              BASE_URL: https://epic.martinbjeldbak.com
               CRON_SCHEDULE: "0 0,6,12,18 * * *"  # every 6 hours
               EMAIL_SENDER_ADDRESS: epicgames@martinbjeldbak.com
               EMAIL_SENDER_NAME: "Epic Games Captchas"
@@ -63,7 +63,7 @@ spec:
             port: *port
     route:
       app:
-        hostnames: ["epic.local.martinbjeldbak.com"]
+        hostnames: ["epic.martinbjeldbak.com"]
         parentRefs:
           - name: envoy-internal
             namespace: network

@@ -28,7 +28,7 @@ spec:
               tag: 2.16.0@sha256:2a092f86a51f5718111097b0fced33eaa876b5904a543b7504f92357a4f75635
             env:
               TZ: Australia/Sydney
-              TAUTULLI_HTTP_BASE_URL: https://tautulli.local.martinbjeldbak.com
+              TAUTULLI_HTTP_BASE_URL: https://tautulli.martinbjeldbak.com
               TAUTULLI_HTTP_PORT: &port 80
             envFrom:
               - secretRef:
@@ -70,11 +70,10 @@ spec:
     route:
       app:
         hostnames:
-          - "{{ .Release.Name }}.local.martinbjeldbak.com"
+          - "{{ .Release.Name }}.martinbjeldbak.com"
         parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
+          - name: envoy-internal
+            namespace: network
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"

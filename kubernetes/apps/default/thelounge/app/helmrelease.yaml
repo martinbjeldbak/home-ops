@@ -56,11 +56,10 @@ spec:
             port: 9000
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+        hostnames: ["{{ .Release.Name }}.martinbjeldbak.com"]
         parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
+          - name: envoy-internal
+            namespace: network
     persistence:
       config:
         existingClaim: thelounge

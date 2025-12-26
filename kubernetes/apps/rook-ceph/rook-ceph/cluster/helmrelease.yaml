@@ -1,36 +1,14 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/ocirepository_v1.json
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: OCIRepository
-metadata:
-  name: rook-ceph-cluster
-spec:
-  interval: 5m
-  layerSelector:
-    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
-    operation: copy
-  ref:
-    tag: v1.18.8
-  url: oci://ghcr.io/rook/rook-ceph-cluster
----
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: rook-ceph-cluster
 spec:
-  interval: 1h
-  timeout: 15m
   chartRef:
     kind: OCIRepository
     name: rook-ceph-cluster
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
+  interval: 1h
   values:
     monitoring:
       enabled: true
@@ -40,13 +18,12 @@ spec:
     route:
       dashboard:
         host:
-          name: rook.local.martinbjeldbak.com
+          name: rook.martinbjeldbak.com
           path: /
           pathType: PathPrefix
         parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
+          - name: envoy-internal
+            namespace: network
     cephClusterSpec:
       cephConfig:
         global:
@@ -58,15 +35,18 @@ spec:
         wipeDevicesFromOtherClusters: true
       crashCollector:
         disable: false
+      csi:
+        readAffinity:
+          enabled: true
       dashboard:
         enabled: true
         urlPrefix: /
         ssl: false
         prometheusEndpoint: http://prometheus-operated.observability.svc.cluster.local:9090
       mon:
-        count: 1 # TODO: 3 nodes
+        count: 1
       mgr:
-        count: 1 # TODO: 3 nodes
+        count: 1
         modules:
           - name: diskprediction_local
             enabled: true
@@ -78,14 +58,13 @@ spec:
             enabled: true
       network:
         provider: host
+        addressRanges:
+          public:
+            - 169.254.255.0/24
+          cluster:
+            - 169.254.255.0/24
         connections:
           requireMsgr2: true
-      storage:
-        useAllNodes: true
-        useAllDevices: false
-        devicePathFilter: /dev/disk/by-id/nvme-Samsung_SSD_990_PRO_1TB_S7HDNJ0Y7.*_.*
-        config:
-          osdsPerDevice: "1"
       resources:
         mgr:
           requests:
@@ -104,13 +83,19 @@ spec:
             cpu: "50m"
             memory: "2Gi"
           limits:
-            memory: "4Gi"
+            memory: 8Gi
+      storage:
+        useAllNodes: true
+        useAllDevices: false
+        devicePathFilter: /dev/disk/by-id/nvme-Samsung_SSD_990_PRO_1TB_S7HDNJ0Y7.*_.*
+        config:
+          osdsPerDevice: "1"
     cephBlockPools:
       - name: ceph-blockpool
         spec:
           failureDomain: host
           replicated:
-            size: 2 # TODO: 3 nodes
+            size: 2 #  TODO: 3 nodes
         storageClass:
           enabled: true
           name: ceph-block
@@ -118,7 +103,8 @@ spec:
           reclaimPolicy: Delete
           allowVolumeExpansion: true
           volumeBindingMode: Immediate
-          mountOptions: ["discard"]
+          mountOptions:
+            - discard
           parameters:
             compression_mode: aggressive
             compression_algorithm: zstd
@@ -141,11 +127,11 @@ spec:
         spec:
           metadataPool:
             replicated:
-              size: 1 # TODO: 3 nodes
+              size: 1 #   TODO: 3 nodes
           dataPools:
             - failureDomain: host
               replicated:
-                size: 1 # TODO: 3 nodes
+                size: 1 #   TODO: 3 nodes
               name: data0
           metadataServer:
             activeCount: 1

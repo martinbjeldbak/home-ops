@@ -52,11 +52,10 @@ spec:
             port: &port 6878
     route:
       app:
-        hostnames: ["acestream.local.martinbjeldbak.com"]
+        hostnames: ["acestream.martinbjeldbak.com"]
         parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
+          - name: envoy-internal
+            namespace: network
         rules:
           - backendRefs:
               - identifier: app

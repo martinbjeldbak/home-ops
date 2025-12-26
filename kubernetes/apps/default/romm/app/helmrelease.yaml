@@ -44,8 +44,8 @@ spec:
               DISABLE_USERPASS_LOGIN: true  # require sign in with Authentik
               OIDC_ENABLED: "true"
               OIDC_PROVIDER: authentik
-              OIDC_REDIRECT_URI: https://romm.local.martinbjeldbak.com/api/oauth/openid
-              OIDC_SERVER_APPLICATION_URL: https://auth.local.martinbjeldbak.com/application/o/romm
+              OIDC_REDIRECT_URI: https://romm.martinbjeldbak.com/api/oauth/openid
+              OIDC_SERVER_APPLICATION_URL: https://auth.martinbjeldbak.com/application/o/romm
               HASHEOUS_API_ENABLED: true
             envFrom:
               - secretRef:
@@ -68,11 +68,10 @@ spec:
             port: *port
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+        hostnames: ["{{ .Release.Name }}.martinbjeldbak.com"]
         parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
+          - name: envoy-internal
+            namespace: network
     persistence:
       data:
         existingClaim: "{{ .Release.Name }}"

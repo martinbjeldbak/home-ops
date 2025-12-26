@@ -69,11 +69,10 @@ spec:
           existingClaim: immich-external-library-nas
       route:
         main: # TODO: broken https://github.com/immich-app/immich-charts/issues/165
-          hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+          hostnames: ["{{ .Release.Name }}.martinbjeldbak.com"]
           parentRefs:
-            - name: internal
-              namespace: kube-system
-              sectionName: https
+            - name: envoy-internal
+              namespace: network
           rules:
             - backendRefs:
                 - name: immich-server

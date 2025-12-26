@@ -34,7 +34,7 @@ spec:
               repository: ghcr.io/karakeep-app/karakeep
               tag: 0.29.3@sha256:bbdc3274bbe510cac32551b2a8825019f61d23c261ddb8baa9bb4311caed31c4
             env:
-              OAUTH_WELLKNOWN_URL: https://auth.local.martinbjeldbak.com/application/o/karakeep/.well-known/openid-configuration
+              OAUTH_WELLKNOWN_URL: https://auth.martinbjeldbak.com/application/o/karakeep/.well-known/openid-configuration
               OAUTH_PROVIDER_NAME: authentik
               OAUTH_ALLOW_DANGEROUS_EMAIL_ACCOUNT_LINKING: true
               DISABLE_PASSWORD_AUTH: true  # OAuth login only
@@ -45,7 +45,7 @@ spec:
               CRAWLER_ENABLE_ADBLOCKER: true
               DATA_DIR: /data
               MEILI_ADDR: http://127.0.0.1:7700
-              NEXTAUTH_URL: https://karakeep.local.martinbjeldbak.com
+              NEXTAUTH_URL: https://karakeep.martinbjeldbak.com
               DISABLE_NEW_RELEASE_CHECK: true
               OCR_LANGS: eng,dan
             envFrom:
@@ -108,11 +108,10 @@ spec:
             port: &port 3000
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.local.martinbjeldbak.com"]
+        hostnames: ["{{ .Release.Name }}.martinbjeldbak.com"]
         parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
+          - name: envoy-internal
+            namespace: network
         rules:
           - backendRefs:
               - identifier: app
