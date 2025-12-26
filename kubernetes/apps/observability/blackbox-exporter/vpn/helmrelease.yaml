@@ -21,10 +21,6 @@ spec:
           "ips": ["192.168.80.13/24"],
           "mac": "0a:5d:04:42:58:9c"
         }]
-    securityContext:
-      readOnlyRootFilesystem: true
-      allowPrivilegeEscalation: false
-      capabilities: {add: ["NET_RAW"]}
     config:
       modules:
         http_2xx:
