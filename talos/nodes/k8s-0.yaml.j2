@@ -3,7 +3,7 @@ machine:
   type: controlplane
   nodeLabels:
     topology.kubernetes.io/zone: m
-    intel.feature.node.kubernetes.io/gpu: "true"
+    node.kubernetes.io/gpu: "true"
   install:
     diskSelector:
       model: CT500P3PSSD8
