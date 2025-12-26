@@ -19,7 +19,7 @@ spec:
           tag: v0.8.0@sha256:fb2f74fdd0fc9fa22b95b525ccca9958715c0963d317da23b5f858858443dabe
         env:
           - name: UNIFI_HOST
-            value: https://192.168.1.1 # TODO: point to domain
+            value: https://unifi.internal
           - name: UNIFI_API_KEY
             valueFrom:
               secretKeyRef:
