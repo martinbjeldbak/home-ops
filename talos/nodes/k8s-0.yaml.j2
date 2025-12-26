@@ -23,8 +23,3 @@ kind: LinkAliasConfig
 name: net1
 selector:
   match: link.driver == "r8169" && mac(link.permanent_addr) == "e8:ff:1e:da:2d:7f"
----
-apiVersion: v1alpha1
-kind: Layer2VIPConfig
-name: 192.168.42.120
-link: bond0
