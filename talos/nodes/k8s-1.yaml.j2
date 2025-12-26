@@ -1,10 +1,12 @@
 ---
 machine:
-  network:
-    hostname: k8s-1 # Beelink EQ14
   nodeLabels:
     topology.kubernetes.io/zone: m
   type: worker
   install:
     diskSelector:
       model: 512GB SSD
+---
+apiVersion: v1alpha1
+kind: HostnameConfig
+hostname: k8s-1  # Beelink EQ14

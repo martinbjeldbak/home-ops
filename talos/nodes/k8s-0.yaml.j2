@@ -1,7 +1,5 @@
 ---
 machine:
-  network:
-    hostname: k8s-0 # Beelink EQi12
   nodeLabels:
     topology.kubernetes.io/zone: m
     intel.feature.node.kubernetes.io/gpu: "true"
@@ -9,3 +7,7 @@ machine:
   install:
     diskSelector:
       model: CT500P3PSSD8
+---
+apiVersion: v1alpha1
+kind: HostnameConfig
+hostname: k8s-0 # Beelink EQi12
