@@ -34,7 +34,7 @@ spec:
               TIME_ZONE: Australia/Sydney
               RAILS_ENV: development
               REDIS_URL: redis://dawarich-redis:6379
-              DATABASE_HOST: dawarich-database-rw
+              DATABASE_HOST: dawarich-db-rw
               DATABASE_NAME: dawarich_development
               MIN_MINUTES_SPENT_IN_CITY: 60
               APPLICATION_HOST: localhost
