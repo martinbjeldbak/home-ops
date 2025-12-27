@@ -3,13 +3,13 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: &cluster dawarich-database
+  name: dawarich-db
 spec:
   instances: 1
   imageName: ghcr.io/cloudnative-pg/postgis:17.6-3.6.0-system-trixie
   bootstrap:
     recovery:
-      source: *cluster
+      source: &externalCluster dawarich-database
   storage:
     size: 10Gi
     pvcTemplate:
@@ -29,9 +29,9 @@ spec:
       parameters:
         barmanObjectName: b2-dawarich
   externalClusters:
-    - name: *cluster
+    - name: *externalCluster
       plugin:
         name: barman-cloud.cloudnative-pg.io
         parameters:
           barmanObjectName: b2-dawarich
-          serverName: *cluster
+          serverName: *externalCluster

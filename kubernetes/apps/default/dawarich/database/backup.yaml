@@ -7,7 +7,7 @@ spec:
   schedule: "0 0 0 * * 0"  # at 00:00 on Sunday
   backupOwnerReference: self
   cluster:
-    name: dawarich-database
+    name: dawarich-db
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
