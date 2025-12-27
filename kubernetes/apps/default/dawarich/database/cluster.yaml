@@ -9,7 +9,7 @@ spec:
   imageName: ghcr.io/cloudnative-pg/postgis:17.6-3.6.0-system-trixie
   bootstrap:
     recovery:
-      source: &externalCluster dawarich-database
+      source: &externalCluster dawarich-db
   storage:
     size: 10Gi
     pvcTemplate:
