@@ -68,6 +68,8 @@ spec:
         hostnames:
           - "{{ .Release.Name }}.martinbjeldbak.com"
           - requests.martinbjeldbak.com
+          - overseerr.martinbjeldbak.com  # backwards-compatibility
+          - ønsker.martinbjeldbak.com
         parentRefs:
           - name: envoy-external
             namespace: network
