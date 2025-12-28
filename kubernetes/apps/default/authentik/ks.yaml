@@ -6,9 +6,6 @@ metadata:
   name: &app authentik
   namespace: &namespace default
 spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   components:
     - ../../../../components/gatus/internal
     - ../../../../components/volsync
@@ -41,9 +38,6 @@ metadata:
   name: &app authentik-database
   namespace: &namespace default
 spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   dependsOn:
     - name: cloudnative-pg
       namespace: cnpg-system

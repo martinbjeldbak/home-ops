@@ -6,9 +6,6 @@ metadata:
   name: &app paperless
   namespace: &namespace default
 spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   components:
     - ../../../../components/gatus/internal
     - ../../../../components/volsync
@@ -44,9 +41,6 @@ metadata:
   name: &app paperless-database
   namespace: &namespace default
 spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   dependsOn:
     - name: cloudnative-pg
       namespace: cnpg-system
@@ -71,9 +65,6 @@ metadata:
   name: &app paperless-redis
   namespace: &namespace default
 spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   dependsOn:
     - name: dragonfly-operator
       namespace: dragonfly-operator-system

@@ -6,9 +6,6 @@ metadata:
   name: &app cloudnative-pg
   namespace: &namespace cnpg-system
 spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   interval: 1h
   path: ./kubernetes/apps/cnpg-system/cloudnative-pg/app/
   prune: true

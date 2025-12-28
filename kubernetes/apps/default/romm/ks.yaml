@@ -6,9 +6,6 @@ metadata:
   name: &app romm
   namespace: &namespace default
 spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   components:
     - ../../../../components/nfs-scaler
     - ../../../../components/gatus/internal
@@ -44,9 +41,6 @@ metadata:
   name: &app romm-database
   namespace: &namespace default
 spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   dependsOn:
     - name: cloudnative-pg
       namespace: cnpg-system

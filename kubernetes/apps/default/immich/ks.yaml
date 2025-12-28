@@ -6,9 +6,6 @@ metadata:
   name: &app immich
   namespace: &namespace default
 spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   components:
     - ../../../../components/gatus/internal
   dependsOn:
@@ -41,9 +38,6 @@ metadata:
   name: &app immich-database
   namespace: &namespace default
 spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   dependsOn:
     - name: cloudnative-pg
       namespace: cnpg-system
@@ -68,9 +62,6 @@ metadata:
   name: &app immich-redis
   namespace: &namespace default
 spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   dependsOn:
     - name: dragonfly-operator
       namespace: dragonfly-operator-system
