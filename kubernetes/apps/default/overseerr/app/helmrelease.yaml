@@ -46,7 +46,6 @@ spec:
       app:
         hostnames:
           - "{{ .Release.Name }}.martinbjeldbak.com"
-          - requests.martinbjeldbak.com
         parentRefs:
           - name: envoy-external
             namespace: network
