@@ -34,6 +34,7 @@ resources:
   - ./plex-trakt-sync/ks.yaml
   - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
+  - ./qui/ks.yaml
   - ./radarr/ks.yaml
   - ./recyclarr/ks.yaml
   # - ./romm/ks.yaml
