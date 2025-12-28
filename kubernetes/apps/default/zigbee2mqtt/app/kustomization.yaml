@@ -6,12 +6,4 @@ resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
   - ./ocirepository.yaml
-configMapGenerator:
-  - name: zigbee-loki-rules
-    files:
-      - zigbee.yaml=./lokirule.yaml
-    options:
-      labels:
-        loki_rule: "true"
-generatorOptions:
-  disableNameSuffixHash: true
+  - ./scaledobject.yaml
