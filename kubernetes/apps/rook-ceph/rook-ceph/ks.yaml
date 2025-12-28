@@ -30,7 +30,6 @@ metadata:
   namespace: &namespace rook-ceph
 spec:
   components:
-    - ../../../../components/gatus/internal
   dependsOn:
     - name: rook-ceph
       namespace: *namespace
@@ -55,7 +54,6 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      GATUS_SUBDOMAIN: rook
   prune: true
   retryInterval: 2m
   sourceRef:

@@ -7,7 +7,6 @@ metadata:
   namespace: &namespace default
 spec:
   components:
-    - ../../../../components/gatus/internal
     - ../../../../components/volsync
   dependsOn:
     - name: paperless-database
@@ -21,7 +20,6 @@ spec:
   postBuild:
     substitute:
       APP: paperless-v2
-      GATUS_SUBDOMAIN: *app
       VOLSYNC_CACHE_CAPACITY: 10Gi
       VOLSYNC_CAPACITY: 5Gi
   prune: true

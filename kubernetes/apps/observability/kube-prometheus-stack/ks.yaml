@@ -7,7 +7,6 @@ metadata:
   namespace: &namespace observability
 spec:
   components:
-    - ../../../../components/gatus/internal
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
@@ -16,7 +15,6 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      GATUS_SUBDOMAIN: prometheus
   prune: true
   retryInterval: 2m
   sourceRef:

@@ -7,7 +7,6 @@ metadata:
   namespace: &namespace default
 spec:
   components:
-    - ../../../../components/gatus/internal
     - ../../../../components/volsync
   dependsOn:
     - name: rook-ceph-cluster
@@ -19,7 +18,6 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      GATUS_SUBDOMAIN: auth
       VOLSYNC_CAPACITY: 1Gi
   prune: true
   retryInterval: 2m

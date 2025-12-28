@@ -7,7 +7,6 @@ metadata:
   namespace: &namespace default
 spec:
   components:
-    - ../../../../components/gatus/external
     - ../../../../components/volsync
   dependsOn:
     - name: dawarich-database
