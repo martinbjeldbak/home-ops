@@ -26,7 +26,6 @@ resources:
   - ./karakeep/ks.yaml
   - ./kometa/ks.yaml
   - ./mosquitto/ks.yaml
-  - ./overseerr/ks.yaml
   # - ./paperless/ks.yaml
   # - ./peanut/ks.yaml
   - ./plex/ks.yaml
