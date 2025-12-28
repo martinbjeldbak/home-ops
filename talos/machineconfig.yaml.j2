@@ -6,15 +6,12 @@ machine:
     {% if ENV.IS_CONTROLLER == "true" %}
     key: op://kubernetes/talos/MACHINE_CA_KEY
     {% endif %}
-  certSANs:
-    - 127.0.0.1
-    - 192.168.42.120
   features:
     apidCheckExtKeyUsage: true
     diskQuotaSupport: true
     hostDNS:
       enabled: true
-      forwardKubeDNSToHost: false
+      forwardKubeDNSToHost: true # Requires Cilium socketLB features
       resolveMemberNames: true
     kubePrism:
       enabled: true
@@ -77,7 +74,9 @@ machine:
     net.ipv4.tcp_congestion_control: bbr
     net.ipv4.tcp_fastopen: "3"
     net.ipv4.tcp_mtu_probing: "1"
+    net.ipv4.tcp_notsent_lowat: "131072"
     net.ipv4.tcp_rmem: 4096 87380 33554432
+    net.ipv4.tcp_slow_start_after_idle: "0"
     net.ipv4.tcp_window_scaling: "1"
     net.ipv4.tcp_wmem: 4096 65536 33554432
     sunrpc.tcp_max_slot_table_entries: "128"
@@ -93,7 +92,7 @@ cluster:
     {% endif %}
   clusterName: main
   controlPlane:
-    endpoint: https://192.168.42.120:6443
+    endpoint: https://k8s.internal:6443
   discovery:
     enabled: true
     registries:
@@ -124,8 +123,7 @@ cluster:
       rules:
         - level: Metadata
     certSANs:
-      - 127.0.0.1
-      - 192.168.42.120
+      - k8s.internal
     disablePodSecurityPolicy: true
     extraArgs:
       enable-aggregator-routing: "true"
@@ -192,14 +190,14 @@ clientIdentifier: mac
 apiVersion: v1alpha1
 kind: VLANConfig
 name: bond0.30
-vlanID: 30 # IOT
+vlanID: 30  # IOT
 parent: bond0
 mtu: 1500
 ---
 apiVersion: v1alpha1
 kind: VLANConfig
 name: bond0.80
-vlanID: 80 # VPN
+vlanID: 80  # VPN
 parent: bond0
 mtu: 1500
 ---
