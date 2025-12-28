@@ -5,17 +5,10 @@ kind: HelmRelease
 metadata:
   name: autobrr
 spec:
-  interval: 1h
   chartRef:
     kind: OCIRepository
     name: autobrr
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
+  interval: 1h
   values:
     controllers:
       autobrr:
@@ -42,7 +35,7 @@ spec:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
             probes:
-              liveness: &probes
+              liveness:
                 enabled: true
                 custom: true
                 spec:
@@ -50,10 +43,20 @@ spec:
                     path: /api/healthz/liveness
                     port: *port
                   initialDelaySeconds: 0
-                  periodSeconds: 20
-                  timeoutSeconds: 30
+                  periodSeconds: 10
+                  timeoutSeconds: 1
                   failureThreshold: 3
-              readiness: *probes
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/healthz/readiness
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -91,12 +94,5 @@ spec:
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
-      tmpfs:
+      tmp:
         type: emptyDir
-        advancedMounts:
-          autobrr:
-            app:
-              - path: /config/log
-                subPath: log
-              - path: /tmp
-                subPath: tmp
