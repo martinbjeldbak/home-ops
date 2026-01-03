@@ -21,7 +21,7 @@ resources:
   - ./go2rtc/ks.yaml
   - ./home-assistant/ks.yaml
   - ./homebox/ks.yaml
-  # - ./icloudpd/ks.yaml
+  - ./icloudpd/ks.yaml
   # - ./immich/ks.yaml
   - ./karakeep/ks.yaml
   - ./kometa/ks.yaml
