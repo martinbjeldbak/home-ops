@@ -5,17 +5,10 @@ kind: HelmRelease
 metadata:
   name: epicgames-freegames
 spec:
-  interval: 1h
   chartRef:
     kind: OCIRepository
     name: epicgames-freegames
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
+  interval: 1h
   values:
     controllers:
       epicgames:
@@ -35,11 +28,12 @@ spec:
               RUN_ON_STARTUP: "true"
               SEARCH_STRATEGY: all
               SMTP_HOST: "smtp-relay"
+              LOG_LEVEL: debug
               SMTP_PORT: 25
               SERVER_PORT: &port 3000
             envFrom:
               - secretRef:
-                  name: epicgames-freegames-secret
+                  name: "{{ .Release.Name }}-secret"
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: false
