@@ -37,7 +37,7 @@ spec:
                   --mfa-provider webui \
                   --watch-with-interval 3600 \
                   --smtp-host "$SMTP_HOST" \
-                  --smtp-port 465
+                  --smtp-port 25
             env:
               TZ: Australia/Sydney
             envFrom:

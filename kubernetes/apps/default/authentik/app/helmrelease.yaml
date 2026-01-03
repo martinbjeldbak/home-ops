@@ -24,8 +24,7 @@ spec:
         password: file:///postgres-creds/password
       email:
         from: Authentik <authentik@martinbjeldbak.com>
-        port: 465
-        use_tls: true
+        port: 25
     server:
       route:
         main:
@@ -81,11 +80,3 @@ spec:
       kind: Secret
       name: authentik-secret
       valuesKey: smtp_host
-    - targetPath: authentik.email.password
-      kind: Secret
-      name: authentik-secret
-      valuesKey: smtp_password
-    - targetPath: authentik.email.username
-      kind: Secret
-      name: authentik-secret
-      valuesKey: smtp_username

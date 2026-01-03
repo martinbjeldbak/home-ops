@@ -43,7 +43,7 @@ spec:
               REVERSE_GEOCODING_ENABLED: true
               SELF_HOSTED: "true"
               STORE_GEODATA: "true"
-              SMTP_PORT: 465
+              SMTP_PORT: 25
               SMTP_DOMAIN: martinbjeldbak.com
               SMTP_FROM: noreply@martinbjeldbak.com
               PORT: &port 3000
