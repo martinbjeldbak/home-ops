@@ -29,7 +29,7 @@ spec:
             command: ["/bin/sh", "-c"]
             args:
               - |
-                icloudpd \
+                /app/icloudpd \
                   --directory /data \
                   --username "$ICLOUD_USERNAME" \
                   --password "$ICLOUD_PASSWORD" \
