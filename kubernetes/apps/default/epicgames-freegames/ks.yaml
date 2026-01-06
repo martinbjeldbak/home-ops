@@ -5,8 +5,6 @@ kind: Kustomization
 metadata:
   name: epicgames-freegames
 spec:
-  components:
-    - ../../../../components/nfs-scaler
   interval: 1h
   path: ./kubernetes/apps/default/epicgames-freegames/app
   prune: true
