@@ -75,3 +75,10 @@ spec:
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
+      data:
+        type: nfs
+        server: alderaan.internal
+        path: /volume1/data
+        globalMounts:
+          - path: /data/downloads
+            subPath: downloads

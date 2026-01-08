@@ -14,7 +14,6 @@ resources:
   - ./autobrr/ks.yaml
   - ./bazarr/ks.yaml
   - ./calibre-web-automated/ks.yaml
-  - ./cross-seed/ks.yaml
   - ./dawarich/ks.yaml
   - ./epicgames-freegames/ks.yaml
   - ./esphome/ks.yaml
