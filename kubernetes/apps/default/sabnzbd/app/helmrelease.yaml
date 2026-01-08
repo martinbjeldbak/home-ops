@@ -98,12 +98,6 @@ spec:
         globalMounts:
           - path: /data/downloads/sabnzbd
             subPath: downloads/sabnzbd
-      scripts:
-        type: configMap
-        name: "{{ .Release.Name }}-scripts"
-        defaultMode: 0775
-        globalMounts:
-          - readOnly: true
       tmpfs:
         type: emptyDir
         advancedMounts:
