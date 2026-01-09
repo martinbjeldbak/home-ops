@@ -27,9 +27,11 @@ spec:
               EMAIL_SENDER_NAME: "Epic Games Captchas"
               RUN_ON_STARTUP: "true"
               SEARCH_STRATEGY: all
-              SMTP_HOST: "smtp-relay"
               LOG_LEVEL: debug
+              SMTP_HOST: smtp-relay
               SMTP_PORT: 25
+              SMTP_USERNAME: ""
+              SMTP_PASSWORD: ""
               SERVER_PORT: &port 3000
             envFrom:
               - secretRef:
