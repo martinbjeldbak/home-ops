@@ -50,6 +50,13 @@ spec:
         ports:
           http:
             port: *port
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.martinbjeldbak.com"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
