@@ -28,7 +28,6 @@ spec:
               RUN_ON_STARTUP: "true"
               SEARCH_STRATEGY: all
               LOG_LEVEL: debug
-              SMTP_HOST: smtp-relay
               SMTP_PORT: 25
               SMTP_SECURE: "false"
               SERVER_PORT: &port 3000
