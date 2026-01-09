@@ -38,7 +38,9 @@ spec:
                   --watch-with-interval 3600 \
                   --smtp-host "$SMTP_HOST" \
                   --smtp-port 25 \
-                  --notification-email "$NOTIFICATION_EMAIL"
+                  --smtp-no-tls true \
+                  --notification-email "$NOTIFICATION_EMAIL" \
+                  --notification-email-from icloudpd@martinbjeldbak.com
             env:
               TZ: Australia/Sydney
             envFrom:
