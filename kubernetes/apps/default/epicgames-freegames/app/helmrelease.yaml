@@ -30,8 +30,7 @@ spec:
               LOG_LEVEL: debug
               SMTP_HOST: smtp-relay
               SMTP_PORT: 25
-              SMTP_USERNAME: ""
-              SMTP_PASSWORD: ""
+              SMTP_SECURE: "false"
               SERVER_PORT: &port 3000
             envFrom:
               - secretRef:
