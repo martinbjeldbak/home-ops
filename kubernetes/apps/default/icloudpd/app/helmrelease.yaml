@@ -81,3 +81,7 @@ spec:
         path: /volume1/Photos/N/icloudpd
         globalMounts:
           - path: /data
+      config-cache:
+        existingClaim: "{{ .Release.Name }}-cache"
+        globalMounts:
+          - path: /root/.pyicloud
