@@ -122,8 +122,15 @@ spec:
               - identifier: app
                 port: *port
     persistence:
-      config:
+      data:
         existingClaim: "{{ .Release.Name }}"
+        advancedMounts:
+          paperless:
+            app:
+              - path: /usr/src/paperless/data
+                subPath: data
+              - path: /usr/src/paperless/media
+                subPath: media
       consumption:
         type: nfs
         server: alderaan.internal
