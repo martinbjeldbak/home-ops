@@ -3,21 +3,17 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: paperless-database
+  name: paperless-db
 spec:
   instances: 1
-  # renovate: datasource=docker depName=ghcr.io/cloudnative-pg/postgresql
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.5-bookworm
-  bootstrap:  # following https://cloudnative-pg.io/documentation/1.25/bootstrap/
-    initdb:
-      database: paperless
-      owner: paperless
-      secret:
-        name: paperless-cluster-credentials-secret
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.6-standard-trixie
+  bootstrap:
+    recovery:
+      source: &externalCluster paperless-database
   storage:
     size: 10Gi
     pvcTemplate:
-      storageClassName: proxmox
+      storageClassName: ceph-block
       accessModes: ["ReadWriteOnce"]
       resources:
         requests:
@@ -32,3 +28,10 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: b2-paperless
+  externalClusters:
+    - name: *externalCluster
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: b2-paperless
+          serverName: *externalCluster
