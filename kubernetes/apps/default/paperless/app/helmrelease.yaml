@@ -27,6 +27,8 @@ spec:
               repository: ghcr.io/paperless-ngx/paperless-ngx
               tag: 2.20.3@sha256:57ad9565bff3bdf2378ab1dcc21ea649dfd68ee58e0eeca2bfba0120a26563e8
             env:
+              USERMAP_UID: 1000
+              USERMAP_GID: 1000
               PAPERLESS_URL: https://paperless.martinbjeldbak.com
               PAPERLESS_TIME_ZONE: Australia/Sydney
               PAPERLESS_OCR_LANGUAGES: dan
@@ -59,35 +61,10 @@ spec:
               #   memory: 1000Mi
               # limits:
               #   memory: 5000Mi
+            #
             securityContext:
-              fsGroup: 1000
-              fsGroupChangePolicy: OnRootMismatch
-              allowPrivilegeEscalation: true  # s6 container, can't run as rootless, see https://github.com/paperless-ngx/paperless-ngx/blob/f0b6e79d14a0b2aa7e2a2b0383cdd0bdacbf6f50/docs/setup.md#use-docker-compose-docker
-              readOnlyRootFilesystem: false  # s6 container
-            # probes:
-            #   liveness: &probes
-            #     enabled: true
-            #     custom: true
-            #     spec:
-            #       httpGet:
-            #         path: /
-            #         port: *port
-            #       initialDelaySeconds: 0
-            #       periodSeconds: 30
-            #       timeoutSeconds: 2
-            #       failureThreshold: 3
-            #   readiness: *probes
-            #   startup:
-            #     enabled: true
-            #     custom: true
-            #     spec:
-            #       httpGet:
-            #         path: /
-            #         port: *port
-            #       initialDelaySeconds: 0
-            #       timeoutSeconds: 1
-            #       failureThreshold: 10
-            #       periodSeconds: 12
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: false
           gotenberg:
             image:
               repository: docker.io/gotenberg/gotenberg
@@ -106,6 +83,13 @@ spec:
             securityContext:
               runAsUser: 65534
               runAsGroup: 65534
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
+        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         ports:
