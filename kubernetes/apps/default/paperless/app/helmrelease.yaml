@@ -120,8 +120,8 @@ spec:
               - identifier: app
                 port: *port
     persistence:
-      library:
-        existingClaim: paperless-v2
+      config:
+        existingClaim: "{{ .Release.Name }}"
       consumption:
         type: nfs
         server: alderaan.internal
