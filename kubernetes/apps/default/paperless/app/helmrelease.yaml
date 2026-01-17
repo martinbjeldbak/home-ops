@@ -49,7 +49,6 @@ spec:
               PAPERLESS_OCR_USER_ARGS: '{"invalidate_digital_signatures": true}'
               PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
               PAPERLESS_EMAIL_FROM: paperless@martinbjeldbak.com
-              PAPERLESS_EMAIL_HOST: smtp-relay
             envFrom:
               - secretRef:
                   name: paperless-secret
