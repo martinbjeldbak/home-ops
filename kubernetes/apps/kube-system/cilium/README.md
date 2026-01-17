@@ -1,5 +1,7 @@
 # Cilium
 
+## Unifi BGP
+
 ## OPNsense BGP
 
 Set up using below guides combined with [onedr0p's setup](https://github.com/onedr0p/home-ops/tree/5f0a794919336df2bca41f60e2f0e8346e490b1a/kubernetes/apps/kube-system/cilium).
@@ -19,6 +21,7 @@ router bgp 64513
 
   neighbor 192.168.42.10 peer-group k8s
   neighbor 192.168.42.11 peer-group k8s
+  neighbor 192.168.42.12 peer-group k8s
 
   address-family ipv4 unicast
     neighbor k8s next-hop-self
