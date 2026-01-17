@@ -8,12 +8,8 @@ spec:
   chartRef:
     kind: OCIRepository
     name: dragonfly-operator
-  install:
-    crds: CreateReplace
   interval: 1h
   maxHistory: 3
-  upgrade:
-    crds: CreateReplace
   uninstall:
     keepHistory: false
   values:
