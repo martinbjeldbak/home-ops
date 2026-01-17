@@ -13,8 +13,11 @@ spec:
       static:
         - alderaan.internal
         - jetkvm-0.internal
+        - jetkvm-1.internal
+        - jetkvm-2.internal
         - k8s-0.internal
         - k8s-1.internal
+        - k8s-2.internal
         - zigbee-controller.internal
   metricRelabelings:
     - targetLabel: service

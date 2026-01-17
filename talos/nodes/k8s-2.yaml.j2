@@ -1,0 +1,24 @@
+---
+machine:
+  type: controlplane
+  nodeLabels:
+    topology.kubernetes.io/zone: m
+  install:
+    diskSelector:
+      model: KXG60ZNV256G KIOXIA
+---
+apiVersion: v1alpha1
+kind: HostnameConfig
+hostname: k8s-2  # HP EliteDesk 800 G6 Mini
+---
+apiVersion: v1alpha1
+kind: LinkAliasConfig
+name: net0
+selector:
+  match: link.driver == "igc" && mac(link.permanent_addr) == "b0:22:7a:ef:25:10"
+# ---
+# apiVersion: v1alpha1
+# kind: LinkAliasConfig
+# name: net1
+# selector:
+#   match: link.driver == "r8169" && mac(link.permanent_addr) == "e8:ff:1e:d8:85:b6"
