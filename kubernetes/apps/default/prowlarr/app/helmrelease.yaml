@@ -5,10 +5,10 @@ kind: HelmRelease
 metadata:
   name: prowlarr
 spec:
-  interval: 1h
   chartRef:
     kind: OCIRepository
     name: prowlarr
+  interval: 1h
   values:
     controllers:
       prowlarr:
@@ -52,8 +52,8 @@ spec:
             resources:
               requests:
                 cpu: 100m
-              # limits:
-              #   memory: 1Gi
+              limits:
+                memory: 1Gi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true

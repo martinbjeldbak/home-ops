@@ -5,10 +5,10 @@ kind: HelmRelease
 metadata:
   name: zigbee2mqtt
 spec:
-  interval: 1h
   chartRef:
     kind: OCIRepository
     name: zigbee2mqtt
+  interval: 1h
   values:
     controllers:
       zigbee2mqtt:
@@ -64,8 +64,8 @@ spec:
             resources:
               requests:
                 cpu: 10m
-              # limits:
-              #   memory: 1Gi
+              limits:
+                memory: 1Gi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -85,7 +85,6 @@ spec:
         parentRefs:
           - name: envoy-internal
             namespace: network
-            sectionName: https
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"

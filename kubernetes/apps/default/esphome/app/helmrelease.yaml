@@ -36,8 +36,8 @@ spec:
               requests:
                 cpu: 5m
                 memory: 512Mi
-              # limits:
-              #   memory: 3072Mi
+              limits:
+                memory: 3072Mi
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -61,8 +61,8 @@ spec:
             resources:
               requests:
                 cpu: 10m
-              # limits:
-              #   memory: 512Mi
+              limits:
+                memory: 512Mi
     service:
       app:
         ports:

@@ -5,10 +5,10 @@ kind: HelmRelease
 metadata:
   name: bazarr
 spec:
-  interval: 1h
   chartRef:
     kind: OCIRepository
     name: bazarr
+  interval: 1h
   values:
     controllers:
       bazarr:
@@ -22,6 +22,19 @@ spec:
             env:
               BAZARR__PORT: &port 80
               TZ: Australia/Sydney
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -29,8 +42,8 @@ spec:
             resources:
               requests:
                 cpu: 10m
-              # limits:
-              #   memory: 1Gi
+              limits:
+                memory: 1Gi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -59,14 +72,5 @@ spec:
         path: /volume1/data
         globalMounts:
           - path: /data
-      tmpfs:
+      tmp:
         type: emptyDir
-        advancedMounts:
-          bazarr:
-            app:
-              - path: /config/cache
-                subPath: cache
-              - path: /config/log
-                subPath: log
-              - path: /tmp
-                subPath: tmp
