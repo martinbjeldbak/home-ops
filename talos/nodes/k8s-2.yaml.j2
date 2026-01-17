@@ -3,6 +3,7 @@ machine:
   type: controlplane
   nodeLabels:
     topology.kubernetes.io/zone: m
+    node.kubernetes.io/gpu: "true"
   install:
     diskSelector:
       model: KXG60ZNV256G KIOXIA
@@ -19,19 +20,19 @@ selector:
 ---
 apiVersion: v1alpha1
 kind: DHCPv4Config
-name: net0
+name: eno1
 clientIdentifier: mac
 ---
 apiVersion: v1alpha1
 kind: VLANConfig
-name: net0.30
+name: bond0.30
 vlanID: 30  # IOT
-parent: net0
+parent: eno1
 mtu: 1500
 ---
 apiVersion: v1alpha1
 kind: VLANConfig
-name: net0.80
+name: bond0.80
 vlanID: 80  # VPN
-parent: net0
+parent: eno1
 mtu: 1500
