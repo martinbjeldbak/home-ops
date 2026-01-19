@@ -82,7 +82,7 @@ spec:
       storage:
         useAllNodes: true
         useAllDevices: false
-        devicePathFilter: /dev/disk/by-id/nvme-Samsung_SSD_990_PRO_1TB_S7HDNJ0Y7.*_.*
+        devicePathFilter: /dev/disk/by-id/nvme-Samsung_SSD_990_PRO.*_1TB_S7H.*_.*
         config:
           osdsPerDevice: "1"
     cephBlockPools:
