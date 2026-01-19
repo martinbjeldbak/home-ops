@@ -43,10 +43,7 @@ spec:
         urlPrefix: /
         ssl: false
         prometheusEndpoint: http://prometheus-operated.observability.svc.cluster.local:9090
-      mon:
-        count: 1
       mgr:
-        count: 1
         modules:
           - name: diskprediction_local
             enabled: true
@@ -61,22 +58,7 @@ spec:
         connections:
           requireMsgr2: true
       resources:
-        mgr:
-          requests:
-            cpu: "50m"
-            memory: "256Mi"
-          limits:
-            memory: "1Gi"
-        mon:
-          requests:
-            cpu: "50m"
-            memory: "512Mi"
-          limits:
-            memory: "2Gi"
         osd:
-          requests:
-            cpu: "50m"
-            memory: "2Gi"
           limits:
             memory: 8Gi
       storage:
@@ -90,7 +72,7 @@ spec:
         spec:
           failureDomain: host
           replicated:
-            size: 2 #  TODO: 3 nodes
+            size: 3
         storageClass:
           enabled: true
           name: ceph-block
@@ -122,11 +104,11 @@ spec:
         spec:
           metadataPool:
             replicated:
-              size: 1 #   TODO: 3 nodes
+              size: 3
           dataPools:
             - failureDomain: host
               replicated:
-                size: 1 #   TODO: 3 nodes
+                size: 3
               name: data0
           metadataServer:
             activeCount: 1
