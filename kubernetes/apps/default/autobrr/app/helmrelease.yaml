@@ -43,8 +43,8 @@ spec:
                     path: /api/healthz/liveness
                     port: *port
                   initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 20
+                  periodSeconds: 20
+                  timeoutSeconds: 30
                   failureThreshold: 3
               readiness:
                 enabled: true
@@ -54,8 +54,8 @@ spec:
                     path: /api/healthz/readiness
                     port: *port
                   initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 20
+                  periodSeconds: 20
+                  timeoutSeconds: 30
                   failureThreshold: 3
             securityContext:
               allowPrivilegeEscalation: false
