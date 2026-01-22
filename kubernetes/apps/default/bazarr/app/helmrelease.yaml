@@ -31,8 +31,8 @@ spec:
                     path: /health
                     port: *port
                   initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
+                  periodSeconds: 20
+                  timeoutSeconds: 30
                   failureThreshold: 3
               readiness: *probes
             securityContext:
