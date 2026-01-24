@@ -79,5 +79,4 @@ spec:
         server: alderaan.internal
         path: /volume1/data
         globalMounts:
-          - path: /data/downloads
-            subPath: downloads
+          - path: /data

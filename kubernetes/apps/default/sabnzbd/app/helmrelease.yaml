@@ -89,8 +89,7 @@ spec:
         server: alderaan.internal
         path: /volume1/data
         globalMounts:
-          - path: /data/downloads/sabnzbd
-            subPath: downloads/sabnzbd
+          - path: /data
       tmpfs:
         type: emptyDir
         advancedMounts:

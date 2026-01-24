@@ -102,7 +102,6 @@ spec:
         server: alderaan.internal
         path: /volume1/data
         globalMounts:
-          - path: /data/downloads/qbittorrent
-            subPath: downloads/qbittorrent
+          - path: /data
       tmp:
         type: emptyDir
