@@ -28,16 +28,21 @@ spec:
         containers:
           main:
             env:
-              DB_HOSTNAME: immich-db-rw
-              DB_DATABASE_NAME: immich
               LOG_LEVEL: verbose
               REDIS_HOSTNAME: immich-redis
               TZ: Australia/Sydney
+              DB_HOSTNAME: immich-db-rw
+              DB_USERNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: immich-secret
+                    key: DB_USERNAME
               DB_PASSWORD:
                 valueFrom:
                   secretKeyRef:
                     name: immich-secret
                     key: DB_PASSWORD
+              DB_DATABASE_NAME: immich
             image:
               # renovate: datasource=github-releases depName=immich-app/immich
               tag: "v1.144.1"
@@ -49,7 +54,6 @@ spec:
               resources:
                 requests:
                   cpu: 100m
-                  #cpu: 1500m
                   #memory: 2048M
       persistence:
         external:
@@ -73,8 +77,8 @@ spec:
             main:
               resources:
                 requests:
-                  cpu: 500m
-                  memory: 4096M
+                  cpu: 100m
+                  # memory: 4096M
       persistence:
         cache:
           type: persistentVolumeClaim
