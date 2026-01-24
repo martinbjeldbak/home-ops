@@ -5,11 +5,17 @@ kind: Certificate
 metadata:
   name: martinbjeldbak-com
 spec:
-  secretName: martinbjeldbak-com-tls
-  issuerRef:
-    name: letsencrypt-production
-    kind: ClusterIssuer
-  commonName: martinbjeldbak.com
   dnsNames:
-    - "martinbjeldbak.com"
+    - martinbjeldbak.com
     - "*.martinbjeldbak.com"
+  duration: 160h
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-production
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+    rotationPolicy: Always
+  secretName: martinbjeldbak-com-tls
+  usages:
+    - digital signature
