@@ -21,7 +21,7 @@ spec:
               tag: 4.5.0@sha256:79d2ab75ce6bdb8f0c7b1d8bb33a456566de5470d5d0e451fbc0919cc84679e8
             env:
               TZ: Australia/Sydney
-              DB_HOST: romm-database-rw
+              DB_HOST: romm-db-rw
               DB_PORT: 5432
               DB_NAME: romm
               ROMM_DB_DRIVER: postgresql

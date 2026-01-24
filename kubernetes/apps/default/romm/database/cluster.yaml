@@ -3,13 +3,14 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: &cluster romm-database
+  name: romm-db
 spec:
   instances: 1
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.6-standard-trixie
+  # renovate: datasource=docker depName=ghcr.io/tensorchord/cloudnative-vectorchord
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.1-standard-trixie@sha256:7a72106d396a9c6d06ca25be191700c86031e0a06ccdeaf1a31da14f198cbbc4 
   bootstrap:
     recovery:
-      source: *cluster
+      source: &externalCluster romm-database
   storage:
     size: 10Gi
     pvcTemplate:
@@ -29,9 +30,9 @@ spec:
       parameters:
         barmanObjectName: b2-romm
   externalClusters:
-    - name: *cluster
+    - name: *externalCluster
       plugin:
         name: barman-cloud.cloudnative-pg.io
         parameters:
           barmanObjectName: b2-romm
-          serverName: *cluster
+          serverName: *externalCluster
