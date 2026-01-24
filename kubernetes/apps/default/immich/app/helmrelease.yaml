@@ -18,39 +18,42 @@ spec:
       strategy: rollback
       retries: 3
   values:
-    image:
-      # renovate: datasource=github-releases depName=immich-app/immich
-      tag: v1.144.1
-    env:
-      DB_HOSTNAME: immich-db-rw
-      DB_DATABASE_NAME: immich
-      LOG_LEVEL: verbose
-      REDIS_HOSTNAME: immich-redis
-      TZ: Australia/Sydney
-      DB_PASSWORD:
-        valueFrom:
-          secretKeyRef:
-            name: immich-secret
-            key: DB_PASSWORD
-    envFrom:
-      - secretRef:
-          name: immich-secret
     immich:
       enabled: true
       persistence:
         library:
           existingClaim: immich-library-nas
-    valkey:
-      enabled: false  # using dragonfly, see ../redis/cluster.yaml
+    controllers:
+      main:
+        containers:
+          main:
+            env:
+              DB_HOSTNAME: immich-db-rw
+              DB_DATABASE_NAME: immich
+              LOG_LEVEL: verbose
+              REDIS_HOSTNAME: immich-redis
+              TZ: Australia/Sydney
+              DB_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: immich-secret
+                    key: DB_PASSWORD
+            image:
+              # renovate: datasource=github-releases depName=immich-app/immich
+              tag: "v1.144.1"
     server:
-      resources:
-        requests:
-          cpu: 100m
-          # memory: 2048M
+      controllers:
+        main:
+          containers:
+            main:
+              resources:
+                requests:
+                  cpu: 1500m
+                  memory: 2048M
       persistence:
         external:
           enabled: true
-          existingClaim: immich-external-library-nas
+          existingClaim: "{{ .Release.Name }}-external-library-nas"
       route:
         main:
           hostnames: ["{{ .Release.Name }}.martinbjeldbak.com"]
@@ -61,3 +64,17 @@ spec:
             - backendRefs:
                 - name: immich-server
                   port: 2283
+    machine-learning:
+      controllers:
+        main:
+          strategy: Recreate
+          containers:
+            main:
+              resources:
+                requests:
+                  cpu: 500m
+                  memory: 4096M
+      persistence:
+        cache:
+          type: persistentVolumeClaim
+          existingClaim: "{{ .Release.Name }}-machine-learning-cache"
