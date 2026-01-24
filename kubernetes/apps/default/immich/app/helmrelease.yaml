@@ -40,6 +40,8 @@ spec:
       persistence:
         library:
           existingClaim: immich-library-nas
+    valkey:
+      enabled: false  # using dragonfly, see ../redis/cluster.yaml
     server:
       resources:
         requests:
