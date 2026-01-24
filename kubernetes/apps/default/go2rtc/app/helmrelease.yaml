@@ -105,6 +105,7 @@ spec:
                 - rtsp://Gp8XNuJ7BUoi:Xe267CEF9tcG@192.168.50.81/live0
             homekit:
               livingroom:
+              litterrobot:
     persistence:
       config-file:
         type: configMap
