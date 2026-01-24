@@ -18,7 +18,7 @@ spec:
           app:
             image:
               repository: ghcr.io/martinbjeldbak/acestream-http-proxy
-              tag: 3.1.0@sha256:d53374583660db3966f07885f442845dd6d224b703d87ca48f89dad4cc3e6fdf
+              tag: 3.1.1@sha256:4bf9d2b2ba9b3c27e0451a3d324dbb61e22aab4b948112f7332390203040a8bf
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
