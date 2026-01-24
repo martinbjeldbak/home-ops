@@ -48,8 +48,9 @@ spec:
             main:
               resources:
                 requests:
-                  cpu: 1500m
-                  memory: 2048M
+                  cpu: 100m
+                  #cpu: 1500m
+                  #memory: 2048M
       persistence:
         external:
           enabled: true
