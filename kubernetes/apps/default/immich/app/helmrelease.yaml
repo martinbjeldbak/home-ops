@@ -35,10 +35,6 @@ spec:
     envFrom:
       - secretRef:
           name: immich-secret
-    postgresql:
-      enabled: false  # postgres chart is deprecated https://github.com/immich-app/immich-charts/issues/149
-    redis:
-      enabled: false  # using dragonfly, see ../redis/cluster.yaml
     immich:
       enabled: true
       persistence:
