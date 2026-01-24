@@ -19,6 +19,9 @@ spec:
       resources:
         requests:
           storage: 5Gi
+  postgresql:
+    shared_preload_libraries:
+      - "vchord.so"
   superuserSecret:
     name: immich-pg-superuser-secret
   monitoring:
