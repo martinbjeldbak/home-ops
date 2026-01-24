@@ -3,34 +3,18 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: immich-database
+  name: immich-db
 spec:
   instances: 1
   # renovate: datasource=docker depName=ghcr.io/tensorchord/cloudnative-vectorchord
   imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16.9-0.4.2@sha256:649da2df5f079dd1f214e3a877cafd0208eff3779e9c60d14d243fbca5e11c97
   bootstrap:
-    initdb:
-      database: immich
-      owner: immich
-      secret:
-        name: immich-cluster-credentials-secret
-      # Source: https://github.com/immich-app/immich/discussions/9060#discussioncomment-9688353
-      postInitApplicationSQL:
-        - ALTER SYSTEM SET search_path TO "$user", public, vectors;
-        - SET search_path TO "$user", public, vectors;
-        - CREATE EXTENSION IF NOT EXISTS "vchord" CASCADE;
-        - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
-        - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
-        - ALTER SCHEMA vectors OWNER TO "immich";
-        - GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA vectors TO "immich";
-        - GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO "immich";
-  postgresql:
-    shared_preload_libraries:
-      - "vchord.so"
+    recovery:
+      source: &externalCluster immich-database-v2
   storage:
     size: 5Gi
     pvcTemplate:
-      storageClassName: proxmox
+      storageClassName: ceph-block
       accessModes: ["ReadWriteOnce"]
       resources:
         requests:
@@ -45,3 +29,10 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: b2-immich
+  externalClusters:
+    - name: *externalCluster
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: b2-immich
+          serverName: *externalCluster

@@ -3,30 +3,25 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app immich
-  namespace: &namespace default
+  name: immich
+  namespace: default
 spec:
   components:
   dependsOn:
-    - name: proxmox-csi
-      namespace: csi-proxmox
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
     - name: immich-database
       namespace: default
     - name: immich-redis
       namespace: default
   interval: 1h
   path: ./kubernetes/apps/default/immich/app
-  postBuild:
-    substitute:
-      APP: *app
   prune: true
-  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
-  timeout: 5m
+  targetNamespace: default
   wait: false
 
 ---
@@ -34,32 +29,30 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app immich-database
-  namespace: &namespace default
+  name: immich-database
+  namespace: default
 spec:
   dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
     - name: cloudnative-pg
       namespace: cnpg-system
-    - name: proxmox-csi
-      namespace: csi-proxmox
   interval: 1h
   path: ./kubernetes/apps/default/immich/database
   prune: true
-  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
-  timeout: 5m
+  targetNamespace: default
   wait: true
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app immich-redis
-  namespace: &namespace default
+  name: immich-redis
+  namespace: default
 spec:
   dependsOn:
     - name: dragonfly-operator
@@ -67,11 +60,9 @@ spec:
   interval: 1h
   path: ./kubernetes/apps/default/immich/redis
   prune: true
-  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
-  timeout: 5m
+  targetNamespace: default
   wait: true
