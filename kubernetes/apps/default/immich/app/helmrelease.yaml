@@ -40,7 +40,7 @@ spec:
                     key: DB_PASSWORD
             image:
               # renovate: datasource=github-releases depName=immich-app/immich
-              tag: "v1.144.1"
+              tag: v2.4.1
     server:
       controllers:
         main:
