@@ -101,6 +101,8 @@ spec:
             streams:
               livingroom:
                 - onvif://adminadmin:K4Fqd7LNNZmAazJeXnj2nMeYhD7mH7@192.168.50.80:2020
+              litterrobot:
+                - rtsp://Gp8XNuJ7BUoi:Xe267CEF9tcG@192.168.50.81/live0
             homekit:
               livingroom:
     persistence:
