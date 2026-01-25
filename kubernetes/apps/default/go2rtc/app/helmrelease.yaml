@@ -84,6 +84,8 @@ spec:
       config:
         data:
           go2rtc.yaml: |-
+            # yaml-language-server: $schema=https://raw.githubusercontent.com/AlexxIT/go2rtc/master/www/schema.json
+            ---
             log:
               streams: error # Prevent log spam from UniFi Protect
               api: trace
@@ -106,10 +108,10 @@ spec:
                     - stun:stun.cloudflare.com:3478
             streams:
               livingroom:
-                - onvif://{env:GO2RTC_USERNAME}:{env:GO2RTC_PASSWORD}@192.168.50.80:2020
+                - onvif://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@192.168.50.80:2020
                 - ffmpeg:livingroom#audio=opus
               litterrobot:
-                - rtsp://{env:GO2RTC_USERNAME}:{env:GO2RTC_PASSWORD}@192.168.50.81/live0
+                - rtsp://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@192.168.50.81/live0
                 - ffmpeg:livingroom#audio=opus
             homekit:
               livingroom:
