@@ -119,7 +119,7 @@ spec:
               livingroom:
                 - ffmpeg:onvif://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@192.168.50.80:2020#video=copy#audio=opus
               litterrobot:
-                - ffmpeg:rtsp://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@192.168.50.81/live0#video=h264#profile=main#level=41#audio=opus
+                - ffmpeg:rtsp://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@192.168.50.81/live0#video=h264#profile=baseline#level=31#audio=opus
             homekit:
               livingroom:
                 name: Living Room
