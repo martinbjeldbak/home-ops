@@ -83,6 +83,8 @@ spec:
           go2rtc.yaml: |-
             log:
               streams: error # Prevent log spam from UniFi Protect
+              api: trace
+              onvif: trace
             api:
               listen: :80
               origin: "*"
