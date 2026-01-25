@@ -106,10 +106,10 @@ spec:
                     - stun:stun.cloudflare.com:3478
             streams:
               livingroom:
-                - onvif://$${GO2RTC_USERNAME}:$${GO2RTC_PASSWORD}@192.168.50.80:2020
+                - onvif://{env:GO2RTC_USERNAME}:{env:GO2RTC_PASSWORD}@192.168.50.80:2020
                 - ffmpeg:livingroom#audio=opus
               litterrobot:
-                - rtsp://$${GO2RTC_USERNAME}:$${GO2RTC_PASSWORD}@192.168.50.81/live0
+                - rtsp://{env:GO2RTC_USERNAME}:{env:GO2RTC_PASSWORD}@192.168.50.81/live0
                 - ffmpeg:livingroom#audio=opus
             homekit:
               livingroom:
