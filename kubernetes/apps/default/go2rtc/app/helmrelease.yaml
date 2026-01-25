@@ -12,12 +12,24 @@ spec:
   values:
     controllers:
       go2rtc:
-        strategy: RollingUpdate
+        strategy: Recreate
+        initContainers:
+          copy-config:
+            image:
+              repository: busybox
+              tag: latest
+            command:
+              - sh
+              - -c
+              - cp /tmp/go2rtc.yaml /config/go2rtc.yaml
         containers:
           app:
             image:
               repository: ghcr.io/alexxit/go2rtc
               tag: 1.9.14@sha256:675c318b23c06fd862a61d262240c9a63436b4050d177ffc68a32710d9e05bae
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
             probes:
               liveness: &probes
                 enabled: true
@@ -41,6 +53,14 @@ spec:
               limits:
                 memory: 512Mi
     defaultPodOptions:
+      annotations:
+        k8s.v1.cni.cncf.io/networks: |-
+          [{
+            "name": "trusted",
+            "namespace": "kube-system",
+            "ips": ["192.168.20.30/24"],
+            "mac": "c6:07:27:af:fb:53"
+          }]
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
@@ -81,8 +101,14 @@ spec:
       config:
         data:
           go2rtc.yaml: |-
+            ---
+            # yaml-language-server: $schema=https://raw.githubusercontent.com/AlexxIT/go2rtc/master/www/schema.json
             log:
+              level: trace
               streams: error # Prevent log spam from UniFi Protect
+              api: trace
+              onvif: trace
+              homekit: trace
             api:
               listen: :80
               origin: "*"
@@ -100,16 +126,21 @@ spec:
                     - stun:stun.cloudflare.com:3478
             streams:
               livingroom:
-                - onvif://adminadmin:K4Fqd7LNNZmAazJeXnj2nMeYhD7mH7@192.168.50.80:2020
+                - onvif://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@192.168.50.80:2020
               litterrobot:
-                - rtsp://Gp8XNuJ7BUoi:Xe267CEF9tcG@192.168.50.81/live0
+                - rtsp://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@192.168.50.81/live0
+                - ffmpeg:litterrobot#audio=opus#audio=copy
             homekit:
-              livingroom:
               litterrobot:
+                name: Litter-Robot
     persistence:
+      config:
+        type: emptyDir
+        globalMounts:
+          - path: /config
       config-file:
         type: configMap
         identifier: config
         globalMounts:
-          - path: /config/go2rtc.yaml
+          - path: /tmp/go2rtc.yaml
             subPath: go2rtc.yaml
