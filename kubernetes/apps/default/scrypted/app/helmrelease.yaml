@@ -1,0 +1,81 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: scrypted
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: scrypted
+  interval: 1h
+  values:
+    controllers:
+      scrypted:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        pod:
+          annotations:
+            k8s.v1.cni.cncf.io/networks: |
+              [{
+                "name": "iot",
+                "namespace": "kube-system",
+                "ips": ["192.168.30.21/24"],
+                "mac": "c6:07:27:af:fb:54"
+              }]
+          securityContext:
+            runAsUser: 2000
+            runAsGroup: 2000
+            fsGroup: 2000
+            fsGroupChangePolicy: "OnRootMismatch"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/koush/scrypted
+              tag: v0.143.0
+            env:
+              SCRYPTED_INSECURE_PORT: &port 80
+            resources:
+              requests:
+                cpu: 136m
+              #   memory: 1024Mi
+              # limits:
+                # gpu.intel.com/i915: 3 # not sure why this isn't working
+                # squat.ai/coral: 1
+                # memory: 8192Mi
+    service:
+      app:
+        ports:
+          http:
+            port: *port
+            primary: true
+          rebroadcast1:
+            port: 33819 # C210 #1
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.martinbjeldbak.com"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    persistence:
+      config:
+        existingClaim: "{{ .Release.Name }}"
+        advancedMounts:
+          scrypted:
+            app:
+              - path: /server/volume
+      cache:
+        type: emptyDir
+        globalMounts:
+          - path: /.cache
+      cache-npm:
+        type: emptyDir
+        globalMounts:
+          - path: /.npm
+      recordings:
+        type: nfs
+        server: alderaan.internal
+        path: /volume4/scrypted
+        globalMounts:
+          - path: /recordings
