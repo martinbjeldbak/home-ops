@@ -49,8 +49,6 @@ spec:
           http:
             port: *port
             primary: true
-          rebroadcast1:
-            port: 33819 # C210 #1
     route:
       app:
         hostnames:
