@@ -128,7 +128,8 @@ spec:
               livingroom:
                 - onvif://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@192.168.50.80:2020
               litterrobot:
-                - rtsp://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@192.168.50.81/live0#video
+                - rtsp://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@192.168.50.81/live0
+                - ffmpeg:litterrobot#audio=opus#audio=copy
             homekit:
               litterrobot:
                 name: Litter-Robot
