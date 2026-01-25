@@ -3,11 +3,11 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: qui
+  name: scrypted
 spec:
   chartRef:
     kind: OCIRepository
-    name: qui
+    name: scrypted
   interval: 1h
   values:
     controllers:
@@ -31,8 +31,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/bjw-s-labs/scrypted
-              tag: 0.141.0@sha256:c9e82faec2e27debeba03fd8d4bdb2aa53cdaf0f3f8aa77c04312a047db4c2ea
+              repository: ghcr.io/koush/scrypted
+              tag: v0.143.0
             env:
               SCRYPTED_INSECURE_PORT: &port 80
             resources:
