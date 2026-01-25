@@ -85,6 +85,7 @@ spec:
               streams: error # Prevent log spam from UniFi Protect
               api: trace
               onvif: trace
+              homekit: trace
             api:
               listen: :80
               origin: "*"
