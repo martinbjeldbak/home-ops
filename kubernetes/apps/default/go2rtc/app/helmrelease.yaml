@@ -103,12 +103,16 @@ spec:
                     - stun:stun.cloudflare.com:3478
             streams:
               livingroom:
-                - onvif://adminadmin:K4Fqd7LNNZmAazJeXnj2nMeYhD7mH7@192.168.50.80:2020
+                - onvif://$${GO2RTC_USERNAME}:$${GO2RTC_PASSWORD}@192.168.50.80:2020
+                - ffmpeg:livingroom#audio=opus
               litterrobot:
-                - rtsp://Gp8XNuJ7BUoi:Xe267CEF9tcG@192.168.50.81/live0
+                - rtsp://$${GO2RTC_USERNAME}:$${GO2RTC_PASSWORD}@192.168.50.81/live0
+                - ffmpeg:livingroom#audio=opus
             homekit:
               livingroom:
+                name: Living Room
               litterrobot:
+                name: Litter-Robot
     persistence:
       config-file:
         type: configMap
