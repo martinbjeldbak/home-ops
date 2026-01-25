@@ -95,6 +95,7 @@ spec:
             ---
             # yaml-language-server: $schema=https://raw.githubusercontent.com/AlexxIT/go2rtc/master/www/schema.json
             log:
+              level: trace
               streams: error # Prevent log spam from UniFi Protect
               api: trace
               onvif: trace
