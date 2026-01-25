@@ -50,3 +50,10 @@ name: bond0.80
 vlanID: 80  # VPN
 parent: bond0
 mtu: 1500
+---
+apiVersion: v1alpha1
+kind: VLANConfig
+name: bond0.20
+vlanID: 20  # TRUSTED
+parent: bond0
+mtu: 1500
