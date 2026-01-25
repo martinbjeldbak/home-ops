@@ -61,6 +61,8 @@ spec:
           lbipam.cilium.io/ips: 192.168.42.124
         externalTrafficPolicy: Local
         ports:
+          streams-http:
+            port: 80
           streams-rtsp:
             port: 554
           streams-webrtc-tcp:
@@ -116,8 +118,6 @@ spec:
             homekit:
               livingroom:
                 name: Living Room
-              litterrobot:
-                name: Litter-Robot
     persistence:
       config-file:
         type: configMap
