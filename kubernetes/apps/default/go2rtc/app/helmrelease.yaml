@@ -130,18 +130,8 @@ spec:
               litterrobot:
                 - rtsp://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@192.168.50.81/live0#video
             homekit:
-              livingroom:
-                name: Living Room
-                pairings:
-                  - client_id=${GO2RTC_HOMEKIT_CLIENT_ID_0}&client_public=${GO2RTC_HOMEKIT_CLIENT_PUBLIC_0}&permissions=1
-                  - client_id=${GO2RTC_HOMEKIT_CLIENT_ID_1}&client_public=${GO2RTC_HOMEKIT_CLIENT_PUBLIC_1}&permissions=1
-                  - client_id=${GO2RTC_HOMEKIT_CLIENT_ID_2}&client_public=${GO2RTC_HOMEKIT_CLIENT_PUBLIC_2}&permissions=0
               litterrobot:
                 name: Litter-Robot
-                pairings:
-                  - client_id=${GO2RTC_HOMEKIT_CLIENT_ID_0}&client_public=${GO2RTC_HOMEKIT_CLIENT_PUBLIC_0}&permissions=1
-                  - client_id=${GO2RTC_HOMEKIT_CLIENT_ID_1}&client_public=${GO2RTC_HOMEKIT_CLIENT_PUBLIC_1}&permissions=1
-                  - client_id=${GO2RTC_HOMEKIT_CLIENT_ID_2}&client_public=${GO2RTC_HOMEKIT_CLIENT_PUBLIC_2}&permissions=0
     persistence:
       config:
         type: emptyDir
