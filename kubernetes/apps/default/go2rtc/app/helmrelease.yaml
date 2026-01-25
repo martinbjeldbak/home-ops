@@ -134,13 +134,9 @@ spec:
             #       - client_id=${GO2RTC_HOMEKIT_CLIENT_ID_1}&client_public=${GO2RTC_HOMEKIT_CLIENT_PUBLIC_1}&permissions=1
             #       - client_id=${GO2RTC_HOMEKIT_CLIENT_ID_2}&client_public=${GO2RTC_HOMEKIT_CLIENT_PUBLIC_2}&permissions=0
     persistence:
-      config:
-        type: emptyDir
-        globalMounts:
-          - path: /config
       config-file:
         type: configMap
         identifier: config
         globalMounts:
-          - path: /tmp/go2rtc.yaml
+          - path: /config/go2rtc.yaml
             subPath: go2rtc.yaml
