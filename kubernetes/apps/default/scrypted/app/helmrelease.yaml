@@ -36,13 +36,18 @@ spec:
             env:
               SCRYPTED_INSECURE_PORT: &port 80
             resources:
+              claims:
+                - name: gpu
               requests:
                 cpu: 136m
               #   memory: 1024Mi
               # limits:
-                # gpu.intel.com/i915: 3 # not sure why this isn't working
                 # squat.ai/coral: 1
                 # memory: 8192Mi
+    defaultPodOptions:
+      resourceClaims:
+        - name: gpu
+          resourceClaimTemplateName: scrypted
     service:
       app:
         ports:
