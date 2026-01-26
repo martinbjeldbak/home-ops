@@ -70,12 +70,18 @@ spec:
                 - name: immich-server
                   port: 2283
     machine-learning:
+      defaultPodOptions:
+        resourceClaims:
+          - name: gpu
+            resourceClaimTemplateName: immich-machine-learning
       controllers:
         main:
           strategy: Recreate
           containers:
             main:
               resources:
+                claims:
+                  - name: gpu
                 requests:
                   cpu: 100m
                   # memory: 4096M
