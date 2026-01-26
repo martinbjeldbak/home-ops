@@ -89,6 +89,21 @@ spec:
                 requests:
                   cpu: 100m
                   # memory: 4096M
+              probes:
+                liveness: &probes
+                  enabled: true
+                  custom: true
+                  spec:
+                    httpGet:
+                      path: /ping
+                      port: 3003
+                    initialDelaySeconds: 0
+                    periodSeconds: 10
+                    timeoutSeconds: 1
+                    failureThreshold: 5
+                readiness: *probes
+                startup:
+                  enabled: false
       persistence:
         cache:
           type: persistentVolumeClaim
