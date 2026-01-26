@@ -79,6 +79,10 @@ spec:
           strategy: Recreate
           containers:
             main:
+              image:
+                repository: ghcr.io/immich-app/immich-machine-learning
+                # renovate: datasource=github-releases depName=immich-app/immich
+                tag: v2.4.1-openvino
               resources:
                 claims:
                   - name: gpu
