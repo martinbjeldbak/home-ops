@@ -5,10 +5,10 @@ kind: HelmRelease
 metadata:
   name: calibre-web-automated
 spec:
-  interval: 1h
   chartRef:
     kind: OCIRepository
     name: calibre-web-automated
+  interval: 1h
   values:
     controllers:
       calibre-web-automated:
@@ -24,27 +24,46 @@ spec:
               NETWORK_SHARE_MODE: true
               CWA_WATCH_MODE: poll
               CACHE_DIR: /cache
+              S6_YES_I_WANT_A_WORLD_WRITABLE_RUN_BECAUSE_KUBERNETES: "1"
+              S6_READ_ONLY_ROOT: "1"
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
-                # TODO: hardcover token https://github.com/blackjid/home-ops/blob/0f7ba85f5ba878b78869ee7e522d04c90f3c40b9/kubernetes/apps/media/calibre-web-automated/app/helmrelease.yaml#L37
-                #
-            # probes:
-            #   liveness: &probes
-            #     enabled: true
-            #     custom: true
-            #     spec:
-            #       httpGet:
-            #         path: /health
-            #         port: &port 80
-            #       initialDelaySeconds: 0
-            #       periodSeconds: 10
-            #       timeoutSeconds: 1
-            #       failureThreshold: 3
-            #   readiness: *probes
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    port: &port 8083
+                    path: /login
+                  initialDelaySeconds: 30
+                  periodSeconds: 10
+                  timeoutSeconds: 5
+                  failureThreshold: 6
+              readiness: *probes
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    port: *port
+                    path: /
+                  failureThreshold: 90
+                  periodSeconds: 5
             securityContext:
-              allowPrivilegeEscalation: true  # s6 container
-              readOnlyRootFilesystem: false  # s6 container
+              allowPrivilegeEscalation: true
+              readOnlyRootFilesystem: false
+              capabilities:
+                drop:
+                  - ALL
+                add:
+                  # S6
+                  - CHOWN
+                  - SETUID
+                  - SETGID
+                  - FOWNER
+                  - DAC_OVERRIDE
             resources:
               requests:
                 cpu: 100m
