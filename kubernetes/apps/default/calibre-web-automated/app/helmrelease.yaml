@@ -30,7 +30,7 @@ spec:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
             probes:
-              liveness: &probes
+              readiness:
                 enabled: true
                 custom: true
                 spec:
@@ -39,9 +39,8 @@ spec:
                     path: /login
                   initialDelaySeconds: 30
                   periodSeconds: 10
-                  timeoutSeconds: 5
+                  timeoutSeconds: 120
                   failureThreshold: 6
-              readiness: *probes
               startup:
                 enabled: true
                 custom: true
