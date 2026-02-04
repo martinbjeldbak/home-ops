@@ -45,7 +45,7 @@ spec:
               DB_DATABASE_NAME: immich
             image:
               # renovate: datasource=github-releases depName=immich-app/immich
-              tag: v2.5.2
+              tag: v2.5.3
     server:
       controllers:
         main:
@@ -82,7 +82,7 @@ spec:
               image:
                 repository: ghcr.io/immich-app/immich-machine-learning
                 # renovate: datasource=github-releases depName=immich-app/immich
-                tag: v2.5.2-openvino
+                tag: v2.5.3-openvino
               resources:
                 claims:
                   - name: gpu
