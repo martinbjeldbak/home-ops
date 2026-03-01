@@ -5,10 +5,10 @@ kind: HelmRelease
 metadata:
   name: recyclarr
 spec:
-  interval: 1h
   chartRef:
     kind: OCIRepository
     name: recyclarr
+  interval: 1h
   values:
     controllers:
       recyclarr:
@@ -24,7 +24,9 @@ spec:
           app:
             image:
               repository: ghcr.io/recyclarr/recyclarr
-              tag: 7.5.2@sha256:2550848d43a453f2c6adf3582f2198ac719f76670691d76de0819053103ef2fb
+              tag: 8.3.2@sha256:55afe316d3e4e4e3b9120cef7c79436b1b5311f6a18d4ef4b7653e720499c90a
+            env:
+              RECYCLARR_DATA_DIR: /tmp
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
@@ -57,15 +59,5 @@ spec:
         globalMounts:
           - path: /config/recyclarr.yml
             subPath: recyclarr.yml
-            readOnly: true
-      tmpfs:
+      tmp:
         type: emptyDir
-        advancedMounts:
-          recyclarr:
-            app:
-              - path: /config/logs
-                subPath: logs
-              - path: /config/repositories
-                subPath: repositories
-              - path: /tmp
-                subPath: tmp

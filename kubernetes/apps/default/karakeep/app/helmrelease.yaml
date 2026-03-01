@@ -25,7 +25,7 @@ spec:
           app:
             image:
               repository: ghcr.io/karakeep-app/karakeep
-              tag: 0.30.0@sha256:2724d4a9a6d13a7fa3babf53b9245767aae56c34f06042a8463ee983c6b41caf
+              tag: 0.31.0@sha256:20754dbdafb11dfe288bbb1c2342a7855081b08ea069e86fcf2d4a2d945d3653
             env:
               OAUTH_WELLKNOWN_URL: https://auth.martinbjeldbak.com/application/o/karakeep/.well-known/openid-configuration
               OAUTH_PROVIDER_NAME: authentik
@@ -80,7 +80,7 @@ spec:
           meilisearch:
             image:
               repository: docker.io/getmeili/meilisearch
-              tag: v1.35.0@sha256:348ba1c1f61101130304370a9522cc5405e6906b64a426dc2fcd5c428a516a98
+              tag: v1.36.0@sha256:203a0854738be101bfdada825ac3cbf95e5681bc849757b6bc199e4cfae98faa
             args:
               - /bin/meilisearch
               - --experimental-dumpless-upgrade
