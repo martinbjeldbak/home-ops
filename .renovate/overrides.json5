@@ -19,5 +19,11 @@
       matchPackageNames: ["ghcr.io/cloudnative-pg/postgis"],
       versioning: "regex:^(?<major>\\d+)\\.(?<minor>\\d+)-(?<patch>\\d+)\\.(?<build>\\d+)\\.\\d+-system-trixie$",
     },
+    {
+      description: "Use regex versioning for VectorChord images (tag format: {pg_major}.{pg_minor}-{vc_major}.{vc_minor}.{vc_patch})",
+      matchDatasources: ["docker"],
+      matchPackageNames: ["ghcr.io/tensorchord/cloudnative-vectorchord"],
+      versioning: "regex:^(?<major>\\d+)\\.(?<minor>\\d+)-(?<patch>\\d+)\\.(?<build>\\d+)\\.\\d+$",
+    },
   ],
 }
