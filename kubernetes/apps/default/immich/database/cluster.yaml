@@ -6,7 +6,7 @@ metadata:
   name: immich-db
 spec:
   instances: 1
-  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16.13-1.1.1@sha256:11e4e5a9a45a8b92006a698c7899cd96d22cf74870659db83b462b9a2ecd0d1f
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:18.3-1.1.1@sha256:392b53675b403d6a2c72b673cc488a7c272514755dd818c622fb9ce4665193c4
   bootstrap:
     recovery:
       source: &externalCluster immich-database-v2
