@@ -29,7 +29,7 @@ spec:
       - mountPath: repository
         volumeSource:
           nfs:
-            path: /volume1/VolsyncKopia
+            path: /volume1/Volsync
             server: alderaan.internal
     repository: ${APP}-volsync-secret
     sourceIdentity:

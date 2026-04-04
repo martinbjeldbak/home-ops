@@ -95,7 +95,7 @@ spec:
       repository:
         type: nfs
         server: alderaan.internal
-        path: /volume1/VolsyncKopia
+        path: /volume1/Volsync
         globalMounts:
           - path: /repository
       tmpfs:
