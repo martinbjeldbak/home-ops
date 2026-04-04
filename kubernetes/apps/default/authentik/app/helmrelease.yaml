@@ -40,8 +40,6 @@ spec:
       containerSecurityContext:
         runAsNonRoot: true
         allowPrivilegeEscalation: false
-        seccomProfile:
-          type: RuntimeDefault
         capabilities:
           drop:
             - ALL

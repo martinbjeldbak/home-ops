@@ -6,7 +6,7 @@ metadata:
   name: romm-backup
 spec:
   cluster:
-    name: romm-database
+    name: romm-db
   schedule: "0 0 0 * * 0"  # at 00:00 on Sunday
   backupOwnerReference: self
   method: plugin
