@@ -44,6 +44,7 @@ libraries:
           use_veteran: false
           use_thanksgiving: false
           use_black_history: false
+          sort_title_easter: "!010_Seasonal"
       - default: universe
         template_variables:
           radarr_add_missing_fast: true
