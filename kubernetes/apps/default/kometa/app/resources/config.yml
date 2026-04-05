@@ -1,8 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Kometa-Team/Kometa/master/json-schema/config-schema.json
 ---
-
 # A good source: https://github.com/mrbuckwheet/Kometa-Config/blob/main/config.yml
-# sudo docker-compose run --entrypoint /bin/bash --rm plex-meta-manager
 # python plex_meta_manager.py --run --no-missing --cache-libraries
 # python plex_meta_manager.py --run --no-missing --cache-libraries --run-collections "Wizarding World"
 libraries:
@@ -122,7 +120,7 @@ libraries:
       - default: country
         template_variables:
           include:
-            - da
+            - dk
             - au
             - us
             - mm
@@ -142,11 +140,10 @@ libraries:
       - default: golden
       - default: emmy
         template_variables:
-          radarr_tag: pmm, emmy
           sonarr_tag: pmm, emmy
       - default: imdb
         template_variables:
-          name_popular: IMDb Popular T
+          name_popular: IMDb Popular
           use_popular: true
           use_top: true
           use_lowest: false
@@ -262,7 +259,7 @@ sonarr:
   token: <<SONARR_API_KEY>>
   add_missing: true
   add_existing: true
-  root_folder_path: /media/tv
+  root_folder_path: /data/media/tv
   monitor: none
   quality_profile: Main
   language_profile: English
