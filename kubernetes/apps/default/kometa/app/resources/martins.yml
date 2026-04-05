@@ -1,5 +1,16 @@
 ---
 collections:
+  Romantic Comedies:
+    plex_search:
+      all:
+        genre:
+          - Romance
+          - Comedy
+    sort_title: "!020_Romantic Comedies"
+    collection_order: critic_rating.desc
+    summary: "Feel-good films that blend romance and laughs. A curated collection of the best romantic comedies."
+    visible_home: true
+    visible_shared: true
   The Lord of the Rings Extended Editions:
     plex_all: true
     filters:
