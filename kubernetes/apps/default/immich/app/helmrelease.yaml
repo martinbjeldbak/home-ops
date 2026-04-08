@@ -43,6 +43,7 @@ spec:
                     name: immich-secret
                     key: DB_PASSWORD
               DB_DATABASE_NAME: immich
+              IMMICH_HELMET_FILE: true
             image:
               # renovate: datasource=github-releases depName=immich-app/immich
               tag: v2.7.2
