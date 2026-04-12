@@ -3,31 +3,30 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: dawarich
+  name: dispatcharr
   namespace: default
 spec:
   components:
     - ../../../../components/volsync
   dependsOn:
-    - name: dawarich-database
+    - name: dispatcharr-database
       namespace: default
-    - name: dawarich-redis
+    - name: dispatcharr-redis
       namespace: default
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
-  path: ./kubernetes/apps/default/dawarich/app
+  path: ./kubernetes/apps/default/dispatcharr/app
   postBuild:
     substitute:
-      APP: dawarich
-      VOLSYNC_CAPACITY: 1Gi
+      APP: dispatcharr
   prune: true
   retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: default
+  targetNamespace: dispatcharr
   timeout: 5m
   wait: false
 ---
@@ -35,7 +34,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: dawarich-database
+  name: dispatcharr-database
   namespace: default
 spec:
   dependsOn:
@@ -44,7 +43,7 @@ spec:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
-  path: ./kubernetes/apps/default/dawarich/database
+  path: ./kubernetes/apps/default/dispatcharr/database
   prune: true
   retryInterval: 2m
   sourceRef:
@@ -59,14 +58,14 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: dawarich-redis
+  name: dispatcharr-redis
   namespace: default
 spec:
   dependsOn:
     - name: dragonfly-operator
       namespace: dragonfly-operator-system
   interval: 1h
-  path: ./kubernetes/apps/default/dawarich/redis
+  path: ./kubernetes/apps/default/dispatcharr/redis
   prune: true
   retryInterval: 2m
   sourceRef:

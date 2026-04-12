@@ -17,6 +17,7 @@ resources:
   - ./calibre-web-automated/ks.yaml
   - ./dawarich/ks.yaml
   - ./deduparr/ks.yaml
+  - ./dispatcharr/ks.yaml
   - ./epicgames/ks.yaml
   - ./esphome/ks.yaml
   - ./go2rtc/ks.yaml
