@@ -26,7 +26,7 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: dispatcharr
+  targetNamespace: default
   timeout: 5m
   wait: false
 ---
