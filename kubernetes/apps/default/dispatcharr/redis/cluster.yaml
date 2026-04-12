@@ -1,0 +1,27 @@
+---
+# yaml-language-server: $schema=https://crd.movishell.pl/dragonflydb.io/dragonfly_v1alpha1.json
+apiVersion: dragonflydb.io/v1alpha1
+kind: Dragonfly
+metadata:
+  name: dispatcharr-redis
+spec:
+  args:
+    - --maxmemory=$(MAX_MEMORY)Mi
+    - --proactor_threads=2
+    - --cluster_mode=emulated
+    - --default_lua_flags=allow-undeclared-keys
+  env:
+    - name: MAX_MEMORY
+      valueFrom:
+        resourceFieldRef:
+          resource: limits.memory
+          divisor: 1Mi
+  image: ghcr.io/dragonflydb/dragonfly:v1.37.2@sha256:e45de310788d110d621655f6340b5b0818d860210ad6a350a4d277d57c14349a
+  labels:
+    dragonflydb.io/cluster: dispatcharr-redis
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+    limits:
+      memory: 512Mi
