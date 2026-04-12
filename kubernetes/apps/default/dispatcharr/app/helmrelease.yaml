@@ -1,0 +1,80 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: dispatcharr
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: dispatcharr
+  values:
+    controllers:
+      dispatcharr:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app: &dispatcharr
+            image:
+              repository: ghcr.io/dispatcharr/dispatcharr
+              tag: latest
+            env:
+              TZ: Australia/Sydney
+              DISPATCHARR_ENV: modular
+              DISPATCHARR_PORT: 9191
+              POSTGRES_HOST: dispatcharr-db-rw
+              POSTGRES_PORT: 5432
+              POSTGRES_DB: dispatcharr
+              REDIS_HOST: dispatcharr-redis
+              REDIS_PORT: 6379
+              DISPATCHARR_LOG_LEVEL: info
+              DJANGO_SETTINGS_MODULE: dispatcharr.settings
+              PYTHONUNBUFFERED: "1"
+            envFrom:
+              - secretRef:
+                  name: dispatcharr-secret
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: false
+              capabilities: { drop: ["ALL"] }
+            resources:
+              claims:
+                - name: gpu
+              requests:
+                cpu: 100m
+          celery:
+            <<: *dispatcharr
+            command:
+              - /app/docker/entrypoint.celery.sh
+    defaultPodOptions:
+      resourceClaims:
+        - name: gpu
+          resourceClaimTemplateName: dispatcharr
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        ports:
+          http:
+            port: &port 9191
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.martinbjeldbak.com"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
+    persistence:
+      data:
+        existingClaim: "{{ .Release.Name }}"
+        globalMounts:
+          - path: /data
