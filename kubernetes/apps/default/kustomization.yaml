@@ -24,7 +24,7 @@ resources:
   - ./icloudpd/ks.yaml
   - ./immich/ks.yaml
   - ./karakeep/ks.yaml
-  - ./kometa/ks.yaml
+  # - ./kometa/ks.yaml
   - ./mosquitto/ks.yaml
   - ./paperless/ks.yaml
   - ./peanut/ks.yaml
