@@ -34,10 +34,6 @@ spec:
             envFrom:
               - secretRef:
                   name: dispatcharr-secret
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: false
-              capabilities: { drop: ["ALL"] }
             resources:
               claims:
                 - name: gpu
@@ -51,12 +47,6 @@ spec:
       resourceClaims:
         - name: gpu
           resourceClaimTemplateName: dispatcharr
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         ports:
