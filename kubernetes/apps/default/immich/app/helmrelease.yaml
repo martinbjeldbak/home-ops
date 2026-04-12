@@ -71,10 +71,6 @@ spec:
                 - name: immich-server
                   port: 2283
     machine-learning:
-      defaultPodOptions:
-        resourceClaims:
-          - name: gpu
-            resourceClaimTemplateName: immich-machine-learning
       controllers:
         main:
           strategy: Recreate
@@ -83,10 +79,8 @@ spec:
               image:
                 repository: ghcr.io/immich-app/immich-machine-learning
                 # renovate: datasource=github-releases depName=immich-app/immich
-                tag: v2.7.4-openvino
+                tag: v2.7.4
               resources:
-                claims:
-                  - name: gpu
                 requests:
                   cpu: 100m
                   # memory: 4096M
