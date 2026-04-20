@@ -68,7 +68,6 @@ spec:
         hostnames:
           - "{{ .Release.Name }}.martinbjeldbak.com"
           - requests.martinbjeldbak.com
-          - overseerr.martinbjeldbak.com  # backwards-compatibility
           - anmod.martinbjeldbak.com
         parentRefs:
           - name: envoy-external
