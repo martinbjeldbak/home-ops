@@ -9,4 +9,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: grafana
+  datasources:
+    - inputName: DS_PROMETHEUS
+      datasourceName: prometheus
   url: https://grafana.com/api/dashboards/17457/revisions/6/download
