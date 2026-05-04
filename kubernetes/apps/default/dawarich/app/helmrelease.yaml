@@ -18,7 +18,7 @@ spec:
           app: &dawarich
             image:
               repository: docker.io/freikin/dawarich
-              tag: 1.6.1@sha256:a884f69f19ce0f66992f3872d24544d1e587e133b8a003e072711aafc1e02429
+              tag: 1.7.5@sha256:dceef4bf7bd5e6a842d61cdd2a82440a0db34f70dc766e02b0b3b212e13b4ba6
             command:
               - "web-entrypoint.sh"
             args:
