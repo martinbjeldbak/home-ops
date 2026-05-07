@@ -14,6 +14,7 @@ resources:
   - ./csi-driver-nfs/ks.yaml
   - ./descheduler/ks.yaml
   - ./intel-gpu-resource-driver/ks.yaml
+  - ./local-path-provisioner/ks.yaml
   - ./metrics-server/ks.yaml
   - ./multus/ks.yaml
   - ./reloader/ks.yaml
