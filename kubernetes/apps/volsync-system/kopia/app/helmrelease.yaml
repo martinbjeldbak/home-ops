@@ -27,6 +27,7 @@ spec:
               - secretRef:
                   name: kopia-secret
             args:
+              - --refresh-interval=5m
               - --without-password
             probes:
               liveness: &probes
@@ -48,8 +49,8 @@ spec:
             resources:
               requests:
                 cpu: 10m
-              # limits:
-              #   memory: 1Gi
+              limits:
+                memory: 1Gi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
