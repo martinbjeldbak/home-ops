@@ -20,6 +20,9 @@ spec:
             env:
               TZ: Australia/Sydney
               WEB_PORT: &port 8080
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
