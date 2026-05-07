@@ -69,6 +69,7 @@ spec:
               accessMode: ReadWriteOnce
               size: 5Gi
     defaultPodOptions:
+      automountServiceAccountToken: true
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
@@ -123,8 +124,6 @@ spec:
             identifier: gatus
           subjects:
             - identifier: gatus
-    serviceAccount:
-      gatus: {}
     persistence:
       config-file:
         type: configMap
