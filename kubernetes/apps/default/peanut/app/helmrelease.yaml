@@ -54,7 +54,16 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
+    serviceMonitor:
+      app:
+        endpoints:
+          - port: http
+            path: /api/v1/metrics
     persistence:
+      config:
+        existingClaim: "{{ .Release.Name }}"
+        globalMounts:
+          - path: /config
       config-file:
         type: configMap
         name: peanut
