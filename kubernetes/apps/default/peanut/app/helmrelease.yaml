@@ -59,6 +59,13 @@ spec:
         endpoints:
           - port: http
             path: /api/v1/metrics
+            basicAuth:
+              username:
+                name: peanut-secret
+                key: WEB_USERNAME
+              password:
+                name: peanut-secret
+                key: WEB_PASSWORD
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
