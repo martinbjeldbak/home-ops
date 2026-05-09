@@ -124,8 +124,9 @@ All hardware except the UPS, router, and 2.5GbE switch is mounted in a 10" [Desk
 
 ## Acknowledgments
 
-Thanks to the to [onedr0p](https://github.com/onedr0p) for the cluster template
-that got this project started as previously I was deploying services using
+Thanks to the to [onedr0p](https://github.com/onedr0p) for the
+[cluster-template](https://github.com/onedr0p/cluster-template) repository that
+got this project started as previously I was deploying services using
 a completely unmaintainable [1400+ line docker-compose
 file](https://github.com/martinbjeldbak/self-hosted/blob/main/docker-compose.yml).
 This repository itself is heavily inspired by (essentially a fork) his
