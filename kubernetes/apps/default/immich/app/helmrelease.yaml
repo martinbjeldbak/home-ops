@@ -56,6 +56,8 @@ spec:
                 requests:
                   cpu: 100m
                   memory: 512Mi
+                limits:
+                  memory: 3Gi
       persistence:
         external:
           enabled: true
@@ -84,6 +86,8 @@ spec:
                 requests:
                   cpu: 100m
                   memory: 1Gi
+                limits:
+                  memory: 3Gi
               probes:
                 liveness: &probes
                   enabled: true
