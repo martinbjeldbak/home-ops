@@ -1,0 +1,23 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/prometheusrule_v1.json
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: plex-rules
+spec:
+  groups:
+    - name: plex.rules
+      rules:
+        - alert: PlexHighMemoryUsage
+          expr: |
+            (
+              container_memory_working_set_bytes{namespace="default", pod=~"plex-.*", container="app"}
+              /
+              container_spec_memory_limit_bytes{namespace="default", pod=~"plex-.*", container="app"}
+            ) > 0.8
+          for: 5m
+          annotations:
+            summary: >-
+              Plex is using {{ $value | humanizePercentage }} of its memory limit
+          labels:
+            severity: warning
