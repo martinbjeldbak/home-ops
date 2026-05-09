@@ -5,16 +5,12 @@ kind: Kustomization
 metadata:
   name: local-path-provisioner
 spec:
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2
-      kind: HelmRelease
-      name: local-path-provisioner
-      namespace: kube-system
   interval: 1h
-  path: ./kubernetes/apps/kube-system/local-path-provisioner/app
+  path: ./kubernetes/apps/local-path-system/local-path-provisioner/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: kube-system
+  targetNamespace: local-path-system
+  wait: true
