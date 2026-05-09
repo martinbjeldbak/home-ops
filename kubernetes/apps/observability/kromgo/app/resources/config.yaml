@@ -51,13 +51,13 @@ metrics:
     title: Memory
 
   - name: cluster_power_usage
-    query: avg(ups_ups_realpower)
-    suffix: "w"
+    query: avg(ups_ups_load)
+    suffix: "%"
     colors:
-      - {color: "green", min: 0, max: 400}
-      - {color: "orange", min: 401, max: 750}
-      - {color: "red", min: 751, max: 9999}
-    title: Power
+      - {color: "green", min: 0, max: 50}
+      - {color: "orange", min: 51, max: 80}
+      - {color: "red", min: 81, max: 9999}
+    title: UPS Load
 
   - name: cluster_age_days
     query: round((time() - min(kube_node_created) ) / 86400)
