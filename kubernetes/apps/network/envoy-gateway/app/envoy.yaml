@@ -18,8 +18,8 @@ spec:
           resources:
             requests:
               cpu: 100m
-            # limits:
-            #   memory: 1Gi
+            limits:
+              memory: 1Gi
       envoyService:
         externalTrafficPolicy: Local
   shutdown:

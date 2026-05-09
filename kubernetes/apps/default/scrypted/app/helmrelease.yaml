@@ -40,10 +40,10 @@ spec:
                 - name: gpu
               requests:
                 cpu: 136m
-              #   memory: 1024Mi
-              # limits:
+                memory: 1024Mi
+              limits:
                 # squat.ai/coral: 1
-                # memory: 8192Mi
+                memory: 8192Mi
     defaultPodOptions:
       resourceClaims:
         - name: gpu

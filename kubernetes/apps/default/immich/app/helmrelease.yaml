@@ -55,7 +55,7 @@ spec:
               resources:
                 requests:
                   cpu: 100m
-                  #memory: 2048M
+                  memory: 2048M
       persistence:
         external:
           enabled: true
@@ -83,7 +83,7 @@ spec:
               resources:
                 requests:
                   cpu: 100m
-                  # memory: 4096M
+                  memory: 4096M
               probes:
                 liveness: &probes
                   enabled: true

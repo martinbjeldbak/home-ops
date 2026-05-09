@@ -43,24 +43,24 @@ spec:
             envFrom:
               - secretRef:
                   name: dawarich-secret
-            # resources:
-            #   requests:
-            #     memory: "1Gi"
-            #     cpu: "250m"
-            #   limits:
-            #     memory: "3Gi"
-            #     cpu: "2000m"
+            resources:
+              requests:
+                memory: "1Gi"
+                cpu: "250m"
+              limits:
+                memory: "3Gi"
+                cpu: "2000m"
           sidekiq:
             <<: *dawarich
             command:
               - "sidekiq-entrypoint.sh"
-            # resources:
-            #   requests:
-            #     memory: "1Gi"
-            #     cpu: "250m"
-            #   limits:
-            #     memory: "3Gi"
-            #     cpu: "150m"
+            resources:
+              requests:
+                memory: "1Gi"
+                cpu: "250m"
+              limits:
+                memory: "3Gi"
+                cpu: "150m"
     service:
       app:
         ports:
