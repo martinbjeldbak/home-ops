@@ -40,12 +40,13 @@ spec:
               SMTP_DOMAIN: martinbjeldbak.com
               SMTP_FROM: noreply@martinbjeldbak.com
               PORT: &port 3000
+              SIDEKIQ_METRICS_URL: http://127.0.0.1:9394/metrics
             envFrom:
               - secretRef:
                   name: dawarich-secret
             resources:
               requests:
-                memory: "1Gi"
+                memory: "512Mi"
                 cpu: "250m"
               limits:
                 memory: "3Gi"
@@ -56,7 +57,7 @@ spec:
               - "sidekiq-entrypoint.sh"
             resources:
               requests:
-                memory: "1Gi"
+                memory: "512Mi"
                 cpu: "50m"
               limits:
                 memory: "3Gi"
