@@ -16,7 +16,8 @@
 <div align="center">
 
 [![Home Internet](https://img.shields.io/endpoint?url=https%3A%2F%2Fstatus.martinbjeldbak.com%2Fapi%2Fv1%2Fendpoints%2Fconnectivity_cloudflare%2Fhealth%2Fbadge.shields&style=flat-square&logo=ubiquiti&logoColor=white&label=Home%20Internet)](https://status.martinbjeldbak.com)&nbsp;&nbsp;
-[![Status Page](https://img.shields.io/uptimerobot/status/m803027943-235bb98b0fa34da022c6632d?style=flat-square&logo=statuspage&logoColor=white&label=Status%20Page)](https://status.martinbjeldbak.com)
+[![Status Page](https://img.shields.io/uptimerobot/status/m803027943-235bb98b0fa34da022c6632d?style=flat-square&logo=statuspage&logoColor=white&label=Status%20Page)](https://status.martinbjeldbak.com)&nbsp;&nbsp;
+[![Alertmanager](https://img.shields.io/endpoint?url=https%3A%2F%2Fhealthchecks.io%2Fb%2F3%2F5af11ed2-6536-41f5-b4d1-f1f90254c0e5.shields&style=flat-square&label=Alertmanager)](https://healthchecks.io)
 
 </div>
 
@@ -104,8 +105,8 @@ All hardware except the UPS, router, and 2.5GbE switch is mounted in a 10" [Desk
 | Device                   | Description                         | RAM  | Disk           |
 | ------------------------ | ----------------------------------- | ---- | -------------- |
 | UniFi Cloud Gateway Fiber | Router                             | —    | —              |
-| UniFi Lite 16 PoE        | 1GbE switch                         | —    | —              |
 | UniFi Flex 2.5G PoE      | 2.5GbE switch                       | —    | —              |
+| UniFi Lite 16 PoE        | 1GbE switch                         | —    | —              |
 | Beelink EQi12 (i5-1220P) | Kubernetes control plane (`k8s-0`)  | 24GB | 500GB NVMe (OS)<br>1TB Samsung 990 PRO NVMe (Rook-Ceph) |
 | Beelink EQ14 (N150)      | Kubernetes control plane (`k8s-1`)  | 32GB | 512GB SSD (OS)<br>1TB Samsung 990 PRO NVMe (Rook-Ceph) |
 | HP EliteDesk 800 G6 Mini (i5-10500) | Kubernetes control plane (`k8s-2`)  | 32GB | 256GB NVMe (OS)<br>1TB Samsung 990 PRO NVMe (Rook-Ceph) |
