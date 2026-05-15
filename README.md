@@ -111,7 +111,7 @@ All hardware except the UPS, router, and 2.5GbE switch is mounted in a 10" [Desk
 | Beelink EQ14 (N150)      | Kubernetes control plane (`k8s-1`)  | 32GB | 512GB SSD (OS)<br>1TB Samsung 990 PRO NVMe (Rook-Ceph) |
 | HP EliteDesk 800 G6 Mini (i5-10500) | Kubernetes control plane (`k8s-2`)  | 32GB | 256GB NVMe (OS)<br>1TB Samsung 990 PRO NVMe (Rook-Ceph) |
 | Synology DS920+          | Backup repository and media store   | —    | 2×18TB + 2×16TB HDD, 1TB WD Black NVMe |
-| JetKVM (×3)              | Out-of-band KVM for control planes with DC power control extension | —    | —              |
+| JetKVM (×3)              | Out-of-band KVM for control planes | —    | —              |
 | SMLIGHT SLZB-06M         | Zigbee coordinator                  | —    | —              |
 | [10″ Rack PDU](https://www.aliexpress.com/item/1005011702685079.html) | Power strip                         | —    | —              |
 | Eaton 5E 1100i           | 1100 VA UPS                         | —    | —              |
