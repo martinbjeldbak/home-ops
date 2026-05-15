@@ -9,7 +9,7 @@ spec:
     # renovate: datasource=custom.talos-factory depName=siderolabs/talos
     version: v1.13.2
   policy:
-    rebootMode: powercycle
+    rebootMode: reboot
   healthChecks:
     - apiVersion: volsync.backube/v1alpha1
       kind: ReplicationSource
