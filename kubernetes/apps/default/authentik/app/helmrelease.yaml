@@ -19,6 +19,8 @@ spec:
         from: Authentik <authentik@martinbjeldbak.com>
         port: 25
     server:
+      deploymentStrategy:
+        type: Recreate
       route:
         main:
           enabled: true
