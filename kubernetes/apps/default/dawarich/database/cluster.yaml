@@ -6,7 +6,7 @@ metadata:
   name: dawarich-db
 spec:
   instances: 1
-  imageName: ghcr.io/cloudnative-pg/postgis:18.3-3.6.2-system-trixie@sha256:a5c39d2e56ec0d2ff141d8b46d83d7c1810e283bdde16ab2a23bdb431bfadba8 
+  imageName: ghcr.io/cloudnative-pg/postgis:18.4-3.6.3-system-trixie@sha256:aa9f01e3592c659ea7c870577056be36909720b01a1fb99c6c67db38eb247476 
   bootstrap:
     recovery:
       source: &externalCluster dawarich-db
