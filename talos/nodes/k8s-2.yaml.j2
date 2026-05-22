@@ -20,19 +20,19 @@ selector:
 ---
 apiVersion: v1alpha1
 kind: DHCPv4Config
-name: eno1
+name: net0
 clientIdentifier: mac
 ---
 apiVersion: v1alpha1
 kind: VLANConfig
-name: bond0.30
+name: net0.30
 vlanID: 30  # IOT
-parent: eno1
+parent: net0
 mtu: 1500
 ---
 apiVersion: v1alpha1
 kind: VLANConfig
-name: bond0.80
+name: net0.80
 vlanID: 80  # VPN
-parent: eno1
+parent: net0
 mtu: 1500

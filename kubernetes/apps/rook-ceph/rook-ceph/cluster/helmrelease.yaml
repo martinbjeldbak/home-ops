@@ -11,6 +11,9 @@ spec:
   interval: 1h
   values:
     cephClusterSpec:
+      cephConfig:
+        osd:
+          osd_client_watch_timeout: "60"
       cleanupPolicy:
         wipeDevicesFromOtherClusters: true
       crashCollector:
