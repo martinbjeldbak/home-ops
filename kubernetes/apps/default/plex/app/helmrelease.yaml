@@ -76,7 +76,7 @@ spec:
       app:
         annotations:
           gatus.home-operations.com/endpoint: |-
-            conditions: ["[STATUS] == 200"]
+            path: /identity
         hostnames:
           - "{{ .Release.Name }}.martinbjeldbak.com"
         parentRefs:
