@@ -39,7 +39,6 @@ resources:
   - ./romm/ks.yaml
   - ./sabnzbd/ks.yaml
   - ./scrypted/ks.yaml
-  - ./seasonpackarr/ks.yaml
   - ./seerr/ks.yaml
   - ./smtp-relay/ks.yaml
   - ./sonarr/ks.yaml
