@@ -1,10 +1,19 @@
 #!/usr/bin/env -S just --justfile
 
-set quiet := true
+set lazy
+set quiet
 set shell := ['bash', '-euo', 'pipefail', '-c']
 
+# Bootstrap Recipes
+[group: 'Bootstrap']
 mod bootstrap "bootstrap"
+
+# Kube Recipes
+[group: 'Kube']
 mod kube "kubernetes"
+
+# Talos Recipes
+[group: 'Talos']
 mod talos "talos"
 
 [private]
@@ -17,4 +26,4 @@ log lvl msg *args:
 
 [private]
 template file *args:
-    minijinja-cli "{{ file }}" {{ args }} | op inject
+    minijinja-cli "{{ file }}" {{ args }} | vals eval -f -
