@@ -103,10 +103,6 @@ spec:
               # Toggle "Separate Book Files from Library" (-> /books) in the CWA UI.
               - path: /calibre-library
                 subPath: calibre-library
-      media:
-        type: nfs
-        server: alderaan.internal
-        path: /volume1/data/media
       books:
         type: nfs
         server: alderaan.internal
