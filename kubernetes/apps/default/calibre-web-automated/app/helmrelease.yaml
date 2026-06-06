@@ -22,7 +22,6 @@ spec:
               PUID: 1000
               PGID: 1000
               NETWORK_SHARE_MODE: true
-              CALIBRE_OVERRIDE_DATABASE_PATH: /config/calibre-library-db/metadata.db
               CWA_WATCH_MODE: poll
               CACHE_DIR: /cache
               S6_YES_I_WANT_A_WORLD_WRITABLE_RUN_BECAUSE_KUBERNETES: "1"
@@ -95,18 +94,27 @@ spec:
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
+        advancedMounts:
+          calibre-web-automated:
+            app:
+              - path: /config
+              # Split library: metadata.db lives on the ceph-block PVC (off NFS),
+              # while the book files stay on NFS via the `books` mount below.
+              # Toggle "Separate Book Files from Library" (-> /books) in the CWA UI.
+              - path: /calibre-library
+                subPath: calibre-library
       media:
         type: nfs
         server: alderaan.internal
         path: /volume1/data/media
-      calibre-library:
+      books:
         type: nfs
         server: alderaan.internal
         path: /volume1/data/media/books
         advancedMounts:
           calibre-web-automated:
             app:
-              - path: /calibre-library
+              - path: /books
       ingest:
         type: nfs
         server: alderaan.internal
