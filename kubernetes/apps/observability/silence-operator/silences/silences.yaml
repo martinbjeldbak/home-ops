@@ -10,3 +10,26 @@ spec:
       value: NodeDiskIOSaturation
     - name: instance
       value: alderaan.internal:9100
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/observability.giantswarm.io/silence_v1alpha2.json
+apiVersion: observability.giantswarm.io/v1alpha2
+kind: Silence
+metadata:
+  name: ceph-node-network-packet-drops-macvlan
+spec:
+  # Benign: bursty rx_dropped on the worker nodes' LAN NIC is macvlan overhead from the Multus
+  # vpn/iot nets (bond0.80 / bond0.30) carrying qbittorrent/sabnzbd torrent+usenet traffic.
+  # rx_errors/fifo/missed are all 0 — not real loss, just discarded macvlan flood. Those pods
+  # can schedule on any worker, so scope to all three (drops land on eno1 for the single-NIC
+  # k8s-2, on bond0 for the bonded k8s-0/k8s-1). Genuine NIC faults still alert via
+  # CephNodeNetworkPacketErrors / NodeNetworkReceiveErrs / NodeNetworkInterfaceFlapping /
+  # CephNodeNetworkBondDegraded.
+  matchers:
+    - name: alertname
+      value: CephNodeNetworkPacketDrops
+    - name: instance
+      value: "192.168.42.1[012]:9100"
+      matchType: =~
+    - name: device
+      value: "eno1|bond0"
+      matchType: =~
