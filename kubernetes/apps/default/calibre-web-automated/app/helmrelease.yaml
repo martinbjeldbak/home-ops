@@ -22,6 +22,7 @@ spec:
               PUID: 1000
               PGID: 1000
               NETWORK_SHARE_MODE: true
+              CALIBRE_OVERRIDE_DATABASE_PATH: /config/calibre-library-db/metadata.db
               CWA_WATCH_MODE: poll
               CACHE_DIR: /cache
               S6_YES_I_WANT_A_WORLD_WRITABLE_RUN_BECAUSE_KUBERNETES: "1"
