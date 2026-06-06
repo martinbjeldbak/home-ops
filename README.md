@@ -24,14 +24,14 @@
 
 <div align="center">
 
-[![Age](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.martinbjeldbak.com%2Fcluster_age_days&style=flat-square&label=Age)](https://github.com/kashalls/kromgo)&nbsp;&nbsp;
-[![Uptime](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.martinbjeldbak.com%2Fcluster_uptime_days&style=flat-square&label=Uptime)](https://github.com/kashalls/kromgo)&nbsp;&nbsp;
-[![Nodes](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.martinbjeldbak.com%2Fcluster_node_count&style=flat-square&label=Nodes)](https://github.com/kashalls/kromgo)&nbsp;&nbsp;
-[![Pods](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.martinbjeldbak.com%2Fcluster_pod_count&style=flat-square&label=Pods)](https://github.com/kashalls/kromgo)&nbsp;&nbsp;
-[![CPU](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.martinbjeldbak.com%2Fcluster_cpu_usage&style=flat-square&label=CPU)](https://github.com/kashalls/kromgo)&nbsp;&nbsp;
-[![Memory](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.martinbjeldbak.com%2Fcluster_memory_usage&style=flat-square&label=Memory)](https://github.com/kashalls/kromgo)&nbsp;&nbsp;
-[![UPS Load](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.martinbjeldbak.com%2Fcluster_power_usage&style=flat-square&label=UPS%20Load)](https://github.com/kashalls/kromgo)&nbsp;&nbsp;
-[![Alerts](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.martinbjeldbak.com%2Fcluster_alert_count&style=flat-square&label=Alerts)](https://github.com/kashalls/kromgo)
+[![Age](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.martinbjeldbak.com%2Fcluster_birth_age&style=flat-square&label=Age)](https://github.com/home-operations/kromgo)&nbsp;&nbsp;
+[![Uptime](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.martinbjeldbak.com%2Fcluster_uptime_age&style=flat-square&label=Uptime)](https://github.com/home-operations/kromgo)&nbsp;&nbsp;
+[![Nodes](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.martinbjeldbak.com%2Fcluster_node_count&style=flat-square&label=Nodes)](https://github.com/home-operations/kromgo)&nbsp;&nbsp;
+[![Pods](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.martinbjeldbak.com%2Fcluster_pod_count&style=flat-square&label=Pods)](https://github.com/home-operations/kromgo)&nbsp;&nbsp;
+[![CPU](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.martinbjeldbak.com%2Fcluster_cpu_usage&style=flat-square&label=CPU)](https://github.com/home-operations/kromgo)&nbsp;&nbsp;
+[![Memory](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.martinbjeldbak.com%2Fcluster_memory_usage&style=flat-square&label=Memory)](https://github.com/home-operations/kromgo)&nbsp;&nbsp;
+[![UPS Load](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.martinbjeldbak.com%2Fcluster_power_usage&style=flat-square&label=UPS%20Load)](https://github.com/home-operations/kromgo)&nbsp;&nbsp;
+[![Alerts](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.martinbjeldbak.com%2Fcluster_alert_count&style=flat-square&label=Alerts)](https://github.com/home-operations/kromgo)
 
 </div>
 
