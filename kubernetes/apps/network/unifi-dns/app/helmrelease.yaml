@@ -15,8 +15,8 @@ spec:
       name: webhook
       webhook:
         image:
-          repository: ghcr.io/kashalls/external-dns-unifi-webhook
-          tag: v0.9.0@sha256:22f4106f44a0b9ac3c97cf29bbfef93026c1164492152dc797a1d6dc86ddfbb5
+          repository: ghcr.io/home-operations/external-dns-unifi-webhook
+          tag: 0.10.2@sha256:1f51f841e217d8bc6481655481ce82e0f0be70ad359c23d7d866d53a51d87fa9
         env:
           - name: UNIFI_HOST
             value: https://unifi.internal
@@ -43,7 +43,7 @@ spec:
       - gateway-httproute
       - service
     txtOwnerId: main
-    txtPrefix: k8s.main.
+    txtPrefix: k8s.main.%{record_type}-
     domainFilters:
       - martinbjeldbak.com
     serviceMonitor:
