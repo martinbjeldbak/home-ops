@@ -38,7 +38,7 @@ spec:
               STORE_GEODATA: true
               SMTP_PORT: 25
               SMTP_DOMAIN: martinbjeldbak.com
-              SMTP_FROM: noreply@martinbjeldbak.com
+              SMTP_FROM: "{{ .Release.Name }}@martinbjeldbak.com"
               PORT: &port 3000
               SIDEKIQ_METRICS_URL: http://127.0.0.1:9394/metrics
               OIDC_AUTO_REGISTER: true
