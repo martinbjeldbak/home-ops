@@ -42,7 +42,7 @@ spec:
               PORT: &port 3000
               SIDEKIQ_METRICS_URL: http://127.0.0.1:9394/metrics
               OIDC_AUTO_REGISTER: true
-              OIDC_PROVIDER_NAME: "Sign in with Authentik"
+              OIDC_PROVIDER_NAME: "Authentik"
               OIDC_ISSUER: "https://auth.martinbjeldbak.com/application/o/{{ .Release.Name }}/"
               OIDC_REDIRECT_URI: "https://{{ .Release.Name }}.martinbjeldbak.com/users/auth/openid_connect/callback"
             envFrom:
