@@ -33,6 +33,7 @@ spec:
               APPLICATION_HOSTS: "{{ .Release.Name }}.martinbjeldbak.com"
               APPLICATION_PROTOCOL: http
               ALLOW_EMAIL_PASSWORD_REGISTRATION: false
+              ALLOW_EMAIL_PASSWORD_LOGIN: false
               REVERSE_GEOCODING_ENABLED: true
               SELF_HOSTED: true
               STORE_GEODATA: true
