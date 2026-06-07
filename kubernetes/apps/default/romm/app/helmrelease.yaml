@@ -21,9 +21,9 @@ spec:
               tag: 4.8.1@sha256:2b7a1714b287f69b081ad2a63bb8c2fa673666a17b2f21322b580b0cd51cb266
             env:
               TZ: Australia/Sydney
-              DB_HOST: romm-db-rw
+              DB_HOST: "{{ .Release.Name }}-db-rw"
               DB_PORT: 5432
-              DB_NAME: romm
+              DB_NAME: "{{ .Release.Name }}"
               ROMM_DB_DRIVER: postgresql
               ROMM_PORT: &port 8080
               ENABLE_SCHEDULED_RESCAN: true
@@ -38,8 +38,8 @@ spec:
               OIDC_ENABLED: "true"
               OIDC_AUTOLOGIN: "true"
               OIDC_PROVIDER: authentik
-              OIDC_REDIRECT_URI: https://romm.martinbjeldbak.com/api/oauth/openid
-              OIDC_SERVER_APPLICATION_URL: https://auth.martinbjeldbak.com/application/o/romm
+              OIDC_REDIRECT_URI: "https://{{ .Release.Name }}.martinbjeldbak.com/api/oauth/openid"
+              OIDC_SERVER_APPLICATION_URL: "https://auth.martinbjeldbak.com/application/o/{{ .Release.Name }}"
               HASHEOUS_API_ENABLED: true
             envFrom:
               - secretRef:

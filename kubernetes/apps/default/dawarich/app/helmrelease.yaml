@@ -26,9 +26,9 @@ spec:
             env:
               TIME_ZONE: Australia/Sydney
               RAILS_ENV: development
-              REDIS_URL: redis://dawarich-redis:6379
-              DATABASE_HOST: dawarich-db-rw
-              DATABASE_NAME: dawarich_development
+              REDIS_URL: "redis://{{ .Release.Name }}-redis:6379"
+              DATABASE_HOST: "{{ .Release.Name }}-db-rw"
+              DATABASE_NAME: "{{ .Release.Name }}_development"
               MIN_MINUTES_SPENT_IN_CITY: 60
               APPLICATION_HOSTS: "{{ .Release.Name }}.martinbjeldbak.com"
               APPLICATION_PROTOCOL: http

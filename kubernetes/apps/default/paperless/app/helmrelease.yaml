@@ -22,15 +22,15 @@ spec:
             env:
               USERMAP_UID: 1000
               USERMAP_GID: 1000
-              PAPERLESS_URL: https://paperless.martinbjeldbak.com
+              PAPERLESS_URL: "https://{{ .Release.Name }}.martinbjeldbak.com"
               PAPERLESS_TIME_ZONE: Australia/Sydney
               PAPERLESS_OCR_LANGUAGES: dan
               PAPERLESS_OCR_LANGUAGE: dan+eng
               PAPERLESS_ENABLE_UPDATE_CHECK: "true"
-              PAPERLESS_REDIS: redis://paperless-redis:6379
-              PAPERLESS_DBHOST: paperless-db-rw
-              PAPERLESS_DBNAME: paperless
-              PAPERLESS_DBUSER: paperless
+              PAPERLESS_REDIS: "redis://{{ .Release.Name }}-redis:6379"
+              PAPERLESS_DBHOST: "{{ .Release.Name }}-db-rw"
+              PAPERLESS_DBNAME: "{{ .Release.Name }}"
+              PAPERLESS_DBUSER: "{{ .Release.Name }}"
               PAPERLESS_CONSUMPTION_DIR: /library/consume
               PAPERLESS_DEBUG: 1
               PAPERLESS_CONSUMER_POLLING: 60
@@ -41,7 +41,7 @@ spec:
               PAPERLESS_TIKA_ENDPOINT: http://127.0.0.1:9998
               PAPERLESS_OCR_USER_ARGS: '{"invalidate_digital_signatures": true}'
               PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
-              PAPERLESS_EMAIL_FROM: paperless@martinbjeldbak.com
+              PAPERLESS_EMAIL_FROM: "{{ .Release.Name }}@martinbjeldbak.com"
             envFrom:
               - secretRef:
                   name: paperless-secret

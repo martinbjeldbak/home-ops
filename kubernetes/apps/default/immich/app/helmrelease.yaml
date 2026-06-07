@@ -29,9 +29,9 @@ spec:
           main:
             env:
               LOG_LEVEL: verbose
-              REDIS_HOSTNAME: immich-redis
+              REDIS_HOSTNAME: "{{ .Release.Name }}-redis"
               TZ: Australia/Sydney
-              DB_HOSTNAME: immich-db-rw
+              DB_HOSTNAME: "{{ .Release.Name }}-db-rw"
               DB_USERNAME:
                 valueFrom:
                   secretKeyRef:
