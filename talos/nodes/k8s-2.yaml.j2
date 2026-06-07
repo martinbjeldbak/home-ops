@@ -19,20 +19,38 @@ selector:
   match: link.driver == "e1000e" && mac(link.permanent_addr) == "b0:22:7a:ef:25:10"
 ---
 apiVersion: v1alpha1
+kind: LinkAliasConfig
+name: net1
+selector:
+  match: link.driver == "r8152" && mac(link.permanent_addr) == "f4:4d:ad:06:06:ac"
+---
+apiVersion: v1alpha1
+kind: BondConfig
+name: bond0
+links:
+  - net0
+  - net1
+bondMode: 802.3ad
+lacpRate: fast
+xmitHashPolicy: layer3+4
+miimon: 100
+mtu: 1500
+---
+apiVersion: v1alpha1
 kind: DHCPv4Config
-name: net0
+name: bond0
 clientIdentifier: mac
 ---
 apiVersion: v1alpha1
 kind: VLANConfig
 name: bond0.30
 vlanID: 30  # IOT
-parent: net0
+parent: bond0
 mtu: 1500
 ---
 apiVersion: v1alpha1
 kind: VLANConfig
 name: bond0.80
 vlanID: 80  # VPN
-parent: net0
+parent: bond0
 mtu: 1500

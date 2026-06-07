@@ -29,7 +29,10 @@ name: bond0
 links:
   - net0
   - net1
-bondMode: active-backup
+bondMode: 802.3ad
+lacpRate: fast
+xmitHashPolicy: layer3+4
+miimon: 100
 mtu: 1500
 ---
 apiVersion: v1alpha1
