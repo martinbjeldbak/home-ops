@@ -31,6 +31,7 @@ spec:
               PAPERLESS_DBHOST: "{{ .Release.Name }}-db-rw"
               PAPERLESS_DBNAME: "{{ .Release.Name }}"
               PAPERLESS_DBUSER: "{{ .Release.Name }}"
+              PAPERLESS_DISABLE_REGULAR_LOGIN: true
               PAPERLESS_CONSUMPTION_DIR: /library/consume
               PAPERLESS_DEBUG: 1
               PAPERLESS_CONSUMER_POLLING: 60
