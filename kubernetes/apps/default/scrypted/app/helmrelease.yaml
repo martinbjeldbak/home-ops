@@ -45,6 +45,16 @@ spec:
                 # squat.ai/coral: 1
                 memory: 8192Mi
     defaultPodOptions:
+      # k8s-2 can't pass tagged-VLAN macvlan traffic (version-independent fault, unresolved);
+      # keep macvlan workloads off it. NOTE: scrypted needs a GPU node (k8s-0/k8s-2), so this pins it to k8s-0.
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: NotIn
+                    values: ["k8s-2"]
       resourceClaims:
         - name: gpu
           resourceClaimTemplateName: scrypted

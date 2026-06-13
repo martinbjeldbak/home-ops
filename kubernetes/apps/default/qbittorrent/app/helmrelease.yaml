@@ -52,6 +52,16 @@ spec:
               limits:
                 memory: 18Gi
     defaultPodOptions:
+      # k8s-2 can't pass tagged-VLAN macvlan traffic (version-independent fault, unresolved);
+      # keep macvlan workloads off it.
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: NotIn
+                    values: ["k8s-2"]
       annotations:
         k8s.v1.cni.cncf.io/networks: |-
           [{

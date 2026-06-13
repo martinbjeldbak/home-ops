@@ -11,6 +11,16 @@ spec:
   interval: 1h
   values:
     fullnameOverride: blackbox-exporter-vpn
+    # k8s-2 can't pass tagged-VLAN macvlan traffic (version-independent fault, unresolved);
+    # keep this prober off it to avoid false VpnProbeFailed alerts.
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: NotIn
+                  values: ["k8s-2"]
     strategy:
       type: Recreate
     podAnnotations:
