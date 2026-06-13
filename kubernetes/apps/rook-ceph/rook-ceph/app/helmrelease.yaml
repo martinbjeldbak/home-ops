@@ -15,6 +15,111 @@ spec:
       enableLiveness: true
       serviceMonitor:
         enabled: true
+      # CSI sidecar CPU requests are wildly over-provisioned by chart defaults
+      # (provisioner/attacher/resizer/snapshotter idle at ~1m but reserve 100m each).
+      # Trim CPU requests only (memory untouched, no limits added) to reclaim
+      # scheduler headroom, especially on the small 4-core k8s-1 node.
+      csiRBDProvisionerResource: |
+        - name: csi-rbdplugin
+          resource:
+            requests:
+              memory: 512Mi
+            limits:
+              memory: 1Gi
+        - name: csi-provisioner
+          resource:
+            requests:
+              memory: 128Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+        - name: csi-resizer
+          resource:
+            requests:
+              memory: 128Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+        - name: csi-attacher
+          resource:
+            requests:
+              memory: 128Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+        - name: csi-snapshotter
+          resource:
+            requests:
+              memory: 128Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+      csiRBDPluginResource: |
+        - name: csi-rbdplugin
+          resource:
+            requests:
+              memory: 512Mi
+              cpu: 50m
+            limits:
+              memory: 1Gi
+        - name: driver-registrar
+          resource:
+            requests:
+              memory: 128Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+      csiCephFSProvisionerResource: |
+        - name: csi-cephfsplugin
+          resource:
+            requests:
+              memory: 512Mi
+              cpu: 50m
+            limits:
+              memory: 1Gi
+        - name: csi-provisioner
+          resource:
+            requests:
+              memory: 128Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+        - name: csi-resizer
+          resource:
+            requests:
+              memory: 128Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+        - name: csi-attacher
+          resource:
+            requests:
+              memory: 128Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+        - name: csi-snapshotter
+          resource:
+            requests:
+              memory: 128Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+      csiCephFSPluginResource: |
+        - name: csi-cephfsplugin
+          resource:
+            requests:
+              memory: 512Mi
+              cpu: 50m
+            limits:
+              memory: 1Gi
+        - name: driver-registrar
+          resource:
+            requests:
+              memory: 128Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
     image:
       repository: ghcr.io/rook/ceph
     monitoring:
