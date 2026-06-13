@@ -36,6 +36,14 @@ spec:
               # limits:
               #   memory: 2Gi
     defaultPodOptions:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: NotIn
+                    values: ["k8s-2"]
       annotations:
         k8s.v1.cni.cncf.io/networks: |-
           [{
