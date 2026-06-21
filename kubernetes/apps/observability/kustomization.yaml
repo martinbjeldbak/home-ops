@@ -11,7 +11,7 @@ resources:
   - ./namespace.yaml
   - ./blackbox-exporter/ks.yaml
   - ./fluent-bit/ks.yaml
-  - ./gatus/ks.yaml
+  - ./gatus-sidecar/ks.yaml
   - ./grafana/ks.yaml
   - ./kromgo/ks.yaml
   - ./keda/ks.yaml
