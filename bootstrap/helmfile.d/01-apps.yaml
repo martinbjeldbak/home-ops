@@ -55,7 +55,7 @@ releases:
   - name: cert-manager
     namespace: cert-manager
     chart: oci://quay.io/jetstack/charts/cert-manager
-    version: v1.20.2
+    version: v1.20.3
     values:
       - ./templates/values.yaml.gotmpl
     needs:
@@ -64,7 +64,7 @@ releases:
   - name: external-secrets
     namespace: external-secrets
     chart: oci://ghcr.io/external-secrets/charts/external-secrets
-    version: 2.6.0
+    version: 2.7.0
     values:
       - ./templates/values.yaml.gotmpl
     needs:
