@@ -1,10 +1,11 @@
 ---
 customization:
   extraKernelArgs:
-    - i915.enable_guc=3 # Meteor Lake CPU & Intel iGPU
+    - i915.enable_guc=3 # Intel iGPU (load GuC + HuC firmware for HW transcode)
     - intel_iommu=on # PCI Passthrough
     - iommu=pt # PCI Passthrough
-    - sysctl.kernel.kexec_load_disabled=1 # Meteor Lake CPU & Intel iGPU
+    - mitigations=off # Disable CPU speculative-exec mitigations (trusted single-tenant homelab)
+    - sysctl.kernel.kexec_load_disabled=1 # Harden kexec
   systemExtensions:
     officialExtensions:
       - siderolabs/i915 # Intel iGPU
