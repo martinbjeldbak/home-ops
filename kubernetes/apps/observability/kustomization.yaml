@@ -14,8 +14,8 @@ resources:
   - ./gatus-sidecar/ks.yaml
   - ./grafana/ks.yaml
   - ./kromgo/ks.yaml
-  - ./keda/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
+  - ./prometheus-adapter/ks.yaml
   - ./silence-operator/ks.yaml
   - ./smartctl-exporter/ks.yaml
   - ./victoria-logs/ks.yaml

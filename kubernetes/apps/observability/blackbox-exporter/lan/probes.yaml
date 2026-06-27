@@ -18,7 +18,6 @@ spec:
         - k8s-0.internal
         - k8s-1.internal
         - k8s-2.internal
-        - zigbee-controller.internal
   metricRelabelings:
     - targetLabel: service
       replacement: blackbox-exporter-lan
@@ -28,8 +27,9 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
 metadata:
-  name: lan-tcp
+  name: lan-nfs
 spec:
+  jobName: nfs_probe
   module: tcp_connect
   prober:
     url: blackbox-exporter-lan.observability.svc.cluster.local:9115
@@ -37,6 +37,25 @@ spec:
     staticConfig:
       static:
         - alderaan.internal:2049
+  metricRelabelings:
+    - targetLabel: service
+      replacement: blackbox-exporter-lan
+      action: replace
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/monitoring.coreos.com/probe_v1.json
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: lan-zigbee
+spec:
+  jobName: zigbee_probe
+  module: icmp
+  prober:
+    url: blackbox-exporter-lan.observability.svc.cluster.local:9115
+  targets:
+    staticConfig:
+      static:
+        - zigbee-controller.internal
   metricRelabelings:
     - targetLabel: service
       replacement: blackbox-exporter-lan

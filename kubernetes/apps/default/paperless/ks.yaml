@@ -34,6 +34,8 @@ metadata:
   name: paperless-database
   namespace: &namespace default
 spec:
+  components:
+    - ../../../../components/cnpg
   dependsOn:
     - name: cloudnative-pg
       namespace: cnpg-system
@@ -41,6 +43,9 @@ spec:
       namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/default/paperless/database
+  postBuild:
+    substitute:
+      APP: paperless
   prune: true
   retryInterval: 2m
   sourceRef:

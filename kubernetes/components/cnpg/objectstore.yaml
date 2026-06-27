@@ -13,8 +13,7 @@ spec:
       compression: bzip2
       maxParallel: 8
     destinationPath: "s3://home-ops-postgres-backups/${APP}/"
-    # TODO: set to your Garage S3 API endpoint (LAN), e.g. http://garage.internal:3900
-    endpointURL: "http://REPLACE_ME_GARAGE_ENDPOINT:3900"
+    endpointURL: "http://alderaan.internal:3900"
     s3Credentials:
       accessKeyId:
         name: ${APP}-garage-secret
@@ -22,3 +21,6 @@ spec:
       secretAccessKey:
         name: ${APP}-garage-secret
         key: ACCESS_SECRET_KEY
+      region:
+        name: ${APP}-garage-secret
+        key: REGION
