@@ -1,0 +1,22 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/monitoring.coreos.com/prometheusrule_v1.json
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: cloudnative-pg-backups
+spec:
+  groups:
+    - name: cloudnative-pg.backup.rules
+      rules:
+        # Barman-cloud plugin reports backup state under barman_cloud_cloudnative_pg_io_*
+        # (the in-tree cnpg_collector_* metrics stay 0 when the plugin owns backups).
+        - alert: CNPGBackupStale
+          expr: |-
+            time() - barman_cloud_cloudnative_pg_io_last_available_backup_timestamp > 691200
+          for: 6h
+          annotations:
+            summary: >-
+              CloudNativePG {{ $labels.pod }} has no successful backup in over 8 days
+              (weekly schedule + 1d grace)
+          labels:
+            severity: critical
