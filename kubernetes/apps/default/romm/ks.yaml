@@ -7,8 +7,8 @@ metadata:
   namespace: &namespace default
 spec:
   components:
-    - ../../../../components/nfs-scaler
     - ../../../../components/volsync
+    - ../../../../components/zeroscaler
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
@@ -39,11 +39,16 @@ metadata:
   name: &app romm-database
   namespace: &namespace default
 spec:
+  components:
+    - ../../../../components/cnpg
   dependsOn:
     - name: cloudnative-pg
       namespace: cnpg-system
   interval: 1h
   path: ./kubernetes/apps/default/romm/database
+  postBuild:
+    substitute:
+      APP: romm
   prune: true
   retryInterval: 2m
   sourceRef:

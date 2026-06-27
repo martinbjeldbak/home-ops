@@ -36,11 +36,16 @@ metadata:
   name: &app authentik-database
   namespace: &namespace default
 spec:
+  components:
+    - ../../../../components/cnpg
   dependsOn:
     - name: cloudnative-pg
       namespace: cnpg-system
   interval: 1h
   path: ./kubernetes/apps/default/authentik/database
+  postBuild:
+    substitute:
+      APP: authentik
   prune: true
   retryInterval: 2m
   sourceRef:

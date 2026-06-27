@@ -38,6 +38,8 @@ metadata:
   name: dawarich-database
   namespace: default
 spec:
+  components:
+    - ../../../../components/cnpg
   dependsOn:
     - name: cloudnative-pg
       namespace: cnpg-system
@@ -45,6 +47,9 @@ spec:
       namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/default/dawarich/database
+  postBuild:
+    substitute:
+      APP: dawarich
   prune: true
   retryInterval: 2m
   sourceRef:

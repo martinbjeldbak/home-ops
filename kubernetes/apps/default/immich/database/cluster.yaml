@@ -9,7 +9,7 @@ spec:
   imageName: ghcr.io/tensorchord/cloudnative-vectorchord:18.3-1.1.1@sha256:392b53675b403d6a2c72b673cc488a7c272514755dd818c622fb9ce4665193c4
   bootstrap:
     recovery:
-      source: &externalCluster immich-database-v2
+      source: &externalCluster immich-db
   storage:
     size: 5Gi
     pvcTemplate:
@@ -30,11 +30,11 @@ spec:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
-        barmanObjectName: b2-immich
+        barmanObjectName: immich-store
   externalClusters:
     - name: *externalCluster
       plugin:
         name: barman-cloud.cloudnative-pg.io
         parameters:
-          barmanObjectName: b2-immich
+          barmanObjectName: immich-store
           serverName: *externalCluster

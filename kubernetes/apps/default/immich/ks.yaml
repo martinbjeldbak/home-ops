@@ -32,6 +32,8 @@ metadata:
   name: immich-database
   namespace: default
 spec:
+  components:
+    - ../../../../components/cnpg
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
@@ -39,6 +41,9 @@ spec:
       namespace: cnpg-system
   interval: 1h
   path: ./kubernetes/apps/default/immich/database
+  postBuild:
+    substitute:
+      APP: immich
   prune: true
   sourceRef:
     kind: GitRepository
