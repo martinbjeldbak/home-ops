@@ -9,7 +9,7 @@ spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:18.4-standard-trixie@sha256:9dd9fda84a67a3f351885885fec02ec6346fd941965d8fd94226531fb329624a 
   bootstrap:
     recovery:
-      source: &externalCluster paperless-database
+      source: &externalCluster paperless-db
   storage:
     size: 10Gi
     pvcTemplate:
@@ -27,11 +27,11 @@ spec:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
-        barmanObjectName: b2-paperless
+        barmanObjectName: paperless-store
   externalClusters:
     - name: *externalCluster
       plugin:
         name: barman-cloud.cloudnative-pg.io
         parameters:
-          barmanObjectName: b2-paperless
+          barmanObjectName: paperless-store
           serverName: *externalCluster

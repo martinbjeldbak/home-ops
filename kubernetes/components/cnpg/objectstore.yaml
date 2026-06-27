@@ -1,0 +1,24 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/barmancloud.cnpg.io/objectstore_v1.json
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: ${APP}-store
+spec:
+  retentionPolicy: 30d
+  configuration:
+    data:
+      compression: bzip2
+    wal:
+      compression: bzip2
+      maxParallel: 8
+    destinationPath: "s3://home-ops-postgres-backups/${APP}/"
+    # TODO: set to your Garage S3 API endpoint (LAN), e.g. http://garage.internal:3900
+    endpointURL: "http://REPLACE_ME_GARAGE_ENDPOINT:3900"
+    s3Credentials:
+      accessKeyId:
+        name: ${APP}-garage-secret
+        key: ACCESS_KEY_ID
+      secretAccessKey:
+        name: ${APP}-garage-secret
+        key: ACCESS_SECRET_KEY
