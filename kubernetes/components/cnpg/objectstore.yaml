@@ -10,7 +10,7 @@ spec:
     data:
       compression: bzip2
     wal:
-      compression: bzip2
+      compression: zstd
       maxParallel: 8
     destinationPath: "s3://home-ops-postgres-backups/${APP}/"
     endpointURL: "http://alderaan.internal:3900"
