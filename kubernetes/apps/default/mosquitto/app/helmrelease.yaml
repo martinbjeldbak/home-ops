@@ -40,7 +40,7 @@ spec:
         type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/hostname: mosquitto.martinbjeldbak.com
-          lbipam.cilium.io/ips: 192.168.42.129
+          lbipam.cilium.io/ips: 192.168.69.129
         ports:
           http:
             port: 1883
