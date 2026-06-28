@@ -21,7 +21,7 @@ spec:
               tag: 2026.6.4@sha256:4d510e8826491e17049ede51d8c89afba28791e7bf7ba72ab8411e66e02255e6
             env:
               TZ: Australia/Sydney
-              HASS_HTTP_TRUSTED_PROXY_1: 192.168.42.0/24
+              HASS_HTTP_TRUSTED_PROXY_1: 192.168.69.0/24
               HASS_HTTP_TRUSTED_PROXY_2: 10.42.0.0/16
             envFrom:
               - secretRef:
