@@ -14,6 +14,15 @@ spec:
       cephConfig:
         osd:
           osd_client_watch_timeout: "60"
+          # Consumer NVMe (Samsung 990 PRO, no power-loss protection) tuning. These drives
+          # produce occasional multi-second BlueStore sync-write stalls under background load,
+          # unlike the enterprise/PLP drives Ceph assumes. The settings below reduce that.
+          #
+          # Lower scrub concurrency below the Squid default of 3 — fewer parallel reads
+          # competing with client writes on a single consumer NVMe.
+          osd_max_scrubs: "1"
+          # Pause between scrub chunks so scrub can't monopolise the drive (default 0).
+          osd_scrub_sleep: "0.1"
       cleanupPolicy:
         wipeDevicesFromOtherClusters: true
       crashCollector:
