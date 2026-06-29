@@ -6,6 +6,7 @@ metadata:
   name: romm-db
 spec:
   instances: 1
+  enablePDB: false
   imageName: ghcr.io/cloudnative-pg/postgresql:18.4-standard-trixie@sha256:1534cac00fa02114adfd28d1ab11f73bc9821f2d19dd8e87ea166c14a637b8f4
   bootstrap:
     recovery:

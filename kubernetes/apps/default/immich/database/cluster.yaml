@@ -6,6 +6,7 @@ metadata:
   name: immich-db
 spec:
   instances: 1
+  enablePDB: false
   imageName: ghcr.io/tensorchord/cloudnative-vectorchord:18.3-1.1.1@sha256:392b53675b403d6a2c72b673cc488a7c272514755dd818c622fb9ce4665193c4
   bootstrap:
     recovery:
