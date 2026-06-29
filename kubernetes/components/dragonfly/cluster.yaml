@@ -3,7 +3,7 @@
 apiVersion: dragonflydb.io/v1alpha1
 kind: Dragonfly
 metadata:
-  name: dawarich-redis
+  name: ${APP}-redis
 spec:
   args:
     - --maxmemory=$(MAX_MEMORY)Mi
@@ -18,7 +18,7 @@ spec:
           divisor: 1Mi
   image: ghcr.io/dragonflydb/dragonfly:v1.39.0@sha256:0fa01a2b929e704c7a9300d23e7f52002ebd39e90996fb8bb63826aed92fa06f
   labels:
-    dragonflydb.io/cluster: dawarich-redis
+    dragonflydb.io/cluster: ${APP}-redis
   replicas: 1
   resources:
     requests:
