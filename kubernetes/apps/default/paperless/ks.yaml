@@ -63,11 +63,16 @@ metadata:
   name: paperless-redis
   namespace: &namespace default
 spec:
+  components:
+    - ../../../../components/dragonfly
   dependsOn:
     - name: dragonfly-operator
       namespace: dragonfly-operator-system
   interval: 1h
   path: ./kubernetes/apps/default/paperless/redis
+  postBuild:
+    substitute:
+      APP: paperless
   prune: true
   retryInterval: 2m
   sourceRef:

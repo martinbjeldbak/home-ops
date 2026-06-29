@@ -67,11 +67,16 @@ metadata:
   name: dawarich-redis
   namespace: default
 spec:
+  components:
+    - ../../../../components/dragonfly
   dependsOn:
     - name: dragonfly-operator
       namespace: dragonfly-operator-system
   interval: 1h
   path: ./kubernetes/apps/default/dawarich/redis
+  postBuild:
+    substitute:
+      APP: dawarich
   prune: true
   retryInterval: 2m
   sourceRef:

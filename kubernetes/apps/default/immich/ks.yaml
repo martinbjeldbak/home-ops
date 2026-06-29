@@ -59,11 +59,16 @@ metadata:
   name: immich-redis
   namespace: default
 spec:
+  components:
+    - ../../../../components/dragonfly
   dependsOn:
     - name: dragonfly-operator
       namespace: dragonfly-operator-system
   interval: 1h
   path: ./kubernetes/apps/default/immich/redis
+  postBuild:
+    substitute:
+      APP: immich
   prune: true
   sourceRef:
     kind: GitRepository
