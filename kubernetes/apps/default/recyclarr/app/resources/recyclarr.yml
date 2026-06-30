@@ -5,6 +5,11 @@ sonarr:
     base_url: http://sonarr.default.svc.cluster.local
     api_key: !env_var SONARR_API_KEY
     delete_old_custom_formats: true
+    include:
+      # WEB-1080p with a 720p (and Bluray/HDTV) fallback tier so niche shows
+      # uploaded first in 720p (e.g. The Traitors) get grabbed immediately and
+      # auto-upgraded to 1080p WEB once it appears.
+      - template: sonarr-v4-quality-profile-web-1080p-alternative
     media_management:
       propers_and_repacks: do_not_prefer
     media_naming:
@@ -26,7 +31,7 @@ sonarr:
         trash_ids:
           - 5d9fd1b1e06cd8a475462f40214b7df6 # FLUX
         assign_scores_to:
-          - name: WEB-2160p (Combined)
+          - trash_id: c4cadd6b35b95f62c3d47a408e53e2f7 # WEB-2160p (Combined)
             score: 100
       - # Unwanted
         trash_ids:
@@ -35,7 +40,8 @@ sonarr:
           - e1a997ddb54e3ecbfe06341ad323c458 # Obfuscated
           - 06d66ab109d4d2eddb2794d21526d140 # Retags
         assign_scores_to:
-          - name: WEB-2160p (Combined)
+          - trash_id: c4cadd6b35b95f62c3d47a408e53e2f7 # WEB-2160p (Combined)
+          - name: WEB-1080p
 
 radarr:
   radarr:
@@ -66,4 +72,4 @@ radarr:
           - 5c44f52a8714fdd79bb4d98e2673be1f # Retags
           - f537cf427b64c38c8e36298f657e4828 # Scene
         assign_scores_to:
-          - name: SQP-1 (2160p)
+          - trash_id: 5128baeb2b081b72126bc8482b2a86a0 # [SQP] SQP-1 (2160p)
