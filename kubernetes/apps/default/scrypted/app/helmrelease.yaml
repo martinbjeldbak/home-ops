@@ -36,8 +36,6 @@ spec:
             env:
               SCRYPTED_INSECURE_PORT: &port 80
             resources:
-              claims:
-                - name: gpu
               requests:
                 cpu: 136m
                 memory: 1024Mi
@@ -46,21 +44,17 @@ spec:
                 memory: 8192Mi
     defaultPodOptions:
       # k8s-2 can't pass tagged-VLAN macvlan traffic (version-independent fault, unresolved);
-      # keep macvlan workloads off it. NOTE: scrypted needs a GPU node (k8s-0/k8s-2), so this pins it to k8s-0.
+      # keep macvlan workloads off it. Detection runs in OpenVINO AUTO mode (GPU on k8s-0,
+      # CPU fallback on k8s-1), so no GPU resourceClaim is required — k8s-0 and k8s-1 are
+      # both viable. NOTE: OpenVINO Mode (AUTO) is set in the Scrypted UI, not in git.
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
-                  # k8s-0 is the only node with both a working GPU and macvlan-capable
-                  # NICs: k8s-1 has no GPU (OpenVINO crashes), k8s-2 can't pass tagged
-                  # VLAN macvlan traffic. NotIn k8s-2 alone let it drift onto k8s-1.
                   - key: kubernetes.io/hostname
-                    operator: In
-                    values: ["k8s-0"]
-      resourceClaims:
-        - name: gpu
-          resourceClaimTemplateName: scrypted
+                    operator: NotIn
+                    values: ["k8s-2"]
     service:
       app:
         ports:
