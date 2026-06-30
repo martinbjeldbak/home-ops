@@ -52,9 +52,12 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
+                  # k8s-0 is the only node with both a working GPU and macvlan-capable
+                  # NICs: k8s-1 has no GPU (OpenVINO crashes), k8s-2 can't pass tagged
+                  # VLAN macvlan traffic. NotIn k8s-2 alone let it drift onto k8s-1.
                   - key: kubernetes.io/hostname
-                    operator: NotIn
-                    values: ["k8s-2"]
+                    operator: In
+                    values: ["k8s-0"]
       resourceClaims:
         - name: gpu
           resourceClaimTemplateName: scrypted
