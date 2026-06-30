@@ -111,7 +111,7 @@ spec:
               livingroom:
                 - onvif://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@living-room-camera.internal:2020
               office:
-                - onvif://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@office-camera.internal:2020
+                - rtsp://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@office-camera.internal/live0
               litterrobot:
                 - rtsp://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@litter-robot-camera.internal/live0
     persistence:
