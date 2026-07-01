@@ -48,6 +48,7 @@ spec:
                 memory: 1024Mi
               limits:
                 memory: 8192Mi
+    defaultPodOptions:
       # k8s-2 can't pass tagged-VLAN macvlan traffic (version-independent fault, unresolved);
       # keep macvlan workloads off it, so k8s-0 and k8s-1 are both viable.
       # Detection is CPU-only: the pod requests no GPU, so no /dev/dri is injected and
