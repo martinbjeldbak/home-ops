@@ -24,9 +24,10 @@ spec:
                 "mac": "c6:07:27:af:fb:54"
               }]
           securityContext:
-            runAsUser: 2000
-            runAsGroup: 2000
-            fsGroup: 2000
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
             fsGroupChangePolicy: "OnRootMismatch"
         containers:
           app:
@@ -35,18 +36,23 @@ spec:
               tag: v0.144.1-noble-full
             env:
               SCRYPTED_INSECURE_PORT: &port 80
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop: ["ALL"]
+              seccompProfile:
+                type: RuntimeDefault
             resources:
               requests:
                 cpu: 136m
                 memory: 1024Mi
               limits:
-                # squat.ai/coral: 1
                 memory: 8192Mi
-    defaultPodOptions:
       # k8s-2 can't pass tagged-VLAN macvlan traffic (version-independent fault, unresolved);
-      # keep macvlan workloads off it. Detection runs in OpenVINO AUTO mode (GPU on k8s-0,
-      # CPU fallback on k8s-1), so no GPU resourceClaim is required — k8s-0 and k8s-1 are
-      # both viable. NOTE: OpenVINO Mode (AUTO) is set in the Scrypted UI, not in git.
+      # keep macvlan workloads off it, so k8s-0 and k8s-1 are both viable.
+      # Detection is CPU-only: the pod requests no GPU, so no /dev/dri is injected and
+      # OpenVINO AUTO resolves to CPU wherever it lands. NOTE: OpenVINO Mode (AUTO) is set
+      # in the Scrypted UI, not in git.
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
