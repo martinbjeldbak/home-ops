@@ -41,6 +41,8 @@ spec:
             # allowPrivilegeEscalation:false breaks that (s6 exits 111). uid is pinned to
             # 1000 at the pod level instead (config PVC chowned to match).
             resources:
+              claims:
+                - name: gpu
               requests:
                 cpu: 136m
                 memory: 1024Mi
@@ -48,10 +50,11 @@ spec:
                 memory: 8192Mi
     defaultPodOptions:
       # k8s-2 can't pass tagged-VLAN macvlan traffic (version-independent fault, unresolved);
-      # keep macvlan workloads off it, so k8s-0 and k8s-1 are both viable.
-      # Detection is CPU-only: the pod requests no GPU, so no /dev/dri is injected and
-      # OpenVINO AUTO resolves to CPU wherever it lands. NOTE: OpenVINO Mode (AUTO) is set
-      # in the Scrypted UI, not in git.
+      # keep macvlan workloads off it. Both k8s-0 and k8s-1 have a working Intel iGPU
+      # (/dev/dri/renderD128, gpu.intel.com DRA), so the GPU resourceClaim below lets the
+      # DRA scheduler place the pod on either — OpenVINO AUTO then uses the iGPU. The
+      # renderD128 node is 0666, so no render supplementalGroup is needed (same as plex).
+      # NOTE: OpenVINO Mode (AUTO) is set in the Scrypted UI, not in git.
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -60,6 +63,9 @@ spec:
                   - key: kubernetes.io/hostname
                     operator: NotIn
                     values: ["k8s-2"]
+      resourceClaims:
+        - name: gpu
+          resourceClaimTemplateName: scrypted
     service:
       app:
         ports:
