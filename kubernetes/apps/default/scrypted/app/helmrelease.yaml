@@ -36,12 +36,10 @@ spec:
               tag: v0.144.1-noble-full
             env:
               SCRYPTED_INSECURE_PORT: &port 80
-            securityContext:
-              allowPrivilegeEscalation: false
-              capabilities:
-                drop: ["ALL"]
-              seccompProfile:
-                type: RuntimeDefault
+            # No hardened securityContext here: the image's s6-overlay init uses a setuid
+            # helper to gain root, set up /run, then drop to the app user. drop:[ALL] /
+            # allowPrivilegeEscalation:false breaks that (s6 exits 111). uid is pinned to
+            # 1000 at the pod level instead (config PVC chowned to match).
             resources:
               requests:
                 cpu: 136m
