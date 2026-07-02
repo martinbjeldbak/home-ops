@@ -1,0 +1,21 @@
+---
+# yaml-language-server: $schema=https://goauthentik.io/blueprints/schema.json
+version: 1
+metadata:
+  name: Custom OAuth2 scope mappings
+entries:
+  # Overrides the built-in "email" scope so the token includes an
+  # email_verified claim (required by Romm and Dawarich).
+  # https://github.com/rommapp/romm/issues/2894
+  - model: authentik_providers_oauth2.scopemapping
+    identifiers:
+      name: ROMM & Dawarich email_verified fix
+    attrs:
+      name: ROMM & Dawarich email_verified fix
+      scope_name: email
+      description: See https://github.com/rommapp/romm/issues/2894
+      expression: |
+        return {
+            "email": request.user.email,
+            "email_verified": request.user.attributes.get("email_verified", False)
+        }

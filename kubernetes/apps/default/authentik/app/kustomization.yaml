@@ -10,7 +10,15 @@ configMapGenerator:
   - name: authentik-blueprints
     files:
       - session.yaml=./blueprints/session.yaml
+      - scopes.yaml=./blueprints/scopes.yaml
+      - groups.yaml=./blueprints/groups.yaml
       - autobrr.yaml=./blueprints/autobrr.yaml
+      - calibre-web.yaml=./blueprints/calibre-web.yaml
+      - dawarich.yaml=./blueprints/dawarich.yaml
+      - immich.yaml=./blueprints/immich.yaml
+      - karakeep.yaml=./blueprints/karakeep.yaml
+      - qui.yaml=./blueprints/qui.yaml
+      - romm.yaml=./blueprints/romm.yaml
 generatorOptions:
   disableNameSuffixHash: true
   annotations:

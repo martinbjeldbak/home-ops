@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://goauthentik.io/blueprints/schema.json
 version: 1
 metadata:
-  name: Autobrr OAuth2 Provider and Application
+  name: Qui OAuth2 Provider and Application
 context:
   authorization_flow: &authorization_flow !Find [authentik_flows.flow, [slug, default-provider-authorization-implicit-consent]]
   invalidation_flow: &invalidation_flow !Find [authentik_flows.flow, [slug, default-provider-invalidation-flow]]
@@ -16,29 +16,32 @@ context:
 entries:
   - model: authentik_providers_oauth2.oauth2provider
     identifiers:
-      name: Provider for Autobrr
+      name: Provider for Qui
     attrs:
-      name: Provider for Autobrr
+      name: Provider for Qui
       authorization_flow: *authorization_flow
       invalidation_flow: *invalidation_flow
       client_type: confidential
-      client_id: !Env AUTOBRR_CLIENT_ID
-      client_secret: !Env AUTOBRR_CLIENT_SECRET
+      client_id: !Env QUI_CLIENT_ID
+      client_secret: !Env QUI_CLIENT_SECRET
       redirect_uris:
-        - url: https://autobrr.martinbjeldbak.com/api/auth/oidc/callback
+        - url: https://qui.martinbjeldbak.com/api/auth/oidc/callback
           matching_mode: strict
+      grant_types:
+        - authorization_code
+        - refresh_token
       property_mappings: *property_mappings
       signing_key: *signing_key
 
   - model: authentik_core.application
     identifiers:
-      slug: autobrr
+      slug: qui
     attrs:
-      name: Autobrr
-      slug: autobrr
-      provider: !Find [authentik_providers_oauth2.oauth2provider, [name, Provider for Autobrr]]
+      name: Qui
+      slug: qui
+      provider: !Find [authentik_providers_oauth2.oauth2provider, [name, Provider for Qui]]
       policy_engine_mode: any
-      meta_icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/autobrr.svg
-      meta_description: Automation for torrent trackers and usenet indexers
-      meta_publisher: autobrr
+      group: Downloads
+      meta_icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/qui.svg
+      meta_description: qBittorrent web UI
       open_in_new_tab: false

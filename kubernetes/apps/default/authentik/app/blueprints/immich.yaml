@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://goauthentik.io/blueprints/schema.json
 version: 1
 metadata:
-  name: Autobrr OAuth2 Provider and Application
+  name: Immich OAuth2 Provider and Application
 context:
   authorization_flow: &authorization_flow !Find [authentik_flows.flow, [slug, default-provider-authorization-implicit-consent]]
   invalidation_flow: &invalidation_flow !Find [authentik_flows.flow, [slug, default-provider-invalidation-flow]]
@@ -16,29 +16,34 @@ context:
 entries:
   - model: authentik_providers_oauth2.oauth2provider
     identifiers:
-      name: Provider for Autobrr
+      name: Provider for Immich
     attrs:
-      name: Provider for Autobrr
+      name: Provider for Immich
       authorization_flow: *authorization_flow
       invalidation_flow: *invalidation_flow
       client_type: confidential
-      client_id: !Env AUTOBRR_CLIENT_ID
-      client_secret: !Env AUTOBRR_CLIENT_SECRET
+      client_id: !Env IMMICH_CLIENT_ID
+      client_secret: !Env IMMICH_CLIENT_SECRET
       redirect_uris:
-        - url: https://autobrr.martinbjeldbak.com/api/auth/oidc/callback
+        # Mobile app deep-link + web endpoints (order/values match current config)
+        - url: app.immich:///oauth-callback
+          matching_mode: strict
+        - url: https://immich.martinbjeldbak.com/auth/login
+          matching_mode: strict
+        - url: https://immich.martinbjeldbak.com/user-settings
           matching_mode: strict
       property_mappings: *property_mappings
       signing_key: *signing_key
 
   - model: authentik_core.application
     identifiers:
-      slug: autobrr
+      slug: immich
     attrs:
-      name: Autobrr
-      slug: autobrr
-      provider: !Find [authentik_providers_oauth2.oauth2provider, [name, Provider for Autobrr]]
+      name: Immich
+      slug: immich
+      provider: !Find [authentik_providers_oauth2.oauth2provider, [name, Provider for Immich]]
       policy_engine_mode: any
-      meta_icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/autobrr.svg
-      meta_description: Automation for torrent trackers and usenet indexers
-      meta_publisher: autobrr
+      group: Media
+      meta_icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/immich.svg
+      meta_description: Photo and video library
       open_in_new_tab: false

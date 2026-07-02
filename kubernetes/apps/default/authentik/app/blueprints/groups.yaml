@@ -1,0 +1,74 @@
+---
+# yaml-language-server: $schema=https://goauthentik.io/blueprints/schema.json
+version: 1
+metadata:
+  name: Access groups
+# Models the per-application access groups. Only name + is_superuser are managed:
+# `attributes` is intentionally left unmanaged because several groups carry
+# plaintext credentials (e.g. *_password) that must not be committed to git.
+# The built-in "authentik Admins" / "authentik Read-only" groups are managed by
+# Authentik itself and deliberately omitted here.
+entries:
+  - model: authentik_core.group
+    identifiers: {name: Adguard Home Users}
+    attrs: {name: Adguard Home Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Autobrr Users}
+    attrs: {name: Autobrr Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Bazarr Users}
+    attrs: {name: Bazarr Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Calibre-Web Users}
+    attrs: {name: Calibre-Web Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Dawarich Users}
+    attrs: {name: Dawarich Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: ESPHome Users}
+    attrs: {name: ESPHome Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Grafana Users}
+    attrs: {name: Grafana Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Home Assistant Users}
+    attrs: {name: Home Assistant Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Immich Users}
+    attrs: {name: Immich Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Karakeep Users}
+    attrs: {name: Karakeep Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Prowlarr Users}
+    attrs: {name: Prowlarr Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Proxmox Backup Service Users}
+    attrs: {name: Proxmox Backup Service Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Proxmox Users}
+    attrs: {name: Proxmox Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Qui Users}
+    attrs: {name: Qui Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Radarr Users}
+    attrs: {name: Radarr Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Romm Users}
+    attrs: {name: Romm Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Sonarr Users}
+    attrs: {name: Sonarr Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Syncthing Users}
+    attrs: {name: Syncthing Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Synology Users}
+    attrs: {name: Synology Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: Transmission Users}
+    attrs: {name: Transmission Users, is_superuser: false}
+  - model: authentik_core.group
+    identifiers: {name: homepage}
+    attrs: {name: homepage, is_superuser: false}

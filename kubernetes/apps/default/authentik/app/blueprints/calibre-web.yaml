@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://goauthentik.io/blueprints/schema.json
 version: 1
 metadata:
-  name: Autobrr OAuth2 Provider and Application
+  name: Calibre-Web OAuth2 Provider and Application
 context:
   authorization_flow: &authorization_flow !Find [authentik_flows.flow, [slug, default-provider-authorization-implicit-consent]]
   invalidation_flow: &invalidation_flow !Find [authentik_flows.flow, [slug, default-provider-invalidation-flow]]
@@ -16,29 +16,29 @@ context:
 entries:
   - model: authentik_providers_oauth2.oauth2provider
     identifiers:
-      name: Provider for Autobrr
+      name: Provider for Calibre-Web
     attrs:
-      name: Provider for Autobrr
+      name: Provider for Calibre-Web
       authorization_flow: *authorization_flow
       invalidation_flow: *invalidation_flow
       client_type: confidential
-      client_id: !Env AUTOBRR_CLIENT_ID
-      client_secret: !Env AUTOBRR_CLIENT_SECRET
+      client_id: !Env CALIBRE_WEB_CLIENT_ID
+      client_secret: !Env CALIBRE_WEB_CLIENT_SECRET
       redirect_uris:
-        - url: https://autobrr.martinbjeldbak.com/api/auth/oidc/callback
+        - url: https://calibre.martinbjeldbak.com/login/generic/authorized
           matching_mode: strict
       property_mappings: *property_mappings
       signing_key: *signing_key
 
   - model: authentik_core.application
     identifiers:
-      slug: autobrr
+      slug: calibre-web
     attrs:
-      name: Autobrr
-      slug: autobrr
-      provider: !Find [authentik_providers_oauth2.oauth2provider, [name, Provider for Autobrr]]
+      name: Calibre-Web
+      slug: calibre-web
+      provider: !Find [authentik_providers_oauth2.oauth2provider, [name, Provider for Calibre-Web]]
       policy_engine_mode: any
-      meta_icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/autobrr.svg
-      meta_description: Automation for torrent trackers and usenet indexers
-      meta_publisher: autobrr
+      group: Media
+      meta_icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/calibre-web.svg
+      meta_description: eBook library
       open_in_new_tab: false
