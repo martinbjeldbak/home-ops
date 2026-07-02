@@ -114,6 +114,8 @@ spec:
                 - rtsp://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@office-camera.internal/live0
               litterrobot:
                 - rtsp://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@litter-robot-camera.internal/live0
+              bedroom:
+                - onvif://${GO2RTC_USERNAME}:${GO2RTC_PASSWORD}@bedroom-camera.internal:2020
     persistence:
       config-file:
         type: configMap
