@@ -10,6 +10,9 @@ spec:
     kind: OCIRepository
     name: authentik
   values:
+    blueprints:
+      configMaps:
+        - authentik-blueprints
     authentik:
       postgresql:
         host: authentik-db-rw
@@ -19,6 +22,9 @@ spec:
         from: Authentik <authentik@martinbjeldbak.com>
         port: 25
     server:
+      envFrom:
+        - secretRef:
+            name: authentik-oidc-secret
       deploymentStrategy:
         type: Recreate
       route:
@@ -56,6 +62,9 @@ spec:
           enabled: true
     worker:
       replicas: 1
+      envFrom:
+        - secretRef:
+            name: authentik-oidc-secret
       volumes:
         - name: postgres-creds
           secret:

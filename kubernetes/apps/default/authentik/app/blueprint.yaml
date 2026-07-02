@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: authentik-blueprint-session
+data:
+  session-duration.yaml: |
+    version: 1
+    metadata:
+      name: extend-session-duration
+    entries:
+      - model: authentik_stages_user_login.userloginstage
+        identifiers:
+          name: default-authentication-login
+        attrs:
+          # How long the login session lasts. Format: weeks=, days=, hours=,
+          # minutes=, seconds= (e.g. "days=30", "weeks=4", "hours=12").
+          # Default is "seconds=0" which expires the cookie at browser close.
+          session_duration: days=30
+          # Extra time added on top of session_duration when the user ticks
+          # "Remember me" on the login form.
+          remember_me_offset: days=30
