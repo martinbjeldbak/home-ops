@@ -6,7 +6,7 @@ metadata:
   name: kopia
 spec:
   components:
-    - ../../../../components/zeroscaler
+    # - ../../../../components/zeroscaler
   dependsOn:
     - name: volsync
   interval: 1h
