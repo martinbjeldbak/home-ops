@@ -46,7 +46,7 @@ spec:
               IMMICH_HELMET_FILE: true
             image:
               # renovate: datasource=github-releases depName=immich-app/immich
-              tag: v2.7.5
+              tag: v3.0.3
     server:
       controllers:
         main:
@@ -81,7 +81,7 @@ spec:
               image:
                 repository: ghcr.io/immich-app/immich-machine-learning
                 # renovate: datasource=github-releases depName=immich-app/immich
-                tag: v2.7.5
+                tag: v3.0.3
               resources:
                 requests:
                   cpu: 100m
