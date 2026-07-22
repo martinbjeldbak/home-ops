@@ -167,7 +167,7 @@ cluster:
                     whenUnsatisfiable: ScheduleAnyway
     extraArgs:
       bind-address: 0.0.0.0
-    image: registry.k8s.io/kube-scheduler:v1.36.2
+    image: registry.k8s.io/kube-scheduler:v1.36.3
   secretboxEncryptionSecret: ref+op://kubernetes/talos/CLUSTER_SECRETBOXENCRYPTIONSECRET
   serviceAccount:
     key: ref+op://kubernetes/talos/CLUSTER_SERVICEACCOUNT_KEY
