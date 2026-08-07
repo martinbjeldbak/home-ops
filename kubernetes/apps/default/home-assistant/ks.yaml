@@ -7,7 +7,7 @@ metadata:
   namespace: &namespace default
 spec:
   components:
-    - ../../../../components/volsync
+    - ../../../../components/kopiur/backup
   dependsOn:
     - name: mosquitto
       namespace: default
@@ -20,7 +20,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      VOLSYNC_CAPACITY: 5Gi
+      KOPIUR_CAPACITY: 5Gi
   prune: true
   retryInterval: 2m
   sourceRef:
@@ -39,7 +39,7 @@ metadata:
   namespace: &namespace default
 spec:
   components:
-    - ../../../../components/volsync
+    - ../../../../components/kopiur/backup
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
@@ -48,7 +48,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      VOLSYNC_CAPACITY: 1Gi
+      KOPIUR_CAPACITY: 1Gi
   prune: true
   retryInterval: 2m
   sourceRef:

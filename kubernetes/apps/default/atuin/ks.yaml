@@ -6,7 +6,7 @@ metadata:
   name: atuin
 spec:
   components:
-    - ../../../../components/volsync
+    - ../../../../components/kopiur/backup
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
@@ -15,7 +15,7 @@ spec:
   postBuild:
     substitute:
       APP: atuin
-      VOLSYNC_CAPACITY: 5Gi
+      KOPIUR_CAPACITY: 5Gi
   prune: true
   sourceRef:
     kind: GitRepository
