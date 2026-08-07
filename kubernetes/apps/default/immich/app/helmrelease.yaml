@@ -19,7 +19,6 @@ spec:
       retries: 3
   values:
     immich:
-      enabled: true
       persistence:
         library:
           existingClaim: immich-library-nas
