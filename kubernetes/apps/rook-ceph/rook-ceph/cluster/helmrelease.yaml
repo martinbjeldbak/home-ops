@@ -13,6 +13,8 @@ spec:
   values:
     cephClusterSpec:
       cephConfig:
+        mon:
+          mon_cluster_log_level: info
         osd:
           osd_client_watch_timeout: "60"
           # Consumer NVMe (Samsung 990 PRO, no power-loss protection) tuning. These drives
