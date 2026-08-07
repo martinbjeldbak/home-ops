@@ -21,20 +21,40 @@ spec:
               tag: 2026.8.0@sha256:99c0293b3ad103151a9d8b860232fd1c6db425eadb9eb4905c0ecbef65b27363
             env:
               TZ: Australia/Sydney
-              HASS_HTTP_TRUSTED_PROXY_1: 192.168.69.0/24
-              HASS_HTTP_TRUSTED_PROXY_2: 10.42.0.0/16
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
+            probes:
+              liveness:
+                enabled: true
+                spec:
+                  periodSeconds: 30
+                  timeoutSeconds: 5
+                  failureThreshold: 5
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /healthz
+                    port: &port 8123
+                  periodSeconds: 10
+                  timeoutSeconds: 5
+                  failureThreshold: 5
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 10
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: {drop: ["ALL"]}
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 10m
-              # limits:
-              #   memory: 2Gi
+              limits:
+                memory: 2Gi
     defaultPodOptions:
       affinity:
         nodeAffinity:
@@ -63,11 +83,15 @@ spec:
         ports:
           http:
             appProtocol: kubernetes.io/ws
-            port: 8123
+            port: *port
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            conditions: ["[STATUS] == 200"]
         hostnames:
           - "{{ .Release.Name }}.martinbjeldbak.com"
+          - hass.martinbjeldbak.com
         parentRefs:
           - name: envoy-internal
             namespace: network
