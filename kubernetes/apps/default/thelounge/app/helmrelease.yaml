@@ -17,10 +17,10 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/thelounge/thelounge
-              tag: 4.5.2@sha256:8806dd11965c8c07ef209ba884423cc611a37e8d6ee0e128dd55f427486122e0
+              repository: ghcr.io/home-operations/thelounge
+              tag: 4.5.2@sha256:7e18ada1421f341b6b129dbb8e4a307320c34ffe38ceef0799ead7f5a3643dbc
             env:
-              THELOUNGE_HOME: /config/thelounge
+              THELOUNGE_PORT: &port 80
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -46,7 +46,7 @@ spec:
       app:
         ports:
           http:
-            port: 9000
+            port: *port
     route:
       app:
         hostnames: ["{{ .Release.Name }}.martinbjeldbak.com"]
