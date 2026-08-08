@@ -14,3 +14,6 @@ exclude:
 filesystem:
   firmware_folder: bios
   roms_folder: roms
+system:
+  platforms:
+    gc: ngc
