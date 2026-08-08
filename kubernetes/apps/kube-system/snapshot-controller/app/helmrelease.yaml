@@ -10,8 +10,6 @@ spec:
     name: snapshot-controller
   interval: 1h
   values:
-    controller:
+    monitoring:
       serviceMonitor:
-        create: true
-    webhook:
-      enabled: false
+        enabled: true
