@@ -18,3 +18,4 @@ system:
   platforms:
     gc: ngc
     3ds: n3ds
+    dc: dreamcast
