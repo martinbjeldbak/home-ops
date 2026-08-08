@@ -11,6 +11,17 @@ exclude:
       names:
         - '@eaDir'
         - '.DS_Store'
+        - '3dboxes'
+        - 'backcovers'
+        - 'covers'
+        - 'fanart'
+        - 'manuals'
+        - 'marquees'
+        - 'miximages'
+        - 'physicalmedia'
+        - 'screenshots'
+        - 'titlescreens'
+        - 'videos'
 filesystem:
   firmware_folder: bios
   roms_folder: roms
