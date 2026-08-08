@@ -17,5 +17,5 @@ filesystem:
 system:
   platforms:
     gc: ngc
-    3ds: n3ds
-    dc: dreamcast
+    n3ds: 3ds
+    dreamcast: dc
