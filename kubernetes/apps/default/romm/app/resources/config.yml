@@ -19,3 +19,6 @@ system:
     gc: ngc
     n3ds: 3ds
     dreamcast: dc
+scan:
+  gamelist:
+    export: true

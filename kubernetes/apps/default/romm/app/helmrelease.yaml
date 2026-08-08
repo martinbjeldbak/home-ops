@@ -35,6 +35,7 @@ spec:
               HLTB_API_ENABLED: true
               SCHEDULED_UPDATE_SWITCH_TITLEDB_CRON: "0 4 * * *"  # at 4am
               DISABLE_USERPASS_LOGIN: true  # require sign in with Authentik
+              ROMM_SESSION_SECURE_COOKIE: true  # served over HTTPS via envoy-internal
               OIDC_ENABLED: "true"
               OIDC_AUTOLOGIN: "true"
               OIDC_PROVIDER: authentik
