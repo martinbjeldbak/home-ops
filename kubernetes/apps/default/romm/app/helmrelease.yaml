@@ -28,6 +28,7 @@ spec:
               ROMM_PORT: &port 8080
               ENABLE_SCHEDULED_RESCAN: true
               SCHEDULED_RESCAN_CRON: "0 3 * * *"  # at 3am
+              TASK_TIMEOUT: 28800  # 8h
               ENABLE_SCHEDULED_UPDATE_SWITCH_TITLEDB: true
               ENABLE_SCHEDULED_RETROACHIEVEMENTS_PROGRESS_SYNC: true
               ENABLE_SCHEDULED_CONVERT_IMAGES_TO_WEBP: true
