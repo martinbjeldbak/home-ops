@@ -9,6 +9,7 @@ spec:
     kind: OCIRepository
     name: home-assistant
   interval: 1h
+  timeout: 10m
   values:
     controllers:
       home-assistant:
