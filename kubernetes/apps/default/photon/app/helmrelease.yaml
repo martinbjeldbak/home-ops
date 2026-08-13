@@ -1,0 +1,73 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: photon
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: photon
+  install:
+    disableWait: true
+  upgrade:
+    disableWait: true
+  values:
+    controllers:
+      photon:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: docker.io/rtuszik/photon-docker
+              tag: 2.3.1@sha256:729f883612bde3215c156111b421d8e0a27b1eb411b92ef4a24bd587b8259b04
+            env:
+              TZ: Australia/Sydney
+              REGION: planet
+              # SEQUENTIAL avoids the 2x disk usage PARALLEL needs during
+              # index swaps; the cluster's ceph-block pool doesn't have
+              # headroom for two copies of a planet-wide index.
+              UPDATE_STRATEGY: SEQUENTIAL
+              UPDATE_INTERVAL: 720h
+            probes:
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec:
+                  tcpSocket:
+                    port: &port 2322
+                  periodSeconds: 10
+                  timeoutSeconds: 3
+                  failureThreshold: 3
+              readiness: *probe
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  tcpSocket:
+                    port: *port
+                  periodSeconds: 30
+                  failureThreshold: 720
+            # The image's entrypoint must start as root: it chowns
+            # /photon to PUID/PGID and drops to that user via gosu
+            # before exec'ing the JVM, so it can't run as non-root
+            # or with capabilities dropped.
+            securityContext:
+              allowPrivilegeEscalation: false
+            resources:
+              requests:
+                memory: 4Gi
+              limits:
+                memory: 10Gi
+    service:
+      app:
+        ports:
+          http:
+            port: *port
+    persistence:
+      data:
+        existingClaim: photon-data
+        globalMounts:
+          - path: /photon/data

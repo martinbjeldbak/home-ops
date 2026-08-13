@@ -45,6 +45,8 @@ spec:
               OIDC_PROVIDER_NAME: "Authentik"
               OIDC_ISSUER: "https://auth.martinbjeldbak.com/application/o/{{ .Release.Name }}/"
               OIDC_REDIRECT_URI: "https://{{ .Release.Name }}.martinbjeldbak.com/users/auth/openid_connect/callback"
+              PHOTON_API_HOST: photon:2322
+              PHOTON_API_USE_HTTPS: false
             envFrom: &envFrom
               - secretRef:
                   name: dawarich-secret
