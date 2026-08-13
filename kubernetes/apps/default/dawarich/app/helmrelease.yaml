@@ -15,15 +15,15 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          app: &dawarich
+          app:
             image:
-              repository: docker.io/freikin/dawarich
+              repository: mirror.gcr.io/freikin/dawarich
               tag: 1.12.1@sha256:1b553dabfb7a689cc2b2fa15e22ac06a1ddaad104a82e693cbba6bb71ddb9d62
             command:
               - "web-entrypoint.sh"
             args:
               - "bin/rails server -p 3000 -b 0.0.0.0"
-            env:
+            env: &env
               TIME_ZONE: Australia/Sydney
               RAILS_ENV: development
               REDIS_URL: "redis://{{ .Release.Name }}-redis:6379"
@@ -34,7 +34,6 @@ spec:
               APPLICATION_PROTOCOL: http
               ALLOW_EMAIL_PASSWORD_REGISTRATION: false
               ALLOW_EMAIL_PASSWORD_LOGIN: false
-              REVERSE_GEOCODING_ENABLED: true
               SELF_HOSTED: true
               STORE_GEODATA: true
               SMTP_PORT: 25
@@ -46,7 +45,7 @@ spec:
               OIDC_PROVIDER_NAME: "Authentik"
               OIDC_ISSUER: "https://auth.martinbjeldbak.com/application/o/{{ .Release.Name }}/"
               OIDC_REDIRECT_URI: "https://{{ .Release.Name }}.martinbjeldbak.com/users/auth/openid_connect/callback"
-            envFrom:
+            envFrom: &envFrom
               - secretRef:
                   name: dawarich-secret
             resources:
@@ -56,10 +55,41 @@ spec:
               limits:
                 memory: "3Gi"
                 cpu: "2000m"
+            probes:
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/v1/health
+                    port: 3000
+              readiness: *probe
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/v1/health
+                    port: 3000
+                  periodSeconds: 10
+                  failureThreshold: 90
+            securityContext: &sc
+              allowPrivilegeEscalation: false
+              capabilities: { drop: ["ALL"] }
+              readOnlyRootFilesystem: true
+          sidekick:
+            image:
+              repository: mirror.gcr.io/freikin/dawarich
+              tag: 1.12.1@sha256:1b553dabfb7a689cc2b2fa15e22ac06a1ddaad104a82e693cbba6bb71ddb9d62
+            command: ["sidekiq-entrypoint.sh"]
+            args: []
+            env: *env
+            envFrom: *envFrom
+            securityContext: *sc
           sidekiq:
-            <<: *dawarich
             command:
               - "sidekiq-entrypoint.sh"
+            securityContext: *sc
             resources:
               requests:
                 memory: "512Mi"
