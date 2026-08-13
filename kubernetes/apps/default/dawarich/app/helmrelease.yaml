@@ -25,7 +25,7 @@ spec:
               - "bin/rails server -p 3000 -b 0.0.0.0"
             env: &env
               TIME_ZONE: Australia/Sydney
-              RAILS_ENV: development
+              RAILS_ENV: production
               REDIS_URL: "redis://{{ .Release.Name }}-redis:6379"
               DATABASE_HOST: "{{ .Release.Name }}-db-rw"
               DATABASE_NAME: "{{ .Release.Name }}_development"
@@ -78,6 +78,7 @@ spec:
             securityContext: &sc
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
+              readOnlyRootFilesystem: true
           sidekick:
             image:
               repository: mirror.gcr.io/freikin/dawarich
@@ -121,6 +122,15 @@ spec:
             subPath: storage
           - path: /dawarich_db_data
             subPath: dawarich_db_data
+      tmp:
+        type: emptyDir
+        medium: Memory
+        sizeLimit: 100Mi
+        globalMounts:
+          - path: /tmp
+            subPath: tmp
+          - path: /var/app/tmp
+            subPath: app
       watched:
         type: emptyDir
         globalMounts:
