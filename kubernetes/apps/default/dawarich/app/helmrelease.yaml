@@ -78,7 +78,6 @@ spec:
             securityContext: &sc
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
-              readOnlyRootFilesystem: true
           sidekick:
             image:
               repository: mirror.gcr.io/freikin/dawarich
