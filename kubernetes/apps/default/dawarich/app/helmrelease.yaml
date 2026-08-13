@@ -83,14 +83,11 @@ spec:
             image:
               repository: mirror.gcr.io/freikin/dawarich
               tag: 1.12.1@sha256:1b553dabfb7a689cc2b2fa15e22ac06a1ddaad104a82e693cbba6bb71ddb9d62
-            command: ["sidekiq-entrypoint.sh"]
+            command:
+              - "sidekiq-entrypoint.sh"
             args: []
             env: *env
             envFrom: *envFrom
-            securityContext: *sc
-          sidekiq:
-            command:
-              - "sidekiq-entrypoint.sh"
             securityContext: *sc
             resources:
               requests:
