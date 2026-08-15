@@ -58,7 +58,7 @@ spec:
               allowPrivilegeEscalation: false
             resources:
               requests:
-                memory: 4Gi
+                memory: 2.5Gi
               limits:
                 memory: 10Gi
     service:
