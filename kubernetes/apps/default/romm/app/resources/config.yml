@@ -8,7 +8,7 @@ exclude:
         - '@eaDir'
         - '.DS_Store'
       extensions:
-        - '.dkey'
+        - 'dkey'
     multi_file:
       names:
         - '@eaDir'
