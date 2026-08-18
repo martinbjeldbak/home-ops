@@ -50,17 +50,22 @@ spec:
                     port: *port
                   periodSeconds: 30
                   failureThreshold: 720
-            # The image's entrypoint must start as root: it chowns
-            # /photon to PUID/PGID and drops to that user via gosu
-            # before exec'ing the JVM, so it can't run as non-root
-            # or with capabilities dropped.
             securityContext:
               allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 memory: 2.5Gi
               limits:
                 memory: 10Gi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 9011
+        runAsGroup: 9011
+        fsGroup: 9011
+        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         ports:
@@ -71,3 +76,5 @@ spec:
         existingClaim: photon-data
         globalMounts:
           - path: /photon/data
+      tmp:
+        type: emptyDir
