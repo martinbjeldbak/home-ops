@@ -10,14 +10,6 @@ spec:
     name: rook-ceph
   interval: 1h
   values:
-    csi:
-      # No-op on the v1.20 chart; kept so the HR spec is unchanged and helm-controller
-      # only upgrades once the v1.20.5 artifact is fetched, never the cached v1.19.9.
-      # Removed in the tentacle/cephx follow-up. The other csi* keys previously here
-      # (enableLiveness, serviceMonitor.enabled, csi{RBD,CephFS}{Provisioner,Plugin}Resource)
-      # are also no-ops on v1.20 - CSI moved fully to the new ceph-csi-drivers app;
-      # sidecar resource sizing now lives there as operatorConfig.driverSpecDefaults.
-      cephFSKernelMountOptions: ms_mode=prefer-crc
     image:
       repository: ghcr.io/rook/ceph
     monitoring:
