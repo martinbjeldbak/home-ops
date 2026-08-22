@@ -31,6 +31,8 @@ metadata:
 spec:
   components:
   dependsOn:
+    - name: ceph-csi-drivers
+      namespace: *namespace
     - name: rook-ceph
       namespace: *namespace
     # - name: volsync
