@@ -103,7 +103,6 @@ spec:
             keyGeneration: 2
           csi:
             keyType: aes # aes256k requires kernel 7.0+
-      skipUpgradeChecks: true
       storage:
         devicePathFilter: /dev/disk/by-id/nvme-Samsung_SSD_990_PRO.*_1TB_S7H.*_.*
         useAllDevices: false
