@@ -95,6 +95,7 @@ spec:
           daemon:
             keyRotationPolicy: KeyGeneration
             keyGeneration: 2
+      skipUpgradeChecks: true
       storage:
         devicePathFilter: /dev/disk/by-id/nvme-Samsung_SSD_990_PRO.*_1TB_S7H.*_.*
         useAllDevices: false
