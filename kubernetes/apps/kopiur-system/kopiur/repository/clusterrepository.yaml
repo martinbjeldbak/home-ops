@@ -13,7 +13,7 @@ spec:
         secretRef:
           name: kopiur-repository-secret
           namespace: kopiur-system
-      bucket: home-ops-kopiur-backups
+      bucket: kopiur
       endpoint: alderaan.internal:3900
       region: garage
       tls:
