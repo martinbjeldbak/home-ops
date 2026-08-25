@@ -60,5 +60,6 @@ spec:
           - path: /.cache
       ace-database:
         type: emptyDir
+        sizeLimit: 2Gi # engine's own --cache-limit caps the stream cache at 1GB; this is a node-side backstop
         globalMounts:
           - path: /home/appuser/.ACEStream

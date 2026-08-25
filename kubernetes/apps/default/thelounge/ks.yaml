@@ -8,6 +8,7 @@ metadata:
 spec:
   components:
     - ../../../../components/volsync
+    - ../../../../components/kopiur/backup
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
@@ -17,6 +18,8 @@ spec:
     substitute:
       APP: *app
       VOLSYNC_CAPACITY: 5Gi
+      VOLSYNC_SCHEDULE: 53 * * * *
+      KOPIUR_CACHE_CAPACITY: 5Gi
   prune: true
   retryInterval: 2m
   sourceRef:
