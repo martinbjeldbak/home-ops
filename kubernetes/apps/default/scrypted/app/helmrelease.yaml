@@ -33,7 +33,7 @@ spec:
           app:
             image:
               repository: ghcr.io/koush/scrypted
-              tag: v0.144.3-noble-full
+              tag: v0.146.0-noble-full
             env:
               SCRYPTED_INSECURE_PORT: &port 80
             # No hardened securityContext here: the image's s6-overlay init uses a setuid
