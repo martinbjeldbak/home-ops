@@ -1,31 +1,27 @@
 ---
+machine:
+  type: controlplane
+  nodeLabels:
+    topology.kubernetes.io/zone: m
+  install:
+    diskSelector:
+      model: 512GB SSD
+---
 apiVersion: v1alpha1
 kind: HostnameConfig
-hostname: k8s-2  # HP EliteDesk 800 G6 Mini
----
-apiVersion: v1alpha1
-kind: KubeNodeConfig
-labels:
-  topology.kubernetes.io/zone: m
-  node.kubernetes.io/gpu: "true"
----
-apiVersion: v1alpha1
-kind: UnattendedInstallConfig
-provisioning:
-  diskSelector:
-    match: disk.model == "KXG60ZNV256G KIOXIA"
+hostname: k8s-1  # Beelink EQ14
 ---
 apiVersion: v1alpha1
 kind: LinkAliasConfig
 name: net0
 selector:
-  match: link.driver == "e1000e" && mac(link.permanent_addr) == "b0:22:7a:ef:25:10"
+  match: link.driver == "r8169" && mac(link.permanent_addr) == "e8:ff:1e:d8:85:b5"
 ---
 apiVersion: v1alpha1
 kind: LinkAliasConfig
 name: net1
 selector:
-  match: link.driver == "r8152" && mac(link.permanent_addr) == "f4:4d:ad:06:06:ac"
+  match: link.driver == "r8169" && mac(link.permanent_addr) == "e8:ff:1e:d8:85:b6"
 ---
 apiVersion: v1alpha1
 kind: BondConfig
@@ -40,7 +36,7 @@ miimon: 100
 updelay: 200
 downdelay: 200
 mtu: 1500
-hardwareAddr: b0:22:7a:ef:25:10
+hardwareAddr: e8:ff:1e:d8:85:b5
 ---
 apiVersion: v1alpha1
 kind: DHCPv4Config

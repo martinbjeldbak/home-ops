@@ -1,19 +1,16 @@
 ---
+machine:
+  type: controlplane
+  nodeLabels:
+    topology.kubernetes.io/zone: m
+    node.kubernetes.io/gpu: "true"
+  install:
+    diskSelector:
+      model: CT500P3PSSD8
+---
 apiVersion: v1alpha1
 kind: HostnameConfig
 hostname: k8s-0 # Beelink EQi12
----
-apiVersion: v1alpha1
-kind: KubeNodeConfig
-labels:
-  topology.kubernetes.io/zone: m
-  node.kubernetes.io/gpu: "true"
----
-apiVersion: v1alpha1
-kind: UnattendedInstallConfig
-provisioning:
-  diskSelector:
-    match: disk.model == "CT500P3PSSD8"
 ---
 apiVersion: v1alpha1
 kind: LinkAliasConfig
