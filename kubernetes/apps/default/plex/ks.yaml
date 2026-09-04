@@ -6,7 +6,6 @@ metadata:
   name: plex
 spec:
   components:
-    - ../../../../components/volsync
     - ../../../../components/kopiur/backup
     # # - ../../../../components/zeroscaler
   dependsOn:
@@ -19,8 +18,7 @@ spec:
   postBuild:
     substitute:
       APP: plex
-      VOLSYNC_CAPACITY: 200Gi
-      VOLSYNC_SCHEDULE: 27 * * * *
+      KOPIUR_CAPACITY: 200Gi
       KOPIUR_CACHE_CAPACITY: 200Gi
   prune: true
   sourceRef:
