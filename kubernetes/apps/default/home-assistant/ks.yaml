@@ -7,7 +7,6 @@ metadata:
   namespace: &namespace default
 spec:
   components:
-    - ../../../../components/volsync
     - ../../../../components/kopiur/backup
   dependsOn:
     - name: multus-networks
@@ -19,8 +18,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      VOLSYNC_CAPACITY: 5Gi
-      VOLSYNC_SCHEDULE: 17 * * * *
+      KOPIUR_CAPACITY: 5Gi
       KOPIUR_CACHE_CAPACITY: 5Gi
   prune: true
   retryInterval: 2m
@@ -40,7 +38,6 @@ metadata:
   namespace: &namespace default
 spec:
   components:
-    - ../../../../components/volsync
     - ../../../../components/kopiur/backup
   dependsOn:
     - name: rook-ceph-cluster
@@ -50,8 +47,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      VOLSYNC_CAPACITY: 1Gi
-      VOLSYNC_SCHEDULE: 19 * * * *
+      KOPIUR_CAPACITY: 1Gi
       KOPIUR_CACHE_CAPACITY: 1Gi
   prune: true
   retryInterval: 2m
