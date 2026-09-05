@@ -20,8 +20,6 @@ spec:
     substitute:
       APP: paperless
       KOPIUR_CAPACITY: 5Gi
-      KOPIUR_PUID: "65534"
-      KOPIUR_PGID: "65534"
   prune: true
   sourceRef:
     kind: GitRepository
