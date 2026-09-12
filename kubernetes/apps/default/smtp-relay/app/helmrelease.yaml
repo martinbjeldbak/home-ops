@@ -49,7 +49,6 @@ spec:
       app:
         type: LoadBalancer
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: smtp-relay.martinbjeldbak.com
           external-dns.kubernetes.io/hostname: smtp-relay.martinbjeldbak.com
           lbipam.cilium.io/ips: 192.168.69.122
         externalTrafficPolicy: Local
