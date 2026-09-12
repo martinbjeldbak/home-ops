@@ -26,6 +26,8 @@ spec:
               CACHE_DIR: /cache
               S6_YES_I_WANT_A_WORLD_WRITABLE_RUN_BECAUSE_KUBERNETES: "1"
               S6_READ_ONLY_ROOT: "1"
+              SESSION_COOKIE_SECURE: true
+              HARDCOVER_SYNC_ENABLED: true
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
