@@ -32,6 +32,9 @@ entries:
           matching_mode: strict
         - url: https://immich.martinbjeldbak.com/user-settings
           matching_mode: strict
+      grant_types:
+        - authorization_code
+        - refresh_token
       property_mappings: *property_mappings
       signing_key: *signing_key
 
