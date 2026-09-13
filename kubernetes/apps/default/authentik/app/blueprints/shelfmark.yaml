@@ -38,4 +38,5 @@ entries:
       policy_engine_mode: any
       group: Media
       meta_description: Book and audiobook search & request hub
+      meta_icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/shelfmark.svg
       open_in_new_tab: false
