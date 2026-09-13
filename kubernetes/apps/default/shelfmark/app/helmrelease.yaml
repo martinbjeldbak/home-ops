@@ -102,6 +102,16 @@ spec:
         parentRefs:
           - name: envoy-internal
             namespace: network
+        rules:
+          - filters:
+              - type: RequestHeaderModifier
+                requestHeaderModifier:
+                  add:
+                    - name: X-Forwarded-Proto
+                      value: https
+            backendRefs:
+              - identifier: app
+                port: *port
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
