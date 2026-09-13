@@ -100,9 +100,6 @@ spec:
           calibre-web-automated:
             app:
               - path: /config
-              # Split library: metadata.db lives on the ceph-block PVC (off NFS),
-              # while the book files stay on NFS via the `books` mount below.
-              # Toggle "Separate Book Files from Library" (-> /books) in the CWA UI.
               - path: /calibre-library
                 subPath: calibre-library
       books:
