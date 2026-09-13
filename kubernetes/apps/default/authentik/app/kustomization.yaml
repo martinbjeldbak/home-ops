@@ -19,6 +19,7 @@ configMapGenerator:
       - karakeep.yaml=./blueprints/karakeep.yaml
       - qui.yaml=./blueprints/qui.yaml
       - romm.yaml=./blueprints/romm.yaml
+      - shelfmark.yaml=./blueprints/shelfmark.yaml
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
