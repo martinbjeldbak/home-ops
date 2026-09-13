@@ -19,3 +19,17 @@ entries:
             "email": request.user.email,
             "email_verified": request.user.attributes.get("email_verified", False)
         }
+
+  # Group names claim, used by apps (e.g. Shelfmark) that determine admin
+  # access from an OIDC_ADMIN_GROUP membership check rather than a database role.
+  - model: authentik_providers_oauth2.scopemapping
+    identifiers:
+      name: Group names
+    attrs:
+      name: Group names
+      scope_name: groups
+      description: Adds a "groups" claim listing the user's group names.
+      expression: |
+        return {
+            "groups": [group.name for group in request.user.groups.all()]
+        }

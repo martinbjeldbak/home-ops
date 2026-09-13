@@ -10,6 +10,7 @@ context:
     - !Find [authentik_providers_oauth2.scopemapping, [name, "authentik default OAuth Mapping: OpenID 'openid'"]]
     - !Find [authentik_providers_oauth2.scopemapping, [name, "authentik default OAuth Mapping: OpenID 'profile'"]]
     - !Find [authentik_providers_oauth2.scopemapping, [name, "ROMM & Dawarich email_verified fix"]]
+    - !Find [authentik_providers_oauth2.scopemapping, [name, "Group names"]]
   signing_key: &signing_key !Find [authentik_crypto.certificatekeypair, [name, authentik Self-signed Certificate]]
 entries:
   - model: authentik_providers_oauth2.oauth2provider

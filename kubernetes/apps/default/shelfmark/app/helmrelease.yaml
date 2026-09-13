@@ -52,6 +52,7 @@ spec:
               OIDC_DISCOVERY_URL: https://auth.martinbjeldbak.com/application/o/shelfmark/.well-known/openid-configuration
               OIDC_BUTTON_LABEL: Authentik
               OIDC_AUTO_REDIRECT: true
+              OIDC_ADMIN_GROUP: authentik Admins
               DISABLE_LOCAL_AUTH: true
             envFrom:
               - secretRef:
