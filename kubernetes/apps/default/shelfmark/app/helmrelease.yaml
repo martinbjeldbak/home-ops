@@ -1,0 +1,126 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: shelfmark
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: shelfmark
+  interval: 1h
+  values:
+    controllers:
+      shelfmark:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/calibrain/shelfmark
+              tag: v1.3.15@sha256:9602290324993c801b319d3166b202b96bd9039af2416f0916dae03a5bdca815
+            command:
+              - gunicorn
+            args:
+              - --access-logfile=-
+              - --error-logfile=-
+              - --worker-class=geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+              - --workers=1
+              - -t
+              - "300"
+              - -b
+              - 0.0.0.0:8084
+              - shelfmark.main:app
+            env:
+              TZ: Australia/Sydney
+              SESSION_COOKIE_SECURE: true
+              CALIBRE_WEB_URL: https://calibre.martinbjeldbak.com
+              INGEST_DIR: /books
+              PROWLARR_ENABLED: true
+              PROWLARR_URL: http://prowlarr.default.svc.cluster.local
+              PROWLARR_TORRENT_CLIENT: qbittorrent
+              QBITTORRENT_CATEGORY: books
+              PROWLARR_USENET_CLIENT: sabnzbd
+              SABNZBD_URL: http://sabnzbd.default.svc.cluster.local
+              SABNZBD_CATEGORY: books
+              METADATA_PROVIDER: hardcover
+              HARDCOVER_ENABLED: true
+              EMAIL_SMTP_PORT: 25
+              EMAIL_SMTP_SECURITY: none
+              EMAIL_FROM: "{{ .Release.Name }}@martinbjeldbak.com"
+              AUTH_METHOD: oidc
+              OIDC_DISCOVERY_URL: https://auth.martinbjeldbak.com/application/o/shelfmark/.well-known/openid-configuration
+              OIDC_BUTTON_LABEL: Authentik
+              OIDC_AUTO_REDIRECT: true
+              DISABLE_LOCAL_AUTH: true
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
+            probes:
+              readiness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/health
+                    port: &port 8084
+                  periodSeconds: 10
+                  timeoutSeconds: 5
+                  failureThreshold: 5
+              liveness: *probes
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 10
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 100m
+                memory: 256Mi
+              limits:
+                memory: 2Gi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        ports:
+          http:
+            port: *port
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.martinbjeldbak.com"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    persistence:
+      config:
+        existingClaim: "{{ .Release.Name }}"
+      books:
+        type: nfs
+        server: alderaan.internal
+        path: /volume4/calibre-web-automated-inbox
+        globalMounts:
+          - path: /books
+      data:
+        type: nfs
+        server: alderaan.internal
+        path: /volume1/data
+        globalMounts:
+          - path: /data
+      tmpfs:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
+            subPath: tmp
+          - path: /var/log
+            subPath: var-log

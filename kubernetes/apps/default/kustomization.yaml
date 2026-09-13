@@ -41,6 +41,7 @@ resources:
   - ./scrypted/ks.yaml
   - ./seerr/ks.yaml
   - ./smtp-relay/ks.yaml
+  - ./shelfmark/ks.yaml
   - ./sonarr/ks.yaml
   - ./syncthing/ks.yaml
   - ./tautulli/ks.yaml
