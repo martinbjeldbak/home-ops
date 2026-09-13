@@ -17,7 +17,7 @@ spec:
       runAsGroup: ${KOPIUR_PGID:=1000}
   repository:
     kind: ClusterRepository
-    name: home-ops
+    name: alderaan
   retention:
     keepLatest: 3
     keepHourly: 24
