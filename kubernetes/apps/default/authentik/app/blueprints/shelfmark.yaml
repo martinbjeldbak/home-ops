@@ -25,6 +25,9 @@ entries:
       redirect_uris:
         - url: https://shelfmark.martinbjeldbak.com/api/auth/oidc/callback
           matching_mode: strict
+      grant_types:
+        - authorization_code
+        - refresh_token
       property_mappings: *property_mappings
       signing_key: *signing_key
 

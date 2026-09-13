@@ -27,6 +27,9 @@ entries:
       redirect_uris:
         - url: https://calibre.martinbjeldbak.com/login/generic/authorized
           matching_mode: strict
+      grant_types:
+        - authorization_code
+        - refresh_token
       property_mappings: *property_mappings
       signing_key: *signing_key
 
