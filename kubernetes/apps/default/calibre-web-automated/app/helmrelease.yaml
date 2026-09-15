@@ -79,6 +79,11 @@ spec:
 
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            client:
+              dont-follow-redirects: true
+            conditions: ["[STATUS] == 302"]
         hostnames: ["calibre.martinbjeldbak.com"]
         parentRefs:
           - name: envoy-external
