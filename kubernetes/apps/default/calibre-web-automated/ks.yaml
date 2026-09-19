@@ -17,7 +17,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      KOPIUR_CAPACITY: 5Gi
+      KOPIUR_CAPACITY: 15Gi
   prune: true
   retryInterval: 2m
   sourceRef:
