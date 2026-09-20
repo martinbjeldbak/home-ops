@@ -1,0 +1,49 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/monitoring.coreos.com/prometheusrule_v1.json
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: peanut-rules
+spec:
+  groups:
+    - name: peanut.rules
+      rules:
+        - alert: UPSOnBattery
+          expr: |
+            ups_input_voltage{ups="ups"} < 100
+          for: 30s
+          annotations:
+            summary: >-
+              UPS {{ $labels.ups }} on {{ $labels.server }} has lost input power and is running on battery
+          labels:
+            severity: critical
+
+        - alert: UPSBatteryRuntimeLow
+          expr: |
+            ups_battery_runtime{ups="ups"} < 600
+          for: 1m
+          annotations:
+            summary: >-
+              UPS {{ $labels.ups }} on {{ $labels.server }} has less than 10 minutes of battery runtime left
+          labels:
+            severity: critical
+
+        - alert: UPSBatteryChargeLow
+          expr: |
+            ups_battery_charge{ups="ups"} < 50
+          for: 2m
+          annotations:
+            summary: >-
+              UPS {{ $labels.ups }} on {{ $labels.server }} battery charge has dropped below 50%
+          labels:
+            severity: warning
+
+        - alert: UPSHighLoad
+          expr: |
+            ups_ups_load{ups="ups"} > 80
+          for: 5m
+          annotations:
+            summary: >-
+              UPS {{ $labels.ups }} on {{ $labels.server }} load is above 80%
+          labels:
+            severity: warning
