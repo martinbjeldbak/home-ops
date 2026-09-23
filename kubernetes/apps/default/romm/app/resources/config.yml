@@ -25,8 +25,9 @@ exclude:
         - 'titlescreens'
         - 'videos'
 filesystem:
-  firmware_folder: bios
-  roms_folder: roms
+  structure:
+    default: "roms/{platform}/{game}"
+    firmware: "bios/{platform}"
 system:
   platforms:
     gc: ngc
