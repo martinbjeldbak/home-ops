@@ -51,6 +51,24 @@ spec:
                 memory: 768Mi
               limits:
                 memory: 18Gi
+          mousehole:
+            image:
+              repository: tmmrtn/mousehole
+              tag: 0.5.0@sha256:2fc02b12362581e60bfd6adba788bda9eda93f8f31ed089581eeabcee4518b0d
+            env:
+              TZ: Australia/Sydney
+              HOME: /tmp
+              MOUSEHOLE_INSECURE_ALLOW_NO_AUTH: "true"
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 10m
+                memory: 64Mi
+              limits:
+                memory: 256Mi
     defaultPodOptions:
       # k8s-2 can't pass tagged-VLAN macvlan traffic (version-independent fault, unresolved);
       # keep macvlan workloads off it.
@@ -114,5 +132,11 @@ spec:
         path: /volume1/data
         globalMounts:
           - path: /data
+      mousehole:
+        existingClaim: "{{ .Release.Name }}-mousehole"
+        advancedMounts:
+          qbittorrent:
+            mousehole:
+              - path: /var/lib/mousehole
       tmp:
         type: emptyDir
