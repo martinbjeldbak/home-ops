@@ -20,6 +20,7 @@ resources:
   - ./deduparr/ks.yaml
   - ./epicgames/ks.yaml
   - ./esphome/ks.yaml
+  - ./go2rtc/ks.yaml
   - ./home-assistant/ks.yaml
   - ./icloudpd/ks.yaml
   - ./immich/ks.yaml
