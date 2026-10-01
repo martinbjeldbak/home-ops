@@ -1,0 +1,30 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/k8s.cni.cncf.io/networkattachmentdefinition_v1.json
+# Scrypted-only variant of the iot macvlan. The HomeKit hub (Apple TV) lives on
+# TRUSTED (VLAN 20), so Scrypted must route replies to that subnet out net1.
+# Without this route the kernel sends replies via the Cilium default route
+# (eth0), where they are dropped, and HAP TCP handshakes never complete
+# (HomeKit cameras show as frozen/unavailable).
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: iot-scrypted
+spec:
+  config: |-
+    {
+      "cniVersion": "1.1.0",
+      "name": "iot-scrypted",
+      "plugins": [
+        {
+          "type": "macvlan",
+          "master": "bond0.30",
+          "mode": "bridge",
+          "ipam": {
+            "type": "static",
+            "routes": [
+              {"dst": "192.168.20.0/24", "gw": "192.168.30.1"}
+            ]
+          }
+        }
+      ]
+    }
