@@ -16,7 +16,7 @@ spec:
           app:
             image:
               repository: ghcr.io/new-usemame/calibre-web-nextgen
-              tag: v4.1.45@sha256:8546a726ad49b2fff8c6c02964566c986740527b10ff21a31241e8e94202fb86
+              tag: v4.1.46@sha256:5356dd0bebf5968892ae311b9fed0feebee54c6465a820b08780b17d0f68e76f
             env:
               TZ: Australia/Sydney
               PUID: 1000
