@@ -36,3 +36,5 @@ system:
 scan:
   gamelist:
     export: true
+converto:
+  download_conversion_enabled: true  # expose "Download as" conversions
