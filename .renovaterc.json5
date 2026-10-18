@@ -7,12 +7,9 @@
     "github>home-operations/renovate-presets//apps/talosFactory.json5#8.1.0",
     ":timezone(Australia/Sydney)",
   ],
-  lockFileMaintenance: {
-    enabled: true,
-    schedule: ["before 3am on the first day of the month"],
-    commitMessageExtra: "({{manager}})",
-    additionalBranchPrefix: "{{manager}}-",
-  },
+  // Only rebase when there is a conflict. This requires branch protection not
+  // to require up-to-date branches for automerge.
+  rebaseWhen: "conflicted",
   packageRules: [
     // Auto-merge rules
     {
@@ -39,35 +36,35 @@
       matchManagers: ["github-actions"],
       matchUpdateTypes: ["minor", "patch", "digest"],
       automerge: true,
-      automergeType: "branch",
+      automergeType: "pr",
       minimumReleaseAge: "3 days",
-      ignoreTests: true,
+      ignoreTests: false,
     },
     {
       description: "Auto-merge trusted GitHub Actions",
       matchManagers: ["github-actions"],
-      matchPackageNames: ["/^actions\\//", "/^renovatebot\\//"],
+      matchPackageNames: ["/^actions\\//"],
       matchUpdateTypes: ["minor", "patch", "digest"],
       automerge: true,
-      automergeType: "branch",
+      automergeType: "pr",
       minimumReleaseAge: "1 minute",
-      ignoreTests: true,
+      ignoreTests: false,
     },
     {
       description: "Auto-merge Grafana dashboards",
       matchDatasources: ["custom.grafana-dashboards"],
       matchUpdateTypes: ["major"],
       automerge: true,
-      automergeType: "branch",
-      ignoreTests: true,
+      automergeType: "pr",
+      ignoreTests: false,
     },
     {
       description: "Auto-merge Renovate Presents",
       matchManagers: ["renovate-config"],
       matchUpdateTypes: ["minor", "patch"],
       automerge: true,
-      automergeType: "branch",
-      ignoreTests: true,
+      automergeType: "pr",
+      ignoreTests: false,
     },
     // Grouping rules
     {
@@ -128,6 +125,16 @@
       matchManagers: ["mise"],
       matchDepNames: ["1password-cli"],
       enabled: false,
+    },
+    // Commit message rules
+    {
+      // The flux manager also extracts HelmRelease values images, so the file
+      // name is the only signal that a docker dep is a chart
+      description: "Title OCI chart updates as charts instead of images",
+      matchDatasources: ["docker"],
+      matchFileNames: ["**/ocirepository.yaml"],
+      semanticCommitScope: "helm",
+      commitMessageTopic: "chart {{depName}}",
     },
     // Labeling rules
     {
