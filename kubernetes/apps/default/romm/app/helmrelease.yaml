@@ -43,6 +43,11 @@ spec:
               OIDC_REDIRECT_URI: "https://{{ .Release.Name }}.martinbjeldbak.com/api/oauth/openid"
               OIDC_SERVER_APPLICATION_URL: "https://auth.martinbjeldbak.com/application/o/{{ .Release.Name }}"
               HASHEOUS_API_ENABLED: true
+              SMTP_HOST: smtp-relay.martinbjeldbak.com  # notifications and password-reset emails
+              SMTP_PORT: 25
+              SMTP_SECURITY: none
+              SMTP_FROM: romm@martinbjeldbak.com
+              ROM_CONVERTO_ENABLED: true  # "Convert library" task and ?format= downloads
             envFrom:
               - secretRef:
                   name: romm-secret
