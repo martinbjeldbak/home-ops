@@ -3,8 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app dragonfly-operator
-  namespace: &namespace dragonfly-operator-system
+  name: dragonfly-operator
 spec:
   interval: 1h
   path: ./kubernetes/apps/dragonfly-operator-system/dragonfly/app
@@ -14,5 +13,5 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
+  targetNamespace: dragonfly-operator-system
   wait: true

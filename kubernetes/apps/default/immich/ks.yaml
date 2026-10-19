@@ -6,7 +6,6 @@ metadata:
   name: immich
   namespace: default
 spec:
-  components:
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph

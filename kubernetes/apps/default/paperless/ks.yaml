@@ -33,7 +33,6 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: paperless-database
-  namespace: &namespace default
 spec:
   components:
     - ../../../../components/cnpg
@@ -53,7 +52,7 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
+  targetNamespace: default
   timeout: 5m
   wait: true
 ---
@@ -62,7 +61,6 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: paperless-redis
-  namespace: &namespace default
 spec:
   components:
     - ../../../../components/dragonfly
@@ -80,6 +78,6 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
+  targetNamespace: default
   timeout: 5m
   wait: true

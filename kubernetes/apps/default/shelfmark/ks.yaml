@@ -3,8 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app shelfmark
-  namespace: &namespace default
+  name: shelfmark
 spec:
   components:
     - ../../../../components/kopiur/backup
@@ -15,7 +14,7 @@ spec:
   path: ./kubernetes/apps/default/shelfmark/app
   postBuild:
     substitute:
-      APP: *app
+      APP: shelfmark
       KOPIUR_CAPACITY: 2Gi
   prune: true
   retryInterval: 2m
@@ -23,6 +22,6 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
+  targetNamespace: default
   timeout: 5m
   wait: false

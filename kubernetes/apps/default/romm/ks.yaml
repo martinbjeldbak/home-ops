@@ -3,8 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app romm
-  namespace: &namespace default
+  name: romm
 spec:
   components:
     - ../../../../components/kopiur/backup
@@ -20,7 +19,7 @@ spec:
   path: ./kubernetes/apps/default/romm/app
   postBuild:
     substitute:
-      APP: *app
+      APP: romm
       KOPIUR_CAPACITY: 50Gi
       KOPIUR_CACHE_CAPACITY: 50Gi
   prune: true
@@ -29,7 +28,7 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
+  targetNamespace: default
   timeout: 5m
   wait: false
 ---
@@ -37,8 +36,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app romm-database
-  namespace: &namespace default
+  name: romm-database
 spec:
   components:
     - ../../../../components/cnpg
@@ -56,6 +54,6 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
+  targetNamespace: default
   timeout: 5m
   wait: true
