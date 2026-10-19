@@ -5,8 +5,6 @@ kind: Kustomization
 metadata:
   name: icloudpd
 spec:
-  components:
-    # - ../../../../components/zeroscaler
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph

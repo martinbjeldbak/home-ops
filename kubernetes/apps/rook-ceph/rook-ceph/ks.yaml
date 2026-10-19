@@ -27,7 +27,6 @@ kind: Kustomization
 metadata:
   name: rook-ceph-cluster
 spec:
-  components:
   dependsOn:
     - name: ceph-csi-drivers
       namespace: rook-ceph
