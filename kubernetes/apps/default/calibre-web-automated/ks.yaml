@@ -3,8 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app calibre-web-automated
-  namespace: &namespace default
+  name: calibre-web-automated
 spec:
   components:
     - ../../../../components/kopiur/backup
@@ -16,7 +15,7 @@ spec:
   path: ./kubernetes/apps/default/calibre-web-automated/app
   postBuild:
     substitute:
-      APP: *app
+      APP: calibre-web-automated
       KOPIUR_CAPACITY: 15Gi
   prune: true
   retryInterval: 2m
@@ -24,6 +23,6 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
+  targetNamespace: default
   timeout: 5m
   wait: false

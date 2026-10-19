@@ -3,8 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app syncthing
-  namespace: &namespace default
+  name: syncthing
 spec:
   components:
     - ../../../../components/kopiur/backup
@@ -16,7 +15,7 @@ spec:
   path: ./kubernetes/apps/default/syncthing/app
   postBuild:
     substitute:
-      APP: *app
+      APP: syncthing
       KOPIUR_CAPACITY: 15Gi
       KOPIUR_CACHE_CAPACITY: 15Gi
   prune: true
@@ -25,6 +24,6 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
+  targetNamespace: default
   timeout: 5m
   wait: false
