@@ -65,11 +65,22 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
+    configMaps:
+      config:
+        data:
+          config.json: "{}"
     persistence:
       config:
-        type: emptyDir
+        existingClaim: "{{ .Release.Name }}"
         globalMounts:
           - path: /usr/app/config
+      config-file:
+        type: configMap
+        identifier: config
+        globalMounts:
+          - path: /usr/app/config/config.json
+            subPath: config.json
+            readOnly: true
       tmp:
         type: emptyDir
         globalMounts:
