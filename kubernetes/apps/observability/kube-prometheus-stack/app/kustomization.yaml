@@ -13,6 +13,9 @@ configMapGenerator:
   - name: flux-metrics-configmap
     files:
       - flux-metrics.yaml=./resources/flux-metrics.yaml
+  - name: glasshouse-dashboard
+    files:
+      - glasshouse-dashboard.json=./resources/glasshouse-dashboard.json
 generatorOptions:
   disableNameSuffixHash: true
   annotations:

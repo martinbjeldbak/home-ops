@@ -1,0 +1,869 @@
+{
+  "uid": "lg-tv",
+  "title": "LG TV (Glasshouse)",
+  "description": "LG 55UN7300PTC (webOS 5.6.2) via Glasshouse, scraped as job=\"glasshouse\". Adapted from mdlayher/homelab's MIT-licensed Glasshouse dashboard. OLED-only panels are omitted because this TV is LCD. The target disappears in standby.",
+  "tags": [
+    "glasshouse",
+    "lg-tv",
+    "tv"
+  ],
+  "editable": true,
+  "schemaVersion": 39,
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "refresh": "30s",
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "bargauge",
+      "title": "TVs",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 3
+      },
+      "fieldConfig": {
+        "defaults": {
+          "max": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(glasshouse_info, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} {{model}} fw {{firmware}} webOS {{webos}} v{{version}}",
+          "instant": true
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "basic"
+      }
+    },
+    {
+      "id": 2,
+      "type": "bargauge",
+      "title": "power (up, system, screen)",
+      "gridPos": {
+        "x": 0,
+        "y": 3,
+        "w": 8,
+        "h": 6
+      },
+      "fieldConfig": {
+        "defaults": {
+          "max": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "gray",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(up{job=\"glasshouse\"}, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} up",
+          "instant": true
+        },
+        {
+          "refId": "B",
+          "expr": "label_replace(glasshouse_system_on, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} system",
+          "instant": true
+        },
+        {
+          "refId": "C",
+          "expr": "label_replace(glasshouse_screen_on, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} screen",
+          "instant": true
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "basic"
+      }
+    },
+    {
+      "id": 3,
+      "type": "bargauge",
+      "title": "signal (mode, ALLM)",
+      "gridPos": {
+        "x": 8,
+        "y": 3,
+        "w": 8,
+        "h": 6
+      },
+      "fieldConfig": {
+        "defaults": {
+          "max": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "gray",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(glasshouse_signal_info, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} {{dynamic_range}} {{picture_mode}}",
+          "instant": true
+        },
+        {
+          "refId": "B",
+          "expr": "label_replace(glasshouse_signal_low_latency, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} ALLM",
+          "instant": true
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "basic"
+      }
+    },
+    {
+      "id": 4,
+      "type": "bargauge",
+      "title": "HDMI links Gbps",
+      "gridPos": {
+        "x": 16,
+        "y": 3,
+        "w": 8,
+        "h": 6
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Gbps",
+          "max": 48
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace( glasshouse_hdmi_link_bits_per_second / 1e9 * on (instance, input) group_left (phy_mode, chroma, hdcp) glasshouse_hdmi_link_info, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} {{input}} {{phy_mode}} {{chroma}} {{hdcp}}",
+          "instant": true
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "basic"
+      }
+    },
+    {
+      "id": 5,
+      "type": "bargauge",
+      "title": "source on screen",
+      "gridPos": {
+        "x": 0,
+        "y": 9,
+        "w": 12,
+        "h": 7
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(glasshouse_signal_width_pixels, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} width",
+          "instant": true
+        },
+        {
+          "refId": "B",
+          "expr": "label_replace(glasshouse_signal_height_pixels, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} height",
+          "instant": true
+        },
+        {
+          "refId": "C",
+          "expr": "label_replace(glasshouse_signal_refresh_hertz, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} refresh Hz",
+          "instant": true
+        },
+        {
+          "refId": "D",
+          "expr": "label_replace(glasshouse_signal_frame_rate_hertz, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} frame rate Hz, VRR {{vrr_type}}",
+          "instant": true
+        },
+        {
+          "refId": "E",
+          "expr": "label_replace(glasshouse_signal_vrr, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} VRR",
+          "instant": true
+        },
+        {
+          "refId": "F",
+          "expr": "label_replace(glasshouse_hdmi_qms, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} {{input}} QMS",
+          "instant": true
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "basic"
+      }
+    },
+    {
+      "id": 6,
+      "type": "timeseries",
+      "title": "frame rate",
+      "gridPos": {
+        "x": 12,
+        "y": 9,
+        "w": 12,
+        "h": 7
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Hz"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(sum without (vrr_type) (glasshouse_signal_frame_rate_hertz), \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}}"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "timeseries",
+      "title": "SoC temperature",
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "w": 6,
+        "h": 6
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "°C"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(glasshouse_soc_temperature_celsius, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}}"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "type": "timeseries",
+      "title": "CPU busy",
+      "gridPos": {
+        "x": 6,
+        "y": 16,
+        "w": 6,
+        "h": 6
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace( sum by (instance) (rate(glasshouse_cpu_seconds_total{mode!=\"idle\"}[2m])) / sum by (instance) (rate(glasshouse_cpu_seconds_total[2m])), \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}}"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "type": "timeseries",
+      "title": "network bytes/s",
+      "gridPos": {
+        "x": 12,
+        "y": 16,
+        "w": 6,
+        "h": 6
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(rate(glasshouse_network_receive_bytes_total[2m]), \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} rx"
+        },
+        {
+          "refId": "B",
+          "expr": "label_replace(rate(glasshouse_network_transmit_bytes_total[2m]), \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} tx"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "type": "bargauge",
+      "title": "memory used",
+      "gridPos": {
+        "x": 18,
+        "y": 16,
+        "w": 6,
+        "h": 6
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "max": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0.8
+              },
+              {
+                "color": "red",
+                "value": 0.9
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace( 1 - glasshouse_memory_available_bytes / glasshouse_memory_total_bytes, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}}",
+          "instant": true
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "basic"
+      }
+    },
+    {
+      "id": 14,
+      "type": "bargauge",
+      "title": "app storage used",
+      "gridPos": {
+        "x": 0,
+        "y": 22,
+        "w": 8,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "max": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0.8
+              },
+              {
+                "color": "red",
+                "value": 0.9
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(1 - glasshouse_app_storage_available_bytes / glasshouse_app_storage_size_bytes, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} apps",
+          "instant": true
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "basic"
+      }
+    },
+    {
+      "id": 15,
+      "type": "bargauge",
+      "title": "uptime",
+      "gridPos": {
+        "x": 8,
+        "y": 22,
+        "w": 6,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(time() - glasshouse_boot_time_seconds, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}}",
+          "instant": true
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "basic"
+      }
+    },
+    {
+      "id": 17,
+      "type": "bargauge",
+      "title": "backlight",
+      "gridPos": {
+        "x": 14,
+        "y": 22,
+        "w": 5,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "max": 1
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(glasshouse_picture_backlight_ratio, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}}",
+          "instant": true
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "basic"
+      }
+    },
+    {
+      "id": 18,
+      "type": "bargauge",
+      "title": "remote battery",
+      "gridPos": {
+        "x": 19,
+        "y": 22,
+        "w": 5,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "max": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0.15
+              },
+              {
+                "color": "green",
+                "value": 0.3
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(glasshouse_remote_battery_ratio, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}}",
+          "instant": true
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "basic"
+      }
+    },
+    {
+      "id": 24,
+      "type": "bargauge",
+      "title": "eMMC life used",
+      "gridPos": {
+        "x": 0,
+        "y": 26,
+        "w": 12,
+        "h": 5
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "max": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0.8
+              },
+              {
+                "color": "red",
+                "value": 0.9
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(glasshouse_emmc_life_used_ratio, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} type {{type}}",
+          "instant": true
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "basic"
+      }
+    },
+    {
+      "id": 25,
+      "type": "bargauge",
+      "title": "attention",
+      "gridPos": {
+        "x": 12,
+        "y": 26,
+        "w": 12,
+        "h": 5
+      },
+      "fieldConfig": {
+        "defaults": {
+          "max": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "gray",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(1 - glasshouse_adblock_enabled, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} adblock off",
+          "instant": true
+        },
+        {
+          "refId": "B",
+          "expr": "label_replace(glasshouse_emmc_pre_eol_state{state!=\"normal\"} == 1, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{tv}} eMMC {{state}}",
+          "instant": true
+        }
+      ],
+      "description": "Every row reads 0 when all is well; a lit bar needs attention.",
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "basic"
+      }
+    },
+    {
+      "id": 26,
+      "type": "stat",
+      "title": "current app",
+      "description": "The app or HDMI input in the foreground.",
+      "gridPos": {
+        "x": 0,
+        "y": 31,
+        "w": 8,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(glasshouse_foreground_app_info, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{app_name}} ({{app_id}})",
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "name",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "colorMode": "none"
+      }
+    },
+    {
+      "id": 27,
+      "type": "stat",
+      "title": "power-on reason",
+      "description": "Why the TV last powered on, as reported by its power service.",
+      "gridPos": {
+        "x": 8,
+        "y": 31,
+        "w": 8,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(glasshouse_power_on_info, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{reason}}",
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "name",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "colorMode": "none"
+      }
+    },
+    {
+      "id": 28,
+      "type": "stat",
+      "title": "audio output",
+      "description": "The configured sound output and sound mode.",
+      "gridPos": {
+        "x": 16,
+        "y": 31,
+        "w": 8,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(glasshouse_sound_info, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{output}} / {{mode}}",
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "name",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "colorMode": "none"
+      }
+    },
+    {
+      "id": 29,
+      "type": "stat",
+      "title": "HDR format",
+      "description": "The format of the HDMI source on screen. Empty without an HDMI source.",
+      "gridPos": {
+        "x": 0,
+        "y": 35,
+        "w": 12,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(glasshouse_signal_format_info, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{type}} {{eotf}} {{colorimetry}} {{encoding}}",
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "name",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "colorMode": "none"
+      }
+    },
+    {
+      "id": 30,
+      "type": "stat",
+      "title": "audio codec",
+      "description": "The audio format being played. Only present while something is playing, and unavailable on webOS 4.",
+      "gridPos": {
+        "x": 12,
+        "y": 35,
+        "w": 12,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "label_replace(glasshouse_sound_input_info, \"tv\", \"$1\", \"instance\", \"([^.]+?)(-lg[a-z0-9]+)?[.].*\")",
+          "legendFormat": "{{codec}} {{immersive}}",
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "name",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "colorMode": "none"
+      }
+    },
+    {
+      "id": 31,
+      "type": "bargauge",
+      "title": "watch time (selected range)",
+      "description": "Time the TV was on with each app or input in front. Requires watch time to be enabled in Glasshouse.",
+      "gridPos": {
+        "x": 0,
+        "y": 39,
+        "w": 24,
+        "h": 6
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "h"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (app) (increase(glasshouse_watch_seconds_total[$__range])) / 3600",
+          "legendFormat": "{{app}}",
+          "instant": true
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "basic"
+      }
+    }
+  ]
+}

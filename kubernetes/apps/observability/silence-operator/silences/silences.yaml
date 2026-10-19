@@ -43,3 +43,18 @@ spec:
   matchers:
     - name: alertname
       value: KubeHpaMaxedOut
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/observability.giantswarm.io/silence_v1alpha2.json
+apiVersion: observability.giantswarm.io/v1alpha2
+kind: Silence
+metadata:
+  name: glasshouse-target-down-standby
+spec:
+  # The TV drops off the network in standby, so the default TargetDown rule
+  # fires every time it is switched off. This also suppresses a real Glasshouse
+  # outage while the TV is on, since Prometheus cannot distinguish the two.
+  matchers:
+    - name: alertname
+      value: TargetDown
+    - name: job
+      value: glasshouse
