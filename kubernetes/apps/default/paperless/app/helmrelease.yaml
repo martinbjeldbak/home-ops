@@ -28,15 +28,20 @@ spec:
               PAPERLESS_OCR_LANGUAGE: dan+eng
               PAPERLESS_ENABLE_UPDATE_CHECK: "true"
               PAPERLESS_REDIS: "redis://{{ .Release.Name }}-redis:6379"
+              PAPERLESS_DBENGINE: postgresql
               PAPERLESS_DBHOST: "{{ .Release.Name }}-db-rw"
               PAPERLESS_DBNAME: "{{ .Release.Name }}"
               PAPERLESS_DBUSER: "{{ .Release.Name }}"
               PAPERLESS_DISABLE_REGULAR_LOGIN: true
               PAPERLESS_CONSUMPTION_DIR: /library/consume
-              PAPERLESS_DEBUG: 1
-              PAPERLESS_CONSUMER_POLLING: 60
+              PAPERLESS_CONSUMER_POLLING_INTERVAL: 60
+              PAPERLESS_CONSUMER_STABILITY_DELAY: 30
+              PAPERLESS_CONSUMER_RECURSIVE: 1
+              PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: 1
+              PAPERLESS_CONSUMER_DELETE_DUPLICATES: true
               PAPERLESS_PORT: &port 8000
               PAPERLESS_FILENAME_FORMAT: "{{ `{{created_year}}/{{correspondent}}/{{created}} {{title}}` }}"
+              PAPERLESS_FILENAME_FORMAT_REMOVE_NONE: true
               PAPERLESS_TIKA_ENABLED: 1
               PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://127.0.0.1:3000
               PAPERLESS_TIKA_ENDPOINT: http://127.0.0.1:9998
@@ -62,7 +67,7 @@ spec:
             command:
               - "gotenberg"
               - "--chromium-disable-javascript=true"
-              - "--chromium-allow-list=file:///tmp/.*"
+              - "--chromium-allow-list=^file:///tmp/.*"
             securityContext:
               runAsUser: 65534
               runAsGroup: 65534
