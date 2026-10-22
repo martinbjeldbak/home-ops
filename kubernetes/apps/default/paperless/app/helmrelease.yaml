@@ -69,8 +69,10 @@ spec:
               - "--chromium-disable-javascript=true"
               - "--chromium-allow-list=^file:///tmp/.*"
             securityContext:
-              runAsUser: 65534
-              runAsGroup: 65534
+              # Gotenberg's image user. Chromium's crash handler needs a writable $HOME
+              # (65534 maps to /nonexistent, which breaks all HTML/email conversions).
+              runAsUser: 1001
+              runAsGroup: 1001
           tika:
             image:
               repository: docker.io/apache/tika
