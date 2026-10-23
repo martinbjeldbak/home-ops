@@ -26,6 +26,7 @@ spec:
                   --directory /data \
                   --username "$ICLOUD_USERNAME" \
                   --password "$ICLOUD_PASSWORD" \
+                  --password-provider parameter \
                   --password-provider webui \
                   --mfa-provider webui \
                   --watch-with-interval 3600 \
