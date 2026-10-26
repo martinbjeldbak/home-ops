@@ -31,10 +31,6 @@ spec:
                   httpGet:
                     path: /rest/noauth/health
                     port: &port 8384
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
               readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
@@ -86,5 +82,3 @@ spec:
         type: nfs
         server: alderaan.internal
         path: /volume1/syncthing
-        globalMounts:
-          - path: /data

@@ -44,10 +44,6 @@ spec:
                     httpHeaders:
                       - name: Host
                         value: localhost
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
               readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false

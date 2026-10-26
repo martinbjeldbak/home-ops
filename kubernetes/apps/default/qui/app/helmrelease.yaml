@@ -38,10 +38,6 @@ spec:
                   httpGet:
                     path: /health
                     port: *port
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
               readiness: *probes
             resources:
               requests:
@@ -72,10 +68,6 @@ spec:
         parentRefs:
           - name: envoy-internal
             namespace: network
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
@@ -83,5 +75,3 @@ spec:
         type: nfs
         server: alderaan.internal
         path: /volume1/data
-        globalMounts:
-          - path: /data

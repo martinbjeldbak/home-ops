@@ -28,15 +28,12 @@ spec:
           osd_scrub_sleep: "0.1"
       cleanupPolicy:
         wipeDevicesFromOtherClusters: true
-      crashCollector:
-        disable: false
       csi:
         cephfs:
           kernelMountOptions: ms_mode=prefer-crc
         readAffinity:
           enabled: false # https://github.com/ceph/ceph-csi/issues/5772
       dashboard:
-        enabled: true
         urlPrefix: /
         ssl: false
         prometheusEndpoint: http://prometheus-operated.observability.svc.cluster.local:9090
@@ -99,7 +96,6 @@ spec:
       storage:
         devicePathFilter: /dev/disk/by-id/nvme-Samsung_SSD_990_PRO.*_1TB_S7H.*_.*
         useAllDevices: false
-        useAllNodes: true
     monitoring:
       enabled: true
       createPrometheusRules: true
@@ -123,7 +119,6 @@ spec:
         storageClass:
           enabled: true
           name: ceph-block
-          allowVolumeExpansion: true
           isDefault: true
           mountOptions:
             - discard
@@ -140,12 +135,9 @@ spec:
             csi.storage.k8s.io/provisioner-secret-namespace: "{{ .Release.Namespace }}"
             imageFeatures: deep-flatten,exclusive-lock,fast-diff,layering,object-map
             imageFormat: "2"
-          reclaimPolicy: Delete
-          volumeBindingMode: Immediate
     cephBlockPoolsVolumeSnapshotClass:
       enabled: true
       name: csi-ceph-blockpool
-      deletionPolicy: Delete
       isDefault: true
     cephFileSystems:
       - name: ceph-filesystem
@@ -180,8 +172,6 @@ spec:
         storageClass:
           enabled: true
           name: ceph-filesystem
-          allowVolumeExpansion: true
-          isDefault: false
           parameters:
             csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
             csi.storage.k8s.io/controller-expand-secret-namespace: "{{ .Release.Namespace }}"
@@ -191,12 +181,8 @@ spec:
             csi.storage.k8s.io/node-stage-secret-namespace: "{{ .Release.Namespace }}"
             csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
             csi.storage.k8s.io/provisioner-secret-namespace: "{{ .Release.Namespace }}"
-          pool: data0
-          reclaimPolicy: Delete
-          volumeBindingMode: Immediate
     cephFileSystemVolumeSnapshotClass:
       enabled: true
       name: csi-ceph-filesystem
-      deletionPolicy: Delete
       isDefault: false
     cephObjectStores: []

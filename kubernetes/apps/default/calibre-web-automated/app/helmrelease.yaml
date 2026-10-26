@@ -75,7 +75,7 @@ spec:
       app:
         ports:
           http:
-            port: &port 8083
+            port: 8083
 
     route:
       app:

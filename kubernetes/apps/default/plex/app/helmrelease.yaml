@@ -40,7 +40,6 @@ spec:
                 enabled: true
                 spec:
                   failureThreshold: 30
-                  periodSeconds: 10
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -101,10 +100,8 @@ spec:
                 requestHeaderModifier: *pipeline
             matches:
               - path:
-                  type: PathPrefix
                   value: /:/eventsource
               - path:
-                  type: PathPrefix
                   value: /:/websockets
           - # Ref: https://forums.plex.tv/t/external-srt-subtitles-are-not-working-w-reverse-proxy/886540
             name: subtitles
@@ -117,7 +114,6 @@ spec:
                     - Range
             matches:
               - path:
-                  type: PathPrefix
                   value: /library/streams
     persistence:
       config:

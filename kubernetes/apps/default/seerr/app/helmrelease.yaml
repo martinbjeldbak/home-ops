@@ -34,8 +34,6 @@ spec:
                   httpGet:
                     path: /api/v1/status
                     port: *port
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
                   timeoutSeconds: 5
                   failureThreshold: 5
               readiness:
@@ -45,8 +43,6 @@ spec:
                   httpGet:
                     path: /api/v1/status
                     port: *port
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
                   timeoutSeconds: 5
                   failureThreshold: 5
               startup:

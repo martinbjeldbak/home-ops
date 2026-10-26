@@ -77,7 +77,6 @@ spec:
                   httpGet:
                     path: /api/v1/health
                     port: 3000
-                  periodSeconds: 10
                   failureThreshold: 90
             securityContext:
               allowPrivilegeEscalation: false
@@ -95,10 +94,6 @@ spec:
         parentRefs:
           - name: envoy-external
             namespace: network
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
     persistence:
       data:
         existingClaim: dawarich
