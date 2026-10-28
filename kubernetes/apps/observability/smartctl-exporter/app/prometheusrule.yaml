@@ -8,9 +8,13 @@ spec:
   groups:
     - name: smartctl-exporter.rules
       rules:
+        # smartctl_device_temperature is exported per temperature_type (current,
+        # op_limit_max, critical_limit_max). Only "current" is the live drive
+        # temperature; the limit variants are thresholds (typically 82-87°C) and
+        # would fire this alert for every healthy disk.
         - alert: SmartDeviceHighTemperature
           expr: |
-            smartctl_device_temperature > 65
+            smartctl_device_temperature{temperature_type="current"} > 65
           for: 5m
           annotations:
             summary: >-

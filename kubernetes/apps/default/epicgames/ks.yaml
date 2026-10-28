@@ -17,6 +17,10 @@ spec:
       APP: epicgames
       KOPIUR_CAPACITY: 1Gi
       KOPIUR_CACHE_CAPACITY: 1Gi
+      # The app runs as root (see app/helmrelease.yaml), so the mover must too,
+      # otherwise kopia cannot read the PVC and every snapshot fails PermissionDenied.
+      KOPIUR_PUID: 0
+      KOPIUR_PGID: 0
   prune: true
   sourceRef:
     kind: GitRepository
