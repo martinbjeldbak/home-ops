@@ -64,17 +64,11 @@ spec:
         parentRefs:
           - name: envoy-internal
             namespace: network
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
     persistence:
       data:
         type: nfs
         server: alderaan.internal
         path: /volume1/Photos/N/icloudpd
-        globalMounts:
-          - path: /data
       config-cache:
         existingClaim: "{{ .Release.Name }}-cache"
         globalMounts:

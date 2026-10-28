@@ -34,10 +34,6 @@ spec:
                   httpGet:
                     path: /
                     port: &port 80
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
               readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
@@ -132,5 +128,3 @@ spec:
             subPath: go2rtc.yaml
       state:
         type: emptyDir
-        globalMounts:
-          - path: /state

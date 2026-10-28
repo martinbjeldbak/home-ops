@@ -73,7 +73,6 @@ spec:
                 enabled: true
                 spec:
                   failureThreshold: 30
-                  periodSeconds: 10
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -120,14 +119,10 @@ spec:
         type: nfs
         server: alderaan.internal
         path: /volume4/calibre-web-automated-inbox
-        globalMounts:
-          - path: /books
       data:
         type: nfs
         server: alderaan.internal
         path: /volume1/data
-        globalMounts:
-          - path: /data
       tmpfs:
         type: emptyDir
         globalMounts:
