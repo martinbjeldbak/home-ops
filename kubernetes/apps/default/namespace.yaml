@@ -5,8 +5,5 @@ metadata:
   name: _
   annotations:
     kustomize.toolkit.fluxcd.io/prune: disabled
-    # epicgames runs as root and writes its PVC as root, so its kopiur mover
-    # must too (see apps/default/epicgames/ks.yaml).
-    kopiur.home-operations.com/privileged-movers: "true"
   labels:
     resource.kubernetes.io/admin-access: "true"
