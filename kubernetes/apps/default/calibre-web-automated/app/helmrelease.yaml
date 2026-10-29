@@ -38,7 +38,7 @@ spec:
                 spec:
                   httpGet:
                     port: &port 8083
-                    path: /login
+                    path: /health
                   initialDelaySeconds: 30
                   periodSeconds: 10
                   timeoutSeconds: 120
@@ -49,7 +49,7 @@ spec:
                 spec:
                   httpGet:
                     port: *port
-                    path: /
+                    path: /health
                   failureThreshold: 90
                   periodSeconds: 5
             securityContext:
