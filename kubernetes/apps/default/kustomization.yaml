@@ -10,6 +10,7 @@ components:
 
 resources:
   - ./namespace.yaml
+  - ./acestream-http-proxy/ks.yaml
   - ./agregarr/ks.yaml
   - ./atuin/ks.yaml
   - ./authentik/ks.yaml
