@@ -1,0 +1,14 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/helmfile
+
+# Shared defaults for the bootstrap helmfiles. Chart, version and values are
+# never defined here: they are read from the app's ocirepository.yaml and
+# helmrelease.yaml under kubernetes/apps/ so bootstrap installs exactly what
+# Flux reconciles later, and Renovate only has one place to update.
+
+templates:
+  default:
+    chart: '{{ (fromYaml (tpl (readFile "./templates/release.yaml.gotmpl") .)).chart }}'
+    version: '{{ (fromYaml (tpl (readFile "./templates/release.yaml.gotmpl") .)).version }}'
+    values:
+      - ./templates/values.yaml.gotmpl
