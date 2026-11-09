@@ -47,3 +47,4 @@ resources:
   - ./syncthing/ks.yaml
   - ./tautulli/ks.yaml
   - ./thelounge/ks.yaml
+  - ./unifi-mcp/ks.yaml
