@@ -54,8 +54,8 @@ kubeconfig lb="cilium":
 [script]
 base: ready
     just log info "Running stage..." "stage" "$(basename "$0")"
-    if ! kustomize build {{ source_directory() }}/kustomize/apps | just template - | kubectl apply --server-side --force-conflicts -f -; then
-        just log fatal "Failed to apply base manifests" "stage" "$(basename "$0")" "file" "$f"
+    if ! kustomize build {{ source_directory() }}/kustomize/personal | just template - | kubectl apply --server-side --force-conflicts -f -; then
+        just log fatal "Failed to apply personal manifests" "stage" "$(basename "$0")"
     fi
     if ! helmfile -f "{{ source_directory() }}/helmfile/crds.yaml" template -q | yq ea -e 'select(.kind == "CustomResourceDefinition")' | kubectl apply --server-side --force-conflicts -f -; then
         just log fatal "Failed to apply base crds" "stage" "$(basename "$0")"
