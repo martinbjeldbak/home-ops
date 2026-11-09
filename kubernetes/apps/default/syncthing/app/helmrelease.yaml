@@ -21,6 +21,9 @@ spec:
               tag: 2.1.7@sha256:2b71da7c0d0a91a6ae5285ad079226fecc0a365d08b27720e1f7037b018f7546
             env:
               TZ: Australia/Sydney
+              # Group-writable files/dirs on the NFS share, so SMB users
+              # (group 'users') can write to objects Syncthing creates.
+              UMASK: "0002"
               PGID: 1024 # 'admin' user on Synology NAS
               PUID: 100 # 'users' group on Synology NAS
             probes:
