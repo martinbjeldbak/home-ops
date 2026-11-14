@@ -17,7 +17,7 @@ spec:
   postBuild:
     substitute:
       APP: home-assistant
-      KOPIUR_CAPACITY: 5Gi
+      KOPIUR_CAPACITY: 10Gi
       KOPIUR_CACHE_CAPACITY: 5Gi
   prune: true
   retryInterval: 2m
