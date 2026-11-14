@@ -54,3 +54,16 @@ spec:
   relabelings:
     - targetLabel: job
       replacement: glasshouse
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/monitoring.coreos.com/scrapeconfig_v1alpha1.json
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: garage
+spec:
+  staticConfigs:
+    - targets:
+        - alderaan.internal:3903
+  relabelings:
+    - targetLabel: job
+      replacement: garage
