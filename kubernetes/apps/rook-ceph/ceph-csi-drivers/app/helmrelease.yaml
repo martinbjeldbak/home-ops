@@ -5,17 +5,13 @@ kind: HelmRelease
 metadata:
   name: ceph-csi-drivers
 spec:
-  chart:
-    spec:
-      chart: ceph-csi-drivers
-      version: 1.1.0
-      sourceRef:
-        kind: HelmRepository
-        name: ceph-csi-drivers
+  chartRef:
+    kind: OCIRepository
+    name: ceph-csi-drivers
   interval: 1h
   values:
     # Rook-compatible values, see
-    # https://github.com/rook/rook/blob/v1.20.5/deploy/charts/ceph-csi-drivers/values.yaml
+    # https://github.com/rook/rook/blob/master/deploy/charts/ceph-csi-drivers/values.yaml
     # Resource requests/limits carry forward the sizing previously set via
     # rook-ceph's csi*Resource keys (removed from app/helmrelease.yaml, those
     # keys are no-ops on the v1.20 chart).
@@ -79,7 +75,7 @@ spec:
       rbd:
         name: rook-ceph.rbd.csi.ceph.com
         # Chart defaults render grpcTimeout 30, replicas 1, snapshotPolicy none and
-        # log rotation on; the live Driver CRs run 150/2/snapshotter-enabled/off
+        # log rotation on
         grpcTimeout: 150
         snapshotPolicy: volumeGroupSnapshot
         log:
