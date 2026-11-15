@@ -21,12 +21,16 @@ sonarr:
       - trash_id: c4cadd6b35b95f62c3d47a408e53e2f7 # WEB-2160p (Combined)
         reset_unmatched_scores:
           enabled: true
+          except:
+            - "Language: Danish"
       - # WEB-1080p preferred with a 720p (and Bluray/HDTV) fallback tier so niche
         # shows uploaded first in 720p (e.g. The Traitors) get grabbed immediately
         # and auto-upgraded to 1080p WEB once it appears.
         trash_id: 9d142234e45d6143785ac55f5a9e8dc9 # WEB-1080p (Alternative)
         reset_unmatched_scores:
           enabled: true
+          except:
+            - "Language: Danish"
     custom_formats:
       - # FLUX trumps REPACKS
         trash_ids:
@@ -62,6 +66,8 @@ radarr:
       - trash_id: 5128baeb2b081b72126bc8482b2a86a0 # SQP-1 (2160p)
         reset_unmatched_scores:
           enabled: true
+          except:
+            - "Language: Danish"
     custom_formats:
       - # Unwanted
         trash_ids:
