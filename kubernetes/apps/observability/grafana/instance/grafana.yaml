@@ -25,6 +25,7 @@ spec:
       news_feed_enabled: "false"
     plugins:
       plugin_admin_enabled: "false"
+      preinstall_auto_update: "false"
     security:
       angular_support_enabled: "true"
     server:
@@ -64,10 +65,6 @@ spec:
       parentRefs:
         - name: envoy-internal
           namespace: network
-      rules:
-        - backendRefs:
-            - name: grafana-service
-              port: 3000
   persistentVolumeClaim:
     spec:
       accessModes:
